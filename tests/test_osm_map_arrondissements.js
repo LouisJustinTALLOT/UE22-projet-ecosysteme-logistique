@@ -27,17 +27,16 @@ var arrondissements;
 
 // console.log(arrondissements);
 
-$.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/arrondissements.json',
+jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/arrondissements.json',
     function (data) {
         console.log("ici");
         console.log(data);
         arrondissements = data;
-        
     }
 );
 
 
-// $.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/arrondissements.json'
+// jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/arrondissements.json'
 // ).done(
 //     function (json) {
 //         console.log(typeof(json))
