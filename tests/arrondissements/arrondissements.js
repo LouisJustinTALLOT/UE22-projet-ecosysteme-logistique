@@ -1,9 +1,21 @@
+// Evenement lancé quand le JSON est récupéré
 let JSONRetrievedEvent = new Event('JSONRetrieved');
+
+// Tableau contenant tous les arrondissements
 let arrondissements;
 
-window.addEventListener("load", init);
+// Le div où est mise la carte
+let element;
 
+// La carte
+let map;
+
+window.addEventListener("load", init);
 document.addEventListener("JSONRetrieved", displayArrondissements);
+
+
+
+
 
 /*
 * Fonction d'initialisation.
@@ -11,13 +23,13 @@ document.addEventListener("JSONRetrieved", displayArrondissements);
 */
 function init() {
     // Où veut-on afficher la carte ?
-    let element = document.getElementById("osm-map");
+    element = document.getElementById("osm-map");
 
     // Hauteur
     element.style = "height: 100%;";
 
     // Par Leaflet, on créé une "Carte Leaflet" sur l'élément où l'on veut afficher la carte
-    let map = L.map(element);
+    map = L.map(element);
 
     // Tile Layer (surcouche) d'OSM (Open Street Map) : c'est de là que l'on récupère nos données
     L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
@@ -31,11 +43,14 @@ function init() {
     // On définit la vue de la carte (centrée sur les Mines, avec un zoom de 14)
     map.setView(target, 18);
 
-    // On place un marqueur sur la carte
+    // On place un marqueur sur la carte sur les Mines
     L.marker(target).addTo(map);
 
     getArrondissements();
 }
+
+
+
 
 /**
  * Parses the JSON file
@@ -52,25 +67,20 @@ function getArrondissements() {
     );
 }
 
+
+
+
 /**
  * Displays the arrondissements on the map
- * TODO
+ * Fired when the JSONRetrievedEvent is called
  */
 function displayArrondissements() {
     console.log("Displaying arrondissements");
-    console.log(arrondissements);
+
+    for(let arrondissement of arrondissements) {
+        let data0 = arrondissement['fields']['geom'];
+        console.log(data0);
+
+        L.geoJSON(data0, {color: 'red'}).addTo(map);
+    }
 }
-
-
-
-
-    // jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/arrondissements.json'
-    // ).done(
-    //     function (json) {
-    //         console.log(typeof(json))
-    //         console.log("here");
-    //         // arrondissements =
-    //         JSON.parse(json);
-    //         console.log(arrondissements);
-    //     }
-    // )
