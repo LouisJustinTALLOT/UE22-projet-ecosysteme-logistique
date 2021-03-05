@@ -27,6 +27,17 @@ var arrondissements;
 
 // console.log(arrondissements);
 
+// let promise_get_json = new Promise((resolve, reject) => {
+//     jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/arrondissements.json',
+//         function (data) {
+//             console.log("ici");
+//             console.log(data);
+//             arrondissements = data;
+
+//         }
+//     );
+// });
+
 jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/arrondissements.json',
     function (data) {
         console.log("ici");
