@@ -1,4 +1,9 @@
+let JSONRetrievedEvent = new Event('JSONRetrieved');
+let arrondissements;
+
 window.addEventListener("load", init);
+
+document.addEventListener("JSONRetrieved", displayArrondissements);
 
 /*
 * Fonction d'initialisation.
@@ -29,25 +34,34 @@ function init() {
     // On place un marqueur sur la carte
     L.marker(target).addTo(map);
 
-    arrondissements();
+    getArrondissements();
 }
 
 /**
- * TODO
+ * Parses the JSON file
+ * Fires a JSONRetrievedEvent when ready
  */
-function arrondissements() {
-    // let arrondissements = JSON.parse();
-    var arrondissements;
-
-    // console.log(arrondissements);
-
+function getArrondissements() {
     jQuery.getJSON('arrondissements.json',
-        function (data) {
-            console.log("ici");
-            console.log(data);
+        function(data) {
+            // if the request succeeds
+            console.log("Request succeeded");
             arrondissements = data;
+            document.dispatchEvent(JSONRetrievedEvent);
         }
     );
+}
+
+/**
+ * Displays the arrondissements on the map
+ * TODO
+ */
+function displayArrondissements() {
+    console.log("Displaying arrondissements");
+    console.log(arrondissements);
+}
+
+
 
 
     // jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/arrondissements.json'
@@ -60,6 +74,3 @@ function arrondissements() {
     //         console.log(arrondissements);
     //     }
     // )
-    console.log("là");
-    console.log(arrondissements);
-}
