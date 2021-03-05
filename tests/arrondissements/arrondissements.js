@@ -28,4 +28,38 @@ function init() {
 
     // On place un marqueur sur la carte
     L.marker(target).addTo(map);
+
+    arrondissements();
+}
+
+/**
+ * TODO
+ */
+function arrondissements() {
+    // let arrondissements = JSON.parse();
+    var arrondissements;
+
+    // console.log(arrondissements);
+
+    jQuery.getJSON('arrondissements.json',
+        function (data) {
+            console.log("ici");
+            console.log(data);
+            arrondissements = data;
+        }
+    );
+
+
+    // jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/arrondissements.json'
+    // ).done(
+    //     function (json) {
+    //         console.log(typeof(json))
+    //         console.log("here");
+    //         // arrondissements =
+    //         JSON.parse(json);
+    //         console.log(arrondissements);
+    //     }
+    // )
+    console.log("là");
+    console.log(arrondissements);
 }
