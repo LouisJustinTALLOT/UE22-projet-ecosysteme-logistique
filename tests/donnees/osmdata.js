@@ -68,7 +68,7 @@ function getMagasins() {
 function displayMagasins() {
     console.log("Displaying magasins...");
 
-    for(let mag of osmdata) {
+    for(let mag of osmdata['features']) {
         let data0 = mag['properties']['geometry'];
         L.geoJSON(data0, {color: 'red'}).addTo(map);
     }
