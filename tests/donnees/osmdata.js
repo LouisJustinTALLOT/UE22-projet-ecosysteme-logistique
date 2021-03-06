@@ -1,5 +1,6 @@
 // Evenement lancé quand le JSON est récupéré
-let JSONRetrievedEvent = new Event('JSONRetrieved');
+let JSONRetrievedEvent1 = new Event('JSONRetrieved');
+let JSONRetrievedEvent2 = new Event('JSONRetrieved');
 
 // Tableau contenant des magasins
 let magasins;
@@ -13,8 +14,8 @@ let element;
 let map;
 
 window.addEventListener("load", init);
-document.addEventListener("JSONRetrieved", displayMagasins);
-
+document.addEventListener("JSONRetrieved1", displayMagasins);
+document.addEventListener("JSONRetrieved2", displayRestaurants);
 
 /*
 * Fonction d'initialisation.
@@ -56,7 +57,7 @@ function getMagasins() {
             // if the request succeeds
             console.log("Loaded");
             magasins = data;
-            document.dispatchEvent(JSONRetrievedEvent);
+            document.dispatchEvent(JSONRetrievedEvent1);
         }
     );
 }
@@ -69,7 +70,7 @@ function getRestaurants() {
             // if the request succeeds
             console.log("Loaded");
             restaurants = data;
-            document.dispatchEvent(JSONRetrievedEvent);
+            document.dispatchEvent(JSONRetrievedEvent2);
         }
     );
 }
@@ -88,6 +89,13 @@ function displayMagasins() {
         let data0 = mag['properties']['geometry'];
         L.geoJSON(data0, {color: 'red'}).addTo(map);
     }
+
+    console.log("Displayed");
+}
+
+function displayRestaurants() {
+    console.log("Displaying restaurants...");
+
     for(let restau of restaurants['features']) {
         let data0 = restau['properties']['geometry'];
         L.geoJSON(data0, {color: 'blue'}).addTo(map);
