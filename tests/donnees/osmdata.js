@@ -2,7 +2,9 @@
 let JSONRetrievedEvent = new Event('JSONRetrieved');
 
 // Tableau contenant des magasins
-let osmdata;
+let magasins;
+// Tableau contenant des restaurants
+let restaurants;
 
 // Le div où est mise la carte
 let element;
@@ -36,6 +38,7 @@ function init() {
 
 
     getMagasins();
+    getRestaurants();
 }
 
 
@@ -52,7 +55,20 @@ function getMagasins() {
         function(data) {
             // if the request succeeds
             console.log("Loaded");
-            osmdata = data;
+            magasins = data;
+            document.dispatchEvent(JSONRetrievedEvent);
+        }
+    );
+}
+
+function getRestaurants() {
+    console.log("Loading JSON...");
+
+    jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/donnees/paris_3e_arrondissement_restaurant_2021-03-06.geojson',
+        function(data) {
+            // if the request succeeds
+            console.log("Loaded");
+            restaurants = data;
             document.dispatchEvent(JSONRetrievedEvent);
         }
     );
@@ -68,9 +84,13 @@ function getMagasins() {
 function displayMagasins() {
     console.log("Displaying magasins...");
 
-    for(let mag of osmdata['features']) {
+    for(let mag of magasins['features']) {
         let data0 = mag['properties']['geometry'];
         L.geoJSON(data0, {color: 'red'}).addTo(map);
+    }
+    for(let restau of restaurants['features']) {
+        let data0 = restau['properties']['geometry'];
+        L.geoJSON(data0, {color: 'blue'}).addTo(map);
     }
 
     console.log("Displayed");
