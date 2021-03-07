@@ -92,7 +92,10 @@ function displayMagasins() {
 
     for(let mag of magasins['features']) {
         let data0 = mag['geometry'];
-        L.geoJSON(data0, {color: 'red'}).addTo(map);
+        L.geoJSON(data0, 
+            {'pointToLayer' : (feature, latLng) => {
+            return new L.circleMarker(latLng, {radius : 5, color: 'red'})}
+          }).addTo(map);
     }
 
     console.log("Displayed");
@@ -103,7 +106,10 @@ function displayRestaurants() {
 
     for(let restau of restaurants['features']) {
         let data0 = restau['geometry'];
-        L.geoJSON(data0, {color: 'blue'}).addTo(map);
+        L.geoJSON(data0, 
+            {'pointToLayer' : (feature, latLng) => {
+            return new L.circleMarker(latLng, {radius : 5, color: 'blue'})}
+          }).addTo(map);
     }
 
     console.log("Displayed");
