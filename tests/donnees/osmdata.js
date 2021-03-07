@@ -1,6 +1,6 @@
 // Evenement lancé quand le JSON est récupéré
-let JSONRetrievedEvent1 = new Event('JSONRetrieved');
-let JSONRetrievedEvent2 = new Event('JSONRetrieved');
+let JSONRetrievedEvent1 = new Event('JSONRetrieved1');
+let JSONRetrievedEvent2 = new Event('JSONRetrieved2');
 
 // Tableau contenant des magasins
 let magasins;
@@ -37,6 +37,11 @@ function init() {
             '&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a> contributors',
     }).addTo(map);
 
+    // On créé la target (les Mines)
+    let target = L.latLng("48.844952", "2.339193");
+
+    // On définit la vue de la carte (centrée sur les Mines, avec un zoom de 14)
+    map.setView(target, 14);
 
     getMagasins();
     getRestaurants();
@@ -86,7 +91,7 @@ function displayMagasins() {
     console.log("Displaying magasins...");
 
     for(let mag of magasins['features']) {
-        let data0 = mag['properties']['geometry'];
+        let data0 = mag['geometry'];
         L.geoJSON(data0, {color: 'red'}).addTo(map);
     }
 
@@ -97,7 +102,7 @@ function displayRestaurants() {
     console.log("Displaying restaurants...");
 
     for(let restau of restaurants['features']) {
-        let data0 = restau['properties']['geometry'];
+        let data0 = restau['geometry'];
         L.geoJSON(data0, {color: 'blue'}).addTo(map);
     }
 
