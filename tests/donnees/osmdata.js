@@ -95,7 +95,7 @@ function displayMagasins() {
         L.geoJSON(data0, 
             {'pointToLayer' : (feature, latLng) => {
             return new L.circleMarker(latLng, {radius : 5, color: 'red'})}
-          }).addTo(map);
+          }).bindTooltip(mag['properties']['name'] + ', ' + mag['properties']['type']).openTooltip().addTo(map);
     }
 
     console.log("Displayed");
@@ -109,7 +109,7 @@ function displayRestaurants() {
         L.geoJSON(data0, 
             {'pointToLayer' : (feature, latLng) => {
             return new L.circleMarker(latLng, {radius : 5, color: 'blue'})}
-          }).addTo(map);
+          }).bindTooltip(restau['properties']['name'] + ', ' + restau['properties']['type']).openTooltip().addTo(map);
     }
 
     console.log("Displayed");
