@@ -13,6 +13,15 @@ let element;
 // La carte
 let map;
 
+var greenIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
 window.addEventListener("load", init);
 document.addEventListener("JSONRetrieved1", displayMagasins);
 document.addEventListener("JSONRetrieved2", displayRestaurants);
@@ -86,6 +95,7 @@ function displayMagasins() {
 
     for (let mag of magasins['features']) {
         let data0 = mag['geometry'];
+        let title = mag['properties']['name'] + ', ' + mag['properties']['type']
         // L.geoJSON(data0,
         //     {
         //         'pointToLayer': (feature, latLng) => {
@@ -93,8 +103,8 @@ function displayMagasins() {
         //             markers.addLayer(marker)
         //         }
         //     });
-        var marker = L.marker(new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]), { title: String("m") });
-        marker.bindPopup(String("m"));
+        var marker = L.marker(new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]), { title: title, icon : greenIcon });
+        marker.bindPopup(title);
         markers.addLayer(marker);
     }
     map.addLayer(markers);
@@ -108,14 +118,15 @@ function displayRestaurants() {
 
     for (let restau of restaurants['features']) {
         let data0 = restau['geometry'];
+        let title = restau['properties']['name'] + ', ' + restau['properties']['type'];
         // L.geoJSON(data0,
         //     {
         //         'pointToLayer': (feature, latLng) => {
         //             return new L.circleMarker(latLng, { radius: 5, color: 'blue' })
         //         }
         //     }).bindTooltip(String('r')).openTooltip().addTo(map);
-        var marker = L.marker(new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]), { title: String("r") });
-        marker.bindPopup(String("r"));
+        var marker = L.marker(new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]), { title: title });
+        marker.bindPopup(title);
         markers.addLayer(marker);
     }
     map.addLayer(markers);
