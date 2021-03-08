@@ -22,6 +22,24 @@ var greenIcon = new L.Icon({
     shadowSize: [41, 41]
 });
 
+var restaurantIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/img/restaurant-map-icon.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [41, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+var shopIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/img/shop-map-icon.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [41, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
 window.addEventListener("load", init);
 document.addEventListener("JSONRetrieved1", displayMagasins);
 document.addEventListener("JSONRetrieved2", displayRestaurants);
@@ -103,7 +121,7 @@ function displayMagasins() {
         //             markers.addLayer(marker)
         //         }
         //     });
-        var marker = L.marker(new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]), { title: title, icon: greenIcon });
+        var marker = L.marker(new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]), { title: title, icon: shopIcon });
         marker.bindPopup(title);
         markers.addLayer(marker);
     }
@@ -125,7 +143,7 @@ function displayRestaurants() {
         //             return new L.circleMarker(latLng, { radius: 5, color: 'blue' })
         //         }
         //     }).bindTooltip(String('r')).openTooltip().addTo(map);
-        var marker = L.marker(new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]), { title: title });
+        var marker = L.marker(new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]), { title: title, icon: restaurantIcon });
         marker.bindPopup(title);
         markers.addLayer(marker);
     }
