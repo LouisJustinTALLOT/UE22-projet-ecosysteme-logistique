@@ -14,13 +14,13 @@ let element;
 let map;
 
 var greenIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
-  });
+});
 
 window.addEventListener("load", init);
 document.addEventListener("JSONRetrieved1", displayMagasins);
@@ -103,7 +103,7 @@ function displayMagasins() {
         //             markers.addLayer(marker)
         //         }
         //     });
-        var marker = L.marker(new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]), { title: title, icon : greenIcon });
+        var marker = L.marker(new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]), { title: title, icon: greenIcon });
         marker.bindPopup(title);
         markers.addLayer(marker);
     }
