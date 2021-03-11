@@ -48,6 +48,44 @@ class DataSource {
     }
 }
 
+function get_and_display(DataSourceObject) {
+    let current_name = DataSourceObject.name
+    console.log("Loading JSON..." + DataSourceObject.name);
+    let url = DataSourceObject.source_url;
+    console.log(url);
+
+    jQuery.getJSON(url,
+        function (data) {
+            // if the request succeeds
+            console.log("Loaded " + current_name);
+
+            console.log("Displaying " + current_name);
+
+            var markers = L.markerClusterGroup();
+
+            for (let data_unit of data['features']) {
+                let data0 = data_unit['geometry'];
+                let title = data_unit['properties']['name'] + ', ' + data_unit['properties']['type'];
+
+                var marker = L.marker(
+                    new L.LatLng(data0["coordinates"][1], data0["coordinates"][0]),
+                    {
+                        title: title,
+                        icon: DataSourceObject.icon
+                    }
+                );
+                marker.bindPopup(title);
+                markers.addLayer(marker);
+            }
+            map.addLayer(markers);
+
+            console.log("Displayed");
+        }
+    );
+
+
+}
+
 window.addEventListener("load", init);
 document.addEventListener("JSONRetrieved1", displayMagasins);
 document.addEventListener("JSONRetrieved2", displayRestaurants);
