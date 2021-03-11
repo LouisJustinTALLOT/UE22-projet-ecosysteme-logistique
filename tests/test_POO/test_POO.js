@@ -40,6 +40,14 @@ var shopIcon = new L.Icon({
     shadowSize: [41, 41]
 });
 
+class DataSource {
+    constructor(name, url, icon) {
+        this.name = name;
+        this.source_url = url;
+        this.icon = icon;
+    }
+}
+
 window.addEventListener("load", init);
 document.addEventListener("JSONRetrieved1", displayMagasins);
 document.addEventListener("JSONRetrieved2", displayRestaurants);
