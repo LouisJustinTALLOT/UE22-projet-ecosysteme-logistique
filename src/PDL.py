@@ -1,6 +1,8 @@
 class PDL:
     """
     Classe représentant un Point De Livraison (PDL)
+
+    Ne pas utiliser cette classe, mais la voir comme la structure à utiliser dans les bases de données
     """
 
     def __init__(self, typo, nom, uid, poids, loc):
