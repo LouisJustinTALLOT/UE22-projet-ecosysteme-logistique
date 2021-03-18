@@ -16,6 +16,32 @@ data = gpd.read_file(fp)
 fp = "addresses.txt"
 data2 = pd.read_csv(fp, sep=";")
 
+def test7():
+    fp = "Data2\\Helsinki_borders.shp"
+    hel = gpd.read_file(fp)
+    fp = "Data2\\TravelTimes_to_5975375_RailwayStation.shp"
+    grid = gpd.read_file(fp)
+
+    basemap = hel.plot(linewidth=0.02, alpha=0.5)
+    grid.plot(ax=basemap, linewidth=0.02, color="r", alpha=0.5)
+
+    plt.tight_layout()
+    plt.show()
+
+    result = gpd.overlay(grid, hel, how='intersection')
+    result.plot(color='y', alpha=0.2)
+    plt.show()
+
+    result_aggregated = result.dissolve(by="car_r_t")
+    base = result_aggregated.loc[0:10].plot(color="b")
+    print("len", result_aggregated.shape[0])
+    result_aggregated.loc[10:20].plot(ax=base, color="r")
+    result_aggregated.loc[20:30].plot(ax=base, color="y")
+    result_aggregated.loc[30:40].plot(ax=base, color="m")
+    result_aggregated.loc[40:50].plot(ax=base, color="k")
+    plt.show(linewidth=0.2)
+
+
 def test6():
     # Pour que ça marche faut payer xd
     geo = geocode(data2['address'], api_key=cle_api)
@@ -102,4 +128,4 @@ def test1():
 
 
 
-test6()
+test7()
