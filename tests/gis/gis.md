@@ -17,6 +17,10 @@ Et leurs version "multi", où un objet `MultiPoint`, `MultiLineString` et `Multi
 
 Il existe des opérations sur ces objets (aire, centre de masse, etc.)
 
+**Opérations géométriques** :
+* Point (ou ligne ou polygone) dans un polygone : au choix, `polygon.contains(point)` ou `point.within(polygon)`. 
+* Intersection / contact : le contact est un cas particulier d'intersection (où les points commus doivent nécessairement être sur la frontière). Utiliser les méthodes `intersects` et `touches`
+
 Pour plus de détails, voir [ce document](https://automating-gis-processes.github.io/2016/Lesson1-Geometric-Objects.html)
 
 ## Module `geopandas`
@@ -41,12 +45,25 @@ Permet par exemple d'ouvrir les `shapefile`, standard pour ce les fichiers GIS.
   * les clés sont les objets de la colonne sélectionnée par lesquels on regroupe les objets (par exemple, le nom de l'espèce marine)
   * les valeurs sont une `DataFrame` contenant les mêmes colonnes que la `DataFrame` originale, mais uniquement les lignes correspondant à la valeur par laquelle on regroupe
   
+**Fonctions de join** :
+Il existe plusieurs fonctionnalités selon ce qu'on entend par join, ou plus généralement les opérations ensemblistes :
+* Table join (comme en SQL):
+  * Pour l'utiliser : `dataframe1.merge(dataframe2, on='nom_de_colonne')`. 
+  * Si les noms de colonnes sont différents, fournir les paramètres `left_on` et `right_on`.
+* Overlay : fait des intersections spatiales entre plusieurs tables, ou plus généralement des opérations ensemblistes spatiales (union, différence, etc.) (ex : intersecte une `DataFrame` de polygones avec une autre)
+* Join spatial : un peu plus subtil, fusionne des `GeoDataFrame` avec un critère particulier : `intersects`, `contains` et `within` (ex : fusionne les lignes où un point d'une table est dans un polygone d'une autre table) 
+
+**Agrégation** :
+Fonctionnalité permettant d'agréger (rassembler) des lignes d'une `DataFrame` avec un critère particulier (ex : la valeur d'une colonne)
+Exemple d'utilisation : fusionner des zones géographiques par temps d'itinéraire vers une gare.
+Utilisation : `dataframe.dissolve(by="colonne_par_laquelle_trier")`
+
+  
 Pour plus de détails, voir [ce document](https://automating-gis-processes.github.io/2016/Lesson2-geopandas-basics.html)
 
 ## Geocoding
 
-A faire... (césar)
-
-## Table join, intersections, opérations, cartes, ArcGis, etc.
+Le geocoding est une technologie permettant de passer d'adresse à coordonnées (et vice-versa), grâce à une API tierce.
+Pour faire un appel à une API, importer `from geopandas.tools import geocode` et utiliser la fonction : `geocode` en spécifiant une clé api.
 
 A faire... (césar)
