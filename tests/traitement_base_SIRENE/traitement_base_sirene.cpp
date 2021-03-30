@@ -91,6 +91,7 @@ int main() {
             tmp = "";
             in_a_record = false;
             has_geometry = false;
+            has_apet700 = false;
             nombre_entrees++;
         }
 
