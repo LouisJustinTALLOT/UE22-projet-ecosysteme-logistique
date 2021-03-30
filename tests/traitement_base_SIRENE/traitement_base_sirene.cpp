@@ -3,8 +3,7 @@
 #include <string>
 #include <chrono>
 
-int main()
-{
+int main() {
     ////////////////// lecture du fichier source //////////////////
 
     std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
@@ -40,8 +39,7 @@ int main()
     int input_length = int(input_text.size());
     std::cout << "taille du texte d'entrée : " << input_length << std::endl;
 
-    for (int i = 1; i < input_length - 10; i++)
-    {
+    for (int i = 1; i < input_length - 10; i++) {
 
         // // // output_text += input_text[i]; // ne sert plus
 
@@ -69,8 +67,9 @@ int main()
         //     break;
         // }
     }
+
     output_text += "]";
-    
+
     end = std::chrono::high_resolution_clock::now();
 
     std::cout << "traitement fini en ";
