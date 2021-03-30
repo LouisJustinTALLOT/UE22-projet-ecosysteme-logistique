@@ -57,6 +57,24 @@ int main() {
             i += 180;
         } 
         
+        else if (input_text.substr(i,7) == "apet700") {
+            std::cout << input_text.substr(i, 20) << std::endl;
+
+            tmp += "\"apet700\":";
+
+            has_apet700 = true;
+
+            while (input_text[i] != ' ') {
+                i++;
+            }
+
+            while (input_text[i] != ',') {
+                tmp += input_text[i];
+                i++;
+            }
+
+        } 
+
         else if (input_text.substr(i, 8) == "record_t") {
             tmp += "}";
 
@@ -77,24 +95,6 @@ int main() {
             has_geometry = false;
             nombre_entrees++;
         }
-
-        else if (input_text.substr(i,7) == "apet700") {
-            std::cout << input_text.substr(i, 20) << std::endl;
-
-            tmp += "\"apet700\":";
-
-            has_apet700 = true;
-
-            while (input_text[i] != ' ') {
-                i++;
-            }
-
-            while (input_text[i] != ',') {
-                tmp += input_text[i];
-                i++;
-            }
-
-        } 
 
         // if (nombre_entrees > 10) {
         //     break;
