@@ -65,6 +65,7 @@ int main() {
             while (input_text[i] != ' ') {
                 i++;
             }
+            i++; // pour éviter un espace supplémentaire
 
             while (input_text[i] != ',') {
                 tmp += input_text[i];
@@ -72,6 +73,23 @@ int main() {
             }
 
         } 
+
+        else if (input_text.substr(i, 9) == "\"geometry") {
+            has_geometry = true;
+
+            if (has_apet700) {
+                tmp += ",";
+            }
+
+            while (input_text[i] != '}') {
+                if (input_text[i] != ' '){
+                    tmp += input_text[i];
+                }
+
+                i++;
+            }
+            tmp += "}";
+        }
 
         else if (input_text.substr(i, 8) == "record_t") {
             tmp += "}";
