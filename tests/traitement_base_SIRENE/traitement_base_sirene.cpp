@@ -43,30 +43,25 @@ int main() {
     std::cout << "taille du texte d'entrée : " << input_length << std::endl;
 
     for (int i = 1; i < input_length - 10; i++) {
+        if (input_text.substr(i, 8) == "recordid") {
+        } 
+        
+        else if (input_text.substr(i, 8) == "record_t") {
 
-        // // // output_text += input_text[i]; // ne sert plus
+            if (i + 50 < input_length) {
+            }
 
-        if (input_text.substr(i, 8) == "recordid")
-        {
             output_text += "{";
-            // file_out << "{";
             nombre_entrees++;
             i += 750;
         }
 
-        else if (input_text.substr(i, 8) == "record_t")
-        {
             output_text += "}";
-            // file_out << "}";
-            if (i + 50 < input_length)
-            {
                 output_text += ",";
-                // file_out << ",";
             }
-        }
 
-        // if (i > 1000)
-        // {
+
+        // if (nombre_entrees > 10) {
         //     break;
         // }
     }
