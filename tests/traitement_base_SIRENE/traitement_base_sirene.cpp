@@ -38,6 +38,11 @@ int main() {
     std::string output_text = "[";
 
     std::string tmp = "";
+    bool in_a_record = false;
+    bool has_geometry = false;
+
+    bool has_apet700 = false;
+
     // file_out << output_text;
     int nombre_entrees = 0;
 
@@ -47,6 +52,7 @@ int main() {
     for (int i = 1; i < input_length - 10; i++) {
         if (input_text.substr(i, 8) == "recordid") {
             tmp += "{";
+            in_a_record = true;
 
             i += 180;
         } 
@@ -60,12 +66,15 @@ int main() {
 
             // commenté pour l'instant
             if (true) {
+            // if (has_geometry && has_apet700) {
                 output_text += tmp;
             } else {
                 tmp = "";
             }
 
             tmp = "";
+            in_a_record = false;
+            has_geometry = false;
             nombre_entrees++;
         }
 
@@ -85,6 +94,7 @@ int main() {
                 i++;
             }
 
+        } 
 
         // if (nombre_entrees > 10) {
         //     break;
