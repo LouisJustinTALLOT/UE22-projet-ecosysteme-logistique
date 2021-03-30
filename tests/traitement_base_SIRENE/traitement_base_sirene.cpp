@@ -58,8 +58,6 @@ int main() {
         } 
         
         else if (input_text.substr(i,7) == "apet700") {
-            std::cout << input_text.substr(i, 20) << std::endl;
-
             tmp += "\"apet700\":";
 
             has_apet700 = true;
