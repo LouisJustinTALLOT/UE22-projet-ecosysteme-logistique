@@ -36,6 +36,8 @@ int main() {
     // std::ofstream file_out(output_filename);
 
     std::string output_text = "[";
+
+    std::string tmp = "";
     // file_out << output_text;
     int nombre_entrees = 0;
 
@@ -44,20 +46,28 @@ int main() {
 
     for (int i = 1; i < input_length - 10; i++) {
         if (input_text.substr(i, 8) == "recordid") {
+            tmp += "{";
         } 
         
         else if (input_text.substr(i, 8) == "record_t") {
+            tmp += "}";
 
             if (i + 50 < input_length) {
+                tmp += ",";
             }
 
-            output_text += "{";
+            // commenté pour l'instant
+            if (true) {
+                output_text += tmp;
+            } else {
+                tmp = "";
+            }
+
+            tmp = "";
             nombre_entrees++;
             i += 750;
         }
 
-            output_text += "}";
-                output_text += ",";
             }
 
 
