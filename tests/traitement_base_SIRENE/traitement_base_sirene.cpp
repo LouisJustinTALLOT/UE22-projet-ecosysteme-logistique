@@ -10,8 +10,8 @@ int main() {
 
     std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
 
-    // std::string input_filename = "base-sirene.json";
-    std::string input_filename = "base_sirene_extrait_travail.json";
+    std::string input_filename = "base-sirene.json";
+    // std::string input_filename = "base_sirene_extrait_travail.json";
     std::string output_filename = "base_sirene_shortened_json_cpp.json";
 
     std::ifstream file_in(input_filename);
