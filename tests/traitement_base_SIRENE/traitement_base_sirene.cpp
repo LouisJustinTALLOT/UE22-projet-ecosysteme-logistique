@@ -58,23 +58,42 @@ int main() {
             i += 180;
         } 
         
-        else if (input_text.substr(i,7) == "apet700") {
-            tmp += "\"apet700\":";
+        else if (input_text.substr(i,8) == "\"apet700") {
 
             has_apet700 = true;
 
-            while (input_text[i] != ' ') {
-                i++;
             if (has_libtefet) {
                 tmp += ",";
             }
-            i++; // pour éviter un espace supplémentaire
+            
+            // tmp += "\"apet700\":";
+
+            // while (input_text[i] != ' ') {
+            //     std::cout << input_text[i];
+
+            //     i++;
+            // }
+            // i++; // pour éviter un espace supplémentaire
+
+            // while (input_text[i] != ',') {
+            //    std::cout << input_text[i];
+            //     tmp += input_text[i];
+            //     i++;
+            // }
 
             while (input_text[i] != ',') {
-                tmp += input_text[i];
+                // std::cout << input_text[i];
+                if (input_text[i] != ' '){
+                    tmp += input_text[i];
+                }
+
                 i++;
             }
-
+            if (has_libtefet) {
+                // i += 700;
+            } else {
+                // i += 40;
+            }
         } 
 
         else if (input_text.substr(i, 9) == "\"libtefet") {
@@ -106,6 +125,7 @@ int main() {
             }
 
             while (input_text[i] != '}') {
+            // std::cout << input_text[i];
                 if (input_text[i] != ' '){
                     tmp += input_text[i];
                 }
@@ -113,6 +133,7 @@ int main() {
                 i++;
             }
             tmp += "}";
+            // std::cout << std::endl;
         }
 
         else if (input_text.substr(i, 8) == "record_t") {
@@ -135,6 +156,7 @@ int main() {
             has_geometry = false;
             has_apet700 = false;
             has_libtefet = false;
+            // std::cout << std::endl << std::endl;
             nombre_entrees++;
         }
 
