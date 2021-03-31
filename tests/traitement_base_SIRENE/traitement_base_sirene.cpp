@@ -52,8 +52,6 @@ int main() {
         if (input_text.substr(i, 8) == "recordid") {
             tmp += "{";
             in_a_record = true;
-
-            i += 180;
         } 
         
         else if (input_text.substr(i,8) == "\"apet700") {
@@ -71,11 +69,6 @@ int main() {
 
                 i++;
             }
-            if (has_libtefet) {
-                // i += 700;
-            } else {
-                // i += 40;
-            }
         } 
 
         else if (input_text.substr(i, 9) == "\"libtefet") {
@@ -91,9 +84,6 @@ int main() {
                 }
 
                 i++;
-            }
-            if (has_apet700) {
-                // i += 700;
             }
         }
 
