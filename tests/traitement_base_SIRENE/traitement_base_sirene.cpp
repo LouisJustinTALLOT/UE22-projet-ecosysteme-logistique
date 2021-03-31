@@ -39,9 +39,10 @@ int main() {
 
     std::string tmp = "";
     bool in_a_record = false;
-    bool has_geometry = false;
 
+    bool has_geometry = false;
     bool has_apet700 = false;
+    bool has_libtefet = false;
 
     // file_out << output_text;
     int nombre_entrees = 0;
@@ -64,6 +65,8 @@ int main() {
 
             while (input_text[i] != ' ') {
                 i++;
+            if (has_libtefet) {
+                tmp += ",";
             }
             i++; // pour éviter un espace supplémentaire
 
@@ -74,10 +77,31 @@ int main() {
 
         } 
 
+        else if (input_text.substr(i, 9) == "\"libtefet") {
+            has_libtefet = true;
+
+            if (has_apet700) {
+                tmp += ",";
+            }
+
+            while (input_text[i] != ',') {
+            // std::cout << input_text[i];
+                if (input_text[i] != ' '){
+                    tmp += input_text[i];
+                }
+
+                i++;
+            }
+            if (has_apet700) {
+                // i += 700;
+            }
+            // std::cout << std::endl;
+        }
+
         else if (input_text.substr(i, 9) == "\"geometry") {
             has_geometry = true;
 
-            if (has_apet700) {
+            if (has_apet700 || has_libtefet) {
                 tmp += ",";
             }
 
@@ -110,6 +134,7 @@ int main() {
             in_a_record = false;
             has_geometry = false;
             has_apet700 = false;
+            has_libtefet = false;
             nombre_entrees++;
         }
 
