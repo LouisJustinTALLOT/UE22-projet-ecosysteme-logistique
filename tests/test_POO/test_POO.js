@@ -129,4 +129,13 @@ function init() {
 
     get_and_display(restau_points);
     get_and_display(shop_points);
+function toggle_display_data(data_source) {
+    let checkbox = document.getElementById(data_source.id_name);
+
+    if (checkbox.checked) {
+        // on montre le layer correspondant
+
+    } else {
+        // on cache le layer correspondant
+    }
 }
