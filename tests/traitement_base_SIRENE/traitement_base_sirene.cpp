@@ -33,7 +33,6 @@ int main() {
      * traitement fini en 62 secondes en faisant auto car : input_text
      * et en 52 secondes en faisant int i = 0; i < input_text.size(); i++
      */
-    // std::ofstream file_out(output_filename);
 
     std::string output_text = "[";
 
@@ -44,7 +43,6 @@ int main() {
     bool has_apet700 = false;
     bool has_libtefet = false;
 
-    // file_out << output_text;
     int nombre_entrees = 0;
 
     int input_length = int(input_text.size());
@@ -66,23 +64,7 @@ int main() {
                 tmp += ",";
             }
             
-            // tmp += "\"apet700\":";
-
-            // while (input_text[i] != ' ') {
-            //     std::cout << input_text[i];
-
-            //     i++;
-            // }
-            // i++; // pour éviter un espace supplémentaire
-
-            // while (input_text[i] != ',') {
-            //    std::cout << input_text[i];
-            //     tmp += input_text[i];
-            //     i++;
-            // }
-
             while (input_text[i] != ',') {
-                // std::cout << input_text[i];
                 if (input_text[i] != ' '){
                     tmp += input_text[i];
                 }
@@ -104,7 +86,6 @@ int main() {
             }
 
             while (input_text[i] != ',') {
-            // std::cout << input_text[i];
                 if (input_text[i] != ' '){
                     tmp += input_text[i];
                 }
@@ -114,7 +95,6 @@ int main() {
             if (has_apet700) {
                 // i += 700;
             }
-            // std::cout << std::endl;
         }
 
         else if (input_text.substr(i, 9) == "\"geometry") {
@@ -125,7 +105,6 @@ int main() {
             }
 
             while (input_text[i] != '}') {
-            // std::cout << input_text[i];
                 if (input_text[i] != ' '){
                     tmp += input_text[i];
                 }
@@ -133,7 +112,6 @@ int main() {
                 i++;
             }
             tmp += "}";
-            // std::cout << std::endl;
         }
 
         else if (input_text.substr(i, 8) == "record_t") {
@@ -156,7 +134,6 @@ int main() {
             has_geometry = false;
             has_apet700 = false;
             has_libtefet = false;
-            // std::cout << std::endl << std::endl;
             nombre_entrees++;
         }
 
