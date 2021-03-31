@@ -6,6 +6,7 @@
 // g++ traitement_base_sirene.cpp -o traitement_base_sirene && ./traitement_base_sirene
 
 int main() {
+    std::cout << "début du programme" << std::endl;
     ////////////////// lecture du fichier source //////////////////
 
     std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
