@@ -18,6 +18,14 @@ Requis :
 - la GeoDataFrame doit contenir une colonne avec les points (par défaut, 'geometry')
 
 Exemple d'utilisation :
+# Ouverture de la GeoDataFrame
+data = ouvrir(reducted_name)
+# Je calcule les clusters, et les centres de gravité
+data, centroids = clusterize(data, 5)
+# Je calcule les enveloppes convexes
+data, hulls = do_convex_hull(data)
+# Je sauvegarde sur une carte
+save_to_map(centroids, hulls)
 """
 
 reducted_name = "input\\reducted.geojson"
@@ -120,7 +128,7 @@ def clusterize(df, k):
 
     kmeans = KMeans(n_clusters=k, init='k-means++')
     y_kmeans = kmeans.fit_predict(X)
-    k = pd.DataFrame(y_kmeans, columns=['cluster'])
+    k = pd.DataFrame(y_kmeans, columns=['cluster'], dtype=int)
 
     cluster_centers = kmeans.cluster_centers_
     centers =gpd.points_from_xy(cluster_centers[:,0], cluster_centers[:,1])
@@ -147,7 +155,7 @@ def do_convex_hull(df):
     """
 
     # Nombre de clusters
-    k = np.max(df['cluster']) + 1
+    k = int(np.max(df['cluster']) + 1)
 
     hulls = np.empty(k, dtype=Polygon)
 
