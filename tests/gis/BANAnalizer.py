@@ -214,4 +214,14 @@ def save_to_map(centroids, hulls, path=clusterized_path):
             coords = polygon.exterior.coords
             folium.Polygon(locations=coords, popup="Cluster").add_to(map)
 
-    map.save(clusterized_path)
+    map.save(path)
+
+# Ouverture de la GeoDataFrame
+data = ouvrir(reducted_name)
+# Je calcule les clusters, et les centres de gravité
+data, centroids = clusterize(data, 5)
+# Je calcule les enveloppes convexes
+data, hulls = do_convex_hull(data)
+# Je sauvegarde sur une carte
+save_to_map(centroids, hulls)
+print(data)
