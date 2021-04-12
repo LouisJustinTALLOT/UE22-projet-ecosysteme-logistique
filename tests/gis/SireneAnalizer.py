@@ -157,7 +157,7 @@ def clusterize(df:gpd.GeoDataFrame, nb_clusters:int):
     # plt.ylabel('WCSS')
     # plt.show()
 
-    kmeans = KMeans(n_clusters=nb_clusters, init='k-means++')
+    kmeans = KMeans(n_clusters=nb_clusters, random_state=0)
     y_kmeans = kmeans.fit_predict(X)
     k = pd.DataFrame(y_kmeans, columns=['cluster'], dtype=int)
 
