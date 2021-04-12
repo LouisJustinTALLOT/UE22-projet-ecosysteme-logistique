@@ -48,5 +48,4 @@
         "streambuf": "cpp",
         "typeinfo": "cpp"
     },
-    "python.pythonPath": "/home/ljtal/miniconda3/bin/python"
 }
