@@ -282,7 +282,7 @@ def save_to_map(centroids:gpd.GeoDataFrame, hulls:gpd.GeoDataFrame, path:str=clu
 data = ouvrir(reducted_name, reduce=True)
 data_0 = data.copy()
 # Je calcule les clusters, et les centres de gravité
-data, centroids = clusterize(data, 10)
+data, centroids = clusterize(data, 4)# 10)
 # Je calcule les enveloppes convexes
 data, hulls = do_convex_hull(data)
 # Je sauvegarde sur une carte
