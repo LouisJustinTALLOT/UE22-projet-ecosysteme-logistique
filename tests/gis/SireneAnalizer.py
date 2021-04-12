@@ -179,12 +179,20 @@ def clusterize(df:gpd.GeoDataFrame, nb_clusters:int):
     #          marker='.'
     # )   
 
-    cluster_centers = kmeans.cluster_centers_
-    centers = gpd.points_from_xy(cluster_centers[:,0], cluster_centers[:,1])
-    centroids = pd.DataFrame(centers, columns=['centroids'])
 
-    k = k.join(centroids, how="left", on="cluster")
-    df = df.join(k)
+    plt.figure()
+    plt.scatter(a,b,c=y_kmeans,marker='.')
+    # plt.show()
+
+    cluster_centers = kmeans.cluster_centers_
+    # centers = gpd.points_from_xy(cluster_centers[:,0], cluster_centers[:,1])
+
+    plt.scatter(cluster_centers[:,0], cluster_centers[:,1], color="red", marker='+')
+
+    # centroids = pd.DataFrame(centers, columns=['centroids'])
+    plt.savefig("output/clusterized_data_k_means_debug.pdf")
+
+    plt.show()
 
     # with open("output/clusters.csv", 'w', encoding="utf8") as file:
     #     file.write(df.to_csv(sep=";"))
