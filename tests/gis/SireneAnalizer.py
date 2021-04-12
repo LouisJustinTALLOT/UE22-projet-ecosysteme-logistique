@@ -5,6 +5,7 @@ import folium
 from sklearn.cluster import KMeans
 from shapely.geometry import Point, MultiPoint, Polygon
 from shapely.geometry.base import BaseGeometry
+import matplotlib.pyplot as plt
 
 """
 Ce fichier permet de faire du clustering :
