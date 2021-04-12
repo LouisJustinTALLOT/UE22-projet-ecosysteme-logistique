@@ -165,12 +165,19 @@ def clusterize(df:gpd.GeoDataFrame, nb_clusters:int):
 
     lieux = np.array([np.array(gdf['geometry'], dtype=dict)[i]['coordinates'] for i in range(len(gdf['geometry']))])
 
-    plt.scatter(np.array(lieux)[:,0],
-             np.array(lieux)[:,1],
-             c=gdf['cluster'],
-             marker='.'
-    )
-    plt.show()
+    # plt.figure()
+    # plt.scatter(np.array(lieux)[:,0],
+    #          np.array(lieux)[:,1],
+    #          c=gdf['cluster'],
+    #          marker='.'
+    # )
+
+    # plt.figure()
+    # plt.scatter(np.array(lieux)[:,0],
+    #          np.array(lieux)[:,1],
+    #          c=y_kmeans,
+    #          marker='.'
+    # )   
 
     cluster_centers = kmeans.cluster_centers_
     centers = gpd.points_from_xy(cluster_centers[:,0], cluster_centers[:,1])
