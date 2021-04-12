@@ -71,6 +71,20 @@ def swap_xy(geom:BaseGeometry):
         raise ValueError('Type %r not recognized' % geom.type)
 
 
+def range_hex_colors(nombre_couleurs:int):
+    res = []
+    # for i in range(nombre_couleurs):
+    #     res.append(f"#AB{str(hex(i*255//nombre_couleurs))[2:].upper()}BA")
+    tmp = 17
+    for i in range(nombre_couleurs):
+        res.append("#"
+                 + str(hex(255-tmp//2)[2:].upper())
+                 + str(hex(tmp)[2:].upper())
+                 + str(hex(128-tmp//4)[2:].upper())
+        )
+        tmp += 255//nombre_couleurs
+
+    return res
 
 def ouvrir(path:str, column_points:str='geometry', reduce:bool=False, do_filter:bool=True):
     """
