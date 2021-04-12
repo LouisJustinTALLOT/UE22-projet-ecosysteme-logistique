@@ -95,13 +95,13 @@ def filter(df, column_points='geometry', reduce=False, do_filter=True):
     :return: Retourne une GeoDataFrame. Elle ne contient pas de na. Si do_filter est True, l'unique colonne porte le nom 'geometry'.
     """
     if not do_filter:
-        return df.dropna()
+        return df.dropna().reset_index()
 
     df = df.loc[:, column_points]
     if reduce:
-        return gpd.GeoDataFrame(df.dropna()[0:1000])
+        return gpd.GeoDataFrame(df.dropna()[0:1000]).reset_index()
     else:
-        return gpd.GeoDataFrame(df.dropna())
+        return gpd.GeoDataFrame(df.dropna()).reset_index()
 
 
 def clusterize(df, k):
