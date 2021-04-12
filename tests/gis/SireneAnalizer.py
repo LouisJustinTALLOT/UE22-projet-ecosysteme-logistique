@@ -178,6 +178,10 @@ def clusterize(df:gpd.GeoDataFrame, nb_clusters:int):
 
     k = k.join(centroids, how="left", on="cluster")
     df = df.join(k)
+
+    # with open("output/clusters.csv", 'w', encoding="utf8") as file:
+    #     file.write(df.to_csv(sep=";"))
+
     return df, centroids
 
 
