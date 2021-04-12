@@ -138,6 +138,9 @@ def clusterize(df:gpd.GeoDataFrame, nb_clusters:int):
 
     # On commence par transformer la GeoDataFrame en tableau numpy
     # C'est les lat / lon
+    # [[ 2.348872 48.863495]
+    #   ...
+    #  [ 2.396281 48.864938]]
     a = pd.Series(df['geometry'].apply(lambda p: p["coordinates"][0]))
     b = pd.Series(df['geometry'].apply(lambda p: p["coordinates"][1]))
     X = np.column_stack((a, b))
