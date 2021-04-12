@@ -104,7 +104,7 @@ def filter(df, column_points='geometry', reduce=False, do_filter=True):
         return gpd.GeoDataFrame(df.dropna())
 
 
-def clusterize(df, k):
+def clusterize(df, nb_clusters):
     """
     Clusterise la GeoDataFrame à l'aide de la méthode des k-moyennes.
     La colonne contenant les points doit s'appeler 'geometry'.
@@ -126,7 +126,8 @@ def clusterize(df, k):
     b = pd.Series(df['geometry'].apply(lambda p: p["coordinates"][1]))
     X = np.column_stack((a, b))
 
-    kmeans = KMeans(n_clusters=k, init='k-means++')
+
+    kmeans = KMeans(n_clusters=nb_clusters, init='k-means++')
     y_kmeans = kmeans.fit_predict(X)
     k = pd.DataFrame(y_kmeans, columns=['cluster'], dtype=int)
 
