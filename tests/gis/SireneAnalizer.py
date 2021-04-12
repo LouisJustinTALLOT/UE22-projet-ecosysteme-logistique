@@ -4,6 +4,7 @@ import numpy as np
 import folium
 from sklearn.cluster import KMeans
 from shapely.geometry import Point, MultiPoint, Polygon
+from shapely.geometry.base import BaseGeometry
 
 """
 Ce fichier permet de faire du clustering :
@@ -34,7 +35,7 @@ clusterized_path = "output\\clusterized_sirene.html"
 
 # Fonction utilitaire
 
-def swap_xy(geom):
+def swap_xy(geom:BaseGeometry):
     """
     Inverse les coordonnées de l'objet shapely.geometry.
     Utile pour passer objets shapely dans folium (la convention est inversée)
@@ -45,11 +46,11 @@ def swap_xy(geom):
         return geom
 
     if geom.has_z:
-        def swap_xy_coords(coords):
+        def swap_xy_coords(coords:tuple):
             for x, y, z in coords:
                 yield (y, x, z)
     else:
-        def swap_xy_coords(coords):
+        def swap_xy_coords(coords:tuple):
             for x, y in coords:
                 yield (y, x)
 
@@ -71,7 +72,7 @@ def swap_xy(geom):
 
 
 
-def ouvrir(path, column_points='geometry', reduce=False, do_filter=True):
+def ouvrir(path:str, column_points:str='geometry', reduce:bool=False, do_filter:bool=True):
     """
     Ouvre la GeoDataFrame du chemin spécifié.
 
@@ -83,7 +84,7 @@ def ouvrir(path, column_points='geometry', reduce=False, do_filter=True):
     """
     return filter(pd.read_json(path), column_points, reduce, do_filter)
 
-def filter(df, column_points='geometry', reduce=False, do_filter=True):
+def filter(df:gpd.GeoDataFrame, column_points:str='geometry', reduce:bool=False, do_filter:bool=True):
     """
     Filtre la GeoDataFrame : enlève les na.
     Si do_filter=True, ne garde que la colonne contenant les points (allège)
@@ -104,7 +105,7 @@ def filter(df, column_points='geometry', reduce=False, do_filter=True):
         return gpd.GeoDataFrame(df.dropna())
 
 
-def clusterize(df, nb_clusters):
+def clusterize(df:gpd.GeoDataFrame, nb_clusters:int):
     """
     Clusterise la GeoDataFrame à l'aide de la méthode des k-moyennes.
     La colonne contenant les points doit s'appeler 'geometry'.
@@ -140,7 +141,7 @@ def clusterize(df, nb_clusters):
     return df, centroids
 
 
-def do_convex_hull(df):
+def do_convex_hull(df:gpd.GeoDataFrame):
     """
     A partir de données clusterisées (le premier élément retourné par la fonction clusterize)
     (cf. doc de la fonction clusterize), fabrique les enveloppes convexes.
@@ -183,7 +184,7 @@ def do_convex_hull(df):
     return df, pre_df
 
 
-def save_to_map(centroids, hulls, path=clusterized_path):
+def save_to_map(centroids:gpd.GeoDataFrame, hulls:gpd.GeoDataFrame, path:str=clusterized_path, df:gpd.GeoDataFrame=None):
     """
     Sauvegarde les centres de gravité des clusters, ainsi que les enveloppes convexes, dans une carte Leaflet
     :param centroids: les centres de gravité (cf. deuxième sortie de la fonction clusterize)
