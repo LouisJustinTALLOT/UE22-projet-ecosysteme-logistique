@@ -239,14 +239,22 @@ def save_to_map(centroids:gpd.GeoDataFrame, hulls:gpd.GeoDataFrame, path:str=clu
                            color=list_colors[k]
             ).add_to(map)
 
+    if df is not None:
+        points = df['geometry']
+
+        for point in points:
+            folium.Marker(location=(point['coordinates'][1], point['coordinates'][0]),
+                          icon=folium.Icon(color="cadetblue", icon='info-sign')
+            ).add_to(map)
+
     map.save(path)
 
 # Ouverture de la GeoDataFrame
 data = ouvrir(reducted_name, reduce=True)
+data_0 = data.copy()
 # Je calcule les clusters, et les centres de gravité
 data, centroids = clusterize(data, 10)
 # Je calcule les enveloppes convexes
 data, hulls = do_convex_hull(data)
 # Je sauvegarde sur une carte
-save_to_map(centroids, hulls)
-print(data)
+save_to_map(centroids, hulls)#, df=data_0)
