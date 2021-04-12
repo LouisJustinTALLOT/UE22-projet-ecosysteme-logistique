@@ -243,6 +243,7 @@ def save_to_map(centroids:gpd.GeoDataFrame, hulls:gpd.GeoDataFrame, path:str=clu
     hulls = hulls.loc[:, 'hulls']
 
     list_colors = range_hex_colors(len(centroids))
+    list_base_colors = ['purple', 'white', 'black', 'lightgray', 'lightgreen', 'green', 'beige', 'blue', 'lightblue', 'lightred', 'darkgreen', 'orange', 'darkred', 'pink', 'gray', 'darkpurple', 'red', 'darkblue', 'cadetblue']
 
     for k, point in enumerate(centroids):
         if point is not None:
@@ -258,7 +259,7 @@ def save_to_map(centroids:gpd.GeoDataFrame, hulls:gpd.GeoDataFrame, path:str=clu
             # on est face à un cluster d'un seul point...
             folium.Marker(location=[polygon.y, polygon.x],
                           popup=title,
-                          icon=folium.Icon(color=list_colors[k], icon='info-sign')
+                          icon=folium.Icon(color=list_base_colors[k%19], icon='info-sign')
             ).add_to(map)
         else:
             polygon = swap_xy(polygon)
