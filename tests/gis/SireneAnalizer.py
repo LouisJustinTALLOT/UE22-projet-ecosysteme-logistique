@@ -165,22 +165,44 @@ def clusterize(df:gpd.GeoDataFrame, nb_clusters:int):
 
     lieux = np.array([np.array(gdf['geometry'], dtype=dict)[i]['coordinates'] for i in range(len(gdf['geometry']))])
 
-    plt.scatter(np.array(lieux)[:,0],
-             np.array(lieux)[:,1],
-             c=gdf['cluster'],
-             marker='.'
-    )
-    plt.show()
+    # plt.figure()
+    # plt.scatter(np.array(lieux)[:,0],
+    #          np.array(lieux)[:,1],
+    #          c=gdf['cluster'],
+    #          marker='.'
+    # )
+
+    # plt.figure()
+    # plt.scatter(np.array(lieux)[:,0],
+    #          np.array(lieux)[:,1],
+    #          c=y_kmeans,
+    #          marker='.'
+    # )   
+
+
+    plt.figure()
+    plt.scatter(a,b,c=y_kmeans,marker='.')
+    # plt.show()
 
     cluster_centers = kmeans.cluster_centers_
-    centers = gpd.points_from_xy(cluster_centers[:,0], cluster_centers[:,1])
-    centroids = pd.DataFrame(centers, columns=['centroids'])
+    # centers = gpd.points_from_xy(cluster_centers[:,0], cluster_centers[:,1])
 
-    k = k.join(centroids, how="left", on="cluster")
-    df = df.join(k)
+    plt.scatter(cluster_centers[:,0], cluster_centers[:,1], color="red", marker='+')
+
+    # centroids = pd.DataFrame(centers, columns=['centroids'])
+    plt.savefig("output/clusterized_data_k_means_debug.pdf")
+
+    plt.show()
+    # k = k.join(centroids, how="left", on="cluster")
+    # df = df.join(k)
+    # raise RuntimeError
 
     # with open("output/clusters.csv", 'w', encoding="utf8") as file:
     #     file.write(df.to_csv(sep=";"))
+
+    ##### WARNING  ######
+    # return à modifier.... 
+    # ne plus utiliser la GeoDataFrame
 
     return df, centroids
 
