@@ -145,6 +145,17 @@ def clusterize(df:gpd.GeoDataFrame, nb_clusters:int):
     b = pd.Series(df['geometry'].apply(lambda p: p["coordinates"][1]))
     X = np.column_stack((a, b))
 
+    # https://samdotson1992.github.io/SuperGIS/blog/k-means-clustering/
+    # wcss = []
+    # for i in range(1, 14):
+    #     kmeans2 = KMeans(n_clusters = i, init = 'k-means++', random_state = 42)
+    #     kmeans2.fit(X)
+    #     wcss.append(kmeans2.inertia_)
+    # plt.plot(range(1, 14), wcss)
+    # plt.title('The Elbow Method')
+    # plt.xlabel('Number of clusters')
+    # plt.ylabel('WCSS')
+    # plt.show()
 
     kmeans = KMeans(n_clusters=nb_clusters, init='k-means++')
     y_kmeans = kmeans.fit_predict(X)
