@@ -213,26 +213,31 @@ def save_to_map(centroids:gpd.GeoDataFrame, hulls:gpd.GeoDataFrame, path:str=clu
     centroids = centroids.loc[:, 'centroids']
     hulls = hulls.loc[:, 'hulls']
 
-    k = 0
-    for point in centroids:
+    list_colors = range_hex_colors(len(centroids))
+
+    for k, point in enumerate(centroids):
         if point is not None:
             title = f"Centre de masse du cluster {k}"
-            folium.Marker(location=[point.y, point.x], popup=title,
-                          icon=folium.Icon(color='red', icon='info-sign')).add_to(map)
-        k += 1
+            folium.Marker(location=[point.y, point.x], 
+                          popup=title,
+                          icon=folium.Icon(icon_color=list_colors[k], icon='info-sign')
+            ).add_to(map)
 
-    k = 0
-    for polygon in hulls:
+    for k, polygon in enumerate(hulls):
         title = f"Cluster {k}"
         if(type(polygon) == Point):
             # on est face à un cluster d'un seul point...
-            folium.Marker(location=[polygon.y, polygon.x], popup=title,
-                          icon=folium.Icon(color='red', icon='info-sign')).add_to(map)
+            folium.Marker(location=[polygon.y, polygon.x],
+                          popup=title,
+                          icon=folium.Icon(color=list_colors[k], icon='info-sign')
+            ).add_to(map)
         else:
             polygon = swap_xy(polygon)
             coords = polygon.exterior.coords
-            folium.Polygon(locations=coords, popup=title).add_to(map)
-        k += 1
+            folium.Polygon(locations=coords, 
+                           popup=title, 
+                           color=list_colors[k]
+            ).add_to(map)
 
     map.save(path)
 
