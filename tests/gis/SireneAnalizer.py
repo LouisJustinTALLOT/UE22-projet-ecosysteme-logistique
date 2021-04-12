@@ -193,9 +193,16 @@ def clusterize(df:gpd.GeoDataFrame, nb_clusters:int):
     plt.savefig("output/clusterized_data_k_means_debug.pdf")
 
     plt.show()
+    # k = k.join(centroids, how="left", on="cluster")
+    # df = df.join(k)
+    # raise RuntimeError
 
     # with open("output/clusters.csv", 'w', encoding="utf8") as file:
     #     file.write(df.to_csv(sep=";"))
+
+    ##### WARNING  ######
+    # return à modifier.... 
+    # ne plus utiliser la GeoDataFrame
 
     return df, centroids
 
