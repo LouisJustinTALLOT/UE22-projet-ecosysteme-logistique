@@ -181,12 +181,12 @@ def do_convex_hull(df:gpd.GeoDataFrame):
         minidf = df.loc[df['cluster'] == n]
    
         points = minidf.loc[:, 'geometry']
-        points = gpd.points_from_xy(points.apply(lambda p: p["coordinates"][0]), points.apply(lambda p: p["coordinates"][1]))
+        points = gpd.points_from_xy(points.apply(lambda p: p["coordinates"][0]), 
+                                    points.apply(lambda p: p["coordinates"][1]))
 
         multi_point = MultiPoint(np.array(points))
 
         hull = multi_point.convex_hull
-
         if type(hull) == Point:
             hulls[n] = hull
         else:
