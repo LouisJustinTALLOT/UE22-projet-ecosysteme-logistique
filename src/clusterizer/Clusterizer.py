@@ -188,8 +188,7 @@ def save_to_map(centroids, hulls, path):
     :param path: le chemin
     """
 
-    init_location = centroids.loc[0, 'centroids']
-    map = folium.Map(location=[init_location.y, init_location.x], 
+    map = folium.Map(location=[48.844952, 2.339193], 
                      zoom_start=10, 
                      tiles="OpenStreetMap"
                     )
