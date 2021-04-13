@@ -1,3 +1,0 @@
-geometry
-apet700
-libtefet
