@@ -172,27 +172,31 @@ def save_to_map(centroids, hulls, path):
     init_location = centroids.loc[0, 'centroids']
     map = folium.Map(location=[init_location.y, init_location.x], zoom_start=10, tiles="OpenStreetMap")
 
+    couleurs = ['cadetblue', 'lightblue', 'orange', 'lightgray', 'darkred', 'black', 'purple', 'gray', 'green', 'darkgreen', 'pink', 'lightgreen', 'darkblue', 'beige', 'white', 'blue', 'red']
+
     centroids = centroids.loc[:, 'centroids']
     hulls = hulls.loc[:, 'hulls']
 
     k = 0
     for point in centroids:
         if point is not None:
-            title = "Centre de masse cluster " + str(k)
+            title = f"Centre de masse du cluster {k}"
             folium.Marker(location=[point.y, point.x], popup=title,
-                          icon=folium.Icon(color='red', icon='info-sign')).add_to(map)
-        k+=1
+                          icon=folium.Icon(color=couleurs[k%len(couleurs)], icon='info-sign')).add_to(map)
+        k += 1
 
+    k = 0
     for polygon in hulls:
+        title = f"Cluster {k}"
         if(type(polygon) == Point):
             # on est face à un cluster d'un seul point...
-            title = "Cluster", k
             folium.Marker(location=[polygon.y, polygon.x], popup=title,
-                          icon=folium.Icon(color='red', icon='info-sign')).add_to(map)
+                          icon=folium.Icon(color=couleurs[k%len(couleurs)], icon='info-sign')).add_to(map)
         else:
             polygon = swap_xy(polygon)
             coords = polygon.exterior.coords
-            folium.Polygon(locations=coords, popup="Cluster").add_to(map)
+            folium.Polygon(locations=coords, popup=title, color=couleurs[k%len(couleurs)]).add_to(map)
+        k += 1
 
     map.save(path)
 
