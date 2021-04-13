@@ -97,7 +97,7 @@ def clusterize(df, k, column_name="geometry", dict=False):
     #===========================================================
     # Commençons par faire le clustering et récupérer les centres
     # ==========================================================
-    kmeans = KMeans(n_clusters=k, init='k-means++')
+    kmeans = KMeans(n_clusters=k, random_state=0)
 
     # Ceci contient des coordonnées (x, y) des points
     X = None
