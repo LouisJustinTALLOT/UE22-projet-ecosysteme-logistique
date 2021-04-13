@@ -197,15 +197,15 @@ def save_to_map(centroids, hulls, path):
     centroids = centroids.loc[:, 'centroids']
     hulls = hulls.loc[:, 'hulls']
 
-    k = 0
-    for point in centroids:
+    for k, point in enumerate(centroids):
         if point is not None:
             title = "Centre de masse cluster " + str(k)
-            folium.Marker(location=[point.y, point.x], popup=title,
-                          icon=folium.Icon(color='red', icon='info-sign')).add_to(map)
-        k+=1
+            folium.Marker(location=[point.y, point.x], 
+                          popup=title,
+                          icon=folium.Icon(color='red', icon='info-sign')
+            ).add_to(map)
 
-    for polygon in hulls:
+    for k, polygon in enumerate(hulls):
         if(type(polygon) == Point):
             # on est face à un cluster d'un seul point...
             title = "Cluster", k
