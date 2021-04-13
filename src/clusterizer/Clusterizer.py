@@ -235,3 +235,8 @@ def test_json():
     df = nettoyer(pd.read_json("../../tests/gis/input/base_sirene_shortened_json_cpp.json"))
     df, centroids, hulls = clusterize(df, 50, dict=True)
     save_to_map(centroids, hulls, "output/clusterized.html")
+
+
+# On exécute le programme avec la base SIRENE : 
+
+test_json()
