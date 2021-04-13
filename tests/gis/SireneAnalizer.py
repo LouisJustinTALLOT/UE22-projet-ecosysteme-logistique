@@ -74,8 +74,7 @@ def swap_xy(geom:BaseGeometry):
 
 def range_hex_colors(nombre_couleurs:int):
     res = []
-    # for i in range(nombre_couleurs):
-    #     res.append(f"#AB{str(hex(i*255//nombre_couleurs))[2:].upper()}BA")
+
     tmp = 17
     for i in range(nombre_couleurs):
         res.append("#"
