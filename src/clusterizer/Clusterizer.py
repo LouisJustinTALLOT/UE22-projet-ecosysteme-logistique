@@ -224,9 +224,12 @@ def save_to_map(centroids, hulls, path):
 def test_geojson():
     df = nettoyer(gpd.read_file("../../tests/gis/input/reducted.geojson"))
     df, centroids, hulls = clusterize(df, 10, dict=False)
-    save_to_map(centroids, hulls, "../../tests/gis/output/clusterized.html")
+    save_to_map(centroids, hulls, "output/clusterized.html")
+
+
+
 
 def test_json():
     df = nettoyer(pd.read_json("../../tests/gis/input/base_sirene_shortened_json_cpp.json"))
     df, centroids, hulls = clusterize(df, 50, dict=True)
-    save_to_map(centroids, hulls, "../../tests/gis/output/clusterized.html")
+    save_to_map(centroids, hulls, "output/clusterized.html")
