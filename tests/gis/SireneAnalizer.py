@@ -2,7 +2,7 @@ import geopandas as gpd
 import pandas as pd
 import numpy as np
 import folium
-from sklearn.cluster import KMeans
+from sklearn.cluster import KMeans, MeanShift
 from shapely.geometry import Point, MultiPoint, Polygon
 from shapely.geometry.base import BaseGeometry
 import matplotlib.pyplot as plt
@@ -159,6 +159,10 @@ def clusterize(df:gpd.GeoDataFrame, nb_clusters:int):
 
     kmeans = KMeans(n_clusters=nb_clusters, random_state=0)
     y_kmeans = kmeans.fit_predict(X)
+
+    # kmeans = MeanShift()#n_clusters=nb_clusters, init='k-means++')
+    # y_kmeans = kmeans.fit_predict(X)
+
     k = pd.DataFrame(y_kmeans, columns=['cluster'], dtype=int)
 
     gdf = gpd.GeoDataFrame(df.join(k))
