@@ -88,10 +88,9 @@ def clusterize(df, k, column_name="geometry", dict=False):
             "cluster" (numéro du cluster), "centroids" (centre de masse correspondant)
             et "hulls" (enveloppe convexe)
             Ainsi, pour chaque point, on connaît les infos du cluster auquel il a été affecté
-    - les centres de masse de chaque cluster (concrètement, une GeoDataFrame 
-      avec comme index le numéro du cluster et comme unique colonne les centres de masses)
-    - les enveloppes convexes de chaque cluster (concrètement, une GeoDataFrame 
-      avec comme index le numéro du cluster et comme unique colonne les enveloppes convexes)
+    - les centres de masse et les enveloppes convexes de chaque cluster (concrètement, une GeoDataFrame 
+      avec comme index le numéro du cluster et comme colonnes les centres de masses et les enveloppes convexes)
+
     """
 
     #===========================================================
@@ -165,22 +164,22 @@ def clusterize(df, k, column_name="geometry", dict=False):
     hulls = gpd.GeoDataFrame(gpd.GeoSeries(temp_hulls), columns=['hulls'])
     df = df.join(hulls, how='left', on='cluster')
 
+    df_clusters = centroids.join(hulls)
+
     # ===================================================
     # RESULTATS
     # df contient trois colonnes en plus : 
     #       "cluster" (n° cluster), 
     #       "centroids" (centres) ,
     #       "hulls"
-    # centroids associe à chaque numéro de cluster son centre
-    # hulls associe à chaque numéro de cluster son enveloppe convexe
+    # df_clusters associe à chaque numéro de cluster son centre et son enveloppe convexe
     # ==================================================
 
-    return df, centroids, hulls
+    return df, df_clusters
 
 
 
-
-def save_to_map(centroids, hulls, path):
+def save_to_map(df_clusters, path):
     """
     Sauvegarde les centres de gravité des clusters, ainsi que les enveloppes convexes, dans une carte Leaflet
     :param centroids: les centres de gravité (cf. deuxième sortie de la fonction clusterize)
@@ -195,8 +194,8 @@ def save_to_map(centroids, hulls, path):
 
     couleurs = ['cadetblue', 'lightblue', 'orange', 'lightgray', 'darkred', 'black', 'purple', 'gray', 'green', 'darkgreen', 'pink', 'lightgreen', 'darkblue', 'beige', 'white', 'blue', 'red']
 
-    centroids = centroids.loc[:, 'centroids']
-    hulls = hulls.loc[:, 'hulls']
+    centroids = df_clusters.loc[:, 'centroids']
+    hulls = df_clusters.loc[:, 'hulls']
 
     for k, point in enumerate(centroids):
         if point is not None:
@@ -225,16 +224,14 @@ def save_to_map(centroids, hulls, path):
 
 def test_geojson():
     df = nettoyer(gpd.read_file("../../tests/gis/input/reducted.geojson"))
-    df, centroids, hulls = clusterize(df, 10, dict=False)
-    save_to_map(centroids, hulls, "output/clusterized.html")
-
-
+    df, df_clusters = clusterize(df, 10, dict=False)
+    save_to_map(df_clusters, "output/clusterized.html")
 
 
 def test_json():
     df = nettoyer(pd.read_json("../../tests/gis/input/base_sirene_shortened_json_cpp.json"))
-    df, centroids, hulls = clusterize(df, 50, dict=True)
-    save_to_map(centroids, hulls, "output/clusterized.html")
+    df, df_clusters = clusterize(df, 50, dict=True)
+    save_to_map(df_clusters, "output/clusterized.html")
 
 
 # On exécute le programme avec la base SIRENE : 
