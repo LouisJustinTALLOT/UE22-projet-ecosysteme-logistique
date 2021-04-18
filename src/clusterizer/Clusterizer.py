@@ -220,6 +220,16 @@ def save_to_map(df_clusters, path):
     map.save(path)
 
 
+def informations(df, df_clusters):
+    """ 
+    Permet d'ajouter des informations sur les clusters.
+    Pour l'instant, ajoute le nombre d'entreprises du cluster dans une colonne "taille".
+    On pourra par exemple ajouter aussi le poids total de chaque cluster quand on aura défini cette notion
+    """
+
+    taille_cluster = pd.DataFrame(df.groupby('cluster').size(), columns=['taille'])
+    df_clusters = df_clusters.join(taille_cluster)
+    # print(df_cluster.head())
 
 
 def test_geojson():
@@ -232,6 +242,7 @@ def test_json():
     df = nettoyer(pd.read_json("../../tests/gis/input/base_sirene_shortened_json_cpp.json"))
     df, df_clusters = clusterize(df, 50, dict=True)
     save_to_map(df_clusters, "output/clusterized.html")
+    informations(df, df_clusters)
 
 
 # On exécute le programme avec la base SIRENE : 
