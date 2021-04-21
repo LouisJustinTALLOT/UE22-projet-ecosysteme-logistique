@@ -239,7 +239,7 @@ def test_geojson():
 
 
 def test_json():
-    df = nettoyer(pd.read_json("../../tests/gis/input/base_sirene_shortened_json_cpp.json"))
+    df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"))
     df, df_clusters = clusterize(df, 50, dict=True)
     save_to_map(df_clusters, "output/clusterized.html")
     informations(df, df_clusters)
