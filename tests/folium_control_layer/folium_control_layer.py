@@ -193,7 +193,9 @@ def save_to_map(df_clusters, path):
                      tiles="OpenStreetMap"
                     )
 
-    couleurs = ['cadetblue', 'lightblue', 'orange', 'lightgray', 'darkred', 'black', 'purple', 'gray', 'green', 'darkgreen', 'pink', 'lightgreen', 'darkblue', 'beige', 'white', 'blue', 'red']
+    couleurs = ['cadetblue', 'lightblue', 'orange', 'darkred', 'black',
+                'purple', 'gray', 'green', 'darkgreen', 'pink', 'lightgreen',
+                'darkblue', 'white', 'blue', 'red']
 
     centroids = df_clusters.loc[:, 'centroids']
     hulls = df_clusters.loc[:, 'hulls']
