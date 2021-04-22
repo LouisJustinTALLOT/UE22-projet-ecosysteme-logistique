@@ -259,7 +259,7 @@ def test_json():
 
     for NAF in codes_apet700_top5:
 
-        df_partial, df_clusters = clusterize(df[df['apet700']==NAF], 5, dict=True)
+        df_partial, df_clusters = clusterize(df[df['apet700']==NAF].reset_index(), 5, dict=True)
 
         map = save_to_map(df_clusters, map, nom=NAF)
 
