@@ -180,7 +180,7 @@ def clusterize(df, k, column_name="geometry", dict=False):
 
 
 
-def save_to_map(df_clusters, map, nom=""):
+def save_to_map(df_clusters, map, nom="", couleur=""):
     """
     Sauvegarde les centres de gravité des clusters, ainsi que les enveloppes convexes, dans une carte Leaflet
     :param centroids: les centres de gravité (cf. deuxième sortie de la fonction clusterize)
@@ -188,11 +188,8 @@ def save_to_map(df_clusters, map, nom=""):
     :param path: le chemin
     """
 
-    
-
-    couleurs = ['cadetblue', 'lightblue', 'orange', 'darkred', 'black',
-                'purple', 'gray', 'green', 'darkgreen', 'pink', 'lightgreen',
-                'darkblue', 'white', 'blue', 'red']
+    if not couleur:
+        couleur = 'cadetblue'
 
     centroids = df_clusters.loc[:, 'centroids']
     hulls = df_clusters.loc[:, 'hulls']
@@ -207,7 +204,7 @@ def save_to_map(df_clusters, map, nom=""):
                 folium.Marker(
                               location=[point.y, point.x], 
                               popup=title,
-                              icon=folium.Icon(color=couleurs[k%len(couleurs)], icon='info-sign')
+                              icon=folium.Icon(color=couleur, icon='info-sign')
                              )
             )
 
@@ -219,14 +216,14 @@ def save_to_map(df_clusters, map, nom=""):
                 folium.Marker(
                               location=[polygon.y, polygon.x], 
                               popup=title,
-                              icon=folium.Icon(color=couleurs[k%len(couleurs)], icon='info-sign')
+                              icon=folium.Icon(color=couleur, icon='info-sign')
                              )
             )
         else:
             polygon = swap_xy(polygon)
             coords = polygon.exterior.coords
             feature_group.add_child(
-                folium.Polygon(locations=coords, popup=title, color=couleurs[k%len(couleurs)])
+                folium.Polygon(locations=coords, popup=title, color=couleur)
             )
 
     return map
@@ -249,6 +246,9 @@ def test_json():
 
     codes_apet700_top5 = ['4932Z','6820A','6820B','7022Z','9499Z']
 
+    couleurs = ['cadetblue', 'lightblue', 'orange', 'darkred', 'black',
+                'purple', 'gray', 'green', 'darkgreen', 'pink', 'lightgreen',
+                'darkblue', 'white', 'blue', 'red']
 
     map = folium.Map(location=[48.844952, 2.339193], 
                      zoom_start=10, 
@@ -257,11 +257,11 @@ def test_json():
 
     df = nettoyer(pd.read_json("../gis/input/base_sirene_shortened_json_cpp.json"))
 
-    for NAF in codes_apet700_top5:
+    for i, NAF in enumerate(codes_apet700_top5):
 
-        df_partial, df_clusters = clusterize(df[df['apet700']==NAF].reset_index(), 5, dict=True)
+        df_partial, df_clusters = clusterize(df[df['apet700']==NAF].reset_index(), 25, dict=True)
 
-        map = save_to_map(df_clusters, map, nom=NAF)
+        map = save_to_map(df_clusters, map, nom=NAF, couleur=couleurs[i%len(couleurs)])
 
     folium.LayerControl().add_to(map)
 
