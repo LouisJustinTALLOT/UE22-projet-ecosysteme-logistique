@@ -23,7 +23,7 @@ var greenIcon = new L.Icon({
 });
 
 var restaurantIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/img/restaurant-map-icon.png',
+    iconUrl: 'https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/data/img/restaurant-map-icon.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [41, 41],
     iconAnchor: [12, 41],
@@ -32,7 +32,7 @@ var restaurantIcon = new L.Icon({
 });
 
 var shopIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/img/shop-map-icon.png',
+    iconUrl: 'https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/data/img/shop-map-icon.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [41, 41],
     iconAnchor: [12, 41],
