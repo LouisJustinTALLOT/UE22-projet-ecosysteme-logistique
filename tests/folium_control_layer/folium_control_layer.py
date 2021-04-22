@@ -200,25 +200,41 @@ def save_to_map(df_clusters, path):
     centroids = df_clusters.loc[:, 'centroids']
     hulls = df_clusters.loc[:, 'hulls']
 
+    list_fg = [] # un liste de folium.FeatureGroup pour contrôler les clusters qui s'affichent
+
     for k, point in enumerate(centroids):
         if point is not None:
             title = f"Centre de masse du cluster {k}"
-            folium.Marker(location=[point.y, point.x], 
-                          popup=title,
-                          icon=folium.Icon(color=couleurs[k%len(couleurs)], icon='info-sign')
-            ).add_to(map)
+           
+            list_fg.append(folium.FeatureGroup(name=f"Cluster {k}").add_to(map))
+
+            list_fg[k].add_child(
+                folium.Marker(
+                              location=[point.y, point.x], 
+                              popup=title,
+                              icon=folium.Icon(color=couleurs[k%len(couleurs)], icon='info-sign')
+                             )
+            )
 
     for k, polygon in enumerate(hulls):
         title = f"Cluster {k}"
         if(type(polygon) == Point):
             # on est face à un cluster d'un seul point...
-            folium.Marker(location=[polygon.y, polygon.x], popup=title,
-                          icon=folium.Icon(color=couleurs[k%len(couleurs)], icon='info-sign')).add_to(map)
+            list_fg[k].add_child(
+                folium.Marker(
+                              location=[polygon.y, polygon.x], 
+                              popup=title,
+                              icon=folium.Icon(color=couleurs[k%len(couleurs)], icon='info-sign')
+                             )
+            )
         else:
             polygon = swap_xy(polygon)
             coords = polygon.exterior.coords
-            folium.Polygon(locations=coords, popup=title, color=couleurs[k%len(couleurs)]).add_to(map)
+            list_fg[k].add_child(
+                folium.Polygon(locations=coords, popup=title, color=couleurs[k%len(couleurs)])
+            )
 
+    folium.LayerControl().add_to(map)
 
     map.save(path)
 
