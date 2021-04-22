@@ -236,14 +236,13 @@ def informations(df, df_clusters):
 def test_geojson():
     df = nettoyer(gpd.read_file("../gis/input/reducted.geojson"))
     df, df_clusters = clusterize(df, 10, dict=False)
-    save_to_map(df_clusters, "output/clusterized.html")
+    save_to_map(df_clusters, "output/clusterized_geojson.html")
 
 
 def test_json():
     df = nettoyer(pd.read_json("../gis/input/base_sirene_shortened_json_cpp.json"))
-    print("here")
-    df, df_clusters = clusterize(df, 4, dict=True)
-    save_to_map(df_clusters, "output/clusterized.html")
+    df, df_clusters = clusterize(df, 5, dict=True)
+    save_to_map(df_clusters, "output/clusterized_json.html")
     informations(df, df_clusters)
 
 
