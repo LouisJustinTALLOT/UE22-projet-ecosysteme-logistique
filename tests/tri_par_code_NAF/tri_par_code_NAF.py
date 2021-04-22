@@ -180,7 +180,7 @@ def clusterize(df, k, column_name="geometry", dict=False):
 
 
 
-def save_to_map(df_clusters, path):
+def save_to_map(df_clusters, map, nom=""):
     """
     Sauvegarde les centres de gravité des clusters, ainsi que les enveloppes convexes, dans une carte Leaflet
     :param centroids: les centres de gravité (cf. deuxième sortie de la fonction clusterize)
@@ -188,10 +188,7 @@ def save_to_map(df_clusters, path):
     :param path: le chemin
     """
 
-    map = folium.Map(location=[48.844952, 2.339193], 
-                     zoom_start=10, 
-                     tiles="OpenStreetMap"
-                    )
+    
 
     couleurs = ['cadetblue', 'lightblue', 'orange', 'darkred', 'black',
                 'purple', 'gray', 'green', 'darkgreen', 'pink', 'lightgreen',
@@ -200,15 +197,13 @@ def save_to_map(df_clusters, path):
     centroids = df_clusters.loc[:, 'centroids']
     hulls = df_clusters.loc[:, 'hulls']
 
-    list_fg = [] # un liste de folium.FeatureGroup pour contrôler les clusters qui s'affichent
+    feature_group = folium.FeatureGroup(name = nom).add_to(map)
 
     for k, point in enumerate(centroids):
         if point is not None:
             title = f"Centre de masse du cluster {k}"
            
-            list_fg.append(folium.FeatureGroup(name=f"Cluster {k}").add_to(map))
-
-            list_fg[k].add_child(
+            feature_group.add_child(
                 folium.Marker(
                               location=[point.y, point.x], 
                               popup=title,
@@ -220,7 +215,7 @@ def save_to_map(df_clusters, path):
         title = f"Cluster {k}"
         if(type(polygon) == Point):
             # on est face à un cluster d'un seul point...
-            list_fg[k].add_child(
+            feature_group.add_child(
                 folium.Marker(
                               location=[polygon.y, polygon.x], 
                               popup=title,
@@ -230,13 +225,11 @@ def save_to_map(df_clusters, path):
         else:
             polygon = swap_xy(polygon)
             coords = polygon.exterior.coords
-            list_fg[k].add_child(
+            feature_group.add_child(
                 folium.Polygon(locations=coords, popup=title, color=couleurs[k%len(couleurs)])
             )
 
-    folium.LayerControl().add_to(map)
-
-    map.save(path)
+    return map
 
 
 def informations(df, df_clusters):
@@ -251,16 +244,28 @@ def informations(df, df_clusters):
     # print(df_cluster.head())
 
 
-def test_geojson():
-    df = nettoyer(gpd.read_file("../gis/input/reducted.geojson"))
-    df, df_clusters = clusterize(df, 10, dict=False)
-    save_to_map(df_clusters, "output/clusterized_geojson.html")
-
 
 def test_json():
+
+    codes_apet700_top5 = ['4932Z','6820A','6820B','7022Z','9499Z']
+
+
+    map = folium.Map(location=[48.844952, 2.339193], 
+                     zoom_start=10, 
+                     tiles="OpenStreetMap"
+                    )
+
     df = nettoyer(pd.read_json("../gis/input/base_sirene_shortened_json_cpp.json"))
-    df, df_clusters = clusterize(df, 5, dict=True)
-    save_to_map(df_clusters, "output/clusterized_json.html")
+
+    for NAF in codes_apet700_top5:
+
+        df_partial, df_clusters = clusterize(df[df['apet700']==NAF], 5, dict=True)
+
+        map = save_to_map(df_clusters, map, nom=NAF)
+
+    folium.LayerControl().add_to(map)
+
+    map.save("output/clusterized_json.html")
     # informations(df, df_clusters)
 
 
