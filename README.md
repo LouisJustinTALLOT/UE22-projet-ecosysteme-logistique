@@ -38,6 +38,9 @@ Ce projet dépend des technologies et ressources suivantes :
     * [`json`](https://docs.python.org/fr/3/library/json.html) pour traiter des fichiers `JSON`
     * [`ijson`](https://pypi.org/project/ijson/) pour traiter de manière itérative de lourds fichiers `JSON`
     * [`time`](https://docs.python.org/fr/3/library/time.html) pour mesurer le temps de traitement
+    * [`matplotlib`](https://matplotlib.org) pour analyser les données issues des bases ainsi que visualiser le résultat du clustering
+    * [`Jupyter`](https://jupyter.org/) pour développer de manière plus rapide (supporte même `Folium`)
+    * [`PyQt5`](https://www.riverbankcomputing.com/software/pyqt/) pour réaliser l'interface homme-machine
   * Les librairies `C++` :
     * `iostream` pour les entrées/sorties
     * `fstream` pour lire/écrire les fichiers
