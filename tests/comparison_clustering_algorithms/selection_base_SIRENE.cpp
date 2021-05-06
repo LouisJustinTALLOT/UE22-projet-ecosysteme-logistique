@@ -25,7 +25,7 @@ int main(){
 
     std::string fichier_reduit = "";
 
-    while (brackets_count <= 20000){
+    while (brackets_count <= 200000){
         fichier_reduit += fichier_complet[i];
         
         if (fichier_complet[i] == '}'){ 
@@ -40,7 +40,7 @@ int main(){
     std::cout << "Réduction finie" << std::endl;
     std::cout << "Début de l'écriture" << std::endl;
 
-    std::ofstream file_out("output/Sirene_10000.json");
+    std::ofstream file_out("output/Sirene_100000.json");
 
     file_out << fichier_reduit;
 
