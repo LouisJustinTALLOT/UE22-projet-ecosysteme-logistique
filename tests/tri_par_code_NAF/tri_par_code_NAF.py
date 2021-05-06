@@ -259,13 +259,13 @@ def test_json():
 
     for i, NAF in enumerate(codes_apet700_top5):
 
-        df_partial, df_clusters = clusterize(df[df['apet700']==NAF].reset_index(), 25, dict=True)
+        df_partial, df_clusters = clusterize(df[df['apet700']==NAF].reset_index(), 100, dict=True)
 
         map = save_to_map(df_clusters, map, nom=NAF, couleur=couleurs[i%len(couleurs)])
 
     folium.LayerControl().add_to(map)
 
-    map.save("output/clusterized_json.html")
+    map.save("output/clusterized_json_plus.html")
     # informations(df, df_clusters)
 
 
