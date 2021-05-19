@@ -1,4 +1,5 @@
 import geopandas as gpd
+import pandas as pd
 import numpy as np
 from shapely.geometry import Polygon, MultiPoint, Point
 
@@ -9,13 +10,25 @@ COLUMN_CENTROIDS_NAME = "centroids"
 COLUMN_CLUSTER_SIZE_NAME = "taille"
 COLUMN_CLUSTER_MASS_NAME = "poids"
 
-def enveloppe_convexe(k, df, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
-    """
 
-    :param k: nombre de clusters
-    :param df: la DataFrame où l'on a déjà ajouté le numéro du cluster correspondant
-    :param column_geometry: le nom de la colonne où se situent les données géometriques (par défaut, "geometry")
-    :return:
+def get_infos_clusters_taille(df):
+    """
+    Fonction permettant de récupérer des infos sur les clusters (tailles).
+
+    :param df: La DataFrame où l'on a déjà ajouté le numéro des clusters (laissée intacte).
+    :return: Une nouvelle GeoDataFrame associant à chaque numéro de cluster la taille de celui-ci
+     (nombre d'établissements)
+    """
+    return pd.DataFrame(df.groupby(COLUMN_CLUSTER_INDEX_NAME).size(), columns=[COLUMN_CLUSTER_SIZE_NAME])
+
+def get_infos_clusters_enveloppes_convexes(k, df, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
+    """
+    Fonction permettant de récupérer des infos sur les clusters (enveloppes convexes).
+
+    :param k: Nombre de clusters
+    :param df: La DataFrame où l'on a déjà ajouté le numéro des clusters (laissée intacte).
+    :param column_geometry: Le nom de la colonne où se situent les données géometriques (par défaut, "geometry").
+    :return: Une GeoDataFrame associant à chaque numéro de cluster son enveloppe convexe.
     """
     # Tableau numpy temporaire. Il ne sert qu'à la création de la GeoDataFrame avec les enveloppes convexes
     temp_hulls = np.empty(k, dtype=Polygon)
@@ -50,8 +63,9 @@ def enveloppe_convexe(k, df, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
 def swap_xy(geom):
     """
     Inverse les coordonnées de l'objet shapely.geometry.
-    Utile pour passer objets shapely dans folium (la convention est inversée)
-    :param geom: l'objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
+    Utile pour passer objets shapely dans folium (la convention est inversée).
+
+    :param geom: L'objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
     :return: l'objet inversé
     """
     if geom.is_empty:
@@ -86,3 +100,5 @@ def swap_xy(geom):
 
     else:
         raise ValueError('Type %r not recognized' % geom.type)
+
+
