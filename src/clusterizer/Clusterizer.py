@@ -7,6 +7,7 @@ from sklearn.cluster import KMeans
 
 from shapely.geometry import Point
 
+from src.clusterizer import NAFUtils
 from src.clusterizer import ClusterizerUtils
 from src.clusterizer.ClusterizerUtils import COLUMN_HULLS_NAME, \
     COLUMN_CLUSTER_INDEX_NAME, \
@@ -148,6 +149,7 @@ def test_json():
     df = nettoyer(pd.read_json("../../data/base_sirene_10000.json"))
     df, df_clusters = clusterize(df, 50, dict=True)
     save_to_map(df_clusters, "output/clusterized.html")
+    print(NAFUtils.get_description(df.loc[0, "apet700"]))
 
 
 # On exécute le programme avec la base SIRENE : 

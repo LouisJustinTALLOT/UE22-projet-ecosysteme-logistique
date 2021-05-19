@@ -10,6 +10,15 @@ COLUMN_CENTROIDS_NAME = "centroids"
 COLUMN_CLUSTER_SIZE_NAME = "taille"
 COLUMN_CLUSTER_MASS_NAME = "poids"
 
+def get_infos_clusters_poids(df):
+    """
+    Fonction permettant de récupérer des infos sur les clusters (poids).
+
+    :param df:
+    :return:
+    """
+    # TODO
+    pass
 
 def get_infos_clusters_taille(df):
     """
