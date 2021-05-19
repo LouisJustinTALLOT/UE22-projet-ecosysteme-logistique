@@ -84,12 +84,12 @@ def clusterize(df, k, column_name="geometry", dict=False):
 
     Attention, fait du en-place.
     Retourne trois choses :
-    - la df rentrée, avec trois colonnes en plus:
-            "cluster" (numéro du cluster), "centroids" (centre de masse correspondant)
-            et "hulls" (enveloppe convexe)
-            Ainsi, pour chaque point, on connaît les infos du cluster auquel il a été affecté
+    - la df rentrée, avec une seule colonne en plus:
+            "cluster" (numéro du cluster).
+            Ainsi, pour chaque point, on connaît le numéro du cluster qui lui a été affecté.
     - les centres de masse et les enveloppes convexes de chaque cluster (concrètement, une GeoDataFrame 
       avec comme index le numéro du cluster et comme colonnes les centres de masses et les enveloppes convexes)
+      C'est la clé de lecture.
 
     """
 
@@ -113,7 +113,7 @@ def clusterize(df, k, column_name="geometry", dict=False):
         X = np.column_stack((a, b))
 
     # Cette DataFrame associe à chaque indice de ligne (ie à chaque point) 
-    # son cluster, dans la colonne "cluster"
+    # son numéro de cluster, dans la colonne "cluster"
     clusters = gpd.GeoDataFrame(kmeans.fit_predict(X), columns=['cluster'], dtype=int)
 
     # Cette DataFrame associe à chaque numéro de cluster le centre de masse
@@ -123,14 +123,16 @@ def clusterize(df, k, column_name="geometry", dict=False):
                              columns=['centroids']
                             )
 
+    # La DataFrame originale contient désormais une colonne en plus :
+    # - "cluster"  : le numéro du cluster
+    df = df.join(clusters)
+
     # Désormais, on a ajouté à cette DataFrame une colonne centroids. 
     # Chaque point est donc associé à son cluster et le centre de masse correspondant
+    # Attention, la DataFrame originale ne contient pas ces centre de masse
     clusters = clusters.join(centroids, how="left", on="cluster")
 
-    # La DataFrame originale contient désormais deux colonnes en plus :
-    # - "cluster"  : le numéro du cluster
-    # - "centroids": le centre de masse correspondant
-    df = df.join(clusters)
+
 
     # ================================================================
     # Désormais, on récupère les enveloppes convexes de chaque cluster
@@ -162,17 +164,15 @@ def clusterize(df, k, column_name="geometry", dict=False):
             temp_hulls[n] = Polygon(hull)
 
     hulls = gpd.GeoDataFrame(gpd.GeoSeries(temp_hulls), columns=['hulls'])
-    df = df.join(hulls, how='left', on='cluster')
 
     df_clusters = centroids.join(hulls)
 
     # ===================================================
     # RESULTATS
-    # df contient trois colonnes en plus : 
-    #       "cluster" (n° cluster), 
-    #       "centroids" (centres) ,
-    #       "hulls"
-    # df_clusters associe à chaque numéro de cluster son centre et son enveloppe convexe
+    # df contient une seule colonne en plus :
+    #       "cluster" (n° cluster).
+    # df_clusters associe à chaque numéro de cluster son centre et son enveloppe convexe.
+    # En qqes sorte, c'est la clé de lecture
     # ==================================================
 
     return df, df_clusters
@@ -182,8 +182,8 @@ def clusterize(df, k, column_name="geometry", dict=False):
 def save_to_map(df_clusters, path):
     """
     Sauvegarde les centres de gravité des clusters, ainsi que les enveloppes convexes, dans une carte Leaflet
-    :param centroids: les centres de gravité (cf. deuxième sortie de la fonction clusterize)
-    :param hulls: les enveloppes convesxes (cf. deuxième sortie de la fonction do_convex_hull)
+    :param df_clusters: les centres de gravité et les enveloppes convexes
+    (cf. deuxième sortie de la fonction clusterize)
     :param path: le chemin
     """
 
@@ -209,7 +209,7 @@ def save_to_map(df_clusters, path):
 
     for k, polygon in enumerate(hulls):
         title = f"Cluster {k}"
-        if(type(polygon) == Point):
+        if type(polygon) == Point:
             # on est face à un cluster d'un seul point...
             folium.Marker(location=[polygon.y, polygon.x], popup=title,
                           icon=folium.Icon(color=couleurs[k%len(couleurs)], icon='info-sign')).add_to(map)
@@ -217,7 +217,6 @@ def save_to_map(df_clusters, path):
             polygon = swap_xy(polygon)
             coords = polygon.exterior.coords
             folium.Polygon(locations=coords, popup=title, color=couleurs[k%len(couleurs)]).add_to(map)
-
 
     map.save(path)
 
@@ -241,10 +240,10 @@ def test_geojson():
 
 
 def test_json():
-    df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"))
+    df = nettoyer(pd.read_json("../../data/base_sirene_10000.json"))
     df, df_clusters = clusterize(df, 50, dict=True)
     save_to_map(df_clusters, "output/clusterized.html")
-    informations(df, df_clusters)
+    # informations(df, df_clusters)
 
 
 # On exécute le programme avec la base SIRENE : 
