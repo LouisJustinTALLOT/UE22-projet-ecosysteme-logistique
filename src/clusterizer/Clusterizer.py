@@ -5,7 +5,15 @@ import folium
 
 from sklearn.cluster import KMeans
 
-from shapely.geometry import Point, MultiPoint, Polygon
+from shapely.geometry import Point
+
+from src.clusterizer import ClusterizerUtils
+from src.clusterizer.ClusterizerUtils import COLUMN_HULLS_NAME,\
+    COLUMN_CLUSTER_INDEX_NAME,\
+    COLUMN_CLUSTER_SIZE_NAME,\
+    COLUMN_CENTROIDS_NAME,\
+    COLUMN_DEFAULT_GEOMETRY_NAME,\
+    COLUMN_CLUSTER_MASS_NAME
 
 """
 Clusterise proprement (k-moyennes)
@@ -14,66 +22,25 @@ Pour avoir des exemples d'utilisation, aller à la toute fin où il y a les test
 TODO : d'autres algorithmes
 """
 
-#Utilitaire
-
-def swap_xy(geom):
-    """
-    Inverse les coordonnées de l'objet shapely.geometry.
-    Utile pour passer objets shapely dans folium (la convention est inversée)
-    :param geom: l'objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
-    :return: l'objet inversé
-    """
-    if geom.is_empty:
-        return geom
-
-    if geom.has_z:
-        def swap_xy_coords(coords):
-            for x, y, z in coords:
-                yield (y, x, z)
-    else:
-        def swap_xy_coords(coords):
-            for x, y in coords:
-                yield (y, x)
-
-    # Process coordinates from each supported geometry type
-    if geom.type in ('Point', 'LineString', 'LinearRing'):
-        return type(geom)(list(swap_xy_coords(geom.coords)))
-
-    elif geom.type == 'Polygon':
-        ring = geom.exterior
-        shell = type(ring)(list(swap_xy_coords(ring.coords)))
-        holes = list(geom.interiors)
-
-        for pos, ring in enumerate(holes):
-            holes[pos] = type(ring)(list(swap_xy_coords(ring.coords)))
-
-        return type(geom)(shell, holes)
-
-    elif geom.type.startswith('Multi') or geom.type == 'GeometryCollection':
-        # Recursive call
-        return type(geom)([swap_xy(part) for part in geom.geoms])
-
-    else:
-        raise ValueError('Type %r not recognized' % geom.type)
 
 
 
-
-def nettoyer(df, reduce=False, threshold=1000):
+def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
     """
     Nettoie la DataFrame: enlève les na
     Si reduce=True, ne prend que les première données de la (Geo)DataFrame.
     La limite dans ce cas est fixée à threshold (qui vaut 1000 par défaut)
+    Spécifier la colonne où se trouvent les données géographiques si ce n'est pas dans "geometry"
     """
     if reduce and df.size <= threshold:
         df = df[:threshold]
 
-    return df.dropna(subset=["geometry"]).reset_index()
+    return df.dropna(subset=[column_geometry]).reset_index()
 
 
 
 
-def clusterize(df, k, column_name="geometry", dict=False):
+def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False):
     """
     Clusterise à l'aide de l'algorithme des k-moyennes.
 
@@ -83,14 +50,16 @@ def clusterize(df, k, column_name="geometry", dict=False):
     (quand ça vient pas d'un GeoJSON en général)
 
     Attention, fait du en-place.
-    Retourne trois choses :
+    Retourne deux choses :
     - la df rentrée, avec une seule colonne en plus:
             "cluster" (numéro du cluster).
             Ainsi, pour chaque point, on connaît le numéro du cluster qui lui a été affecté.
-    - les centres de masse et les enveloppes convexes de chaque cluster (concrètement, une GeoDataFrame 
-      avec comme index le numéro du cluster et comme colonnes les centres de masses et les enveloppes convexes)
-      C'est la clé de lecture.
-
+    - une nouvelle GeoDataFrame contenant plusieurs colonnes :
+        l'index correspond au numéro du cluster
+        "centroids" (le centre de masse)
+        "hulls"     (les enveloppes convexes)
+        "taille"    (le nombre d'établissements dans ce cluster, indépendant de la notion de masse)
+        En quelque sorte, c'est la clé de lecture.
     """
 
     #===========================================================
@@ -102,80 +71,40 @@ def clusterize(df, k, column_name="geometry", dict=False):
     X = None
 
     if dict:
-        a = pd.Series(df['geometry'].apply(lambda p: p["coordinates"][0]))
-        b = pd.Series(df['geometry'].apply(lambda p: p["coordinates"][1]))
+        a = pd.Series(df[column_geometry].apply(lambda p: p["coordinates"][0]))
+        b = pd.Series(df[column_geometry].apply(lambda p: p["coordinates"][1]))
 
         X = np.column_stack((a, b))
     else:
-        a = pd.Series(df[column_name].apply(lambda p: p.x))
-        b = pd.Series(df[column_name].apply(lambda p: p.y))
+        a = pd.Series(df[column_geometry].apply(lambda p: p.x))
+        b = pd.Series(df[column_geometry].apply(lambda p: p.y))
 
         X = np.column_stack((a, b))
 
-    # Cette DataFrame associe à chaque indice de ligne (ie à chaque point) 
-    # son numéro de cluster, dans la colonne "cluster"
-    clusters = gpd.GeoDataFrame(kmeans.fit_predict(X), columns=['cluster'], dtype=int)
+    # La DataFrame "df_point_cluster" associe à chaque indice de ligne (ie à chaque point)
+    # son numéro de cluster (dans la colonne "cluster").
+    # Son utilité n'est que d'ajouter la colonne "clusters" sur la DataFrame originale.
+    # La DataFrame originale contient désormais une colonne en plus, "cluster" contenant le numéro du cluster.
+    df_point_cluster = gpd.GeoDataFrame(kmeans.fit_predict(X), columns=[COLUMN_CLUSTER_INDEX_NAME], dtype=int)
+    df = df.join(df_point_cluster)
 
-    # Cette DataFrame associe à chaque numéro de cluster le centre de masse
-    # correspondant, dans la colonne "centroids"
-    centroids = pd.DataFrame(gpd.points_from_xy(kmeans.cluster_centers_[:, 0],
+    # La DataFrame "df_infos_clusters" associe à chaque numéro de cluster les informations correspondantes.
+    # En détails : une colonne "centroids" (centres de masse) et une colonne "hulls" (enveloppes convexes)
+    df_infos_clusters = pd.DataFrame(gpd.points_from_xy(kmeans.cluster_centers_[:, 0],
                                                 kmeans.cluster_centers_[:, 1]),
-                             columns=['centroids']
+                             columns=[COLUMN_CENTROIDS_NAME]
                             )
-
-    # La DataFrame originale contient désormais une colonne en plus :
-    # - "cluster"  : le numéro du cluster
-    df = df.join(clusters)
-
-    # Désormais, on a ajouté à cette DataFrame une colonne centroids. 
-    # Chaque point est donc associé à son cluster et le centre de masse correspondant
-    # Attention, la DataFrame originale ne contient pas ces centre de masse
-    clusters = clusters.join(centroids, how="left", on="cluster")
-
-
-
-    # ================================================================
-    # Désormais, on récupère les enveloppes convexes de chaque cluster
-    # ================================================================
-
-    # Tableau numpy temporaire. Il ne sert qu'à la création de la GeoDataFrame avec les enveloppes convexes
-    temp_hulls = np.empty(k, dtype=Polygon)
-
-    for n in range(k):
-        # Cette DataFrame contient les points du cluster numéro n
-        minidf = df.loc[df['cluster'] == n]
-
-        # On calcule l'enveloppe convexe
-        points = minidf.loc[:, column_name]
-        if dict:
-            points = gpd.points_from_xy(points.apply(lambda p: p["coordinates"][0]),
-                                        points.apply(lambda p: p["coordinates"][1]))
-
-            multi_point = MultiPoint(np.array(points, dtype=Point))
-        else:
-            multi_point = MultiPoint(points.array)
-            
-        hull = multi_point.convex_hull
-
-        if type(hull) == Point:
-            # S'il n'y a qu'un point dans le cluster, on ne peut pas créer de Polygon
-            temp_hulls[n] = hull
-        else:
-            temp_hulls[n] = Polygon(hull)
-
-    hulls = gpd.GeoDataFrame(gpd.GeoSeries(temp_hulls), columns=['hulls'])
-
-    df_clusters = centroids.join(hulls)
+    df_infos_clusters = df_infos_clusters.join(ClusterizerUtils.enveloppe_convexe(k, df, column_geometry))
 
     # ===================================================
     # RESULTATS
     # df contient une seule colonne en plus :
     #       "cluster" (n° cluster).
-    # df_clusters associe à chaque numéro de cluster son centre et son enveloppe convexe.
+    # df_infos_clusters contient les détails de chaque cluster (numéro, enveloppe convexe, centre de masse, etc.)
     # En qqes sorte, c'est la clé de lecture
     # ==================================================
 
-    return df, df_clusters
+    return df, df_infos_clusters
 
 
 
@@ -196,8 +125,8 @@ def save_to_map(df_clusters, path):
                 'purple', 'gray', 'green', 'darkgreen', 'pink', 'lightgreen',
                 'darkblue', 'white', 'blue', 'red']
 
-    centroids = df_clusters.loc[:, 'centroids']
-    hulls = df_clusters.loc[:, 'hulls']
+    centroids = df_clusters.loc[:, COLUMN_CENTROIDS_NAME]
+    hulls = df_clusters.loc[:, COLUMN_HULLS_NAME]
 
     for k, point in enumerate(centroids):
         if point is not None:
@@ -214,7 +143,7 @@ def save_to_map(df_clusters, path):
             folium.Marker(location=[polygon.y, polygon.x], popup=title,
                           icon=folium.Icon(color=couleurs[k%len(couleurs)], icon='info-sign')).add_to(map)
         else:
-            polygon = swap_xy(polygon)
+            polygon = ClusterizerUtils.swap_xy(polygon)
             coords = polygon.exterior.coords
             folium.Polygon(locations=coords, popup=title, color=couleurs[k%len(couleurs)]).add_to(map)
 
@@ -228,7 +157,7 @@ def informations(df, df_clusters):
     On pourra par exemple ajouter aussi le poids total de chaque cluster quand on aura défini cette notion
     """
 
-    taille_cluster = pd.DataFrame(df.groupby('cluster').size(), columns=['taille'])
+    taille_cluster = pd.DataFrame(df.groupby(COLUMN_CLUSTER_INDEX_NAME).size(), columns=[COLUMN_CLUSTER_SIZE_NAME])
     df_clusters = df_clusters.join(taille_cluster)
     # print(df_cluster.head())
 
