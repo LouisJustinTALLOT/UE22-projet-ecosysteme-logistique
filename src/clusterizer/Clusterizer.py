@@ -5,7 +5,7 @@ import folium
 
 from sklearn.cluster import KMeans
 
-from shapely.geometry import Point
+from shapely.geometry import Polygon
 
 from src.clusterizer import NAFUtils
 from src.clusterizer import ClusterizerUtils
@@ -127,11 +127,9 @@ def save_to_map(df_clusters, path):
 
     for k, polygon in enumerate(hulls):
         title = f"Cluster {k}"
-        if type(polygon) == Point:
-            # on est face à un cluster d'un seul point...
-            folium.Marker(location=[polygon.y, polygon.x], popup=title,
-                          icon=folium.Icon(color=couleurs[k % len(couleurs)], icon='info-sign')).add_to(map)
-        else:
+        if type(polygon) == Polygon:
+            # Notre cluster a plus de trois points (autrement, le type serait Point ou LineString)
+            # Donc c'est utile d'afficher l'enveloppe convexe
             polygon = ClusterizerUtils.swap_xy(polygon)
             coords = polygon.exterior.coords
             folium.Polygon(locations=coords, popup=title, color=couleurs[k % len(couleurs)]).add_to(map)
