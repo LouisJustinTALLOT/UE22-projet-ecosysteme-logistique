@@ -1,6 +1,7 @@
 import geopandas as gpd
 import pandas as pd
 import numpy as np
+from pandas import Series
 from shapely.geometry import Polygon, MultiPoint, Point, LineString
 
 COLUMN_DEFAULT_GEOMETRY_NAME = "geometry"
@@ -10,15 +11,24 @@ COLUMN_CENTROIDS_NAME = "centroids"
 COLUMN_CLUSTER_SIZE_NAME = "taille"
 COLUMN_CLUSTER_MASS_NAME = "poids"
 
-def get_infos_clusters_poids(df):
+# =====================
+# Fonctions principales
+# =====================
+
+
+def get_infos_clusters_poids(df, column_naf_code):
     """
     Fonction permettant de récupérer des infos sur les clusters (poids).
 
-    :param df:
-    :return:
+    :param df: La DataFrame où l'on a déjà ajouté le numéro des clusters (laissée intacte).
+    :param column_naf_code: La colonne où se situent les codes NAF.
+    :return: Une nouvelle GeoDataFrame associant à chaque numéro de cluster le poids de celui-ci
+     (assez arbitraire pour l'instant)
     """
-    # TODO
-    pass
+
+    series_poids = df.groupby(COLUMN_CLUSTER_INDEX_NAME).apply(calculer_poids_cluster_wrapper(column_naf_code))
+    return pd.DataFrame(Series(series_poids), columns=[COLUMN_CLUSTER_MASS_NAME])
+
 
 def get_infos_clusters_taille(df):
     """
@@ -66,8 +76,52 @@ def get_infos_clusters_enveloppes_convexes(k, df, column_geometry=COLUMN_DEFAULT
 
     return gpd.GeoDataFrame(gpd.GeoSeries(temp_hulls), columns=[COLUMN_HULLS_NAME])
 
+# =====================
+# Fonctions utilitaires
+# =====================
+
+def calculer_poids_code_NAF(code_naf):
+    """
+    Calcule le poids d'un code NAF.
+    Assez arbitraire pour le moment.
+
+    :param code_naf: Le code NAF à calculer (avec ou sans point).
+    :return: Le poids du code NAF (entier).
+    """
+    debut = int(str(code_naf)[0:2])
+
+    if 49 <= debut <= 56:
+        return 4
+
+    return 1
 
 
+vectorized_calculer_poids_code_NAF = np.vectorize(calculer_poids_code_NAF)
+
+
+def calculer_poids_cluster(df, column_naf_code):
+    """
+    Calcule le poids d'un ensemble d'établissements.
+
+    :param df: La DataFrame contenant tous les établissements.
+     Rien n'est requis, à part avoir une colonne où sont situés les codes NAF.
+    :param column_naf_code: Le nom de la colonne contenant les codes NAF.
+    :returns: Le poids (entier) du cluster.
+    """
+    return np.sum(vectorized_calculer_poids_code_NAF(df[column_naf_code]))
+
+
+def calculer_poids_cluster_wrapper(column_naf_code):
+    """
+    Wrappe calculer_poids_cluster pour pouvoir l'utiliser dans un groupby.
+    :param column_naf_code: La colonne où se situent les codes NAF.
+    :return: cf. la fonction calculer_poids_cluster.
+    """
+
+    def fct(df):
+        return calculer_poids_cluster(df, column_naf_code)
+
+    return fct
 
 def swap_xy(geom):
     """

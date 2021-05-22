@@ -41,7 +41,7 @@ def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GE
     return df.dropna(subset=[column_geometry]).reset_index()
 
 
-def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False):
+def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, weight=True):
     """
     Clusterise à l'aide de l'algorithme des k-moyennes. Attention, fait du en-place.
 
@@ -76,8 +76,11 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False):
 
         X = np.column_stack((a, b))
 
+    Y = ClusterizerUtils.vectorized_calculer_poids_code_NAF(df["apet700"]) if weight else None
+
     # On ajoute à la DataFrame originale les numéros de cluster pour chaque point.
-    df_point_cluster = gpd.GeoDataFrame(kmeans.fit_predict(X), columns=[COLUMN_CLUSTER_INDEX_NAME], dtype=int)
+    df_point_cluster = gpd.GeoDataFrame(kmeans.fit_predict(X, sample_weight=Y), columns=[COLUMN_CLUSTER_INDEX_NAME], dtype=int)
+
     df = df.join(df_point_cluster)
 
     # La DataFrame "df_infos_clusters" associe à chaque numéro de cluster les informations correspondantes.
@@ -90,6 +93,7 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False):
     df_infos_clusters = df_infos_clusters.join(ClusterizerUtils.get_infos_clusters_taille(df))
     df_infos_clusters = df_infos_clusters.join(
         ClusterizerUtils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry))
+    df_infos_clusters = df_infos_clusters.join(ClusterizerUtils.get_infos_clusters_poids(df, "apet700"))
 
     return df, df_infos_clusters
 
@@ -116,10 +120,11 @@ def save_to_map(df_clusters, path):
     centroids = df_clusters.loc[:, COLUMN_CENTROIDS_NAME]
     hulls = df_clusters.loc[:, COLUMN_HULLS_NAME]
     sizes = df_clusters.loc[:, COLUMN_CLUSTER_SIZE_NAME]
+    poids = df_clusters.loc[:, COLUMN_CLUSTER_MASS_NAME]
 
     for k, point in enumerate(centroids):
         if point is not None:
-            title = f"Centre de masse du cluster {k} : {sizes[k]} établissements"
+            title = f"Centre de masse du cluster {k} : {sizes[k]} établissements. Poids : {poids[k]}"
             folium.Marker(location=[point.y, point.x],
                           popup=title,
                           icon=folium.Icon(color=couleurs[k % len(couleurs)], icon='info-sign')
@@ -145,9 +150,9 @@ def test_geojson():
 
 def test_json():
     df = nettoyer(pd.read_json("../../data/base_sirene_10000.json"))
-    df = NAFUtils.filter_by_naf(df, NAFUtils.get_NAFs_by_section("L"), "apet700")
+    # df = NAFUtils.filter_by_naf(df, NAFUtils.get_NAFs_by_section("L"), "apet700")
     df, df_clusters = clusterize(df, 50, dict=True)
-    save_to_map(df_clusters, "output/clusterized.html")
+    save_to_map(df_clusters, "output/wclusterized.html")
 
 
 def test_naf():
@@ -156,3 +161,4 @@ def test_naf():
 # On exécute le programme avec la base SIRENE :
 
 test_json()
+
