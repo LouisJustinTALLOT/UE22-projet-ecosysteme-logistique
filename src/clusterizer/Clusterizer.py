@@ -145,9 +145,9 @@ def test_geojson():
 
 def test_json():
     df = nettoyer(pd.read_json("../../data/base_sirene_10000.json"))
+    df = NAFUtils.filter_by_naf(df, ["6820A"], "apet700")
     df, df_clusters = clusterize(df, 50, dict=True)
     save_to_map(df_clusters, "output/clusterized.html")
-    print(NAFUtils.get_description(df.loc[0, "apet700"]))
 
 
 # On exécute le programme avec la base SIRENE : 
