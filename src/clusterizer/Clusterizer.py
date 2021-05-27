@@ -139,20 +139,28 @@ def save_to_map(df_clusters, path):
             coords = polygon.exterior.coords
             folium.Polygon(locations=coords, popup=title, color=couleurs[k % len(couleurs)]).add_to(map)
 
+    map.get_root().html.add_child(
+        folium.Element(str(
+            "<title>" + str(len(hulls)) + " clusters</title>"))
+    )
     map.save(path)
 
 
 def test_geojson():
     df = nettoyer(gpd.read_file("../../tests/gis/input/reducted.geojson"))
     df, df_clusters = clusterize(df, 10, dict=False)
-    save_to_map(df_clusters, "output/clusterized.html")
+    save_to_map(df_clusters, "output/INSERT_NAME.html")
 
 
 def test_json():
-    df = nettoyer(pd.read_json("../../data/base_sirene_10000.json"))
+    print("Ouverture de la DataFrame...")
+    df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"))
     # df = NAFUtils.filter_by_naf(df, NAFUtils.get_NAFs_by_section("L"), "apet700")
-    df, df_clusters = clusterize(df, 50, dict=True)
-    save_to_map(df_clusters, "output/wclusterized.html")
+    print("Clusterisation...")
+    df, df_clusters = clusterize(df, 150, dict=True, weight=True)
+    print("Sauvegarde sur la carte...")
+    save_to_map(df_clusters, "output/final/150clusters_kmeans_weighted_full.html")
+    print("Terminé !")
 
 
 def test_naf():
