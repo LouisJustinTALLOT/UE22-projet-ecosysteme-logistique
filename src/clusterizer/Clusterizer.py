@@ -3,7 +3,10 @@ import pandas as pd
 import numpy as np
 import folium
 
-from sklearn.cluster import KMeans
+import sys
+sys.path.append("../../")
+
+from sklearn.cluster import KMeans, MiniBatchKMeans
 
 from shapely.geometry import Polygon
 
@@ -60,7 +63,9 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, 
     # ===========================================================
     # Commençons par faire le clustering et récupérer les centres
     # ==========================================================
-    kmeans = KMeans(n_clusters=k, random_state=0)
+
+    # kmeans = KMeans(n_clusters=k, random_state=0)
+    mbk = MiniBatchKMeans(n_clusters=k, random_state=0)  # ça va plus vite
 
     # Ceci contient des coordonnées (x, y) des points
     X = None
@@ -79,15 +84,15 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, 
     Y = ClusterizerUtils.vectorized_calculer_poids_code_NAF(df["apet700"]) if weight else None
 
     # On ajoute à la DataFrame originale les numéros de cluster pour chaque point.
-    df_point_cluster = gpd.GeoDataFrame(kmeans.fit_predict(X, sample_weight=Y), columns=[COLUMN_CLUSTER_INDEX_NAME], dtype=int)
+    df_point_cluster = gpd.GeoDataFrame(mbk.fit_predict(X, sample_weight=Y), columns=[COLUMN_CLUSTER_INDEX_NAME], dtype=int)
 
     df = df.join(df_point_cluster)
 
     # La DataFrame "df_infos_clusters" associe à chaque numéro de cluster les informations correspondantes.
     # En détails : une colonne "centroids" (centres de masse), une colonne "hulls" (enveloppes convexes),
     # une colonne "taille" (nombre d'établissements)
-    df_infos_clusters = pd.DataFrame(gpd.points_from_xy(kmeans.cluster_centers_[:, 0],
-                                                        kmeans.cluster_centers_[:, 1]),
+    df_infos_clusters = pd.DataFrame(gpd.points_from_xy(mbk.cluster_centers_[:, 0],
+                                                        mbk.cluster_centers_[:, 1]),
                                      columns=[COLUMN_CENTROIDS_NAME]
                                      )
     df_infos_clusters = df_infos_clusters.join(ClusterizerUtils.get_infos_clusters_taille(df))
