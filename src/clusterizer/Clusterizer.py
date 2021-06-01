@@ -68,18 +68,7 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, 
     mbk = MiniBatchKMeans(n_clusters=k, random_state=0)  # ça va plus vite
 
     # Ceci contient des coordonnées (x, y) des points
-    X = None
-
-    if dict:
-        a = pd.Series(df[column_geometry].apply(lambda p: p["coordinates"][0]))
-        b = pd.Series(df[column_geometry].apply(lambda p: p["coordinates"][1]))
-
-        X = np.column_stack((a, b))
-    else:
-        a = pd.Series(df[column_geometry].apply(lambda p: p.x))
-        b = pd.Series(df[column_geometry].apply(lambda p: p.y))
-
-        X = np.column_stack((a, b))
+    X = ClusterizerUtils.get_coords_from_object(df, column_geometry, dict)
 
     Y = ClusterizerUtils.vectorized_calculer_poids_code_NAF(df["apet700"]) if weight else None
 
@@ -161,10 +150,12 @@ def test_json():
     print("Ouverture de la DataFrame...")
     df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"))
     # df = NAFUtils.filter_by_naf(df, NAFUtils.get_NAFs_by_section("L"), "apet700")
+    print("On ne garde que les données du centre...")
+    df = ClusterizerUtils.filter_nearby_paris(df, radius=8000, dict=True)
     print("Clusterisation...")
     df, df_clusters = clusterize(df, 150, dict=True, weight=True)
     print("Sauvegarde sur la carte...")
-    save_to_map(df_clusters, "output/final/150clusters_kmeans_weighted_full.html")
+    save_to_map(df_clusters, "output/final/test.html")
     print("Terminé !")
 
 
