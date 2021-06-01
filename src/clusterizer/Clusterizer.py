@@ -38,7 +38,7 @@ def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GE
     :param column_geometry: A spécifier si la colonne contenant les points n'est pas la colonne par défaut ("geometry")
     :return: Une DataFrame nettoyée.
     """
-    if reduce and df.size <= threshold:
+    if reduce and df.size >= threshold:
         df = df[:threshold]
 
     return df.dropna(subset=[column_geometry]).reset_index()
@@ -151,7 +151,7 @@ def test_json():
     df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"))
     # df = NAFUtils.filter_by_naf(df, NAFUtils.get_NAFs_by_section("L"), "apet700")
     print("On ne garde que les données du centre...")
-    df = ClusterizerUtils.filter_nearby_paris(df, radius=8000, dict=True)
+    df = ClusterizerUtils.filter_nearby_paris(df, radius=8, dict=True)
     print("Clusterisation...")
     df, df_clusters = clusterize(df, 150, dict=True, weight=True)
     print("Sauvegarde sur la carte...")

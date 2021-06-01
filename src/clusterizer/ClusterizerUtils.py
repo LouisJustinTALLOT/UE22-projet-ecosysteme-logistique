@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from pandas import Series
 from shapely.geometry import Polygon, MultiPoint, Point, LineString, GeometryCollection
-import pyproj
+
 
 COLUMN_DEFAULT_GEOMETRY_NAME = "geometry"
 COLUMN_CLUSTER_INDEX_NAME = "cluster"
@@ -13,20 +13,8 @@ COLUMN_CLUSTER_SIZE_NAME = "taille"
 COLUMN_CLUSTER_MASS_NAME = "poids"
 
 
-def from_coords_to_meters(x, y):
-    """
-    TODO
-
-    :param x:
-    :param y:
-    :return:
-    """
-    wgs84 = pyproj.Proj(init='epsg:4326')
-    epsg3035 = pyproj.Proj(init='epsg:3035')
-    return pyproj.transform(wgs84, epsg3035, y, x)
 
 PARIS_CENTER_COORDS = Point(2.348523, 48.853345)
-PARIS_CENTER_METERS = from_coords_to_meters(PARIS_CENTER_COORDS.x, PARIS_CENTER_COORDS.y)
 
 # =====================
 # Fonctions principales
@@ -185,18 +173,20 @@ def swap_xy(geom):
 def filter_nearby_paris(df, radius, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False):
     """
     Filtre les données proches du centre de Paris.
-    TODO.
-
+   
     :param df: la DataFrame à filtrer
-    :param radius: le rayon (en mètres)
+    :param radius: le rayon (en kilomètres)
     :param column_geometry: la colonne où se trouvent les données géométriques (par défaut : 'geometry')
     :return: la DataFrame filtrée
     """
     X = get_coords_from_object(df, column_geometry, dict)
-    points_meters = from_coords_to_meters(X[:, 0], X[:, 1])
-    distances = np.sqrt( np.power(PARIS_CENTER_METERS[1] - points_meters[1], 2)
-                         + np.power(PARIS_CENTER_METERS[0] - points_meters[0], 2))
-    print(distances)
+
+    l1 = np.pi/180*PARIS_CENTER_COORDS.y
+    L1 = np.pi/180*PARIS_CENTER_COORDS.x
+    l2 = np.pi/180*X[:,1]
+    L2 = np.pi/180*X[:,0]
+
+    distances = 20000/np.pi * (np.arccos(np.sin(l1)*np.sin(l2) + np.cos(l1)*np.cos(l2)*np.cos(L1-L2)))
     masque = distances <= radius
     return df[masque].reset_index()
 
