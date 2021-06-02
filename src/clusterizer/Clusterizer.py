@@ -148,7 +148,7 @@ def test_geojson():
     save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
 
-def test_json():
+def main_json():
     print("Ouverture de la DataFrame...")
     df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"))
     # df = NAFUtils.filter_by_naf(df, NAFUtils.get_NAFs_by_section("L"), "apet700")
@@ -166,5 +166,5 @@ def test_naf():
 
 # On exécute le programme avec la base SIRENE :
 
-test_json()
+main_json()
 
