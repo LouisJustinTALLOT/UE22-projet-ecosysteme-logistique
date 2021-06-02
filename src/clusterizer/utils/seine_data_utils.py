@@ -12,3 +12,6 @@ https://regex101.com/r/4Dnyfh/1
 
 with open("../../../data/trace_seine.kml", "r", encoding="utf8") as file:
     seine_kml = file.readlines()
+
+regex_coordinates = re.compile(r"(?<=(<coordinates>)).*(?=(,0<\/coordinates>))")
+
