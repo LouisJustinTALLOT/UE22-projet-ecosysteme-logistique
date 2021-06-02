@@ -56,3 +56,17 @@ for no_coord_1, no_coord_2 in zip([34, 0, 1], [0, 1, 2]):
 
 pprint.pprint(liste_droites_Seine)
 pprint.pprint(liste_droites_Marne)
+
+# on trace tout ça pour vérifier
+x = np.linspace(2.2, 2.45, 100)
+
+for a, b in liste_droites_Seine + liste_droites_Marne:
+    plt.plot(x, a*x+b, "b", linewidth=0.2)
+
+for x, y in liste_coordonnees:
+    plt.scatter(x,y, color="black", marker=".")
+plt.axis("equal")
+
+plt.xlim(2.2, 2.45)
+plt.ylim(48.75, 49)
+plt.show()
