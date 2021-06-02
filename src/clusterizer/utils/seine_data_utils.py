@@ -15,3 +15,14 @@ with open("../../../data/trace_seine.kml", "r", encoding="utf8") as file:
 
 regex_coordinates = re.compile(r"(?<=(<coordinates>)).*(?=(,0<\/coordinates>))")
 
+liste_coordonnees = [] # coordonnés des points décrivant la Seine sous la forme (long, lat)
+
+for ligne in seine_kml:
+    match = regex_coordinates.search(ligne)
+    # print(res) if res is not None else "pass"
+    if match:
+        str_coords = match.group(0)
+        coords = tuple(map(float, str_coords.split(",")))
+        liste_coordonnees.append(coords)
+
+pprint.pprint(liste_coordonnees)
