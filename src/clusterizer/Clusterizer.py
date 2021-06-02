@@ -173,16 +173,35 @@ def main_json():
     df = ClusterizerUtils.filter_nearby_paris(df, radius=8, dict=True)
 
     print("On sépare par la Seine")
-    df_au_dessus = df[1 == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
-    df_en_dessous = df[0 == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
+    # on va avoir au moins 4 zones:
+    # rive Gauche,
+    # rive Droite,
+    # Maisons-Alfort,
+    # Courbevoie-Asnières
+
+    nb_zones = 2
+    liste_df = []
+    for no_zone in range(nb_zones):
+        liste_df.append(
+            df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
+        )
 
     print("Clusterisation...")
-    df_au_dessus, df_clusters_au_dessus = clusterize(df_au_dessus, 75, dict=True, weight=True)
-    df_en_dessous, df_clusters_en_dessous = clusterize(df_en_dessous, 75, dict=True, weight=True)
+
+    liste_df_clusters = []
+    nb_clusters_par_zone = [75, 75]
+
+    for no_zone in range(nb_zones):
+        liste_df_clusters.append(
+            clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], dict=True, weight=True)
+        )
 
     print("Sauvegarde sur la carte...")
-    map = save_to_map(df_clusters_au_dessus)
-    map = save_to_map(df_clusters_en_dessous, map=map)
+
+    map = save_to_map(liste_df_clusters[0][1])
+
+    for no_zone in range(1, nb_zones):
+        map = save_to_map(liste_df_clusters[no_zone][1], map=map)
 
     map.save("output/clusterized_map_seine.html")
 
