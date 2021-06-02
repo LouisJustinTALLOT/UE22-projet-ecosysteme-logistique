@@ -26,3 +26,33 @@ for ligne in seine_kml:
         liste_coordonnees.append(coords)
 
 pprint.pprint(liste_coordonnees)
+
+# on a obtenu toutes les coordonnees des points
+# on va maintenant tracer des droites entre ces points
+
+liste_droites_Seine = [] # droites décrivant la Seine sous forme (a, b) avec y=a*x + b
+liste_droites_Marne = [] # droites décrivant la Marne sous forme (a, b) avec y=a*x + b
+
+for no_coord in range(3, len(liste_coordonnees)-1):
+    # pour la Seine : tous sauf les 3 premiers qui viennent de la Marne
+    x_1, y_1 = liste_coordonnees[no_coord]
+    x_2, y_2 = liste_coordonnees[no_coord + 1]
+
+    a = (y_2 - y_1) / (x_2 - x_1)
+    b = y_1 - a*x_1
+
+    liste_droites_Seine.append((a,b))
+
+for no_coord_1, no_coord_2 in zip([34, 0, 1], [0, 1, 2]):
+    # on part d'abord du point Seine 31 + Marne 0, 
+    # puis les 3 premiers points Marne 1 -> 3
+    x_1, y_1 = liste_coordonnees[no_coord_1]
+    x_2, y_2 = liste_coordonnees[no_coord_2]
+
+    a = (y_2 - y_1) / (x_2 - x_1)
+    b = y_1 - a*x_1
+
+    liste_droites_Marne.append((a,b))
+
+pprint.pprint(liste_droites_Seine)
+pprint.pprint(liste_droites_Marne)
