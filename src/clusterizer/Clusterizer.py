@@ -10,9 +10,9 @@ from sklearn.cluster import KMeans, MiniBatchKMeans
 
 from shapely.geometry import Polygon
 
-from src.clusterizer import NAFUtils
-from src.clusterizer import ClusterizerUtils
-from src.clusterizer.ClusterizerUtils import COLUMN_HULLS_NAME, \
+from src.clusterizer import NAF_utils
+from src.clusterizer import clusterizer_utils
+from src.clusterizer.clusterizer_utils import COLUMN_HULLS_NAME, \
     COLUMN_CLUSTER_INDEX_NAME, \
     COLUMN_CLUSTER_SIZE_NAME, \
     COLUMN_CENTROIDS_NAME, \
@@ -84,9 +84,9 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, 
     mbk = MiniBatchKMeans(n_clusters=k, random_state=0)  # ça va plus vite
 
     # Ceci contient des coordonnées (x, y) des points
-    X = ClusterizerUtils.get_coords_from_object(df, column_geometry, dict)
+    X = clusterizer_utils.get_coords_from_object(df, column_geometry, dict)
 
-    Y = ClusterizerUtils.vectorized_calculer_poids_code_NAF(df["apet700"]) if weight else None
+    Y = clusterizer_utils.vectorized_calculer_poids_code_NAF(df["apet700"]) if weight else None
 
     # On ajoute à la DataFrame originale les numéros de cluster pour chaque point.
     df_point_cluster = gpd.GeoDataFrame(mbk.fit_predict(X, sample_weight=Y), columns=[COLUMN_CLUSTER_INDEX_NAME], dtype=int)
@@ -100,10 +100,10 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, 
                                                         mbk.cluster_centers_[:, 1]),
                                      columns=[COLUMN_CENTROIDS_NAME]
                                      )
-    df_infos_clusters = df_infos_clusters.join(ClusterizerUtils.get_infos_clusters_taille(df))
+    df_infos_clusters = df_infos_clusters.join(clusterizer_utils.get_infos_clusters_taille(df))
     df_infos_clusters = df_infos_clusters.join(
-        ClusterizerUtils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry))
-    df_infos_clusters = df_infos_clusters.join(ClusterizerUtils.get_infos_clusters_poids(df, "apet700"))
+        clusterizer_utils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry))
+    df_infos_clusters = df_infos_clusters.join(clusterizer_utils.get_infos_clusters_poids(df, "apet700"))
 
     return df, df_infos_clusters
 
@@ -146,7 +146,7 @@ def save_to_map(df_clusters, map=None):
         if type(polygon) == Polygon:
             # Notre cluster a plus de trois points (autrement, le type serait Point ou LineString)
             # Donc c'est utile d'afficher l'enveloppe convexe
-            polygon = ClusterizerUtils.swap_xy(polygon)
+            polygon = clusterizer_utils.swap_xy(polygon)
             coords = polygon.exterior.coords
             folium.Polygon(locations=coords, popup=title, color=couleurs[k % len(couleurs)]).add_to(map)
 
@@ -170,7 +170,7 @@ def main_json():
     # df = NAFUtils.filter_by_naf(df, NAFUtils.get_NAFs_by_section("L"), "apet700")
 
     print("On ne garde que les données du centre...")
-    df = ClusterizerUtils.filter_nearby_paris(df, radius=8, dict=True)
+    df = clusterizer_utils.filter_nearby_paris(df, radius=8, dict=True)
 
     print("On sépare par la Seine")
     # on va avoir au moins 4 zones:
@@ -209,7 +209,7 @@ def main_json():
 
 
 def test_naf():
-    print(NAFUtils.get_NAFs_by_section("L"))
+    print(NAF_utils.get_NAFs_by_section("L"))
 
 # On exécute le programme avec la base SIRENE :
 
