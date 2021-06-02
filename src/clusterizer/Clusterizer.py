@@ -27,6 +27,22 @@ Pour avoir des exemples d'utilisation, aller à la toute fin où il y a les test
 TODO : d'autres algorithmes
 """
 
+@np.vectorize
+def rapport_a_la_seine(xy):
+
+# 48.82401742148832,2.2482628741251665
+# 48.863106182847694,2.2972721972452836
+#48.86327557637949,2.3210472979532915
+# 48.85175551011898,2.3602719225870805
+#48.84881859860483,2.3604435839640336
+#48.82130493077831,2.3958058276163774
+
+    x, y = xy[0], xy[1]
+    for (a, b) in [(0.79746089007607, 47.031115346387)]:
+        if y > a*x+b:
+            return 1
+    return 0
+
 
 def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
     """
