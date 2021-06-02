@@ -92,7 +92,7 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, 
     return df, df_infos_clusters
 
 
-def save_to_map(df_clusters, path):
+def save_to_map(df_clusters, map=None):
     """
     Sauvegarde les informations des clusters dans une carte Leaflet.
     Ne retourne rien.
@@ -102,10 +102,11 @@ def save_to_map(df_clusters, path):
     :param path: Le chemin de sortie du fichier.
     """
 
-    map = folium.Map(location=[48.844952, 2.339193],
-                     zoom_start=10,
-                     tiles="OpenStreetMap"
-                     )
+    if map is None:
+        map = folium.Map(location=[48.844952, 2.339193],
+                        zoom_start=10,
+                        tiles="OpenStreetMap"
+                        )
 
     couleurs = ['cadetblue', 'lightblue', 'orange', 'darkred', 'black',
                 'purple', 'gray', 'green', 'darkgreen', 'pink', 'lightgreen',
@@ -137,13 +138,14 @@ def save_to_map(df_clusters, path):
         folium.Element(str(
             "<title>" + str(len(hulls)) + " clusters</title>"))
     )
-    map.save(path)
+
+    return map
 
 
 def test_geojson():
     df = nettoyer(gpd.read_file("../../tests/gis/input/reducted.geojson"))
     df, df_clusters = clusterize(df, 10, dict=False)
-    save_to_map(df_clusters, "output/INSERT_NAME.html")
+    save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
 
 def test_json():
@@ -155,7 +157,7 @@ def test_json():
     print("Clusterisation...")
     df, df_clusters = clusterize(df, 150, dict=True, weight=True)
     print("Sauvegarde sur la carte...")
-    save_to_map(df_clusters, "output/final/test.html")
+    save_to_map(df).save("output/clusterized.html")
     print("Terminé !")
 
 
