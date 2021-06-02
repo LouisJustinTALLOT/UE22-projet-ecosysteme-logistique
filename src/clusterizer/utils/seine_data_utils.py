@@ -1,8 +1,11 @@
+from pathlib import Path, PurePath
 import re
-import pprint
 
-import numpy as np
-import matplotlib.pyplot as plt
+if __name__== "__main__":
+    # pas besoin de ça si utilisé comme module
+    import pprint
+    import numpy as np
+    import matplotlib.pyplot as plt
 
 """On va utiliser des expressions régulières pour récupérer
 les coordonnées des points sur la Seine 
@@ -10,63 +13,87 @@ les coordonnées des points sur la Seine
 https://regex101.com/r/4Dnyfh/1
 """
 
-with open("../../../data/trace_seine.kml", "r", encoding="utf8") as file:
-    seine_kml = file.readlines()
+FILE_PATH = Path(__file__).resolve()
+BASE_DIR = FILE_PATH.parent.parent.parent.parent
 
-regex_coordinates = re.compile(r"(?<=(<coordinates>)).*(?=(,0<\/coordinates>))")
+REGEX_COORDINATES = re.compile(r"(?<=(<coordinates>)).*(?=(,0<\/coordinates>))")
 
-liste_coordonnees = [] # coordonnés des points décrivant la Seine sous la forme (long, lat)
+def get_KML_data(kml_filename="data/trace_seine.kml"):
+    
+    # with open("../../../data/trace_seine.kml", "r", encoding="utf8") as file:
+    with open(BASE_DIR/kml_filename, "r", encoding="utf8") as file:
+        seine_KML = file.readlines()
+    return seine_KML
 
-for ligne in seine_kml:
-    match = regex_coordinates.search(ligne)
-    # print(res) if res is not None else "pass"
-    if match:
-        str_coords = match.group(0)
-        coords = tuple(map(float, str_coords.split(",")))
-        liste_coordonnees.append(coords)
+def get_coords(seine_KML=get_KML_data()):
+    liste_coordonnees = [] # coordonnées des points décrivant la Seine sous la forme (long, lat)
 
-pprint.pprint(liste_coordonnees)
+    for ligne in seine_KML:
+        match = REGEX_COORDINATES.search(ligne)
 
-# on a obtenu toutes les coordonnees des points
-# on va maintenant tracer des droites entre ces points
+        if match:
+            str_coords = match.group(0)
+            coords = tuple(map(float, str_coords.split(",")))
+            liste_coordonnees.append(coords)
 
-liste_droites_Seine = [] # droites décrivant la Seine sous forme (a, b) avec y=a*x + b
-liste_droites_Marne = [] # droites décrivant la Marne sous forme (a, b) avec y=a*x + b
+    if __name__ == "__main__":
+        print("liste_coordonnees: ")
+        pprint.pprint(liste_coordonnees)
 
-for no_coord in range(3, len(liste_coordonnees)-1):
-    # pour la Seine : tous sauf les 3 premiers qui viennent de la Marne
-    x_1, y_1 = liste_coordonnees[no_coord]
-    x_2, y_2 = liste_coordonnees[no_coord + 1]
+    return liste_coordonnees
 
-    a = (y_2 - y_1) / (x_2 - x_1)
-    b = y_1 - a*x_1
+def calcul_droites(liste_coordonnees=get_coords()):
 
-    liste_droites_Seine.append((a,b))
+    # on a obtenu toutes les coordonnees des points
+    # on va maintenant tracer des droites entre ces points
 
-for no_coord_1, no_coord_2 in zip([34, 0, 1], [0, 1, 2]):
-    # on part d'abord du point Seine 31 + Marne 0, 
-    # puis les 3 premiers points Marne 1 -> 3
-    x_1, y_1 = liste_coordonnees[no_coord_1]
-    x_2, y_2 = liste_coordonnees[no_coord_2]
+    liste_droites_Seine = [] # droites décrivant la Seine sous forme (a, b) avec y=a*x + b
+    liste_droites_Marne = [] # droites décrivant la Marne sous forme (a, b) avec y=a*x + b
 
-    a = (y_2 - y_1) / (x_2 - x_1)
-    b = y_1 - a*x_1
+    for no_coord in range(3, len(liste_coordonnees)-1):
+        # pour la Seine : tous sauf les 3 premiers qui viennent de la Marne
+        x_1, y_1 = liste_coordonnees[no_coord]
+        x_2, y_2 = liste_coordonnees[no_coord + 1]
 
-    liste_droites_Marne.append((a,b))
+        a = (y_2 - y_1) / (x_2 - x_1)
+        b = y_1 - a*x_1
 
-pprint.pprint(liste_droites_Seine)
-pprint.pprint(liste_droites_Marne)
+        liste_droites_Seine.append((a,b))
 
-# on trace tout ça pour vérifier
-x = np.linspace(2.2, 2.45, 100)
+    for no_coord_1, no_coord_2 in zip([34, 0, 1], [0, 1, 2]):
+        # on part d'abord du point Seine 31 + Marne 0, 
+        # puis les 3 premiers points Marne 1 -> 3
+        x_1, y_1 = liste_coordonnees[no_coord_1]
+        x_2, y_2 = liste_coordonnees[no_coord_2]
 
-for a, b in liste_droites_Seine + liste_droites_Marne:
-    plt.plot(x, a*x+b, "b", linewidth=0.2)
+        a = (y_2 - y_1) / (x_2 - x_1)
+        b = y_1 - a*x_1
 
-for x, y in liste_coordonnees:
-    plt.scatter(x,y, color="black", marker=".")
-plt.axis("equal")
+        liste_droites_Marne.append((a,b))
 
-plt.xlim(2.2, 2.45)
-plt.ylim(48.75, 49)
-plt.show()
+    if __name__ == "__main__":
+        print("liste_droites_Seine :")
+        pprint.pprint(liste_droites_Seine)
+        print("liste_droites_Marne :")
+        pprint.pprint(liste_droites_Marne)
+
+    return liste_droites_Seine, liste_droites_Marne
+
+
+if __name__ == "__main__":
+    liste_coordonnees = get_coords()
+    liste_droites_Seine, liste_droites_Marne = calcul_droites(liste_coordonnees)
+
+    # on trace tout ça pour vérifier
+    x = np.linspace(2.2, 2.45, 100)
+
+    for a, b in liste_droites_Seine + liste_droites_Marne:
+        plt.plot(x, a*x+b, "b", linewidth=0.2)
+
+    for x, y in liste_coordonnees:
+        plt.scatter(x,y, color="black", marker=".")
+    plt.axis("equal")
+
+    plt.xlim(2.2, 2.45)
+    plt.ylim(48.75, 49)
+    plt.show()
