@@ -10,9 +10,9 @@ from sklearn.cluster import KMeans, MiniBatchKMeans
 
 from shapely.geometry import Polygon
 
-from src.clusterizer import NAF_utils
-from src.clusterizer import clusterizer_utils
-from src.clusterizer.clusterizer_utils import COLUMN_HULLS_NAME, \
+from src.clusterizer.utils import NAF_utils
+from src.clusterizer.utils import clusterizer_utils
+from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
     COLUMN_CLUSTER_INDEX_NAME, \
     COLUMN_CLUSTER_SIZE_NAME, \
     COLUMN_CENTROIDS_NAME, \
