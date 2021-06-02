@@ -168,12 +168,24 @@ def main_json():
     print("Ouverture de la DataFrame...")
     df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"))
     # df = NAFUtils.filter_by_naf(df, NAFUtils.get_NAFs_by_section("L"), "apet700")
+
     print("On ne garde que les données du centre...")
     df = ClusterizerUtils.filter_nearby_paris(df, radius=8, dict=True)
+
+    print("On sépare par la Seine")
+    df_au_dessus = df[1 == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
+    df_en_dessous = df[0 == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
+
     print("Clusterisation...")
-    df, df_clusters = clusterize(df, 150, dict=True, weight=True)
+    df_au_dessus, df_clusters_au_dessus = clusterize(df_au_dessus, 75, dict=True, weight=True)
+    df_en_dessous, df_clusters_en_dessous = clusterize(df_en_dessous, 75, dict=True, weight=True)
+
     print("Sauvegarde sur la carte...")
-    save_to_map(df).save("output/clusterized.html")
+    map = save_to_map(df_clusters_au_dessus)
+    map = save_to_map(df_clusters_en_dessous, map=map)
+
+    map.save("output/clusterized_map_seine.html")
+
     print("Terminé !")
 
 
