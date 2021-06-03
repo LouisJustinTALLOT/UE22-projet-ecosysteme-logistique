@@ -88,6 +88,10 @@ class Point:
     def __str__(self) -> str:
         return f"Point({self.x}, {self.y})"
 
+class Segment:
+    def __init__(self, point_1: Point, point_2: Point) -> None:
+        self.point_1 = point_1
+        self.point_2 = point_2
 if __name__ == "__main__":
     liste_coordonnees = get_coords()
     liste_droites_Seine, liste_droites_Marne = calcul_droites(liste_coordonnees)
