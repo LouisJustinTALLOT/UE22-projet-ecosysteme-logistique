@@ -80,6 +80,13 @@ def calcul_droites(liste_coordonnees=get_coords()):
 
     return liste_droites_Seine, liste_droites_Marne
 
+class Point:
+    def __init__(self, long, lat) -> None:
+        self.x = long
+        self.y = lat
+
+    def __str__(self) -> str:
+        return f"Point({self.x}, {self.y})"
 
 if __name__ == "__main__":
     liste_coordonnees = get_coords()
