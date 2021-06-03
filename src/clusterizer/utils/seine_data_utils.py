@@ -108,6 +108,9 @@ class Segment:
         
         return a, b
 
+    def __repr__(self) -> str:
+        return f"Segment entre {self.point_gauche} et {self.point_droit}"
+
 class Frontiere:
     def __init__(self, liste_segments: List[Segment]) -> None:
         self.liste_segments = liste_segments
