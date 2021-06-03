@@ -1,5 +1,6 @@
 from pathlib import Path, PurePath
 import re
+from typing import List, Tuple
 
 if __name__== "__main__":
     # pas besoin de ça si utilisé comme module
