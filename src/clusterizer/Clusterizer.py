@@ -212,7 +212,9 @@ def main_json():
 def test_naf():
     print(NAF_utils.get_NAFs_by_section("L"))
 
-# On exécute le programme avec la base SIRENE :
+if __name__ == "__main__":
 
-main_json()
+    # On exécute le programme avec la base SIRENE :
+
+    main_json()
 
