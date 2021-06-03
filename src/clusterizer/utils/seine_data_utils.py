@@ -149,6 +149,29 @@ class Frontiere:
         raise self.HorsDeLaFrontiereError
 
 if __name__ == "__main__":
+    # on récupère les coordonnées
+    liste_coordonnees = get_coords()
+    # on crée les objects points associés
+    liste_points = list(map(lambda p:Point(*p), liste_coordonnees))
+    pprint.pprint(liste_points)
+    # on va ensuite créer les bons segments
+    # tous ceux de la Seine puis ceux de la Marne
+    liste_segments_Seine: List[Segment] = [] # droites décrivant la Seine sous forme (a, b) avec y=a*x + b
+    liste_segments_Marne: List[Segment] = [] # droites décrivant la Marne sous forme (a, b) avec y=a*x + b
+
+    for no_coord in range(3, len(liste_coordonnees)-1):
+        # pour la Seine : tous sauf les 3 premiers qui viennent de la Marne
+        liste_segments_Seine.append(Segment(liste_points[no_coord], liste_points[no_coord + 1]))
+    # puis ceux de la Marne
+    for no_coord_1, no_coord_2 in zip([34, 0, 1], [0, 1, 2]):
+        # on part d'abord du point Seine 31 + Marne 0, 
+        # puis les 3 premiers points Marne 1 -> 3
+        liste_segments_Marne.append(Segment(liste_points[no_coord_1], liste_points[no_coord_2]))
+
+    pprint.pprint(liste_segments_Seine)
+    pprint.pprint(liste_segments_Marne)
+
+if __name__ == "piche":
     liste_coordonnees = get_coords()
     liste_droites_Seine, liste_droites_Marne = calcul_droites(liste_coordonnees)
 
