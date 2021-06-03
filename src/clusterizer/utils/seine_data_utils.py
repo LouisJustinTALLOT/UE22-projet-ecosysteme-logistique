@@ -92,6 +92,18 @@ class Segment:
     def __init__(self, point_1: Point, point_2: Point) -> None:
         self.point_1 = point_1
         self.point_2 = point_2
+
+        self.a, self.b = self.eq_droite()
+
+    def eq_droite(self) -> Tuple[float]:
+        x_1, y_1 = self.point_1.x, self.point_1.y
+        x_2, y_2 = self.point_2.x, self.point_2.y
+
+        a = (y_2 - y_1) / (x_2 - x_1)
+        b = y_1 - a*x_1
+        
+        return a, b
+
 class Frontiere:
     def __init__(self, liste_segments: List[Segment]) -> None:
         self.liste_segments = liste_segments
