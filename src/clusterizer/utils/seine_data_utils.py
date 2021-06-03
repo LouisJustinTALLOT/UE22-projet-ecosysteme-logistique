@@ -92,6 +92,10 @@ class Segment:
     def __init__(self, point_1: Point, point_2: Point) -> None:
         self.point_1 = point_1
         self.point_2 = point_2
+class Frontiere:
+    def __init__(self, liste_segments: List[Segment]) -> None:
+        self.liste_segments = liste_segments
+
 if __name__ == "__main__":
     liste_coordonnees = get_coords()
     liste_droites_Seine, liste_droites_Marne = calcul_droites(liste_coordonnees)
