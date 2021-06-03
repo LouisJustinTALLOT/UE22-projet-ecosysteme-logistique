@@ -108,6 +108,23 @@ class Segment:
         
         return a, b
 
+    class HorsDuSegmentError(Exception):
+        pass
+
+    def en_dessous(self, point: Point) -> bool:
+        """Détermine si le segment est en-dessous du point donné
+           i.e si le point test au-dessus du segment
+        """
+        if point.x <= self.point_gauche.x or self.point_gauche.x <= point.x:
+            # le point est en-dehors des bornes du segment
+            raise self.HorsDuSegmentError
+
+        else:
+            if point.y > self.a * point.x + self.b: # le point est au-dessus
+                return True
+            else: 
+                return False
+
     def __repr__(self) -> str:
         return f"Segment entre {self.point_gauche} et {self.point_droit}"
 
