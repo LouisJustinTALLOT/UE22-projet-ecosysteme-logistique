@@ -19,15 +19,15 @@ BASE_DIR = FILE_PATH.parent.parent.parent.parent
 
 REGEX_COORDINATES = re.compile(r"(?<=(<coordinates>)).*(?=(,0<\/coordinates>))")
 
-def get_KML_data(kml_filename="data/trace_seine.kml"):
+def get_KML_data(kml_filename="data/trace_seine.kml") -> List[str]:
     
     # with open("../../../data/trace_seine.kml", "r", encoding="utf8") as file:
     with open(BASE_DIR/kml_filename, "r", encoding="utf8") as file:
         seine_KML = file.readlines()
     return seine_KML
 
-def get_coords(seine_KML=get_KML_data()):
-    liste_coordonnees = [] # coordonnées des points décrivant la Seine sous la forme (long, lat)
+def get_coords(seine_KML=get_KML_data()) -> List[Tuple[float]]:
+    liste_coordonnees: List[Tuple[float]] = [] # coordonnées des points décrivant la Seine sous la forme (long, lat)
 
     for ligne in seine_KML:
         match = REGEX_COORDINATES.search(ligne)
@@ -43,13 +43,13 @@ def get_coords(seine_KML=get_KML_data()):
 
     return liste_coordonnees
 
-def calcul_droites(liste_coordonnees=get_coords()):
+def calcul_droites(liste_coordonnees=get_coords()) -> Tuple[List[Tuple[float]]]:
 
     # on a obtenu toutes les coordonnees des points
     # on va maintenant tracer des droites entre ces points
 
-    liste_droites_Seine = [] # droites décrivant la Seine sous forme (a, b) avec y=a*x + b
-    liste_droites_Marne = [] # droites décrivant la Marne sous forme (a, b) avec y=a*x + b
+    liste_droites_Seine: List[Tuple[float]] = [] # droites décrivant la Seine sous forme (a, b) avec y=a*x + b
+    liste_droites_Marne: List[Tuple[float]] = [] # droites décrivant la Marne sous forme (a, b) avec y=a*x + b
 
     for no_coord in range(3, len(liste_coordonnees)-1):
         # pour la Seine : tous sauf les 3 premiers qui viennent de la Marne
@@ -81,7 +81,7 @@ def calcul_droites(liste_coordonnees=get_coords()):
     return liste_droites_Seine, liste_droites_Marne
 
 class Point:
-    def __init__(self, long, lat) -> None:
+    def __init__(self, long: float, lat: float) -> None:
         self.x = long
         self.y = lat
 
