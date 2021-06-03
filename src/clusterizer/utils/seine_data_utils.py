@@ -100,6 +100,9 @@ class Segment:
         self.a, self.b = self.eq_droite()
 
     def eq_droite(self) -> Tuple[float]:
+        """Trouve l'équation de la droite porteuse du segment
+        Renvoie (a, b) avec y = a * x + b
+        """
         x_1, y_1 = self.point_gauche.x, self.point_gauche.y
         x_2, y_2 = self.point_droit.x, self.point_droit.y
 
