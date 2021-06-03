@@ -132,6 +132,22 @@ class Frontiere:
     def __init__(self, liste_segments: List[Segment]) -> None:
         self.liste_segments = liste_segments
 
+    class HorsDeLaFrontiereError(Exception):
+        pass
+
+    def en_dessous(self, point: Point) -> bool:
+        """Détermine si la frontière est en-dessous du point donné
+           i.e si le point test au-dessus de la frontière
+        """
+
+        for segment in self.liste_segments:
+            try:
+                return segment.en_dessous(point)
+            except Segment.HorsDuSegmentError:
+                pass
+
+        raise self.HorsDeLaFrontiereError
+
 if __name__ == "__main__":
     liste_coordonnees = get_coords()
     liste_droites_Seine, liste_droites_Marne = calcul_droites(liste_coordonnees)
