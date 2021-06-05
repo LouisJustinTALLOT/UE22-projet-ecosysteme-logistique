@@ -25,7 +25,7 @@ from src.clusterizer.utils import seine_data_utils
 
 print("Lecture des données...")
 # Lecture du tableau csv et récupération des données
-fichier = open(r"src/ihm/table_choix.csv")
+fichier = open(r"table_choix.csv")
 myreader = csv.reader(fichier, delimiter =';')
 
 # Pn récupére les lignes du fichier sous forme de liste de ligne
@@ -82,15 +82,18 @@ liste_df_clusters = []
 nb_clusters_par_zone = [nb_cluster//2, nb_cluster//2]
 
 for no_zone in range(nb_zones):
-    liste_df_clusters.append(
-        clusterizer.clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], dict=True, weight=True)
-    )
+        try:
+            liste_df_clusters.append(
+                clusterizer.clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], dict=True, weight=True)
+            )
+        except ValueError:
+            pass
 
 print("Sauvegarde sur la carte...")
 
 map = clusterizer.save_to_map(liste_df_clusters[0][1])
 
-for no_zone in range(1, nb_zones):
+for no_zone in range(1, len(liste_df_clusters)):
     map = clusterizer.save_to_map(liste_df_clusters[no_zone][1], map=map)
 
 map.save("output_ihm/clusterized_ihm.html")
