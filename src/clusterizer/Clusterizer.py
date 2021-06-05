@@ -165,13 +165,15 @@ def test_geojson():
     save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
 
-def main_json():
+def main_json(rayon, secteur_NAF, nb_cluster, adresse_map):
     print("Ouverture de la DataFrame...")
     df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"))
-    # df = NAFUtils.filter_by_naf(df, NAFUtils.get_NAFs_by_section("L"), "apet700")
+    if secteur_NAF != '' :
+        df = NAF_utils.filter_by_naf(df, NAF_utils.get_NAFs_by_section(secteur_NAF), "apet700")
+
 
     print("On ne garde que les données du centre...")
-    df = clusterizer_utils.filter_nearby_paris(df, radius=8, dict=True)
+    df = clusterizer_utils.filter_nearby_paris(df, radius=rayon, dict=True)
 
     print("On sépare par la Seine")
     # on va avoir au moins 4 zones:
@@ -190,7 +192,7 @@ def main_json():
     print("Clusterisation...")
 
     liste_df_clusters = []
-    nb_clusters_par_zone = [75, 75]
+    nb_clusters_par_zone = [nb_cluster//2, nb_cluster//2]
 
     for no_zone in range(nb_zones):
         liste_df_clusters.append(
@@ -204,7 +206,7 @@ def main_json():
     for no_zone in range(1, nb_zones):
         map = save_to_map(liste_df_clusters[no_zone][1], map=map)
 
-    map.save("output/clusterized_map_seine.html")
+    map.save(adresse_map)
 
     print("Terminé !")
 
@@ -212,9 +214,9 @@ def main_json():
 def test_naf():
     print(NAF_utils.get_NAFs_by_section("L"))
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
     # On exécute le programme avec la base SIRENE :
 
-    main_json()
+    #main_json()
 
