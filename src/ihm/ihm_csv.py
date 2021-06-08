@@ -15,6 +15,7 @@ sys.path.append("../../")
 
 
 from src.clusterizer import Clusterizer
+from src.ihm import web
 
 
 
@@ -45,6 +46,8 @@ print("Nombre de cluster =", nb_cluster)
 print("Rayon = ", rayon)
 print("Sélection NAF : ", secteur_NAF)
 
+adresse = "output_ihm/clusterized_ihm.html"
+
 """
 Clusterization avec les données utlisateurs
 """
@@ -53,4 +56,7 @@ if __name__ == "__main__":
 
     # On exécute le programme avec la base SIRENE :
 
-    Clusterizer.main_json(rayon, secteur_NAF, nb_cluster, "output_ihm/clusterized_ihm.html")
+    Clusterizer.main_json(rayon, secteur_NAF, nb_cluster, adresse)
+
+    # On ouvre le fichier dans le navigateur (actuellement chrome)
+    web.open_html(adresse)
