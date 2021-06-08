@@ -118,7 +118,10 @@ class Segment:
         """Détermine si le segment est en-dessous du point donné
            i.e si le point test au-dessus du segment
         """
-        if point.x <= self.point_gauche.x or self.point_gauche.x <= point.x:
+        mini_x = min(self.point_gauche.x, self.point_droit.x)
+        maxi_x = max(self.point_gauche.x, self.point_droit.x)
+
+        if point.x < mini_x or maxi_x < point.x:
             # le point est en-dehors des bornes du segment
             raise self.HorsDuSegmentError
 
