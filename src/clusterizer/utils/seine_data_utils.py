@@ -220,8 +220,42 @@ if __name__ == "__main__":
         # puis les 3 premiers points Marne 1 -> 3
         liste_segments_Marne.append(Segment(liste_points[no_coord_1], liste_points[no_coord_2]))
 
-    pprint.pprint(liste_segments_Seine)
-    pprint.pprint(liste_segments_Marne)
+    # pprint.pprint(liste_segments_Seine)
+    # pprint.pprint(liste_segments_Marne)
+
+    # on va maintenant faire les frontières
+    # on va faire en sorte que chaque frontière soit dans le bon sens 
+    for seg in liste_segments_Marne + liste_segments_Seine:
+        seg.plot()
+    # plt.axis("equal")
+
+    # plt.xlim(2.2, 2.45)
+    plt.ylim(48.76, 48.97)
+    plt.gca().set_aspect('equal')
+    plt.tight_layout()
+
+    # plt.show()
+
+    # on va maintenant faire des frontières
+    frontiere_nord = Frontiere(liste_segments_Seine[:5])
+    frontiere_nord.plot()
+    frontiere_ouest = Frontiere(liste_segments_Seine[5:15])
+    frontiere_ouest.plot("green")
+    frontiere_Marne = Frontiere(liste_segments_Marne)
+    frontiere_Marne.plot("violet")
+    Frontiere(liste_segments_Seine[15:16]).plot("red")
+    Frontiere(liste_segments_Seine[16:17]).plot("darkred")
+    Frontiere(liste_segments_Seine[17:31]).plot("red")
+    Frontiere(liste_segments_Seine[31:32]).plot("orange")
+    Frontiere(liste_segments_Seine[32:33]).plot("orange")
+    Frontiere(liste_segments_Seine[33:34]).plot("orange")
+
+    plt.ylim(48.76, 48.97)
+    plt.gca().set_aspect('equal')
+    plt.tight_layout()
+
+    plt.show()
+
 
 if __name__ == "piche":
     liste_coordonnees = get_coords()
