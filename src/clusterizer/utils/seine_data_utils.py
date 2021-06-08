@@ -160,6 +160,9 @@ class Frontiere:
 
         raise self.HorsDeLaFrontiereError
 
+    def plot(self, couleur="red"):
+        for seg in self.liste_segments:
+            seg.plot(couleur)
 if __name__ == "__main__":
     # on récupère les coordonnées
     liste_coordonnees = get_coords()
