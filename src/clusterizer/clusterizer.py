@@ -94,7 +94,7 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, 
     # ==========================================================
 
     # kmeans = KMeans(n_clusters=k, random_state=0)
-    mbk = MiniBatchKMeans(n_clusters=k, random_state=0)  # ça va plus vite
+    mbk = MiniBatchKMeans(n_clusters=k, random_state=0, batch_size=2048)  # ça va plus vite
 
     # Ceci contient des coordonnées (x, y) des points
     X = clusterizer_utils.get_coords_from_object(df, column_geometry, dict)
