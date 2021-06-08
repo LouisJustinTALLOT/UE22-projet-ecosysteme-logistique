@@ -1,9 +1,11 @@
 from pprint import pprint
+from typing import Tuple
 import geopandas as gpd
 import pandas as pd
 import numpy as np
 import folium
 import matplotlib.pyplot as plt
+from multiprocessing import Pool
 
 import sys
 sys.path.append("../../")
@@ -92,6 +94,10 @@ def rapport_a_la_seine(xy):
     if DEBUG_PLOT:
         point_etudie.plot("black")
     return 3
+
+def map_rapport_a_la_seine(args_tuple: Tuple[int, pd.DataFrame]) -> pd.DataFrame:
+    no_zone, df = args_tuple
+    return df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
 
 def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
     """
@@ -231,11 +237,16 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     # Courbevoie-Asnières
 
     nb_zones = 4
-    liste_df = []
-    for no_zone in range(nb_zones):
-        liste_df.append(
-            df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
-        )
+    # liste_df = []
+    # for no_zone in range(nb_zones):
+    #     liste_df.append(
+    #         df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
+    #     )
+
+
+    
+    with Pool(nb_zones) as p:
+        liste_df = p.map(map_rapport_a_la_seine, [(i, df) for i in range(nb_zones)])
 
     print("Clusterisation...")
 
@@ -284,4 +295,4 @@ if __name__ == "__main__":
         plt.show()
 
     else:
-        main_json()
+        main_json(adresse_map="output/clusterized_map_multiprocessing_pool.html")
