@@ -175,7 +175,7 @@ def test_geojson():
     df, df_clusters = clusterize(df, 10, dict=False)
     save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
-def main_json(rayon, secteur_NAF, nb_cluster, adresse_map):
+def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clusterized_map_seine.html"):
     print("Ouverture de la DataFrame...")
     df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"))
     if secteur_NAF != '' :
