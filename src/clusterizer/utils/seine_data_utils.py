@@ -88,6 +88,9 @@ class Point:
     def __repr__(self) -> str:
         return f"Point({self.x:2.5f}, {self.y:2.5f})"
 
+    def plot(self, couleur="red"):
+        plt.scatter(self.x, self.y, marker=".", color=couleur)
+
 class Segment:
     def __init__(self, point_1: Point, point_2: Point) -> None:
         if point_1.x <= point_2.x:
