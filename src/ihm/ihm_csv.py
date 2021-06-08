@@ -14,7 +14,7 @@ import sys
 sys.path.append("../../")
 
 
-from src.clusterizer import Clusterizer
+from src.clusterizer import clusterizer
 from src.ihm import web
 
 
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     # On exécute le programme avec la base SIRENE :
 
-    Clusterizer.main_json(rayon, secteur_NAF, nb_cluster, adresse)
+    clusterizer.main_json(rayon, secteur_NAF, nb_cluster, adresse)
 
     # On ouvre le fichier dans le navigateur (actuellement chrome)
     web.open_html(adresse)
