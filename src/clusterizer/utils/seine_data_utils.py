@@ -134,6 +134,9 @@ class Segment:
     def __repr__(self) -> str:
         return f"Segment entre {self.point_gauche} et {self.point_droit}"
 
+    def plot(self, couleur="darkblue"):
+        plt.plot([self.point_gauche.x, self.point_droit.x],[self.point_gauche.y, self.point_droit.y], ".-", color=couleur)
+
 class Frontiere:
     def __init__(self, liste_segments: List[Segment]) -> None:
         self.liste_segments = liste_segments
