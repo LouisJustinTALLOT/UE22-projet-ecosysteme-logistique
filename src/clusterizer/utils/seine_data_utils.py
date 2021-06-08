@@ -1,12 +1,12 @@
-from pathlib import Path, PurePath
+from pathlib import Path
 import re
 from typing import List, Tuple
+import matplotlib.pyplot as plt
 
 if __name__== "__main__":
     # pas besoin de ça si utilisé comme module
     import pprint
     import numpy as np
-    import matplotlib.pyplot as plt
 
 """On va utiliser des expressions régulières pour récupérer
 les coordonnées des points sur la Seine 
