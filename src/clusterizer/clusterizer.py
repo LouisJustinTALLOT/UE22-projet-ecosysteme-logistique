@@ -23,11 +23,9 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
 from src.clusterizer.utils.seine_data_utils import Frontiere, get_frontieres_utiles, Point
 
 """
-Clusterise proprement.
-Pour l'instant, n'utilise que l'algorithme des k-moyennes.
+Clusterise en utilisant l'algorithme des k-moyennes.
 
 Pour avoir des exemples d'utilisation, aller à la toute fin où il y a les tests
-TODO : d'autres algorithmes
 """
 
 f_seine_nord, \
