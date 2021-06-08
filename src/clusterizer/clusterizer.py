@@ -138,8 +138,8 @@ def save_to_map(df_clusters, map=None):
                         tiles="OpenStreetMap"
                         )
 
-    couleurs = ['cadetblue', 'lightblue', 'orange', 'darkred', 'black',
-                'purple', 'gray', 'green', 'darkgreen', 'pink', 'lightgreen',
+    couleurs = ['cadetblue', 'orange', 'darkred', 'black',
+                'purple', 'gray', 'green', 'darkgreen', 'lightgreen',
                 'darkblue', 'white', 'blue', 'red']
 
     centroids = df_clusters.loc[:, COLUMN_CENTROIDS_NAME]
@@ -150,9 +150,10 @@ def save_to_map(df_clusters, map=None):
     for k, point in enumerate(centroids):
         if point is not None:
             title = f"Centre de masse du cluster {k} : {sizes[k]} établissements. Poids : {poids[k]}"
-            folium.Marker(location=[point.y, point.x],
+            folium.CircleMarker(location=[point.y, point.x],
                           popup=title,
-                          icon=folium.Icon(color=couleurs[k % len(couleurs)], icon='info-sign')
+                          radius=1
+                         # icon=folium.Icon(color=couleurs[k % len(couleurs)], icon='info-sign')
                           ).add_to(map)
 
     for k, polygon in enumerate(hulls):
