@@ -163,6 +163,9 @@ class Frontiere:
     def plot(self, couleur="red"):
         for seg in self.liste_segments:
             seg.plot(couleur)
+
+    def __repr__(self):
+        return f"Frontière de {self.liste_segments[0]} à {self.liste_segments[-1]}" 
 if __name__ == "__main__":
     # on récupère les coordonnées
     liste_coordonnees = get_coords()
