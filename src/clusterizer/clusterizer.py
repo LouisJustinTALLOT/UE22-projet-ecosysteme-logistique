@@ -28,6 +28,8 @@ Clusterise en utilisant l'algorithme des k-moyennes.
 Pour avoir des exemples d'utilisation, aller à la toute fin où il y a les tests
 """
 
+DEBUG_PLOT = False # pour afficher les points et frontières (debugging)
+
 f_seine_nord, \
 f_seine_ouest, \
 f_seine_petit_droite, \
@@ -231,5 +233,19 @@ if __name__ == "__main__":
 
     # On exécute le programme avec la base SIRENE :
 
-    main_json()
+    if DEBUG_PLOT:    
+        main_json(reduce=True)
 
+        f_seine_nord.plot(couleur="black")
+        f_seine_ouest.plot(couleur="purple")
+        f_seine_petit_droite.plot(couleur="black")
+        f_seine_petit_gauche.plot(couleur="black")
+        f_seine_central.plot(couleur="black")
+        f_seine_alfort_1_gauche.plot(couleur="black")
+        f_seine_alfort_2_droite.plot(couleur="black")
+        f_seine_alfort_3_gauche.plot(couleur="black")
+        f_marne.plot(couleur="black")
+        plt.show()
+
+    else:
+        main_json()
