@@ -46,15 +46,51 @@ def rapport_a_la_seine(xy):
 
     point_etudie = Point(xy[0], xy[1])
 
-    if f_seine_ouest.en_dessous(point_etudie):
-        return 0
-    if f_seine_central.en_dessous(point_etudie) or f_marne.en_dessous(point_etudie):
-        return 1
-    if not f_seine_central.en_dessous(point_etudie) \
-        or f_seine_alfort_1_gauche.en_dessous(point_etudie) \
-        or not f_seine_alfort_2_droite.en_dessous(point_etudie):
-        return 2
-    print("here")
+    try:
+        if f_seine_ouest.en_dessous(point_etudie):
+            if DEBUG_PLOT:
+                point_etudie.plot("red")
+            return 0
+    except Frontiere.HorsDeLaFrontiereError:
+        pass
+    
+    try:
+        if f_seine_central.en_dessous(point_etudie) :
+            if DEBUG_PLOT:
+                point_etudie.plot("green")
+            return 1
+    except Frontiere.HorsDeLaFrontiereError:
+        pass
+    try:
+        if f_marne.en_dessous(point_etudie) :
+            if DEBUG_PLOT:
+                point_etudie.plot("green")
+            return 1
+    except Frontiere.HorsDeLaFrontiereError:
+        pass
+    try:
+        if not f_seine_central.en_dessous(point_etudie):
+            if DEBUG_PLOT:
+                point_etudie.plot("blue")
+            return 2
+    except Frontiere.HorsDeLaFrontiereError:
+        pass
+    try:
+        if f_seine_alfort_1_gauche.en_dessous(point_etudie):
+            if DEBUG_PLOT:
+                point_etudie.plot("blue")
+            return 2
+    except Frontiere.HorsDeLaFrontiereError:
+        pass
+    try:
+        if f_seine_alfort_2_droite.en_dessous(point_etudie):
+            if DEBUG_PLOT:
+                point_etudie.plot("blue")
+            return 2
+    except Frontiere.HorsDeLaFrontiereError:
+        pass
+    if DEBUG_PLOT:
+        point_etudie.plot("black")
     return 3
 
 def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
