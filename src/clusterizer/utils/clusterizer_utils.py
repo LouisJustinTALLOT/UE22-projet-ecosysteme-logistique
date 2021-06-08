@@ -101,7 +101,7 @@ def calculer_poids_code_NAF(code_naf):
     return 1
 
 
-vectorized_calculer_poids_code_NAF = np.vectorize(calculer_poids_code_NAF)
+vectorized_calculer_poids_code_NAF = np.vectorize(calculer_poids_code_NAF, otypes=[int])
 
 
 def calculer_poids_cluster(df, column_naf_code):
