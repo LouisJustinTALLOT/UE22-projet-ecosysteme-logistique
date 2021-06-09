@@ -114,10 +114,11 @@ class Segment:
         
         return a, b
 
-    class HorsDuSegmentError(Exception):
-        pass
+    class DansLeSegmentNotError(Exception):
+        def __init__(self, value: int) -> None:
+            self.res = value
 
-    def en_dessous(self, point: Point) -> bool:
+    def en_dessous(self, point: Point) -> int:
         """Détermine si le segment est en-dessous du point donné
            i.e si le point test au-dessus du segment
         """
@@ -126,13 +127,16 @@ class Segment:
 
         if point.x < mini_x or maxi_x < point.x:
             # le point est en-dehors des bornes du segment
-            raise self.HorsDuSegmentError
+            return 0
+            # raise self.HorsDuSegmentError
 
         else:
             if point.y > self.a * point.x + self.b: # le point est au-dessus
-                return True
+                # return 1
+                raise Segment.DansLeSegmentNotError(1)
             else: 
-                return False
+                # return 0
+                raise Segment.DansLeSegmentNotError(0)
 
     def __repr__(self) -> str:
         return f"Segment entre {self.point_gauche} et {self.point_droit}"
@@ -154,9 +158,9 @@ class Frontiere:
 
         for segment in self.liste_segments:
             try:
-                return segment.en_dessous(point)
-            except Segment.HorsDuSegmentError:
-                pass
+                segment.en_dessous(point)
+            except Segment.DansLeSegmentNotError as e:
+                return e.res
 
         raise self.HorsDeLaFrontiereError
 
