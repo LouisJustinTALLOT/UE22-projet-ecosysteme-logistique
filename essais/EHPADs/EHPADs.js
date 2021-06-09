@@ -59,7 +59,7 @@ function init() {
 function getArrondissements() {
     console.log("Loading JSON...");
 
-    jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/arrondissements/arrondissements.json',
+    jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/essais/arrondissements/arrondissements.json',
         function(data) {
             // if the request succeeds
             console.log("Loaded");

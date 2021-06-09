@@ -152,14 +152,14 @@ function init() {
 
     let restau_points = new DataSource(
         "Restaurants",
-        "https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/donnees/paris_3e_arrondissement_restaurant_2021-03-06.geojson",
+        "https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/essais/donnees/paris_3e_arrondissement_restaurant_2021-03-06.geojson",
         restaurantIcon,
         "restaurants"
     );
 
     let shop_points = new DataSource(
         "Magasins",
-        "https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/donnees/paris_3e_arrondissement_shop_craft_office_2021-03-06.geojson",
+        "https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/essais/donnees/paris_3e_arrondissement_shop_craft_office_2021-03-06.geojson",
         shopIcon,
         "magasins"
     );

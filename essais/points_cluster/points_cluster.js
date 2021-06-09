@@ -79,7 +79,7 @@ function init() {
 function getMagasins() {
     console.log("Loading JSON...");
 
-    jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/donnees/paris_3e_arrondissement_shop_craft_office_2021-03-06.geojson',
+    jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/essais/donnees/paris_3e_arrondissement_shop_craft_office_2021-03-06.geojson',
         function (data) {
             // if the request succeeds
             console.log("Loaded");
@@ -92,7 +92,7 @@ function getMagasins() {
 function getRestaurants() {
     console.log("Loading JSON...");
 
-    jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/tests/donnees/paris_3e_arrondissement_restaurant_2021-03-06.geojson',
+    jQuery.getJSON('https://raw.githubusercontent.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/main/essais/donnees/paris_3e_arrondissement_restaurant_2021-03-06.geojson',
         function (data) {
             // if the request succeeds
             console.log("Loaded");

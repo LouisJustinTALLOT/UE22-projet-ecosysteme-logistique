@@ -266,7 +266,7 @@ def save_to_map(df_clusters, map=None):
     return map
 
 def test_geojson():
-    df = nettoyer(gpd.read_file("../../tests/gis/input/reducted.geojson"))
+    df = nettoyer(gpd.read_file("../../essais/gis/input/reducted.geojson"))
     df, df_clusters = clusterize(df, 10, dict=False)
     save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
