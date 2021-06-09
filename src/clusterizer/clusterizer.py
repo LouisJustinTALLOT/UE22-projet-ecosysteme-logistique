@@ -380,6 +380,6 @@ if __name__ == "__main__":
         plt.show()
 
     else:
-        # main_json(reduce = True, adresse_map="output/clusterized_map_optim_frontiere.html")
-        # main_json(adresse_map="output/clusterized_map_optim_frontiere.html")
-        cProfile.run('main_json(adresse_map="output/clusterized_map_optim_frontiere.html")')
+        # main_json(reduce = True, adresse_map="output/clusterized_map_optim_de_cython.html")
+        # main_json(adresse_map="output/clusterized_map_optim_de_cython.html")
+        cProfile.run('main_json(adresse_map="output/clusterized_map_optim_de_cython.html")')
