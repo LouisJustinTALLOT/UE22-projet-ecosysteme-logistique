@@ -89,8 +89,8 @@ def calcul_droites(liste_coordonnees=get_coords()) -> Tuple[List[Tuple[float]]]:
 # ]
 
 # @jitclass(point_spec)
-class Point:
-    # cpdef double x, y
+cdef class Point:
+    cdef public double x, y
 
     def __init__(self, double longueur, double lat):
         self.x = longueur
@@ -107,8 +107,9 @@ cdef class DansLeSegmentNotError(Exception):
         def __init__(self, int value):
             self.res = value
 
-class Segment:
-    # cdef object point_gauche, point_droit
+cdef class Segment:
+    cdef public object point_gauche, point_droit
+    cdef public double a, b
     # cdef dict __dict__
     
     def __init__(self, point_1: Point, point_2: Point) -> None:
@@ -121,8 +122,8 @@ class Segment:
 
         self.a, self.b = self.eq_droite()
 
-    # cdef (double, double) eq_droite(self):
-    def eq_droite(self) -> Tuple[float]:
+    cdef (double, double) eq_droite(self):
+    # def eq_droite(self) -> Tuple[float]:
         """Trouve l'équation de la droite porteuse du segment
         Renvoie (a, b) avec y = a * x + b
         """
