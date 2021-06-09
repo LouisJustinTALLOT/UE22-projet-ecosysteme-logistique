@@ -155,6 +155,8 @@ class Segment:
 
 def _not_in_frontiere():
     pass
+def _dans_la_frontiere():
+    pass
 
 class Frontiere:
     def __init__(self, liste_segments: List[Segment]) -> None:
@@ -162,6 +164,9 @@ class Frontiere:
 
     class HorsDeLaFrontiereError(Exception):
         pass
+    class DansLaFrontiereNotError(Exception):
+        def __init__(self, value: int) -> None:
+            self.res = value
 
     def en_dessous(self, point: Point) -> bool:
         """Détermine si la frontière est en-dessous du point donné
@@ -174,7 +179,11 @@ class Frontiere:
             except Segment.DansLeSegmentNotError as e:
                 return e.res
 
+                # _dans_la_frontiere()
+                # raise self.DansLaFrontiereNotError(e.res)
+        # _not_in_frontiere()
         raise self.HorsDeLaFrontiereError
+        # return 0
 
     def plot(self, couleur="red"):
         for seg in self.liste_segments:

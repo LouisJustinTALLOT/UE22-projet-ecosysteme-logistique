@@ -54,6 +54,12 @@ def rapport_a_la_seine(xy):
 
     point_etudie = Point(xy[0], xy[1])
 
+    # try:
+    #     f_seine_ouest.en_dessous(point_etudie)
+    # except Frontiere.DansLaFrontiereNotError as e:
+    #     if e.res:
+    #         return 0
+
     try:
         if f_seine_ouest.en_dessous(point_etudie):
             if DEBUG_PLOT:
@@ -62,6 +68,12 @@ def rapport_a_la_seine(xy):
     except Frontiere.HorsDeLaFrontiereError:
         pass
     
+    # try:
+    #     f_seine_central.en_dessous(point_etudie)
+    # except Frontiere.DansLaFrontiereNotError as e:
+    #     if e.res:
+    #         return 1
+
     try:
         if f_seine_central.en_dessous(point_etudie) :
             if DEBUG_PLOT:
@@ -69,6 +81,12 @@ def rapport_a_la_seine(xy):
             return 1
     except Frontiere.HorsDeLaFrontiereError:
         pass
+
+    # try:
+    #     f_marne.en_dessous(point_etudie)
+    # except Frontiere.DansLaFrontiereNotError as e:
+    #     if e.res:
+    #         return 1
     try:
         if f_marne.en_dessous(point_etudie) :
             if DEBUG_PLOT:
@@ -76,6 +94,12 @@ def rapport_a_la_seine(xy):
             return 1
     except Frontiere.HorsDeLaFrontiereError:
         pass
+
+    # try:
+    #     f_seine_central.en_dessous(point_etudie)
+    # except Frontiere.DansLaFrontiereNotError as e:
+    #     if not e.res:
+    #         return 2
     try:
         if not f_seine_central.en_dessous(point_etudie):
             if DEBUG_PLOT:
@@ -83,6 +107,12 @@ def rapport_a_la_seine(xy):
             return 2
     except Frontiere.HorsDeLaFrontiereError:
         pass
+
+    # try:
+    #     f_seine_alfort_1_gauche.en_dessous(point_etudie)
+    # except Frontiere.DansLaFrontiereNotError as e:
+    #     if e.res:
+    #         return 2
     try:
         if f_seine_alfort_1_gauche.en_dessous(point_etudie):
             if DEBUG_PLOT:
@@ -90,6 +120,12 @@ def rapport_a_la_seine(xy):
             return 2
     except Frontiere.HorsDeLaFrontiereError:
         pass
+
+    # try:
+    #     f_seine_alfort_2_droite.en_dessous(point_etudie)
+    # except Frontiere.DansLaFrontiereNotError as e:
+    #     if e.res:
+    #         return 2
     try:
         if f_seine_alfort_2_droite.en_dessous(point_etudie):
             if DEBUG_PLOT:
