@@ -2,6 +2,9 @@ from pathlib import Path
 import re
 from typing import List, Tuple
 import matplotlib.pyplot as plt
+from numba import jit
+from numba.experimental import jitclass
+import numba as nb
 
 if __name__== "__main__":
     # pas besoin de ça si utilisé comme module
@@ -80,6 +83,12 @@ def calcul_droites(liste_coordonnees=get_coords()) -> Tuple[List[Tuple[float]]]:
 
     return liste_droites_Seine, liste_droites_Marne
 
+point_spec = [
+    ('x', nb.float64),
+    ('y', nb.float64)
+]
+
+# @jitclass(point_spec)
 class Point:
     def __init__(self, long: float, lat: float) -> None:
         self.x = long
