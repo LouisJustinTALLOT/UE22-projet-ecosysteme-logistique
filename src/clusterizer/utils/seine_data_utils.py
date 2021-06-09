@@ -2,9 +2,9 @@ from pathlib import Path
 import re
 from typing import List, Tuple
 import matplotlib.pyplot as plt
-from numba import jit
-from numba.experimental import jitclass
-import numba as nb
+# from numba import jit
+# from numba.experimental import jitclass
+# import numba as nb
 
 if __name__== "__main__":
     # pas besoin de ça si utilisé comme module
@@ -83,10 +83,10 @@ def calcul_droites(liste_coordonnees=get_coords()) -> Tuple[List[Tuple[float]]]:
 
     return liste_droites_Seine, liste_droites_Marne
 
-point_spec = [
-    ('x', nb.float64),
-    ('y', nb.float64)
-]
+# point_spec = [
+#     ('x', nb.float64),
+#     ('y', nb.float64)
+# ]
 
 # @jitclass(point_spec)
 class Point:
@@ -153,18 +153,8 @@ class Segment:
     def plot(self, couleur="darkblue"):
         plt.plot([self.point_gauche.x, self.point_droit.x],[self.point_gauche.y, self.point_droit.y], ".-", color=couleur)
 
-def _not_in_segment():
-    pass
-
 def _not_in_frontiere():
     pass
-
-def _segment_break():
-    pass
-
-def _dans_le_segment():
-    pass
-
 
 class Frontiere:
     def __init__(self, liste_segments: List[Segment]) -> None:
@@ -180,37 +170,11 @@ class Frontiere:
 
         for segment in self.liste_segments:
             try:
-                _not_in_segment()
                 segment.en_dessous(point)
             except Segment.DansLeSegmentNotError as e:
-                _dans_le_segment()
                 return e.res
-            # else:
-            #     _segment_break()
-            #     break
 
         raise self.HorsDeLaFrontiereError
-        # nb_segments = len(self.liste_segments)
-        # total = 0
-        # for segment in self.liste_segments:
-        #     total += segment.en_dessous(point)
-            # if res == -1 :
-            #     _not_in_segment()
-            #     pass
-            # else:
-            #     return res 
-
-            # try:
-            #     return segment.en_dessous(point)
-            # except Segment.HorsDuSegmentError:
-            #     pass
-        # if total == -nb_segments:
-        #     _not_in_frontiere()
-        #     raise self.HorsDeLaFrontiereError
-        # elif total == 1 - nb_segments:
-        #     return False
-        # else:
-        #     return True
 
     def plot(self, couleur="red"):
         for seg in self.liste_segments:
