@@ -830,7 +830,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "utils\\seine_data_utils.pyx",
+  "utils/seine_data_utils.pyx",
 };
 
 /*--- Type declarations ---*/
@@ -1543,7 +1543,7 @@ static const char __pyx_k_liste_droites_Seine_2[] = "liste_droites_Seine";
 static const char __pyx_k_HorsDeLaFrontiereError[] = "HorsDeLaFrontiereError";
 static const char __pyx_k_DansLaFrontiereNotError[] = "DansLaFrontiereNotError";
 static const char __pyx_k_coordinates_0_coordinates[] = "(?<=(<coordinates>)).*(?=(,0<\\/coordinates>))";
-static const char __pyx_k_utils_seine_data_utils_pyx[] = "utils\\seine_data_utils.pyx";
+static const char __pyx_k_utils_seine_data_utils_pyx[] = "utils/seine_data_utils.pyx";
 static const char __pyx_k_Segment_DansLeSegmentNotError[] = "Segment.DansLeSegmentNotError";
 static const char __pyx_k_Segment_DansLeSegmentNotError_2[] = "Segment.DansLeSegmentNotError.__init__";
 static const char __pyx_k_Frontiere_DansLaFrontiereNotErro[] = "Frontiere.DansLaFrontiereNotError";
