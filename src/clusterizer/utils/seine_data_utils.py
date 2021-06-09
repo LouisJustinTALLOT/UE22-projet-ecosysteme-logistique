@@ -144,6 +144,19 @@ class Segment:
     def plot(self, couleur="darkblue"):
         plt.plot([self.point_gauche.x, self.point_droit.x],[self.point_gauche.y, self.point_droit.y], ".-", color=couleur)
 
+def _not_in_segment():
+    pass
+
+def _not_in_frontiere():
+    pass
+
+def _segment_break():
+    pass
+
+def _dans_le_segment():
+    pass
+
+
 class Frontiere:
     def __init__(self, liste_segments: List[Segment]) -> None:
         self.liste_segments = liste_segments
@@ -158,11 +171,37 @@ class Frontiere:
 
         for segment in self.liste_segments:
             try:
+                _not_in_segment()
                 segment.en_dessous(point)
             except Segment.DansLeSegmentNotError as e:
+                _dans_le_segment()
                 return e.res
+            # else:
+            #     _segment_break()
+            #     break
 
         raise self.HorsDeLaFrontiereError
+        # nb_segments = len(self.liste_segments)
+        # total = 0
+        # for segment in self.liste_segments:
+        #     total += segment.en_dessous(point)
+            # if res == -1 :
+            #     _not_in_segment()
+            #     pass
+            # else:
+            #     return res 
+
+            # try:
+            #     return segment.en_dessous(point)
+            # except Segment.HorsDuSegmentError:
+            #     pass
+        # if total == -nb_segments:
+        #     _not_in_frontiere()
+        #     raise self.HorsDeLaFrontiereError
+        # elif total == 1 - nb_segments:
+        #     return False
+        # else:
+        #     return True
 
     def plot(self, couleur="red"):
         for seg in self.liste_segments:
