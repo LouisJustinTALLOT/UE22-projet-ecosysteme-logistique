@@ -89,8 +89,10 @@ def calcul_droites(liste_coordonnees=get_coords()) -> Tuple[List[Tuple[float]]]:
 # ]
 
 # @jitclass(point_spec)
-class Point:
-    def __init__(self, longueur: float, lat: float) -> None:
+cdef class Point:
+    cdef public double x, y
+
+    def __init__(self, double longueur, double lat):
         self.x = longueur
         self.y = lat
 
@@ -100,7 +102,16 @@ class Point:
     def plot(self, couleur="red"):
         plt.scatter(self.x, self.y, marker=".", color=couleur)
 
-class Segment:
+cdef class DansLeSegmentNotError(Exception):
+        cdef public int res
+        def __init__(self, int value):
+            self.res = value
+
+cdef class Segment:
+    cdef public object point_gauche, point_droit
+    cdef public double a, b
+    # cdef dict __dict__
+    
     def __init__(self, point_1: Point, point_2: Point) -> None:
         if point_1.x <= point_2.x:
             self.point_gauche = point_1
@@ -111,21 +122,23 @@ class Segment:
 
         self.a, self.b = self.eq_droite()
 
-    def eq_droite(self) -> Tuple[float]:
+    cdef (double, double) eq_droite(self):
+    # def eq_droite(self) -> Tuple[float]:
         """Trouve l'équation de la droite porteuse du segment
         Renvoie (a, b) avec y = a * x + b
         """
+        cdef double x_1, y_1, x_2, y_2, a, b
+
         x_1, y_1 = self.point_gauche.x, self.point_gauche.y
         x_2, y_2 = self.point_droit.x, self.point_droit.y
+
+        if x_1 == x_2:
+            raise ZeroDivisionError
 
         a = (y_2 - y_1) / (x_2 - x_1)
         b = y_1 - a*x_1
         
         return a, b
-
-    class DansLeSegmentNotError(Exception):
-        def __init__(self, value: int) -> None:
-            self.res = value
 
     def en_dessous(self, point: Point) -> int:
         """Détermine si le segment est en-dessous du point donné
@@ -142,10 +155,10 @@ class Segment:
         else:
             if point.y > self.a * point.x + self.b: # le point est au-dessus
                 # return 1
-                raise Segment.DansLeSegmentNotError(1)
+                raise DansLeSegmentNotError(1)
             else: 
                 # return 0
-                raise Segment.DansLeSegmentNotError(0)
+                raise DansLeSegmentNotError(0)
 
 #    def __repr__(self) -> str:
 #        return f"Segment entre {self.point_gauche} et {self.point_droit}"
@@ -176,7 +189,7 @@ class Frontiere:
         for segment in self.liste_segments:
             try:
                 segment.en_dessous(point)
-            except Segment.DansLeSegmentNotError as e:
+            except DansLeSegmentNotError as e:
                 return e.res
 
                 # _dans_la_frontiere()
