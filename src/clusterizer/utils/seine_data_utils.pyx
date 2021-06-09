@@ -90,12 +90,12 @@ def calcul_droites(liste_coordonnees=get_coords()) -> Tuple[List[Tuple[float]]]:
 
 # @jitclass(point_spec)
 class Point:
-    def __init__(self, long: float, lat: float) -> None:
-        self.x = long
+    def __init__(self, longueur: float, lat: float) -> None:
+        self.x = longueur
         self.y = lat
 
-    def __repr__(self) -> str:
-        return f"Point({self.x:2.5f}, {self.y:2.5f})"
+#    def __repr__(self) -> str:
+#        return f"Point({self.x:2.5f}, {self.y:2.5f})"
 
     def plot(self, couleur="red"):
         plt.scatter(self.x, self.y, marker=".", color=couleur)
@@ -147,8 +147,8 @@ class Segment:
                 # return 0
                 raise Segment.DansLeSegmentNotError(0)
 
-    def __repr__(self) -> str:
-        return f"Segment entre {self.point_gauche} et {self.point_droit}"
+#    def __repr__(self) -> str:
+#        return f"Segment entre {self.point_gauche} et {self.point_droit}"
 
     def plot(self, couleur="darkblue"):
         plt.plot([self.point_gauche.x, self.point_droit.x],[self.point_gauche.y, self.point_droit.y], ".-", color=couleur)
@@ -189,8 +189,8 @@ class Frontiere:
         for seg in self.liste_segments:
             seg.plot(couleur)
 
-    def __repr__(self):
-        return f"Frontière de {self.liste_segments[0]} à {self.liste_segments[-1]}" 
+#    def __repr__(self):
+#        return f"Frontière de {self.liste_segments[0]} à {self.liste_segments[-1]}" 
 
 def get_frontieres_utiles():
     # on récupère les coordonnées
