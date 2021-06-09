@@ -1,11 +1,14 @@
 from pprint import pprint
-from typing import Tuple
+from typing import List, Tuple
 import geopandas as gpd
 import pandas as pd
 import numpy as np
 import folium
 import matplotlib.pyplot as plt
 import time
+from multiprocessing import Pool, Process, Array, RawArray
+import numba as nb
+from numba import jit, vectorize, float64, int64
 import cProfile
 
 import sys
@@ -44,6 +47,8 @@ f_seine_alfort_3_gauche,\
 f_marne,\
 = get_frontieres_utiles()
 
+# @jit(nopython=True, parallel=True)
+# @nb.njit(nb.types.int64(nb.types.containers.UniTuple(nb.types.float64, 2)))
 @np.vectorize
 def rapport_a_la_seine(xy):
 
@@ -96,9 +101,18 @@ def rapport_a_la_seine(xy):
         point_etudie.plot("black")
     return 3
 
+def process_rapport_a_la_seine(no_zone:int, df: pd.DataFrame, shared_array: Array) -> None:
+    shared_array[no_zone] = df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
+
 def map_rapport_a_la_seine(args_tuple: Tuple[int, pd.DataFrame]) -> pd.DataFrame:
     no_zone, df = args_tuple
     return df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
+
+# @jit(nopython=True, parallel=True)
+# def numba_rapport_a_la_seine(array, no_zone):
+
+#     return no_zone == rapport_a_la_seine(array)
+
 
 def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
     """
@@ -115,7 +129,7 @@ def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GE
 
     return df.dropna(subset=[column_geometry]).reset_index()
 
-
+# @jit(parallel=True)
 def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, weight=True):
     """
     Clusterise à l'aide de l'algorithme des k-moyennes. Attention, fait du en-place.
@@ -248,17 +262,33 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     # Courbevoie-Asnières
 
     nb_zones = 4
-    # liste_df = []
-    # for no_zone in range(nb_zones):
-    #     liste_df.append(
-    #         df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
-    #     )
+    liste_df = []
+    for no_zone in range(nb_zones):
+        liste_df.append(
+            # df[numba_rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])), no_zone)]
+            df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
+        )
 
+
+    # print(liste_df[0].head(5))
+    # input()
+    # print("\n\n\n")
+    # print(liste_df[0].to_numpy())
+    # input()
+    # liste_df = RawArray(pd.DataFrame, nb_zones)
+    # liste_processes : List[Process] = []
+
+    # for i in range(nb_zones):
+    #     liste_processes.append(Process(target=process_rapport_a_la_seine, args= (i, df, liste_df)))
+
+    # for i in range(nb_zones):
+    #     liste_processes[i].start()
+    # for i in range(nb_zones):
+    #     liste_processes[i].join()
 
     
-    with Pool(nb_zones) as p:
-        liste_df = p.map(map_rapport_a_la_seine, [(i, df) for i in range(nb_zones)])
-
+    # with Pool(nb_zones) as p:
+    #     liste_df = p.map(map_rapport_a_la_seine, [(i, df) for i in range(nb_zones)])
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
