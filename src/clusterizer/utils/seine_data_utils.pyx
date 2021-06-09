@@ -18,7 +18,7 @@ https://regex101.com/r/4Dnyfh/1
 """
 
 FILE_PATH = Path(__file__).resolve()
-BASE_DIR = FILE_PATH.parent.parent.parent.parent
+BASE_DIR = FILE_PATH.parent.parent.parent#.parent
 
 REGEX_COORDINATES = re.compile(r"(?<=(<coordinates>)).*(?=(,0<\/coordinates>))")
 
