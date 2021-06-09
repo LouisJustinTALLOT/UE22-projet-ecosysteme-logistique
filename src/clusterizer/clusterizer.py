@@ -5,7 +5,8 @@ import pandas as pd
 import numpy as np
 import folium
 import matplotlib.pyplot as plt
-from multiprocessing import Pool
+import time
+import cProfile
 
 import sys
 sys.path.append("../../")
@@ -220,16 +221,26 @@ def test_geojson():
     save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
 def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clusterized_map_seine.html", reduce=False, threshold=1000):
-    print("Ouverture de la DataFrame...")
+    t1 = time.time()
+    print("Ouverture de la DataFrame...", end="    ")
+
     df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"), reduce=reduce, threshold=threshold)
     if secteur_NAF != '' :
         df = NAF_utils.filter_by_naf(df, NAF_utils.get_NAFs_by_section(secteur_NAF), "apet700")
 
+    t2 = time.time()
+    print(f"{t2-t1:2.3f} s")
+    t1 = time.time()
+    print("On ne garde que les données du centre...", end="    ")
 
-    print("On ne garde que les données du centre...")
+
     df = clusterizer_utils.filter_nearby_paris(df, radius=rayon, dict=True)
 
-    print("On sépare par la Seine")
+    t2 = time.time()
+    print(f"{t2-t1:2.3f} s")
+    t1 = time.time()
+    print("On sépare par la Seine...", end="    ")
+    
     # on va avoir au moins 4 zones:
     # rive Gauche,
     # rive Droite,
@@ -248,7 +259,10 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     with Pool(nb_zones) as p:
         liste_df = p.map(map_rapport_a_la_seine, [(i, df) for i in range(nb_zones)])
 
-    print("Clusterisation...")
+    t2 = time.time()
+    print(f"{t2-t1:2.3f} s")
+    t1 = time.time()
+    print("Clusterisation...", end="    ")
 
     liste_df_clusters = []
     nb_clusters_par_zone = [8, 75, 75, 10]
@@ -260,8 +274,10 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
             )
         except ValueError:
             pass
-
-    print("Sauvegarde sur la carte...")
+    t2 = time.time()
+    print(f"{t2-t1:2.3f} s")
+    t1 = time.time()
+    print("Sauvegarde sur la carte...", end="    ")
 
     map = save_to_map(liste_df_clusters[0][1])
 
@@ -270,6 +286,9 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
 
     map.save(adresse_map)
 
+    t2 = time.time()
+    print(f"{t2-t1:2.3f} s")
+    t1 = time.time()
     print("Terminé !")
 
 
@@ -295,4 +314,4 @@ if __name__ == "__main__":
         plt.show()
 
     else:
-        main_json(adresse_map="output/clusterized_map_multiprocessing_pool.html")
+        cProfile.run('main_json(adresse_map="output/clusterized_map_optim_segment.html")')
