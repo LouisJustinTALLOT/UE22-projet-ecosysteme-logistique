@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis saveUser="ljtal" projectname="" saveDateTime="2021-06-10T11:45:20" saveUserFull="Louis-Justin Tallot" version="3.18.3-Zürich">
+<qgis saveUser="ljtal" projectname="" saveDateTime="2021-06-10T11:51:59" saveUserFull="Louis-Justin Tallot" version="3.18.3-Zürich">
   <homePath path=""/>
   <title></title>
   <autotransaction active="0"/>
@@ -20,20 +20,30 @@
   </projectCrs>
   <layer-tree-group>
     <customproperties/>
-    <layer-tree-layer source="MultiPolygon?crs=EPSG:4326&amp;field=dep:double(255,0)&amp;field=insee_com:double(255,0)&amp;field=nom_com:string(255,0)&amp;field=iris:double(255,0)&amp;field=code_iris:double(255,0)&amp;field=nom_iris:string(255,0)&amp;field=typ_iris:string(255,0)&amp;uid={20d3b8d9-ec33-4a80-806d-8ad474607ce7}" checked="Qt::Checked" legend_split_behavior="0" expanded="1" legend_exp="" name="Dissolved IRIS" patch_size="-1,-1" id="Dissolved_a75db89a_836e_4db1_9834_909b63f81a22" providerKey="memory">
+    <layer-tree-layer source="MultiPolygon?crs=IGNF:LAMB93&amp;field=ID_APUR:long(10,0)&amp;field=N_SQ_PE:long(10,0)&amp;field=L_EAU:string(50,0)&amp;field=C_DEP:integer(5,0)&amp;field=C_NIVEAU:integer(5,0)&amp;field=B_VISI:string(1,0)&amp;field=N_SQ_DE:long(10,0)&amp;field=SHAPE_Area:double(18,11)&amp;field=SHAPE_Leng:double(18,11)&amp;uid={1e15b70c-032c-4895-92c8-4525755c9981}" checked="Qt::Checked" legend_split_behavior="0" expanded="1" legend_exp="" name="Dissolved_Hydrographie_surfacique_IDF" patch_size="-1,-1" id="Dissolved_2a62b172_093c_43a3_9b68_b8d7adce7062" providerKey="memory">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer source="../../data/iris/iris.shp" checked="Qt::Checked" legend_split_behavior="0" expanded="1" legend_exp="" name="IRIS IDF" patch_size="-1,-1" id="iris_899fb6a7_3782_4cb6_8d72_366c163cbfd4" providerKey="ogr">
+    <layer-tree-layer source="../../data/hydrographie-surfacique-idf/Hydrographie_surfacique_IDF.shp" checked="Qt::Checked" legend_split_behavior="0" expanded="1" legend_exp="" name="Hydrographie_surfacique_IDF" patch_size="-1,-1" id="Hydrographie_surfacique_IDF_3af67be5_48f1_49fd_ae6e_68dcd9ddfaf4" providerKey="ogr">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer source="MultiPolygon?crs=EPSG:4326&amp;field=dep:double(255,0)&amp;field=insee_com:double(255,0)&amp;field=nom_com:string(255,0)&amp;field=iris:double(255,0)&amp;field=code_iris:double(255,0)&amp;field=nom_iris:string(255,0)&amp;field=typ_iris:string(255,0)&amp;uid={20d3b8d9-ec33-4a80-806d-8ad474607ce7}" checked="Qt::Unchecked" legend_split_behavior="0" expanded="1" legend_exp="" name="Dissolved IRIS" patch_size="-1,-1" id="Dissolved_a75db89a_836e_4db1_9834_909b63f81a22" providerKey="memory">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer source="../../data/iris/iris.shp" checked="Qt::Unchecked" legend_split_behavior="0" expanded="1" legend_exp="" name="IRIS IDF" patch_size="-1,-1" id="iris_899fb6a7_3782_4cb6_8d72_366c163cbfd4" providerKey="ogr">
       <customproperties/>
     </layer-tree-layer>
     <custom-order enabled="0">
       <item>iris_899fb6a7_3782_4cb6_8d72_366c163cbfd4</item>
       <item>Dissolved_a75db89a_836e_4db1_9834_909b63f81a22</item>
+      <item>Hydrographie_surfacique_IDF_3af67be5_48f1_49fd_ae6e_68dcd9ddfaf4</item>
+      <item>Dissolved_2a62b172_093c_43a3_9b68_b8d7adce7062</item>
     </custom-order>
   </layer-tree-group>
   <snapping-settings intersection-snapping="0" enabled="0" mode="2" scaleDependencyMode="0" tolerance="12" minScale="0" type="1" unit="1" self-snapping="0" maxScale="0">
     <individual-layer-settings>
+      <layer-setting enabled="0" tolerance="12" minScale="0" type="1" units="1" id="Hydrographie_surfacique_IDF_3af67be5_48f1_49fd_ae6e_68dcd9ddfaf4" maxScale="0"/>
       <layer-setting enabled="0" tolerance="12" minScale="0" type="1" units="1" id="Dissolved_a75db89a_836e_4db1_9834_909b63f81a22" maxScale="0"/>
+      <layer-setting enabled="0" tolerance="12" minScale="0" type="1" units="1" id="Dissolved_2a62b172_093c_43a3_9b68_b8d7adce7062" maxScale="0"/>
       <layer-setting enabled="0" tolerance="12" minScale="0" type="1" units="1" id="iris_899fb6a7_3782_4cb6_8d72_366c163cbfd4" maxScale="0"/>
     </individual-layer-settings>
   </snapping-settings>
@@ -42,10 +52,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>1.49104743673225126</xmin>
-      <ymin>48.05274484702838578</ymin>
-      <xmax>3.70479251750459504</xmax>
-      <ymax>49.22955338008782888</ymax>
+      <xmin>2.21957126731270904</xmin>
+      <ymin>48.64933213462844463</ymin>
+      <xmax>2.50413319129081469</xmax>
+      <ymax>48.8006028944034469</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -66,14 +76,24 @@
   </mapcanvas>
   <projectModels/>
   <legend updateDrawingOrder="true">
-    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" drawingOrder="-1" name="Dissolved IRIS">
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" drawingOrder="-1" name="Dissolved_Hydrographie_surfacique_IDF">
       <filegroup open="true" hidden="false">
-        <legendlayerfile visible="1" isInOverview="0" layerid="Dissolved_a75db89a_836e_4db1_9834_909b63f81a22"/>
+        <legendlayerfile visible="1" isInOverview="0" layerid="Dissolved_2a62b172_093c_43a3_9b68_b8d7adce7062"/>
       </filegroup>
     </legendlayer>
-    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" drawingOrder="-1" name="IRIS IDF">
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" drawingOrder="-1" name="Hydrographie_surfacique_IDF">
       <filegroup open="true" hidden="false">
-        <legendlayerfile visible="1" isInOverview="0" layerid="iris_899fb6a7_3782_4cb6_8d72_366c163cbfd4"/>
+        <legendlayerfile visible="1" isInOverview="0" layerid="Hydrographie_surfacique_IDF_3af67be5_48f1_49fd_ae6e_68dcd9ddfaf4"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Unchecked" drawingOrder="-1" name="Dissolved IRIS">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="0" isInOverview="0" layerid="Dissolved_a75db89a_836e_4db1_9834_909b63f81a22"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Unchecked" drawingOrder="-1" name="IRIS IDF">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="0" isInOverview="0" layerid="iris_899fb6a7_3782_4cb6_8d72_366c163cbfd4"/>
       </filegroup>
     </legendlayer>
   </legend>
@@ -154,6 +174,275 @@
     <blendMode>0</blendMode>
   </main-annotation-layer>
   <projectlayers>
+    <maplayer autoRefreshEnabled="0" maxScale="0" simplifyLocal="1" simplifyMaxScale="1" refreshOnNotifyEnabled="0" type="vector" minScale="100000000" styleCategories="AllStyleCategories" simplifyDrawingHints="1" autoRefreshTime="0" simplifyAlgorithm="0" readOnly="0" geometry="Polygon" simplifyDrawingTol="1" labelsEnabled="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" wkbType="MultiPolygon">
+      <extent>
+        <xmin>591331.80219999700784683</xmin>
+        <ymin>6806188.85869999974966049</ymin>
+        <xmax>729604.68879999965429306</xmax>
+        <ymax>6894952.84310000017285347</ymax>
+      </extent>
+      <id>Dissolved_2a62b172_093c_43a3_9b68_b8d7adce7062</id>
+      <datasource>memory?geometry=MultiPolygon&amp;crs=wkt:&amp;field=ID_APUR:int8(10,0)&amp;field=N_SQ_PE:int8(10,0)&amp;field=L_EAU:string(50,0)&amp;field=C_DEP:integer(5,0)&amp;field=C_NIVEAU:integer(5,0)&amp;field=B_VISI:string(1,0)&amp;field=N_SQ_DE:int8(10,0)&amp;field=SHAPE_Area:double(18,11)&amp;field=SHAPE_Leng:double(18,11)</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>Dissolved_Hydrographie_surfacique_IDF</layername>
+      <srs>
+        <spatialrefsys>
+          <wkt></wkt>
+          <proj4>+proj=lcc +lat_0=46.5 +lon_0=3 +lat_1=44 +lat_2=49 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>10089</srsid>
+          <srid>310024140</srid>
+          <authid>IGNF:LAMB93</authid>
+          <description>RGF93 Lambert 93</description>
+          <projectionacronym>lcc</projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <wkt></wkt>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider encoding="">memory</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+        <Private>0</Private>
+      </flags>
+      <temporal fixedDuration="0" enabled="0" mode="0" startExpression="" endExpression="" durationField="" startField="" accumulate="0" endField="" durationUnit="min">
+        <fixedRange>
+          <start></start>
+          <end></end>
+        </fixedRange>
+      </temporal>
+      <renderer-v2 forceraster="0" enableorderby="0" type="singleSymbol" symbollevels="0">
+        <symbols>
+          <symbol type="fill" alpha="1" force_rhr="0" clip_to_extent="1" name="0">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer pass="0" enabled="1" locked="0" class="SimpleFill">
+              <Option type="Map">
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale"/>
+                <Option type="QString" value="145,82,45,255" name="color"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="0,0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="35,35,35,255" name="outline_color"/>
+                <Option type="QString" value="solid" name="outline_style"/>
+                <Option type="QString" value="0.26" name="outline_width"/>
+                <Option type="QString" value="MM" name="outline_width_unit"/>
+                <Option type="QString" value="solid" name="style"/>
+              </Option>
+              <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
+              <prop v="145,82,45,255" k="color"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="solid" k="outline_style"/>
+              <prop v="0.26" k="outline_width"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="solid" k="style"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties>
+        <property key="OnConvertFormatRegeneratePrimaryKey" value="false"/>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+        <activeChecks type="StringList">
+          <Option type="QString" value=""/>
+        </activeChecks>
+        <checkConfiguration/>
+      </geometryOptions>
+      <legend type="default-vector"/>
+      <referencedLayers/>
+      <fieldConfiguration>
+        <field configurationFlags="None" name="ID_APUR">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="N_SQ_PE">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="L_EAU">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="C_DEP">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="C_NIVEAU">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="B_VISI">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="N_SQ_DE">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="SHAPE_Area">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="SHAPE_Leng">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias field="ID_APUR" index="0" name=""/>
+        <alias field="N_SQ_PE" index="1" name=""/>
+        <alias field="L_EAU" index="2" name=""/>
+        <alias field="C_DEP" index="3" name=""/>
+        <alias field="C_NIVEAU" index="4" name=""/>
+        <alias field="B_VISI" index="5" name=""/>
+        <alias field="N_SQ_DE" index="6" name=""/>
+        <alias field="SHAPE_Area" index="7" name=""/>
+        <alias field="SHAPE_Leng" index="8" name=""/>
+      </aliases>
+      <defaults>
+        <default field="ID_APUR" applyOnUpdate="0" expression=""/>
+        <default field="N_SQ_PE" applyOnUpdate="0" expression=""/>
+        <default field="L_EAU" applyOnUpdate="0" expression=""/>
+        <default field="C_DEP" applyOnUpdate="0" expression=""/>
+        <default field="C_NIVEAU" applyOnUpdate="0" expression=""/>
+        <default field="B_VISI" applyOnUpdate="0" expression=""/>
+        <default field="N_SQ_DE" applyOnUpdate="0" expression=""/>
+        <default field="SHAPE_Area" applyOnUpdate="0" expression=""/>
+        <default field="SHAPE_Leng" applyOnUpdate="0" expression=""/>
+      </defaults>
+      <constraints>
+        <constraint field="ID_APUR" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="N_SQ_PE" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="L_EAU" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="C_DEP" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="C_NIVEAU" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="B_VISI" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="N_SQ_DE" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="SHAPE_Area" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="SHAPE_Leng" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint field="ID_APUR" desc="" exp=""/>
+        <constraint field="N_SQ_PE" desc="" exp=""/>
+        <constraint field="L_EAU" desc="" exp=""/>
+        <constraint field="C_DEP" desc="" exp=""/>
+        <constraint field="C_NIVEAU" desc="" exp=""/>
+        <constraint field="B_VISI" desc="" exp=""/>
+        <constraint field="N_SQ_DE" desc="" exp=""/>
+        <constraint field="SHAPE_Area" desc="" exp=""/>
+        <constraint field="SHAPE_Leng" desc="" exp=""/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns/>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <storedexpressions/>
+      <editform tolerant="1"></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable/>
+      <labelOnTop/>
+      <dataDefinedFieldProperties/>
+      <widgets/>
+      <previewExpression></previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
     <maplayer autoRefreshEnabled="0" maxScale="0" simplifyLocal="1" simplifyMaxScale="1" refreshOnNotifyEnabled="0" type="vector" minScale="100000000" styleCategories="AllStyleCategories" simplifyDrawingHints="1" autoRefreshTime="0" simplifyAlgorithm="0" readOnly="0" geometry="Polygon" simplifyDrawingTol="1" labelsEnabled="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" wkbType="MultiPolygon">
       <extent>
         <xmin>1.44728511043039609</xmin>
@@ -374,6 +663,273 @@
         <constraint field="code_iris" desc="" exp=""/>
         <constraint field="nom_iris" desc="" exp=""/>
         <constraint field="typ_iris" desc="" exp=""/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns/>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <storedexpressions/>
+      <editform tolerant="1"></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable/>
+      <labelOnTop/>
+      <dataDefinedFieldProperties/>
+      <widgets/>
+      <previewExpression></previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+    <maplayer autoRefreshEnabled="0" maxScale="0" simplifyLocal="1" simplifyMaxScale="1" refreshOnNotifyEnabled="0" type="vector" minScale="100000000" styleCategories="AllStyleCategories" simplifyDrawingHints="1" autoRefreshTime="0" simplifyAlgorithm="0" readOnly="0" geometry="Polygon" simplifyDrawingTol="1" labelsEnabled="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" wkbType="MultiPolygon">
+      <extent>
+        <xmin>591331.80219999700784683</xmin>
+        <ymin>6806188.85869999974966049</ymin>
+        <xmax>729604.68879999965429306</xmax>
+        <ymax>6894952.84310000017285347</ymax>
+      </extent>
+      <id>Hydrographie_surfacique_IDF_3af67be5_48f1_49fd_ae6e_68dcd9ddfaf4</id>
+      <datasource>../../data/hydrographie-surfacique-idf/Hydrographie_surfacique_IDF.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>Hydrographie_surfacique_IDF</layername>
+      <srs>
+        <spatialrefsys>
+          <wkt>PROJCRS["RGF93 Lambert 93",BASEGEOGCRS["RGF93 geographiques (dms)",DATUM["Reseau Geodesique Francais 1993",ELLIPSOID["GRS 1980",6378137,298.257222101,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["IGNF","RGF93G"]],CONVERSION["LAMBERT-93",METHOD["Lambert Conic Conformal (2SP)",ID["EPSG",9802]],PARAMETER["Latitude of false origin",46.5,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8821]],PARAMETER["Longitude of false origin",3,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8822]],PARAMETER["Latitude of 1st standard parallel",44,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8823]],PARAMETER["Latitude of 2nd standard parallel",49,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8824]],PARAMETER["Easting at false origin",700000,LENGTHUNIT["metre",1],ID["EPSG",8826]],PARAMETER["Northing at false origin",6600000,LENGTHUNIT["metre",1],ID["EPSG",8827]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["unknown"],AREA["FRANCE METROPOLITAINE (CORSE COMPRISE)"],BBOX[41,-5.5,52,10]],ID["IGNF","LAMB93"]]</wkt>
+          <proj4>+proj=lcc +lat_0=46.5 +lon_0=3 +lat_1=44 +lat_2=49 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>10089</srsid>
+          <srid>310024140</srid>
+          <authid>IGNF:LAMB93</authid>
+          <description>RGF93 Lambert 93</description>
+          <projectionacronym>lcc</projectionacronym>
+          <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type>dataset</type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <wkt></wkt>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider encoding="System">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+        <Private>0</Private>
+      </flags>
+      <temporal fixedDuration="0" enabled="0" mode="0" startExpression="" endExpression="" durationField="" startField="" accumulate="0" endField="" durationUnit="min">
+        <fixedRange>
+          <start></start>
+          <end></end>
+        </fixedRange>
+      </temporal>
+      <renderer-v2 forceraster="0" enableorderby="0" type="singleSymbol" symbollevels="0">
+        <symbols>
+          <symbol type="fill" alpha="1" force_rhr="0" clip_to_extent="1" name="0">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer pass="0" enabled="1" locked="0" class="SimpleFill">
+              <Option type="Map">
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale"/>
+                <Option type="QString" value="196,60,57,255" name="color"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="0,0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="35,35,35,255" name="outline_color"/>
+                <Option type="QString" value="solid" name="outline_style"/>
+                <Option type="QString" value="0.26" name="outline_width"/>
+                <Option type="QString" value="MM" name="outline_width_unit"/>
+                <Option type="QString" value="solid" name="style"/>
+              </Option>
+              <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
+              <prop v="196,60,57,255" k="color"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="solid" k="outline_style"/>
+              <prop v="0.26" k="outline_width"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="solid" k="style"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+        <activeChecks type="StringList">
+          <Option type="QString" value=""/>
+        </activeChecks>
+        <checkConfiguration/>
+      </geometryOptions>
+      <legend type="default-vector"/>
+      <referencedLayers/>
+      <fieldConfiguration>
+        <field configurationFlags="None" name="ID_APUR">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="N_SQ_PE">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="L_EAU">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="C_DEP">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="C_NIVEAU">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="B_VISI">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="N_SQ_DE">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="SHAPE_Area">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="SHAPE_Leng">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias field="ID_APUR" index="0" name=""/>
+        <alias field="N_SQ_PE" index="1" name=""/>
+        <alias field="L_EAU" index="2" name=""/>
+        <alias field="C_DEP" index="3" name=""/>
+        <alias field="C_NIVEAU" index="4" name=""/>
+        <alias field="B_VISI" index="5" name=""/>
+        <alias field="N_SQ_DE" index="6" name=""/>
+        <alias field="SHAPE_Area" index="7" name=""/>
+        <alias field="SHAPE_Leng" index="8" name=""/>
+      </aliases>
+      <defaults>
+        <default field="ID_APUR" applyOnUpdate="0" expression=""/>
+        <default field="N_SQ_PE" applyOnUpdate="0" expression=""/>
+        <default field="L_EAU" applyOnUpdate="0" expression=""/>
+        <default field="C_DEP" applyOnUpdate="0" expression=""/>
+        <default field="C_NIVEAU" applyOnUpdate="0" expression=""/>
+        <default field="B_VISI" applyOnUpdate="0" expression=""/>
+        <default field="N_SQ_DE" applyOnUpdate="0" expression=""/>
+        <default field="SHAPE_Area" applyOnUpdate="0" expression=""/>
+        <default field="SHAPE_Leng" applyOnUpdate="0" expression=""/>
+      </defaults>
+      <constraints>
+        <constraint field="ID_APUR" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="N_SQ_PE" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="L_EAU" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="C_DEP" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="C_NIVEAU" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="B_VISI" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="N_SQ_DE" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="SHAPE_Area" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+        <constraint field="SHAPE_Leng" constraints="0" unique_strength="0" exp_strength="0" notnull_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint field="ID_APUR" desc="" exp=""/>
+        <constraint field="N_SQ_PE" desc="" exp=""/>
+        <constraint field="L_EAU" desc="" exp=""/>
+        <constraint field="C_DEP" desc="" exp=""/>
+        <constraint field="C_NIVEAU" desc="" exp=""/>
+        <constraint field="B_VISI" desc="" exp=""/>
+        <constraint field="N_SQ_DE" desc="" exp=""/>
+        <constraint field="SHAPE_Area" desc="" exp=""/>
+        <constraint field="SHAPE_Leng" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
@@ -650,6 +1206,8 @@
   <layerorder>
     <layer id="iris_899fb6a7_3782_4cb6_8d72_366c163cbfd4"/>
     <layer id="Dissolved_a75db89a_836e_4db1_9834_909b63f81a22"/>
+    <layer id="Hydrographie_surfacique_IDF_3af67be5_48f1_49fd_ae6e_68dcd9ddfaf4"/>
+    <layer id="Dissolved_2a62b172_093c_43a3_9b68_b8d7adce7062"/>
   </layerorder>
   <properties>
     <Digitizing>
@@ -723,7 +1281,7 @@
   <Bookmarks/>
   <ProjectViewSettings UseProjectScales="0">
     <Scales/>
-    <DefaultViewExtent ymax="49.56523536287133425" ymin="47.71706286424488042" xmin="1.49104743673225126" xmax="3.70479251750459504">
+    <DefaultViewExtent ymax="48.84375253782791049" ymin="48.60618249120398104" xmin="2.21957126731270904" xmax="2.50413319129081469">
       <spatialrefsys>
         <wkt>GEOGCRS["WGS 84",DATUM["World Geodetic System 1984",ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["unknown"],AREA["World"],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
         <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
