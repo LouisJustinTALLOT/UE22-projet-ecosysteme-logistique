@@ -2,4 +2,5 @@
 **/base-sirene.geojson
 **/base-sirene.csv
 __pycache__
+data/hydrographie-surfacique-idf.zip
 data/iris.zip
