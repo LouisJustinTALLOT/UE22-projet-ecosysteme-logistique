@@ -1,0 +1,19 @@
+name: ecosysteme_logistique
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9.4
+  - numpy
+  - pandas>=1.2.4
+  - matplotlib
+  - ipython
+  - sklearn
+  - geopandas
+  - shapely
+  - folium
+  - shapefile
+  - PyQt5
+  - numba
+  - Cython
+  - ijson
