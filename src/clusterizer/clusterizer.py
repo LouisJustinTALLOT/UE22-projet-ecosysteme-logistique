@@ -25,7 +25,7 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
     COLUMN_CENTROIDS_NAME, \
     COLUMN_DEFAULT_GEOMETRY_NAME, \
     COLUMN_CLUSTER_MASS_NAME
-from seine_data_utils import Frontiere, get_frontieres_utiles, Point
+from src.clusterizer.utils.seine_data_utils_py import Frontiere, get_frontieres_utiles, Point
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
@@ -325,7 +325,8 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     print("Clusterisation...", end="    ")
 
     liste_df_clusters = []
-    nb_clusters_par_zone = [8, 75, 75, 10]
+    # Je pondère mon nombre de cluster voulu pour avoir une proportion similaire à [1/10, 4/10, 4/10, 1/10]
+    nb_clusters_par_zone = [nb_clusters//10, (nb_clusters*4)//10, (nb_clusters*4)//10, nb_clusters-(nb_clusters//10+ 2*(nb_clusters*4)//10)]
 
     for no_zone in range(nb_zones):
         try:

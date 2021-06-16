@@ -2,7 +2,7 @@ import sys
 sys.path.append("../../")
 
 
-from src.ihm import clusterize_ihm
+from src.clusterizer import clusterizer
 from src.ihm import web
 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, \
@@ -101,7 +101,7 @@ class Fenetre(QWidget):
 
         if self._valid :
             # Toutes les données entrées sont valides
-            return 1
+            self.lancement_clustering()
 
 
     def lancement_clustering(self) :
@@ -123,7 +123,7 @@ class Fenetre(QWidget):
 
             # On exécute le programme avec la base SIRENE :
 
-            clusterize_ihm.main_json(rayon, secteur_NAF, nb_cluster, adresse)
+            clusterizer.main_json(rayon, secteur_NAF, nb_cluster, adresse)
 
             # On ouvre le fichier dans le navigateur (actuellement chrome)
             web.open_html(adresse)
