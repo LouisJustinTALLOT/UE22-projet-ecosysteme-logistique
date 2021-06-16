@@ -7,8 +7,7 @@ import folium
 import matplotlib.pyplot as plt
 import time
 from multiprocessing import Pool, Process, Array, RawArray
-import numba as nb
-from numba import jit, vectorize, float64, int64
+
 import cProfile
 
 import sys
@@ -47,8 +46,7 @@ f_seine_alfort_3_gauche,\
 f_marne,\
 = get_frontieres_utiles()
 
-# @jit(nopython=True, parallel=True)
-# @nb.njit(nb.types.int64(nb.types.containers.UniTuple(nb.types.float64, 2)))
+
 @np.vectorize
 def rapport_a_la_seine(xy):
 
@@ -144,10 +142,6 @@ def map_rapport_a_la_seine(args_tuple: Tuple[int, pd.DataFrame]) -> pd.DataFrame
     no_zone, df = args_tuple
     return df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
 
-# @jit(nopython=True, parallel=True)
-# def numba_rapport_a_la_seine(array, no_zone):
-
-#     return no_zone == rapport_a_la_seine(array)
 
 
 def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
@@ -165,7 +159,7 @@ def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GE
 
     return df.dropna(subset=[column_geometry]).reset_index()
 
-# @jit(parallel=True)
+
 def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, weight=True):
     """
     Clusterise à l'aide de l'algorithme des k-moyennes. Attention, fait du en-place.
@@ -381,5 +375,5 @@ if __name__ == "__main__":
 
     else:
         # main_json(reduce = True, adresse_map="output/clusterized_map_optim_de_cython.html")
-        # main_json(adresse_map="output/clusterized_map_optim_de_cython.html")
-        cProfile.run('main_json(adresse_map="output/clusterized_map_optim_de_cython.html")')
+        main_json(adresse_map="output/clusterized_map_IHM.html")
+        # cProfile.run('main_json(adresse_map="output/clusterized_map_optim_de_cython.html")')
