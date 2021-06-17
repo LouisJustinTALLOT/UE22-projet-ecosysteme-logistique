@@ -20,9 +20,12 @@ class Fenetre(QWidget):
 
         # création du champ de texte
         self.champ_nb_cluster_min = QLineEdit()
+        self.champ_nb_cluster_min.setText("5")
         self.champ_nb_cluster_max = QLineEdit()
+        self.champ_nb_cluster_max.setText("10")
         self.champ_secteur = QLineEdit()
         self.champ_rayon = QLineEdit()
+        self.champ_rayon.setText("10")
         
         # création du bouton
         self.bouton = QPushButton("Clusterize !")
@@ -36,42 +39,45 @@ class Fenetre(QWidget):
         self.label_cluster = QLabel("Nombre de clusters")
         self.label_cluster_min = QLabel("Min :")
         self.label_cluster_max = QLabel("Max :")
-        self.label2_cluster = QLabel("Valeur par défaut :")
 
         self.label_secteur = QLabel("Secteur NAF :")
-        self.label2_secteur = QLabel()
 
         self.label_rayon = QLabel("Rayon de la sélection :")
-        self.label2_rayon = QLabel()
+        self.label_unite = QLabel("km")
         
         # mise en place du gestionnaire de mise en forme
         # Création des layout
         layout_princip = QVBoxLayout()
         layout_cluster = QHBoxLayout()
+        layout_rayon = QHBoxLayout()
 
         # Rangement des layouts
         layout_princip.addWidget(self.label_cluster)
 
-            # Layout cluster
+        # Layout cluster
         layout_cluster.addWidget(self.label_cluster_min)
         layout_cluster.addWidget(self.champ_nb_cluster_min)
         layout_cluster.addWidget(self.label_cluster_max)
         layout_cluster.addWidget(self.champ_nb_cluster_max)
 
         layout_princip.addLayout(layout_cluster)
-        layout_princip.addWidget(self.label2_cluster)
 
+        # Layout Secteur
         layout_princip.addWidget(self.label_secteur)
         layout_princip.addWidget(self.champ_secteur)
         layout_princip.addWidget(self.NAF_compl)
         layout_princip.addWidget(self.NAF_voulu)
 
-        layout_princip.addWidget(self.label_rayon)
-        layout_princip.addWidget(self.champ_rayon)
-        layout_princip.addWidget(self.label2_rayon)
+        # Layout rayon
+        layout_rayon.addWidget(self.label_rayon)
+        layout_rayon.addWidget(self.champ_rayon)
+        layout_rayon.addWidget(self.label_unite)
+        layout_princip.addLayout(layout_rayon)
 
+        # Bouton
         layout_princip.addWidget(self.bouton)
         
+        # Fenetre
         self.setLayout(layout_princip)
         
         self.setWindowTitle("IHM PyQT5")
