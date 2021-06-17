@@ -6,7 +6,7 @@ from src.clusterizer import clusterizer
 from src.ihm import web
 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, \
-                            QVBoxLayout, QLabel, QLineEdit
+                            QVBoxLayout, QLabel, QLineEdit, QHBoxLayout, QRadioButton
 
 class Fenetre(QWidget):
     def __init__(self):
@@ -19,7 +19,8 @@ class Fenetre(QWidget):
         self._valid = False
 
         # création du champ de texte
-        self.champ_nb_cluster = QLineEdit()
+        self.champ_nb_cluster_min = QLineEdit()
+        self.champ_nb_cluster_max = QLineEdit()
         self.champ_secteur = QLineEdit()
         self.champ_rayon = QLineEdit()
         
@@ -27,10 +28,15 @@ class Fenetre(QWidget):
         self.bouton = QPushButton("Clusterize !")
         # on connecte le signal "clicked" à la méthode "appui_bouton_copie"
         self.bouton.clicked.connect(self.appui_bouton_OK)
+        self.NAF_voulu = QRadioButton("Sélectionner uniquement ces secteurs")
+        self.NAF_compl = QRadioButton("Sélectionner toutes les secteurs sauf ceux-ci")
+        self.NAF_compl.setChecked(True)
  
-        # création de l'étiquette
-        self.label_cluster = QLabel("Nombre de cluster :")
-        self.label2_cluster = QLabel()
+        # création des étiquettes
+        self.label_cluster = QLabel("Nombre de clusters")
+        self.label_cluster_min = QLabel("Min :")
+        self.label_cluster_max = QLabel("Max :")
+        self.label2_cluster = QLabel("Valeur par défaut :")
 
         self.label_secteur = QLabel("Secteur NAF :")
         self.label2_secteur = QLabel()
@@ -39,22 +45,34 @@ class Fenetre(QWidget):
         self.label2_rayon = QLabel()
         
         # mise en place du gestionnaire de mise en forme
-        layout = QVBoxLayout()
-        layout.addWidget(self.label_cluster)
-        layout.addWidget(self.champ_nb_cluster)
-        layout.addWidget(self.label2_cluster)
+        # Création des layout
+        layout_princip = QVBoxLayout()
+        layout_cluster = QHBoxLayout()
 
-        layout.addWidget(self.label_secteur)
-        layout.addWidget(self.champ_secteur)
-        layout.addWidget(self.label2_secteur)
+        # Rangement des layouts
+        layout_princip.addWidget(self.label_cluster)
 
-        layout.addWidget(self.label_rayon)
-        layout.addWidget(self.champ_rayon)
-        layout.addWidget(self.label2_rayon)
+            # Layout cluster
+        layout_cluster.addWidget(self.label_cluster_min)
+        layout_cluster.addWidget(self.champ_nb_cluster_min)
+        layout_cluster.addWidget(self.label_cluster_max)
+        layout_cluster.addWidget(self.champ_nb_cluster_max)
 
-        layout.addWidget(self.bouton)
+        layout_princip.addLayout(layout_cluster)
+        layout_princip.addWidget(self.label2_cluster)
+
+        layout_princip.addWidget(self.label_secteur)
+        layout_princip.addWidget(self.champ_secteur)
+        layout_princip.addWidget(self.NAF_compl)
+        layout_princip.addWidget(self.NAF_voulu)
+
+        layout_princip.addWidget(self.label_rayon)
+        layout_princip.addWidget(self.champ_rayon)
+        layout_princip.addWidget(self.label2_rayon)
+
+        layout_princip.addWidget(self.bouton)
         
-        self.setLayout(layout)
+        self.setLayout(layout_princip)
         
         self.setWindowTitle("IHM PyQT5")
         self.resize(500, 500)
@@ -63,7 +81,7 @@ class Fenetre(QWidget):
     def appui_bouton_OK(self):
 
         # Récupération des données de l'interface 
-        nb_cluster = self.champ_nb_cluster.text()
+        nb_cluster = self.champ_nb_cluster_min.text()
         secteur = self.champ_secteur.text()
         rayon = self.champ_rayon.text()
 
@@ -99,9 +117,9 @@ class Fenetre(QWidget):
             self.label2_rayon.setText("Valeur prise en compte")
             self._valid = True
 
-        if self._valid :
+        #if self._valid :
             # Toutes les données entrées sont valides
-            self.lancement_clustering()
+            #self.lancement_clustering()
 
 
     def lancement_clustering(self) :
