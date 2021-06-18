@@ -8,14 +8,15 @@ from src.ihm import web
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, \
                             QVBoxLayout, QLabel, QLineEdit, QHBoxLayout, QRadioButton
 
+
 class Fenetre(QWidget):
     def __init__(self):
         QWidget.__init__(self)
         # Variable des données à récupérer dans la fenêtre (sous forme de liste)
 
         # Valeurs par défaut
-        # self._donnees = [nb_cluster, secteur, rayon]
-        self._donnees =[150, '', 8]
+        # self._donnees = [nb_cluster_min, nb_cluster_max, secteur, rayon]
+        self._donnees =[0, 0, '', 0]
         self._valid = False
 
         # création du champ de texte
@@ -87,53 +88,27 @@ class Fenetre(QWidget):
     def appui_bouton_OK(self):
 
         # Récupération des données de l'interface 
-        nb_cluster = self.champ_nb_cluster_min.text()
+        nb_cluster_min = self.champ_nb_cluster_min.text()
+        nb_cluster_max = self.champ_nb_cluster_max.text()
         secteur = self.champ_secteur.text()
         rayon = self.champ_rayon.text()
 
-        # Vérification de la validité des valeurs
-        verif_cluster = [str(k) for k in range(0, 150)]
-        verif_secteur = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','']
-        verif_rayon = [str(k) for k in range(1,20)]
+        # On suppose pour l'instant que l'utilisateur n'est pas stupide
+        self._donnees[0] = int(nb_cluster_min)
+        self._donnees[1] = int(nb_cluster_max)
+        self._donnees[2] = secteur
+        self._donnees[3] = int(rayon)
 
-        # Pour le nombre de cluster
-        if nb_cluster not in verif_cluster :
-            self.label2_cluster.setText("Valeur incorrecte : valeur par défaut")
-            self._valid = True
-        else :
-            self._donnees[0] = int(nb_cluster)
-            self.label2_cluster.setText("Valeur prise en compte")
-            self._valid = True
-
-        # Pour le secteur
-        if secteur not in verif_secteur :
-            self.label2_secteur.setText("Valeur incorrecte : valeur par défaut")
-            self._valid = True
-        else :
-            self._donnees[1] = secteur
-            self.label2_secteur.setText("Valeur prise en compte")
-            self._valid = True
-
-        # Pour le rayon
-        if rayon not in verif_rayon :
-            self.label2_rayon.setText("Valeur incorrecte : valeur par défaut")
-            self._valid = True
-        else :
-            self._donnees[2] = int(rayon)
-            self.label2_rayon.setText("Valeur prise en compte")
-            self._valid = True
-
-        #if self._valid :
-            # Toutes les données entrées sont valides
-            #self.lancement_clustering()
+        
 
 
     def lancement_clustering(self) :
         
-        nb_cluster = self._donnees[0]
-        secteur_NAF = self._donnees[1]
-        rayon = self._donnees[2]
-        print("Nombre de cluster =", nb_cluster)
+        nb_cluster_min = self._donnees[0]
+        nb_cluster_max = self._donnees[1]
+        secteur_NAF = self._donnees[2]
+        rayon = self._donnees[3]
+        print("Nombre de cluster =", nb_cluster_min)
         print("Rayon = ", rayon)
         print("Sélection NAF : ", secteur_NAF)
 
@@ -147,7 +122,7 @@ class Fenetre(QWidget):
 
             # On exécute le programme avec la base SIRENE :
 
-            clusterizer.main_json(rayon, secteur_NAF, nb_cluster, adresse)
+            clusterizer.main_json(rayon, secteur_NAF, nb_cluster_min, adresse)
 
             # On ouvre le fichier dans le navigateur (actuellement chrome)
             web.open_html(adresse)
