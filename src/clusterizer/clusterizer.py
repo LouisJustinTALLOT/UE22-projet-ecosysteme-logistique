@@ -264,6 +264,14 @@ def test_geojson():
     df, df_clusters = clusterize(df, 10, dict=False)
     save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
+def nb_clusters_par_zones(liste_df, nb_clusters):
+    poids_par_zone = [0]*len(liste_df)
+    for i in range(len(liste_df)):
+        poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700") 
+        poids_total = sum(poids_par_zone)
+    return np.round(poids_par_zone/poids_total * nb_clusters)
+
+
 def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clusterized_map_seine.html", reduce=False, threshold=1000):
     t1 = time.time()
     print("Ouverture de la DataFrame...", end="    ")
@@ -325,8 +333,7 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     print("Clusterisation...", end="    ")
 
     liste_df_clusters = []
-    nb_clusters_par_zone = [8, 75, 75, 10]
-
+    nb_clusters_par_zone = nb_clusters_par_zones(liste_df, nb_clusters)
     for no_zone in range(nb_zones):
         try:
             liste_df_clusters.append(
