@@ -3,7 +3,7 @@ sys.path.append("../../")
 
 
 from src.clusterizer import clusterizer
-from src.ihm import web
+from src.ihm import qt_web
 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, \
                             QVBoxLayout, QLabel, QLineEdit, QHBoxLayout, QRadioButton
@@ -31,7 +31,7 @@ class Fenetre(QWidget):
         # création du bouton
         self.bouton = QPushButton("Clusterize !")
         # on connecte le signal "clicked" à la méthode "appui_bouton_copie"
-        self.bouton.clicked.connect(self.appui_bouton_OK)
+        # self.bouton.clicked.connect(self.appui_bouton_OK)
         self.NAF_voulu = QRadioButton("Sélectionner uniquement ces secteurs")
         self.NAF_compl = QRadioButton("Sélectionner toutes les secteurs sauf ceux-ci")
         self.NAF_compl.setChecked(True)
@@ -81,59 +81,5 @@ class Fenetre(QWidget):
         # Fenetre
         self.setLayout(layout_princip)
         
-        self.setWindowTitle("IHM PyQT5")
-        self.resize(500, 500)
 
-    # on définit une méthode à connecter au signal envoyé
-    def appui_bouton_OK(self):
-
-        # Récupération des données de l'interface 
-        nb_cluster_min = self.champ_nb_cluster_min.text()
-        nb_cluster_max = self.champ_nb_cluster_max.text()
-        secteur = self.champ_secteur.text()
-        rayon = self.champ_rayon.text()
-
-        # On suppose pour l'instant que l'utilisateur n'est pas stupide
-        self._donnees[0] = int(nb_cluster_min)
-        self._donnees[1] = int(nb_cluster_max)
-        self._donnees[2] = secteur
-        self._donnees[3] = int(rayon)
-
-        
-
-
-    def lancement_clustering(self) :
-        
-        nb_cluster_min = self._donnees[0]
-        nb_cluster_max = self._donnees[1]
-        secteur_NAF = self._donnees[2]
-        rayon = self._donnees[3]
-        print("Nombre de cluster =", nb_cluster_min)
-        print("Rayon = ", rayon)
-        print("Sélection NAF : ", secteur_NAF)
-
-        adresse = "output_ihm/clusterized_ihm.html"
-
-        """
-        Clusterization avec les données utlisateurs
-        """
-
-        if __name__ == "__main__":
-
-            # On exécute le programme avec la base SIRENE :
-
-            clusterizer.main_json(rayon, secteur_NAF, nb_cluster_min, adresse)
-
-            # On ouvre le fichier dans le navigateur (actuellement chrome)
-            web.open_html(adresse)
-        
-        
-
-app = QApplication.instance() 
-if not app:
-    app = QApplication(sys.argv)
     
-fen = Fenetre()
-fen.show()
-
-app.exec_()
