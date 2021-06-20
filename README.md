@@ -41,6 +41,7 @@ Ce projet dépend des technologies et ressources suivantes :
     * [`matplotlib`](https://matplotlib.org) pour analyser les données issues des bases ainsi que visualiser le résultat du clustering
     * [`Jupyter`](https://jupyter.org/) pour développer de manière plus rapide (supporte même `Folium`)
     * [`PyQt5`](https://www.riverbankcomputing.com/software/pyqt/) pour réaliser l'interface homme-machine
+    * [`Cython`] pour compiler certains de nos modules et accèlérer notre code
   * Les librairies `C++` :
     * `iostream` pour les entrées/sorties
     * `fstream` pour lire/écrire les fichiers
