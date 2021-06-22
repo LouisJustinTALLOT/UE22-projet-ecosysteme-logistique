@@ -269,8 +269,12 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     print("Ouverture de la DataFrame...", end="    ")
 
     df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"), reduce=reduce, threshold=threshold)
-    if secteur_NAF != '' :
-        df = NAF_utils.filter_by_naf(df, NAF_utils.get_NAFs_by_section(secteur_NAF), "apet700")
+    if secteur_NAF != [''] :
+        list_section = []
+        for secteur in secteur_NAF :
+            list_section = list_section + NAF_utils.get_NAFs_by_section(secteur).tolist()
+
+        df = NAF_utils.filter_by_naf(df, list_section, "apet700")
 
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
