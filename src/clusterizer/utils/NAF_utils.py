@@ -67,7 +67,7 @@ def get_NAFs_by_section(section):
 
     :param section: La lettre de la section
     :returns La liste des codes NAF contenus dans la section (convention : avec points)
-    """
+    """ 
     masque = df_naf_descriptions["code"] == ("SECTION " + section)
     # normalement ce masque n'est à True qu'à un seul endroit
     # du coup, comme True=1, on utilise cette astuce pour récupérer l'indice de la ligne
