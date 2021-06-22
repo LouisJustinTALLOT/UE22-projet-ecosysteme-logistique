@@ -21,7 +21,7 @@ class Fenetre(QWidget):
 
         # création du champ de texte
         self.champ_nb_cluster_min = QLineEdit()
-        self.champ_nb_cluster_min.setText("5")
+        self.champ_nb_cluster_min.setText("10")
         self.champ_nb_cluster_max = QLineEdit()
         self.champ_nb_cluster_max.setText("10")
         self.champ_secteur = QLineEdit()
