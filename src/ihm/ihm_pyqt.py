@@ -41,7 +41,7 @@ class Fenetre(QWidget):
         self.label_cluster_min = QLabel("Min :")
         self.label_cluster_max = QLabel("Max :")
 
-        self.label_secteur = QLabel("Secteur NAF :")
+        self.label_secteur = QLabel("Secteur NAF : (lettre entre A et U)\nSéparer les secteurs par un espace.")
 
         self.label_rayon = QLabel("Rayon de la sélection :")
         self.label_unite = QLabel("km")
