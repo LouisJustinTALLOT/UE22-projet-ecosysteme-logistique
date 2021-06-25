@@ -1,5 +1,5 @@
-from pprint import pprint
-from typing import List, Tuple
+from pprint import pformat, pprint
+from typing import Dict, List, Tuple
 import geopandas as gpd
 import pandas as pd
 import numpy as np
@@ -16,7 +16,7 @@ sys.path.append("../../")
 
 from sklearn.cluster import KMeans, MiniBatchKMeans
 
-from shapely.geometry import Polygon
+from shapely.geometry import Polygon, Point
 
 from src.clusterizer.utils import NAF_utils
 from src.clusterizer.utils import clusterizer_utils
@@ -26,7 +26,6 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
     COLUMN_CENTROIDS_NAME, \
     COLUMN_DEFAULT_GEOMETRY_NAME, \
     COLUMN_CLUSTER_MASS_NAME
-from seine_data_utils import Frontiere, get_frontieres_utiles, Point
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
@@ -36,106 +35,41 @@ Pour avoir des exemples d'utilisation, aller à la toute fin où il y a les test
 
 DEBUG_PLOT = False # pour afficher les points et frontières (debugging)
 
-f_seine_nord, \
-f_seine_ouest, \
-f_seine_petit_droite, \
-f_seine_petit_gauche, \
-f_seine_central, \
-f_seine_alfort_1_gauche,\
-f_seine_alfort_2_droite,\
-f_seine_alfort_3_gauche,\
-f_marne,\
-= get_frontieres_utiles()
+DICT_ZONES_IDF = {
+    0 : "IDF_zone_est",
+    1 : "IDF_zone_nord_ouest",
+    2 : "IDF_zone_nord",
+    3 : "IDF_zone_Paris_ouest",
+    4 : "IDF_zone_sud",
+}
 
-# @jit(nopython=True, parallel=True)
-# @nb.njit(nb.types.int64(nb.types.containers.UniTuple(nb.types.float64, 2)))
+DIR_SHP_FILES = "../../data/IDF_5_zones/"
+
+DICT_GDF_ZONES: Dict[int, Polygon] = {}
+
+for i in DICT_ZONES_IDF.keys():
+    DICT_GDF_ZONES[i] = gpd.read_file(DIR_SHP_FILES + DICT_ZONES_IDF[i] + ".shp")['geometry'][0]
+
+# pprint(DICT_GDF_ZONES[0].contains(Point(2.3, 48.4)))
+
+# pprint([(i, pformat(DICT_GDF_ZONES[i])) for i in DICT_ZONES_IDF.keys()])
+
+# raise BaseException
+
+NB_ZONES = len(DICT_ZONES_IDF)
+
 @np.vectorize
 def rapport_a_la_seine(xy):
+    coord = (xy[0], xy[1])
 
-    point_etudie = Point(xy[0], xy[1])
+    for no_zone, gdf in DICT_GDF_ZONES.items():
+        if Point(*coord).within(gdf):
+            # print(coord, no_zone)
+            return no_zone
 
-    # try:
-    #     f_seine_ouest.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if e.res:
-    #         return 0
+    # print(coord, "out of all zones")
+    return NB_ZONES
 
-    try:
-        if f_seine_ouest.en_dessous(point_etudie):
-            if DEBUG_PLOT:
-                point_etudie.plot("red")
-            return 0
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-    
-    # try:
-    #     f_seine_central.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if e.res:
-    #         return 1
-
-    try:
-        if f_seine_central.en_dessous(point_etudie) :
-            if DEBUG_PLOT:
-                point_etudie.plot("green")
-            return 1
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-
-    # try:
-    #     f_marne.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if e.res:
-    #         return 1
-    try:
-        if f_marne.en_dessous(point_etudie) :
-            if DEBUG_PLOT:
-                point_etudie.plot("green")
-            return 1
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-
-    # try:
-    #     f_seine_central.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if not e.res:
-    #         return 2
-    try:
-        if not f_seine_central.en_dessous(point_etudie):
-            if DEBUG_PLOT:
-                point_etudie.plot("blue")
-            return 2
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-
-    # try:
-    #     f_seine_alfort_1_gauche.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if e.res:
-    #         return 2
-    try:
-        if f_seine_alfort_1_gauche.en_dessous(point_etudie):
-            if DEBUG_PLOT:
-                point_etudie.plot("blue")
-            return 2
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-
-    # try:
-    #     f_seine_alfort_2_droite.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if e.res:
-    #         return 2
-    try:
-        if f_seine_alfort_2_droite.en_dessous(point_etudie):
-            if DEBUG_PLOT:
-                point_etudie.plot("blue")
-            return 2
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-    if DEBUG_PLOT:
-        point_etudie.plot("black")
-    return 3
 
 def process_rapport_a_la_seine(no_zone:int, df: pd.DataFrame, shared_array: Array) -> None:
     shared_array[no_zone] = df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
@@ -297,54 +231,39 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     # Maisons-Alfort,
     # Courbevoie-Asnières
 
-    nb_zones = 4
+    masque = rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
+
     liste_df = []
-    for no_zone in range(nb_zones):
+    for no_zone in DICT_GDF_ZONES.keys():
+        print("key ", no_zone)
         liste_df.append(
             # df[numba_rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])), no_zone)]
-            df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
+            df[no_zone == masque].reset_index(drop=True)
         )
 
+    pprint(liste_df)
 
-    # print(liste_df[0].head(5))
-    # input()
-    # print("\n\n\n")
-    # print(liste_df[0].to_numpy())
-    # input()
-    # liste_df = RawArray(pd.DataFrame, nb_zones)
-    # liste_processes : List[Process] = []
-
-    # for i in range(nb_zones):
-    #     liste_processes.append(Process(target=process_rapport_a_la_seine, args= (i, df, liste_df)))
-
-    # for i in range(nb_zones):
-    #     liste_processes[i].start()
-    # for i in range(nb_zones):
-    #     liste_processes[i].join()
-
-    
-    # with Pool(nb_zones) as p:
-    #     liste_df = p.map(map_rapport_a_la_seine, [(i, df) for i in range(nb_zones)])
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
     print("Clusterisation...", end="    ")
 
     liste_df_clusters = []
-    nb_clusters_par_zone = [8, 75, 75, 10]
+    nb_clusters_par_zone = [10]*NB_ZONES
 
-    for no_zone in range(nb_zones):
+    for no_zone in range(NB_ZONES):
         try:
             liste_df_clusters.append(
                 clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], dict=True, weight=True)
             )
-        except ValueError:
+        except ValueError as e:
+            print(e)
             pass
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
     print("Sauvegarde sur la carte...", end="    ")
-
+    # print(liste_df_clusters)
     map = save_to_map(liste_df_clusters[0][1])
 
     for no_zone in range(1, len(liste_df_clusters)):
@@ -368,18 +287,9 @@ if __name__ == "__main__":
     if DEBUG_PLOT:    
         main_json(reduce=True)
 
-        f_seine_nord.plot(couleur="black")
-        f_seine_ouest.plot(couleur="purple")
-        f_seine_petit_droite.plot(couleur="black")
-        f_seine_petit_gauche.plot(couleur="black")
-        f_seine_central.plot(couleur="black")
-        f_seine_alfort_1_gauche.plot(couleur="black")
-        f_seine_alfort_2_droite.plot(couleur="black")
-        f_seine_alfort_3_gauche.plot(couleur="black")
-        f_marne.plot(couleur="black")
-        plt.show()
-
     else:
         # main_json(reduce = True, adresse_map="output/clusterized_map_optim_de_cython.html")
         # main_json(adresse_map="output/clusterized_map_optim_de_cython.html")
-        cProfile.run('main_json(adresse_map="output/clusterized_map_optim_de_cython.html")')
+        # cProfile.run('main_json(adresse_map="output/clusterized_map_with_shapefile.html", reduce=True, threshold=10000)')
+        # cProfile.run('main_json(rayon=1000, adresse_map="output/clusterized_map_with_shapefile.html")')
+        main_json(rayon=20, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
