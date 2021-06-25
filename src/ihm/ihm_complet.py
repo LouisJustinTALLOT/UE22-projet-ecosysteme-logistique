@@ -85,18 +85,17 @@ class Wind(QMainWindow):
 
                 # On ouvre le fichier dans PyQt
 
-                
+
                 view = QtWebEngineWidgets.QWebEngineView()
                 interceptor = qt_web.Interceptor()
                 view.page().profile().setUrlRequestInterceptor(interceptor)
 
                 view.setHtml(open(adresse, 'r').read())
-                
+
                 self.setCentralWidget(view)
                 self.setWindowTitle("Carte avec "+str(nb_clust)+" clusters")
-                size_ecran = QDesktopWidget().screenGeometry()
                 self.move(0,0)
-                self.resize(1000, 1000)
+                self.showMaximized()
                 
 
 
