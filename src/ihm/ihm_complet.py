@@ -8,13 +8,13 @@ from src.ihm import qt_web
 from src.clusterizer import clusterizer
 
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QDesktopWidget, QMainWindow, QWidget
+from PyQt5 import QtWebEngineWidgets
 
 class Wind(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.IHM = ihm_pyqt.Fenetre()
-        self.carte = QWidget()
 
         self.IHM.bouton.clicked.connect(self.appui_bouton_OK)
 
@@ -71,17 +71,12 @@ class Wind(QMainWindow):
             print("Rayon = ", rayon)
             print("Sélection NAF : ", secteur_NAF)
 
-<<<<<<< HEAD
             adresse = "output_ihm/" +str(nb_clust) +"_clusterized_ihm.html"
-=======
-            adresse = "output_ihm/" +str(nb_clust) +"clusterized_ihm.html"
->>>>>>> b04d31a0f3ac2212e5c623d52dc69d489f31946d
 
             """
             Clusterization avec les données utlisateurs
             """
 
-<<<<<<< HEAD
             if __name__ == "__main__":
 
                 # On exécute le programme avec la base SIRENE :
@@ -89,23 +84,21 @@ class Wind(QMainWindow):
                 clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse)
 
                 # On ouvre le fichier dans PyQt
-    
-                self.carte = qt_web.Carte()
-                self.setCentralWidget(self.carte)
+
+
+                view = QtWebEngineWidgets.QWebEngineView()
+                interceptor = qt_web.Interceptor()
+                view.page().profile().setUrlRequestInterceptor(interceptor)
+
+                view.setHtml(open(adresse, 'r').read())
+                
+
+                self.setCentralWidget(view)
                 self.setWindowTitle("Carte avec "+str(nb_clust)+" clusters")
-=======
-            #if __name__ == "__main__":
-
-                # On exécute le programme avec la base SIRENE :
-
-                #clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse)
-
-                # On ouvre le fichier dans PyQt
-    
-                #self.carte = qt_web.Carte()
-                #self.setCentralWidget(self.carte)
-                #self.setWindowTitle("Carte avec "+str(nb_clust)+" clusters")
->>>>>>> b04d31a0f3ac2212e5c623d52dc69d489f31946d
+                size_ecran = QDesktopWidget().screenGeometry()
+                print(size_ecran)
+                self.resize(size_ecran.width(), size_ecran.height())
+                self.move(0,0)
                 
 
 
