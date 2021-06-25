@@ -1,15 +1,13 @@
 import sys
 sys.path.append("../../")
 
-
-from src.clusterizer import clusterizer
-from src.ihm import qt_web
-
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, \
-                            QVBoxLayout, QLabel, QLineEdit, QHBoxLayout, QRadioButton
+from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel, \
+                            QLineEdit, QHBoxLayout, QRadioButton
 
 
-class Fenetre(QWidget):
+class InputFenetre(QWidget):
+    """Le widget qui permet à l'utilisateur de rentrer les paramètres de clustering
+    """
     def __init__(self):
         QWidget.__init__(self)
         # Variable des données à récupérer dans la fenêtre (sous forme de liste)
@@ -80,6 +78,3 @@ class Fenetre(QWidget):
         
         # Fenetre
         self.setLayout(layout_princip)
-        
-
-    

@@ -11,7 +11,7 @@ from src.clusterizer import clusterizer
 class Wind(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
-        self.IHM = ihm_pyqt.Fenetre()
+        self.IHM = ihm_pyqt.InputFenetre()
 
         self.IHM.bouton.clicked.connect(self.appui_bouton_OK)
 
@@ -38,7 +38,6 @@ class Wind(QMainWindow):
         if secteur != '' :
             if self.IHM.NAF_voulu.isChecked() :
                 list_secteur = secteur.split()
-
             else :
                 list_secteur = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U']
                 to_remove = secteur.split()
@@ -47,7 +46,6 @@ class Wind(QMainWindow):
                     list_secteur.remove(lettre)
 
         self.IHM._donnees[2] = list_secteur
-
         self.lancement_clustering()
 
    
