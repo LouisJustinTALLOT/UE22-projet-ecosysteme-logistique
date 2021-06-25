@@ -33,7 +33,7 @@ class Fenetre(QWidget):
         # on connecte le signal "clicked" à la méthode "appui_bouton_copie"
         # self.bouton.clicked.connect(self.appui_bouton_OK)
         self.NAF_voulu = QRadioButton("Sélectionner uniquement ces secteurs")
-        self.NAF_compl = QRadioButton("Sélectionner toutes les secteurs sauf ceux-ci")
+        self.NAF_compl = QRadioButton("Sélectionner tous les secteurs sauf ceux-ci")
         self.NAF_compl.setChecked(True)
  
         # création des étiquettes
