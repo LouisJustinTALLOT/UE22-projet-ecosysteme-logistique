@@ -8,13 +8,13 @@ from src.ihm import qt_web
 from src.clusterizer import clusterizer
 
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QDesktopWidget, QMainWindow
+from PyQt5 import QtWebEngineWidgets
 
 class Wind(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.IHM = ihm_pyqt.Fenetre()
-        self.carte = QWidget()
 
         self.IHM.bouton.clicked.connect(self.appui_bouton_OK)
 
@@ -74,19 +74,29 @@ class Wind(QMainWindow):
             adresse = "output_ihm/" +str(nb_clust) +"_clusterized_ihm.html"
 
             """
-                Clusterization avec les données utlisateurs
+            Clusterization avec les données utlisateurs
             """
 
             if __name__ == "__main__":
+
                 # On exécute le programme avec la base SIRENE :
 
                 clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse)
 
                 # On ouvre le fichier dans PyQt
 
-                self.carte = qt_web.Carte()
-                self.setCentralWidget(self.carte)
+
+                view = QtWebEngineWidgets.QWebEngineView()
+                interceptor = qt_web.Interceptor()
+                view.page().profile().setUrlRequestInterceptor(interceptor)
+
+                view.setHtml(open(adresse, 'r').read())
+
+                self.setCentralWidget(view)
                 self.setWindowTitle("Carte avec "+str(nb_clust)+" clusters")
+                size_ecran = QDesktopWidget().screenGeometry()
+                self.move(0,0)
+                self.resize(1000, 1000)
                 
 
 
