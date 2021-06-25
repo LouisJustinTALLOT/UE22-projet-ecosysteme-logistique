@@ -84,7 +84,7 @@ class Wind(QMainWindow):
 
                 # On exécute le programme avec la base SIRENE :
 
-                clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse, reduce=True)
+                clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse)
 
                 # On ouvre le fichier dans PyQt
 
