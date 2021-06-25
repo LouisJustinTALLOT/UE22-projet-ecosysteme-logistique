@@ -1,4 +1,7 @@
+import os
 import sys
+
+from PyQt5.QtCore import QUrl
 sys.path.append("../../")
 
 
@@ -81,7 +84,7 @@ class Wind(QMainWindow):
 
                 # On exécute le programme avec la base SIRENE :
 
-                clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse)
+                clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse, reduce=True)
 
                 # On ouvre le fichier dans PyQt
 
