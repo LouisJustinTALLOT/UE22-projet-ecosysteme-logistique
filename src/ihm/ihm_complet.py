@@ -71,23 +71,23 @@ class Wind(QMainWindow):
             print("Rayon = ", rayon)
             print("Sélection NAF : ", secteur_NAF)
 
-            adresse = "output_ihm/" +str(nb_clust) +"clusterized_ihm.html"
+            adresse = "output_ihm/" +str(nb_clust) +"_clusterized_ihm.html"
 
             """
             Clusterization avec les données utlisateurs
             """
 
-            #if __name__ == "__main__":
+            if __name__ == "__main__":
 
                 # On exécute le programme avec la base SIRENE :
 
-                #clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse)
+                clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse)
 
                 # On ouvre le fichier dans PyQt
     
-                #self.carte = qt_web.Carte()
-                #self.setCentralWidget(self.carte)
-                #self.setWindowTitle("Carte avec "+str(nb_clust)+" clusters")
+                self.carte = qt_web.Carte()
+                self.setCentralWidget(self.carte)
+                self.setWindowTitle("Carte avec "+str(nb_clust)+" clusters")
                 
 
 
