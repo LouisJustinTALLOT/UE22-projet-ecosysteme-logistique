@@ -157,7 +157,7 @@ def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GE
     if reduce and df.size >= threshold:
         df = df[:threshold]
 
-    return df.dropna(subset=[column_geometry]).reset_index()
+    return df.dropna(subset=[column_geometry]).reset_index(drop=True)
 
 
 def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, weight=True):
@@ -268,7 +268,8 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     t1 = time.time()
     print("Ouverture de la DataFrame...", end="    ")
 
-    df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"), reduce=reduce, threshold=threshold)
+    df = nettoyer(pd.read_json("../../data/base_sirene_10000.json"), reduce=reduce, threshold=threshold)
+
     if secteur_NAF != [''] :
         list_section = []
         for secteur in secteur_NAF :
@@ -280,7 +281,6 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
     print("On ne garde que les données du centre...", end="    ")
-
 
     df = clusterizer_utils.filter_nearby_paris(df, radius=rayon, dict=True)
 

@@ -59,7 +59,7 @@ def get_description(code_naf):
     :return: la description complète.
     """
     code_naf = ajouter_point(code_naf)
-    return df_naf_descriptions[df_naf_descriptions["code"] == code_naf].reset_index().loc[0, "description"]
+    return df_naf_descriptions[df_naf_descriptions["code"] == code_naf].reset_index(drop=True).loc[0, "description"]
 
 def get_NAFs_by_section(section):
     """
@@ -90,4 +90,4 @@ def filter_by_naf(df, codes_naf, column_codes):
     :param column_codes: La colonne où est située le code NAF dans la DataFrame des établissements
     :return: La DataFrame filtrée.
     """
-    return df[vectorized_belongs(df[column_codes], vectorized_retirer_points(codes_naf))].reset_index()
+    return df[vectorized_belongs(df[column_codes], vectorized_retirer_points(codes_naf))].reset_index(drop=True)
