@@ -94,9 +94,8 @@ class Wind(QMainWindow):
 
                 self.setCentralWidget(view)
                 self.setWindowTitle("Carte avec "+str(nb_clust)+" clusters")
-                size_ecran = QDesktopWidget().screenGeometry()
                 self.move(0,0)
-                self.resize(1000, 1000)
+                self.showMaximized()
                 
 
 
