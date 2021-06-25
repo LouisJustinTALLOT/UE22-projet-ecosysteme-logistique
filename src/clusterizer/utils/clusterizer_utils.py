@@ -71,13 +71,18 @@ def get_infos_clusters_enveloppes_convexes(k, df, column_geometry=COLUMN_DEFAULT
         else:
             multi_point = MultiPoint(points.array)
 
-        hull = multi_point.convex_hull
+        # hull = multi_point.convex_hull
+        temp_hulls[n] = Polygon(Polygon(multi_point).boundary.coords)
 
-        if type(hull) == Point or type(hull) == LineString or type(hull) == GeometryCollection:
-            # S'il n'y a qu'un point dans le cluster, on ne peut pas créer de Polygon
-            temp_hulls[n] = hull
-        else:
-            temp_hulls[n] = Polygon(hull)
+        # if type(hull) == Point or type(hull) == LineString or type(hull) == GeometryCollection:
+        #     # S'il n'y a qu'un point dans le cluster, on ne peut pas créer de Polygon
+        #     temp_hulls[n] = hull
+        # else:
+        # try:
+        #     temp_hulls[n] = Polygon(hull)
+        # except Exception as e:
+        #     print(e)
+        #     temp_hulls[n] = hull
 
     return gpd.GeoDataFrame(gpd.GeoSeries(temp_hulls), columns=[COLUMN_HULLS_NAME])
 
