@@ -188,7 +188,7 @@ def filter_nearby_paris(df, radius, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME
 
     distances = 20000/np.pi * (np.arccos(np.sin(l1)*np.sin(l2) + np.cos(l1)*np.cos(l2)*np.cos(L1-L2)))
     masque = distances <= radius
-    return df[masque].reset_index()
+    return df[masque].reset_index(drop=True)
 
 
 def get_coords_from_object(df, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False):

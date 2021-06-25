@@ -25,7 +25,7 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
     COLUMN_CENTROIDS_NAME, \
     COLUMN_DEFAULT_GEOMETRY_NAME, \
     COLUMN_CLUSTER_MASS_NAME
-from seine_data_utils import Frontiere, get_frontieres_utiles, Point
+from src.clusterizer.utils.seine_data_utils_py import Frontiere, get_frontieres_utiles, Point
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
@@ -159,7 +159,7 @@ def nettoyer(df: pd.DataFrame, reduce: bool = False, threshold: int = 1000, colu
     if reduce and df.size >= threshold:
         df = df[:threshold]
 
-    return df.dropna(subset=[column_geometry]).reset_index()
+    return df.dropna(subset=[column_geometry]).reset_index(drop=True)
 
 
 def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, weight=True):
@@ -224,12 +224,13 @@ def save_to_map(df_clusters, map=None):
     if map is None:
         map = folium.Map(location=[48.844952, 2.339193],
                         zoom_start=10,
-                        tiles="OpenStreetMap"
+                        tiles="Stamen Terrain"
                         )
+        
 
-    couleurs = ['cadetblue', 'orange', 'darkred', 'black',
-                'purple', 'gray', 'green', 'darkgreen', 'lightgreen',
-                'darkblue', 'white', 'blue', 'red']
+    couleurs = ['darkslateblue', 'orange', 'darkred', 'black',
+                'purple', 'deeppink', 'green', 'darkgreen', 'maroon',
+                'darkblue', 'chocolate', 'blue', 'red']
 
     centroids = df_clusters.loc[:, COLUMN_CENTROIDS_NAME]
     hulls = df_clusters.loc[:, COLUMN_HULLS_NAME]
@@ -280,14 +281,18 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     print("Ouverture de la DataFrame...", end="    ")
 
     df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"), reduce=reduce, threshold=threshold)
-    if secteur_NAF != '' :
-        df = NAF_utils.filter_by_naf(df, NAF_utils.get_NAFs_by_section(secteur_NAF), "apet700")
+
+    if secteur_NAF != [''] :
+        list_section = []
+        for secteur in secteur_NAF :
+            list_section = list_section + NAF_utils.get_NAFs_by_section(secteur).tolist()
+
+        df = NAF_utils.filter_by_naf(df, list_section, "apet700")
 
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
     print("On ne garde que les données du centre...", end="    ")
-
 
     df = clusterizer_utils.filter_nearby_paris(df, radius=rayon, dict=True)
 
@@ -336,8 +341,10 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     print("Clusterisation...", end="    ")
 
     liste_df_clusters = []
+
     nb_clusters_par_zone = calcule_nb_clusters_par_zone(liste_df, nb_clusters)
     # pprint(nb_clusters_par_zone)
+
 
     for no_zone in range(nb_zones):
         try:
