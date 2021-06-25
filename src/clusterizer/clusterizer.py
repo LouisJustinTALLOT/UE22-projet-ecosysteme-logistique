@@ -224,6 +224,7 @@ def save_to_map(df_clusters, map=None):
                         zoom_start=10,
                         tiles="OpenStreetMap"
                         )
+        # Stamen Terrain
 
     couleurs = ['cadetblue', 'orange', 'darkred', 'black',
                 'purple', 'gray', 'green', 'darkgreen', 'lightgreen',
