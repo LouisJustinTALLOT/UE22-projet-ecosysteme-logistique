@@ -90,15 +90,16 @@ class Wind(QMainWindow):
 
 
                 view = QtWebEngineWidgets.QWebEngineView()
-                interceptor = qt_web.Interceptor()
-                view.page().profile().setUrlRequestInterceptor(interceptor)
 
                 view.setHtml(open(adresse, 'r').read())
 
+                
+                self.takeCentralWidget()
                 self.setCentralWidget(view)
                 self.setWindowTitle("Carte avec "+str(nb_clust)+" clusters")
                 self.move(0,0)
                 self.showMaximized()
+
                 
 
 

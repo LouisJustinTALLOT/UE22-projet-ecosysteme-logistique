@@ -222,13 +222,13 @@ def save_to_map(df_clusters, map=None):
     if map is None:
         map = folium.Map(location=[48.844952, 2.339193],
                         zoom_start=10,
-                        tiles="OpenStreetMap"
+                        tiles="Stamen Terrain"
                         )
-        # Stamen Terrain
+        
 
-    couleurs = ['cadetblue', 'orange', 'darkred', 'black',
-                'purple', 'gray', 'green', 'darkgreen', 'lightgreen',
-                'darkblue', 'white', 'blue', 'red']
+    couleurs = ['darkslateblue', 'orange', 'darkred', 'black',
+                'purple', 'deeppink', 'green', 'darkgreen', 'maroon',
+                'darkblue', 'chocolate', 'blue', 'red']
 
     centroids = df_clusters.loc[:, COLUMN_CENTROIDS_NAME]
     hulls = df_clusters.loc[:, COLUMN_HULLS_NAME]
