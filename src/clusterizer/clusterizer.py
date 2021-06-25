@@ -29,8 +29,6 @@ from seine_data_utils import Frontiere, get_frontieres_utiles, Point
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
-
-Pour avoir des exemples d'utilisation, aller à la toute fin où il y a les tests
 """
 
 DEBUG_PLOT = False # pour afficher les points et frontières (debugging)
@@ -65,7 +63,7 @@ def rapport_a_la_seine(xy):
             return 0
     except Frontiere.HorsDeLaFrontiereError:
         pass
-    
+
     # try:
     #     f_seine_central.en_dessous(point_etudie)
     # except Frontiere.DansLaFrontiereNotError as e:
@@ -144,9 +142,10 @@ def map_rapport_a_la_seine(args_tuple: Tuple[int, pd.DataFrame]) -> pd.DataFrame
 
 
 
-def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
+def nettoyer(df: pd.DataFrame, reduce: bool = False, threshold: int = 1000, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME) -> pd.DataFrame:
     """
-    Nettoie la DataFrame. Enlève les na, et si spécifié, ne prend que les premières données de la (Geo)DataFrame.
+    Nettoie la DataFrame. Enlève les na.
+    Si spécifié, ne retient que les premières données de la DataFrame.
 
     :param df: La DataFrame.
     :param reduce: Si True, ne prend que les premières données.
@@ -154,6 +153,9 @@ def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GE
     :param column_geometry: A spécifier si la colonne contenant les points n'est pas la colonne par défaut ("geometry")
     :return: Une DataFrame nettoyée.
     """
+
+
+
     if reduce and df.size >= threshold:
         df = df[:threshold]
 
@@ -267,7 +269,7 @@ def test_geojson():
 def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
     poids_par_zone: np.ndarray = np.zeros(len(liste_df))
     for i in range(len(liste_df)):
-        poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700") 
+        poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700")
     poids_total = np.sum(poids_par_zone)
     nb_par_zone = np.rint((poids_par_zone / poids_total * nb_clusters)).astype(int)
     nb_par_zone = np.maximum(nb_par_zone, np.ones(len(liste_df), dtype=int))  # il faut au moins un cluster par zone considérée
@@ -293,7 +295,7 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
     print("On sépare par la Seine...", end="    ")
-    
+
     # on va avoir au moins 4 zones:
     # rive Gauche,
     # rive Droite,
@@ -325,7 +327,7 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     # for i in range(nb_zones):
     #     liste_processes[i].join()
 
-    
+
     # with Pool(nb_zones) as p:
     #     liste_df = p.map(map_rapport_a_la_seine, [(i, df) for i in range(nb_zones)])
     t2 = time.time()
@@ -369,7 +371,7 @@ if __name__ == "__main__":
 
     # On exécute le programme avec la base SIRENE :
 
-    if DEBUG_PLOT:    
+    if DEBUG_PLOT:
         main_json(reduce=True)
 
         f_seine_nord.plot(couleur="black")
