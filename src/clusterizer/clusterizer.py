@@ -268,7 +268,7 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     t1 = time.time()
     print("Ouverture de la DataFrame...", end="    ")
 
-    df = nettoyer(pd.read_json("../../data/base_sirene_10000.json"), reduce=reduce, threshold=threshold)
+    df = nettoyer(pd.read_json("../../data/base_sirene_shortened.json"), reduce=reduce, threshold=threshold)
 
     if secteur_NAF != [''] :
         list_section = []
