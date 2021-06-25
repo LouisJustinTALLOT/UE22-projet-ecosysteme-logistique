@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ef94610d8aee4788b2611979fb5d11b3 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    <title>1 clusters</title>
+    <title>7 clusters</title>
+    <title>3 clusters</title>
+    <title>1 clusters</title>
+    
+            <div class="folium-map" id="map_ef94610d8aee4788b2611979fb5d11b3" ></div>
+        
+</body>
+<script>    
+    
+            var map_ef94610d8aee4788b2611979fb5d11b3 = L.map(
+                "map_ef94610d8aee4788b2611979fb5d11b3",
+                {
+                    center: [48.844952, 2.339193],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_f788a22daf894b4fbfbb2a40773b0803 = L.tileLayer(
+                "https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+                {"attribution": "Map tiles by \u003ca href=\"http://stamen.com\"\u003eStamen Design\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by/3.0\"\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by-sa/3.0\"\u003eCC BY SA\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+            var circle_marker_64aec7d64f38413db1a21797283e8181 = L.circleMarker(
+                [48.90563225878238, 2.280251627566383],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_198999a820104d76aad7e295d21cf141 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b970d08733f244338dd4542519f579bb = $(`<div id="html_b970d08733f244338dd4542519f579bb" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 0 : 5 établissements. Poids : 5</div>`)[0];
+            popup_198999a820104d76aad7e295d21cf141.setContent(html_b970d08733f244338dd4542519f579bb);
+        
+
+        circle_marker_64aec7d64f38413db1a21797283e8181.bindPopup(popup_198999a820104d76aad7e295d21cf141)
+        ;
+
+        
+    
+    
+            var polygon_d4c44537e43b4a7e890b8b386cd1efe8 = L.polygon(
+                [[48.897276, 2.265224], [48.897503, 2.262088], [48.914914, 2.2943569999999998], [48.910782, 2.296506], [48.897276, 2.265224]],
+                {"bubblingMouseEvents": true, "color": "darkslateblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkslateblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_b7159dbb4f9941c3a683f282bf45dd59 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_4b7551128e0c4c7d9629599fd3c3acda = $(`<div id="html_4b7551128e0c4c7d9629599fd3c3acda" style="width: 100.0%; height: 100.0%;">Cluster 0</div>`)[0];
+            popup_b7159dbb4f9941c3a683f282bf45dd59.setContent(html_4b7551128e0c4c7d9629599fd3c3acda);
+        
+
+        polygon_d4c44537e43b4a7e890b8b386cd1efe8.bindPopup(popup_b7159dbb4f9941c3a683f282bf45dd59)
+        ;
+
+        
+    
+    
+            var circle_marker_52827ecb01874382986ed610a6377bbf = L.circleMarker(
+                [48.887745821578854, 2.34170187114964],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_479ef45cc53b4050b460524162f587cd = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2511ca77527d4f0fad1c0ddd4f024ae6 = $(`<div id="html_2511ca77527d4f0fad1c0ddd4f024ae6" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 0 : 67 établissements. Poids : 82</div>`)[0];
+            popup_479ef45cc53b4050b460524162f587cd.setContent(html_2511ca77527d4f0fad1c0ddd4f024ae6);
+        
+
+        circle_marker_52827ecb01874382986ed610a6377bbf.bindPopup(popup_479ef45cc53b4050b460524162f587cd)
+        ;
+
+        
+    
+    
+            var circle_marker_dcbb4c1368e444ac8f991bf7c806c744 = L.circleMarker(
+                [48.850318798560224, 2.3943911223807675],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_f290cfc3c1544865b4fc58a3805001a8 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_6af9eff3dad647ef9d44135c4e7b70dd = $(`<div id="html_6af9eff3dad647ef9d44135c4e7b70dd" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 1 : 46 établissements. Poids : 58</div>`)[0];
+            popup_f290cfc3c1544865b4fc58a3805001a8.setContent(html_6af9eff3dad647ef9d44135c4e7b70dd);
+        
+
+        circle_marker_dcbb4c1368e444ac8f991bf7c806c744.bindPopup(popup_f290cfc3c1544865b4fc58a3805001a8)
+        ;
+
+        
+    
+    
+            var circle_marker_c729159cab9a46ca8ce4392c924b06f8 = L.circleMarker(
+                [48.86930974282752, 2.3645362448150733],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_d1bcf1ebb3fb478497a0dfebbf0b3384 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0c0955d24e734a1a887ac9b02ed2f685 = $(`<div id="html_0c0955d24e734a1a887ac9b02ed2f685" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 2 : 77 établissements. Poids : 86</div>`)[0];
+            popup_d1bcf1ebb3fb478497a0dfebbf0b3384.setContent(html_0c0955d24e734a1a887ac9b02ed2f685);
+        
+
+        circle_marker_c729159cab9a46ca8ce4392c924b06f8.bindPopup(popup_d1bcf1ebb3fb478497a0dfebbf0b3384)
+        ;
+
+        
+    
+    
+            var circle_marker_5b4695bf3dea414e9164a21cc476a85c = L.circleMarker(
+                [48.872705110533886, 2.276132613275612],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_f4bafd13ccc749709d3306b989e8605b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_6a3508760d0d437cac4a873cd7084978 = $(`<div id="html_6a3508760d0d437cac4a873cd7084978" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 3 : 48 établissements. Poids : 51</div>`)[0];
+            popup_f4bafd13ccc749709d3306b989e8605b.setContent(html_6a3508760d0d437cac4a873cd7084978);
+        
+
+        circle_marker_5b4695bf3dea414e9164a21cc476a85c.bindPopup(popup_f4bafd13ccc749709d3306b989e8605b)
+        ;
+
+        
+    
+    
+            var circle_marker_5fbb3da3051e4629925732dadbc56c3a = L.circleMarker(
+                [48.88847384640807, 2.3937834599137924],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_cfab4499be33497592df4723e8175af2 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_72e81967630a49eaad40ce40fa129af8 = $(`<div id="html_72e81967630a49eaad40ce40fa129af8" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 4 : 30 établissements. Poids : 51</div>`)[0];
+            popup_cfab4499be33497592df4723e8175af2.setContent(html_72e81967630a49eaad40ce40fa129af8);
+        
+
+        circle_marker_5fbb3da3051e4629925732dadbc56c3a.bindPopup(popup_cfab4499be33497592df4723e8175af2)
+        ;
+
+        
+    
+    
+            var circle_marker_352081a711ae4eb59eab68854a381367 = L.circleMarker(
+                [48.85580934614307, 2.433525643478261],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_d8febbe167f84bbdb1dbe13a9648024e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9d246b25ae4a426b93c920e30a408ac1 = $(`<div id="html_9d246b25ae4a426b93c920e30a408ac1" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 5 : 20 établissements. Poids : 26</div>`)[0];
+            popup_d8febbe167f84bbdb1dbe13a9648024e.setContent(html_9d246b25ae4a426b93c920e30a408ac1);
+        
+
+        circle_marker_352081a711ae4eb59eab68854a381367.bindPopup(popup_d8febbe167f84bbdb1dbe13a9648024e)
+        ;
+
+        
+    
+    
+            var circle_marker_c1e5d15ab12c483cb62238caed5a0a00 = L.circleMarker(
+                [48.87926587881917, 2.3078006797563275],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_303643f5c1824c678bac014a58938124 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8bf4b32a149e47bfbd0b17a38f8f9fd8 = $(`<div id="html_8bf4b32a149e47bfbd0b17a38f8f9fd8" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 6 : 72 établissements. Poids : 78</div>`)[0];
+            popup_303643f5c1824c678bac014a58938124.setContent(html_8bf4b32a149e47bfbd0b17a38f8f9fd8);
+        
+
+        circle_marker_c1e5d15ab12c483cb62238caed5a0a00.bindPopup(popup_303643f5c1824c678bac014a58938124)
+        ;
+
+        
+    
+    
+            var polygon_3144afcd3e8f495cabe57bb80fccff1c = L.polygon(
+                [[48.863754, 2.341004], [48.866814, 2.329816], [48.878189, 2.326152], [48.903568, 2.329584], [48.910313, 2.334119], [48.920819, 2.354251], [48.91319, 2.3578989999999997], [48.891017, 2.358156], [48.87872, 2.3513159999999997], [48.863754, 2.341004]],
+                {"bubblingMouseEvents": true, "color": "darkslateblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkslateblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_77dd2fc4fa1745329c01d090bd12c3a2 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_981eab5db917443bacf6b89b382fdaf9 = $(`<div id="html_981eab5db917443bacf6b89b382fdaf9" style="width: 100.0%; height: 100.0%;">Cluster 0</div>`)[0];
+            popup_77dd2fc4fa1745329c01d090bd12c3a2.setContent(html_981eab5db917443bacf6b89b382fdaf9);
+        
+
+        polygon_3144afcd3e8f495cabe57bb80fccff1c.bindPopup(popup_77dd2fc4fa1745329c01d090bd12c3a2)
+        ;
+
+        
+    
+    
+            var polygon_5ff7fe2f46fe4fdfa123240d2a48fa83 = L.polygon(
+                [[48.818403, 2.411707], [48.832329, 2.386914], [48.84713, 2.37371], [48.853724, 2.376562], [48.866084, 2.3870839999999998], [48.86586, 2.39453], [48.862945, 2.402652], [48.860848, 2.406663], [48.8502, 2.412697], [48.834114, 2.413224], [48.818403, 2.411707]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_8eff395b77234d669e3afc188cf08bc5 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a4e3c0e95b7c4ef59bc51786cc9e60eb = $(`<div id="html_a4e3c0e95b7c4ef59bc51786cc9e60eb" style="width: 100.0%; height: 100.0%;">Cluster 1</div>`)[0];
+            popup_8eff395b77234d669e3afc188cf08bc5.setContent(html_a4e3c0e95b7c4ef59bc51786cc9e60eb);
+        
+
+        polygon_5ff7fe2f46fe4fdfa123240d2a48fa83.bindPopup(popup_8eff395b77234d669e3afc188cf08bc5)
+        ;
+
+        
+    
+    
+            var polygon_5a4bc73e303b4c1ea7c24956c6f8e66e = L.polygon(
+                [[48.848577, 2.363198], [48.860367, 2.3428649999999998], [48.862794, 2.340963], [48.874885, 2.350505], [48.882637, 2.360959], [48.884196, 2.363512], [48.884414, 2.373038], [48.882424, 2.3747949999999998], [48.872612, 2.380121], [48.866483, 2.383044], [48.852288, 2.374032], [48.850394, 2.368904], [48.848577, 2.363198]],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkred", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_ea1c89842a9d4e7e81cae7947a204b21 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_cde41e318f014a59836bfa506618e67a = $(`<div id="html_cde41e318f014a59836bfa506618e67a" style="width: 100.0%; height: 100.0%;">Cluster 2</div>`)[0];
+            popup_ea1c89842a9d4e7e81cae7947a204b21.setContent(html_cde41e318f014a59836bfa506618e67a);
+        
+
+        polygon_5a4bc73e303b4c1ea7c24956c6f8e66e.bindPopup(popup_ea1c89842a9d4e7e81cae7947a204b21)
+        ;
+
+        
+    
+    
+            var polygon_94021bfffd6b4af2b5856489ae2d4a0b = L.polygon(
+                [[48.83516, 2.2522539999999998], [48.837902, 2.245353], [48.841912, 2.242962], [48.878845, 2.25273], [48.887162000000004, 2.260673], [48.894549, 2.2771179999999998], [48.892728, 2.2862270000000002], [48.891175, 2.287969], [48.876864, 2.290768], [48.871557, 2.290113], [48.865643, 2.288865], [48.854457, 2.2815], [48.83516, 2.2522539999999998]],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "black", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_95d874039cd349afb61d17ef6c2f59c9 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_45ce1331f5b843dca00040bfafaee07c = $(`<div id="html_45ce1331f5b843dca00040bfafaee07c" style="width: 100.0%; height: 100.0%;">Cluster 3</div>`)[0];
+            popup_95d874039cd349afb61d17ef6c2f59c9.setContent(html_45ce1331f5b843dca00040bfafaee07c);
+        
+
+        polygon_94021bfffd6b4af2b5856489ae2d4a0b.bindPopup(popup_95d874039cd349afb61d17ef6c2f59c9)
+        ;
+
+        
+    
+    
+            var polygon_34bc47dd76f04d8a9adb242e0a1923d8 = L.polygon(
+                [[48.87204, 2.393566], [48.875931, 2.381724], [48.88392, 2.377524], [48.895419, 2.372335], [48.921853, 2.369255], [48.919061, 2.388941], [48.904071, 2.418646], [48.882004, 2.417655], [48.872892, 2.4001900000000003], [48.87204, 2.393566]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_4ca76127ee9e4b90865aa6757fd11eff = L.popup({"maxWidth": "100%"});
+
+        
+            var html_5ff7a104b84e4878bc6ddaf9df361a2c = $(`<div id="html_5ff7a104b84e4878bc6ddaf9df361a2c" style="width: 100.0%; height: 100.0%;">Cluster 4</div>`)[0];
+            popup_4ca76127ee9e4b90865aa6757fd11eff.setContent(html_5ff7a104b84e4878bc6ddaf9df361a2c);
+        
+
+        polygon_34bc47dd76f04d8a9adb242e0a1923d8.bindPopup(popup_4ca76127ee9e4b90865aa6757fd11eff)
+        ;
+
+        
+    
+    
+            var polygon_a5f3d677155e45459bea6309507a345d = L.polygon(
+                [[48.845692, 2.427939], [48.845833999999996, 2.426329], [48.854443, 2.416309], [48.856557, 2.416442], [48.859207, 2.416904], [48.882706999999996, 2.429271], [48.859252, 2.446418], [48.851102, 2.446161], [48.846231, 2.43664], [48.845692, 2.427939]],
+                {"bubblingMouseEvents": true, "color": "deeppink", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "deeppink", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_6119ef93517d49878238d4fa8f588e32 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_41ae237848ab4e20b7ae10776e4baa48 = $(`<div id="html_41ae237848ab4e20b7ae10776e4baa48" style="width: 100.0%; height: 100.0%;">Cluster 5</div>`)[0];
+            popup_6119ef93517d49878238d4fa8f588e32.setContent(html_41ae237848ab4e20b7ae10776e4baa48);
+        
+
+        polygon_a5f3d677155e45459bea6309507a345d.bindPopup(popup_6119ef93517d49878238d4fa8f588e32)
+        ;
+
+        
+    
+    
+            var polygon_804e4072eb954d1297598d5002d06229 = L.polygon(
+                [[48.865684, 2.328827], [48.866762, 2.301584], [48.871245, 2.294766], [48.895291, 2.288304], [48.911022, 2.310039], [48.890214, 2.322229], [48.865684, 2.328827]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_e698d73bd9cb4809ba36a30ceb0a0520 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_5e1363d9fa8847f8a3a0a77583f2d493 = $(`<div id="html_5e1363d9fa8847f8a3a0a77583f2d493" style="width: 100.0%; height: 100.0%;">Cluster 6</div>`)[0];
+            popup_e698d73bd9cb4809ba36a30ceb0a0520.setContent(html_5e1363d9fa8847f8a3a0a77583f2d493);
+        
+
+        polygon_804e4072eb954d1297598d5002d06229.bindPopup(popup_e698d73bd9cb4809ba36a30ceb0a0520)
+        ;
+
+        
+    
+    
+            var circle_marker_e992b37994044e1484a90dcba5558ee4 = L.circleMarker(
+                [48.82830285131434, 2.294197613599718],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_90eaae9b7c604ed59ee04419d27fcfbf = L.popup({"maxWidth": "100%"});
+
+        
+            var html_6f226fccfb09424797f29ba7cab722e1 = $(`<div id="html_6f226fccfb09424797f29ba7cab722e1" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 0 : 42 établissements. Poids : 57</div>`)[0];
+            popup_90eaae9b7c604ed59ee04419d27fcfbf.setContent(html_6f226fccfb09424797f29ba7cab722e1);
+        
+
+        circle_marker_e992b37994044e1484a90dcba5558ee4.bindPopup(popup_90eaae9b7c604ed59ee04419d27fcfbf)
+        ;
+
+        
+    
+    
+            var circle_marker_248278a9de5243b39fa29dc5959bcab1 = L.circleMarker(
+                [48.81464321372292, 2.358358181098694],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_c7f8ebf378714fa69e782d1cef13ea4e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8842c1a9d01e4de0bf64df4b9b75d7c4 = $(`<div id="html_8842c1a9d01e4de0bf64df4b9b75d7c4" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 1 : 34 établissements. Poids : 55</div>`)[0];
+            popup_c7f8ebf378714fa69e782d1cef13ea4e.setContent(html_8842c1a9d01e4de0bf64df4b9b75d7c4);
+        
+
+        circle_marker_248278a9de5243b39fa29dc5959bcab1.bindPopup(popup_c7f8ebf378714fa69e782d1cef13ea4e)
+        ;
+
+        
+    
+    
+            var circle_marker_f9c54c3a3a8f425bb576a97f4bd71599 = L.circleMarker(
+                [48.847175379303415, 2.321620460132151],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_4223f0d25e4a464fa1fd2e4b07088879 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a29e732b54374de1ac3ce0ef8c2e5a3b = $(`<div id="html_a29e732b54374de1ac3ce0ef8c2e5a3b" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 2 : 34 établissements. Poids : 40</div>`)[0];
+            popup_4223f0d25e4a464fa1fd2e4b07088879.setContent(html_a29e732b54374de1ac3ce0ef8c2e5a3b);
+        
+
+        circle_marker_f9c54c3a3a8f425bb576a97f4bd71599.bindPopup(popup_4223f0d25e4a464fa1fd2e4b07088879)
+        ;
+
+        
+    
+    
+            var polygon_2f876a55c2494f7a891b627591790c42 = L.polygon(
+                [[48.785048, 2.315348], [48.812505, 2.273328], [48.81677, 2.267222], [48.846149, 2.280074], [48.856792, 2.292372], [48.838742, 2.3040279999999997], [48.814943, 2.3162089999999997], [48.785048, 2.315348]],
+                {"bubblingMouseEvents": true, "color": "darkslateblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkslateblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_890c672df36540edb329e02777325121 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_04c5515349cf4e829ffcc75897ba4eab = $(`<div id="html_04c5515349cf4e829ffcc75897ba4eab" style="width: 100.0%; height: 100.0%;">Cluster 0</div>`)[0];
+            popup_890c672df36540edb329e02777325121.setContent(html_04c5515349cf4e829ffcc75897ba4eab);
+        
+
+        polygon_2f876a55c2494f7a891b627591790c42.bindPopup(popup_890c672df36540edb329e02777325121)
+        ;
+
+        
+    
+    
+            var polygon_a192bb9a46c54cd1892869382c781ffd = L.polygon(
+                [[48.788502, 2.371279], [48.78975, 2.340843], [48.794052, 2.320823], [48.828353, 2.343318], [48.841869, 2.353619], [48.81126, 2.415423], [48.805584, 2.414456], [48.788502, 2.371279]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_09eb50094b1646e6a01eef3295abfadd = L.popup({"maxWidth": "100%"});
+
+        
+            var html_727f25527d7e44b69ac654c16b1a9c94 = $(`<div id="html_727f25527d7e44b69ac654c16b1a9c94" style="width: 100.0%; height: 100.0%;">Cluster 1</div>`)[0];
+            popup_09eb50094b1646e6a01eef3295abfadd.setContent(html_727f25527d7e44b69ac654c16b1a9c94);
+        
+
+        polygon_a192bb9a46c54cd1892869382c781ffd.bindPopup(popup_09eb50094b1646e6a01eef3295abfadd)
+        ;
+
+        
+    
+    
+            var polygon_6dace294e2e240499f41979369af5381 = L.polygon(
+                [[48.823648, 2.3224679999999998], [48.841451, 2.307532], [48.860237, 2.295842], [48.861227, 2.303931], [48.861209, 2.306146], [48.858236, 2.332931], [48.850046, 2.34526], [48.841055, 2.341756], [48.824595, 2.329724], [48.823648, 2.3224679999999998]],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkred", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_09ab93faf43749e3b2526a8c70b23a33 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9f528bd2c1034d1286b55d64d1803b23 = $(`<div id="html_9f528bd2c1034d1286b55d64d1803b23" style="width: 100.0%; height: 100.0%;">Cluster 2</div>`)[0];
+            popup_09ab93faf43749e3b2526a8c70b23a33.setContent(html_9f528bd2c1034d1286b55d64d1803b23);
+        
+
+        polygon_6dace294e2e240499f41979369af5381.bindPopup(popup_09ab93faf43749e3b2526a8c70b23a33)
+        ;
+
+        
+    
+    
+            var circle_marker_1b8db06d75ab4bf9a6ed5852865fbc71 = L.circleMarker(
+                [48.865649982877635, 2.4501098701256816],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_ef94610d8aee4788b2611979fb5d11b3);
+        
+    
+        var popup_aa9242031636461e8c79426faf50f18e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_bfcf58bc7eb747b885a82324147a22e0 = $(`<div id="html_bfcf58bc7eb747b885a82324147a22e0" style="width: 100.0%; height: 100.0%;">Centre de masse du cluster 0 : 2 établissements. Poids : 2</div>`)[0];
+            popup_aa9242031636461e8c79426faf50f18e.setContent(html_bfcf58bc7eb747b885a82324147a22e0);
+        
+
+        circle_marker_1b8db06d75ab4bf9a6ed5852865fbc71.bindPopup(popup_aa9242031636461e8c79426faf50f18e)
+        ;
+
+        
+    
+</script>
