@@ -8,7 +8,7 @@ from src.ihm import qt_web
 from src.clusterizer import clusterizer
 
 
-from PyQt5.QtWidgets import QApplication, QDesktopWidget, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QDesktopWidget, QMainWindow
 from PyQt5 import QtWebEngineWidgets
 
 class Wind(QMainWindow):
@@ -85,20 +85,18 @@ class Wind(QMainWindow):
 
                 # On ouvre le fichier dans PyQt
 
-
+                
                 view = QtWebEngineWidgets.QWebEngineView()
                 interceptor = qt_web.Interceptor()
                 view.page().profile().setUrlRequestInterceptor(interceptor)
 
                 view.setHtml(open(adresse, 'r').read())
                 
-
                 self.setCentralWidget(view)
                 self.setWindowTitle("Carte avec "+str(nb_clust)+" clusters")
                 size_ecran = QDesktopWidget().screenGeometry()
-                print(size_ecran)
-                self.resize(size_ecran.width(), size_ecran.height())
                 self.move(0,0)
+                self.resize(1000, 1000)
                 
 
 
