@@ -1,18 +1,12 @@
-import os
 import sys
-
-from PyQt5.QtCore import QUrl
-sys.path.append("../../")
-
-
-from src.ihm import ihm_pyqt
-from src.ihm import qt_web
-
-from src.clusterizer import clusterizer
-
 
 from PyQt5.QtWidgets import QApplication, QDesktopWidget, QMainWindow
 from PyQt5 import QtWebEngineWidgets
+
+sys.path.append("../../")
+from src.ihm import ihm_pyqt
+from src.clusterizer import clusterizer
+
 
 class Wind(QMainWindow):
     def __init__(self):
@@ -27,7 +21,6 @@ class Wind(QMainWindow):
 
 
     def appui_bouton_OK(self):
-
         # Récupération des données de l'interface 
         nb_cluster_min = self.IHM.champ_nb_cluster_min.text()
         nb_cluster_max = self.IHM.champ_nb_cluster_max.text()
@@ -56,14 +49,9 @@ class Wind(QMainWindow):
         self.IHM._donnees[2] = list_secteur
 
         self.lancement_clustering()
-    
 
-
-        
-
-
+   
     def lancement_clustering(self) :
-        
         nb_cluster_min = self.IHM._donnees[0]
         nb_cluster_max = self.IHM._donnees[1]
         rayon = self.IHM._donnees[3]
@@ -76,33 +64,24 @@ class Wind(QMainWindow):
 
             adresse = "output_ihm/" +str(nb_clust) +"_clusterized_ihm.html"
 
-            """
-            Clusterization avec les données utlisateurs
-            """
-
+            # Clusterization avec les données utlisateurs
             if __name__ == "__main__":
-
                 # On exécute le programme avec la base SIRENE :
-
                 clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse)
 
                 # On ouvre le fichier dans PyQt
-
-
                 view = QtWebEngineWidgets.QWebEngineView()
-
                 view.setHtml(open(adresse, 'r').read())
-
                 
+                # on configure bien la fenêtre
                 self.takeCentralWidget()
                 self.setCentralWidget(view)
-                self.setWindowTitle("Carte avec "+str(nb_clust)+" clusters")
+                self.setWindowTitle("Données clusterisées avec "+str(nb_clust)+" clusters")
                 self.move(0,0)
                 self.showMaximized()
 
-                
 
-
+# on démarre l'appplication
 app = QApplication.instance() 
 if not app:
     app = QApplication(sys.argv)
