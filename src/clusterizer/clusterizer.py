@@ -264,6 +264,15 @@ def test_geojson():
     df, df_clusters = clusterize(df, 10, dict=False)
     save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
+def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
+    poids_par_zone: np.ndarray = np.zeros(len(liste_df))
+    for i in range(len(liste_df)):
+        poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700") 
+    poids_total = np.sum(poids_par_zone)
+    nb_par_zone = np.rint((poids_par_zone / poids_total * nb_clusters)).astype(int)
+    nb_par_zone = np.maximum(nb_par_zone, np.ones(len(liste_df), dtype=int))  # il faut au moins un cluster par zone considérée
+    return nb_par_zone
+
 def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clusterized_map_seine.html", reduce=False, threshold=1000):
     t1 = time.time()
     print("Ouverture de la DataFrame...", end="    ")
@@ -325,7 +334,8 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     print("Clusterisation...", end="    ")
 
     liste_df_clusters = []
-    nb_clusters_par_zone = [8, 75, 75, 10]
+    nb_clusters_par_zone = calcule_nb_clusters_par_zone(liste_df, nb_clusters)
+    # pprint(nb_clusters_par_zone)
 
     for no_zone in range(nb_zones):
         try:
@@ -374,6 +384,7 @@ if __name__ == "__main__":
         plt.show()
 
     else:
+        main_json(adresse_map="output/clusterized_map_improve_nb_clusters.html")
         # main_json(reduce = True, adresse_map="output/clusterized_map_optim_de_cython.html")
-        main_json(adresse_map="output/clusterized_map_IHM.html")
+        # main_json(adresse_map="output/clusterized_map_IHM.html")
         # cProfile.run('main_json(adresse_map="output/clusterized_map_optim_de_cython.html")')
