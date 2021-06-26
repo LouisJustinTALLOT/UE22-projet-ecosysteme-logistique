@@ -31,7 +31,7 @@ Utilitaire : fenêtre d'accueil pour :code:`ihm_complet`
 .. automodule:: src.ihm.ihm_pyqt
    :members:
 
-Obsolète : 
+Obsolète ouverture d'un fichier :code:`HTML` dans un navigateur Web : 
 -------------
 .. automodule:: src.ihm.web
    :members:
@@ -42,6 +42,7 @@ Clusterizer
 Fichier principal
 ------------------
 .. automodule:: src.clusterizer.clusterizer
+   :show-inheritance:
    :members:
 .. .. autosummary::
 ..    :recursive:
@@ -62,6 +63,18 @@ Utilitaires pour la gestion des codes NAF
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. automodule:: src.clusterizer.utils.NAF_utils
    :members:
+
+.. Utilitaires pour la séparation par la Seine
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. .. automodule:: src.clusterizer.utils.seine_data_utils
+..    :members:
+
+
+Traitement de la base SIRENE
+=============================
+.. automodule:: src.traitement_base_SIRENE.traitement_base_sirene
+   :members:
+
 
 Indices and tables
 ==================
