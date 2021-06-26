@@ -233,12 +233,13 @@ def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_G
 def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> folium.folium.Map:
     """
     Sauvegarde les informations des clusters dans une carte Leaflet.
-    Ne retourne rien.
+    Retourne la carte
 
     :param df_clusters: La DataFrame contenant les informations de chaque cluster
      (cf. deuxième sortie de la fonction clusterize)
-    :param map: la carte à utiliser (si rien n'est spécifié, utilise Stamen Terrain, plus léger que Leaflet)
-    :param path: Le chemin de sortie du fichier.
+    :param map: la carte à utiliser
+     si un paramètre est spécifié : réecrit par dessus.
+     si rien n'est spécifié, génère une nouvelle carte
     :return une carte complétée.
     """
 
@@ -401,7 +402,7 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
-    print("Sauvegarde sur la carte...", end="    ")
+    print("Génération de la carte et sauvegarde...", end="    ")
 
     map = save_to_map(liste_df_clusters[0][1])
 
