@@ -3,10 +3,15 @@ from typing import Optional, List
 import pandas as pd
 import numpy as np
 
+import os
+
 #==================================================================================
 # Fonctions pour switcher les conventions de NAF (avec ou sans point intermédiaire)
 #==================================================================================
 from pandas import Series
+
+
+df_naf_descriptions = None # Cette DataFrame contient toutes les descriptions des codes NAF
 
 
 def ajouter_point(code_naf: str) -> Optional[str]:
@@ -39,10 +44,6 @@ def retirer_point(code_naf: str) -> Optional[str]:
         # Il y a un point, on le retire
         return code_naf[0] + code_naf[1] + code_naf[3:]
 
-#==============================================================
-# Cette DataFrame contient toutes les descrptions des codes NAF
-#==============================================================
-df_naf_descriptions = pd.read_csv("..\\ressources\\naf_descriptions.csv", sep=";", encoding='utf8')
 
 #==============================================================
 # Fonctions vectorisées
@@ -62,6 +63,18 @@ def get_description(code_naf: str) -> str:
     :param code_naf: le code, avec ou sans point.
     :return: la description complète.
     """
+    global df_naf_descriptions
+
+    if df_naf_descriptions is None:
+        # on ne l'a pas encore importée
+        df_naf_descriptions = pd.read_csv(
+            os.path.join(
+                os.path.dirname(__file__), "../../ressources/naf_descriptions.csv"
+                ), 
+            sep=";", 
+            encoding='utf8'
+        )
+
     code_naf = ajouter_point(code_naf)
     return df_naf_descriptions[df_naf_descriptions["code"] == code_naf].reset_index(drop=True).loc[0, "description"]
 
@@ -72,6 +85,16 @@ def get_NAFs_by_section(section: str) -> Series:
     :param section: La lettre de la section
     :returns La liste des codes NAF contenus dans la section (convention : avec points)
     """
+    global df_naf_descriptions
+
+    if df_naf_descriptions is None:
+        # on ne l'a pas encore importée
+        df_naf_descriptions = pd.read_csv(
+            os.path.join(os.path.dirname(__file__), "../../ressources/naf_descriptions.csv"), 
+            sep=";", 
+            encoding='utf8'
+        )
+
     masque = df_naf_descriptions["code"] == ("SECTION " + section)
     # normalement ce masque n'est à True qu'à un seul endroit
     # du coup, comme True=1, on utilise cette astuce pour récupérer l'indice de la ligne
