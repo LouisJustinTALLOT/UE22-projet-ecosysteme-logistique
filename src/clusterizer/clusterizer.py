@@ -224,7 +224,7 @@ def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_G
                                      )
     df_infos_clusters = df_infos_clusters.join(clusterizer_utils.get_infos_clusters_taille(df))
     df_infos_clusters = df_infos_clusters.join(
-        clusterizer_utils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry))
+        clusterizer_utils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry, is_dict))
     df_infos_clusters = df_infos_clusters.join(clusterizer_utils.get_infos_clusters_poids(df, "apet700"))
 
     return df, df_infos_clusters

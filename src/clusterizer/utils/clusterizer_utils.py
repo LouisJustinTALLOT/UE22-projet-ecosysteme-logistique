@@ -46,13 +46,14 @@ def get_infos_clusters_taille(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(df.groupby(COLUMN_CLUSTER_INDEX_NAME).size(), columns=[COLUMN_CLUSTER_SIZE_NAME])
 
 
-def get_infos_clusters_enveloppes_convexes(k: int, df: pd.DataFrame, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME) -> pd.DataFrame:
+def get_infos_clusters_enveloppes_convexes(k: int, df: pd.DataFrame, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME, is_dict: bool = False) -> pd.DataFrame:
     """
     Fonction permettant de récupérer des infos sur les clusters (enveloppes convexes).
 
     :param k: Nombre de clusters
     :param df: La DataFrame où l'on a déjà ajouté le numéro des clusters (laissée intacte).
     :param column_geometry: Le nom de la colonne où se situent les données géometriques (par défaut, "geometry").
+    :param is_dict: True si les paramètres sont sous forme de dictionnaire
     :return: Une GeoDataFrame associant à chaque numéro de cluster son enveloppe convexe.
     """
     # Tableau numpy temporaire. Il ne sert qu'à la création de la GeoDataFrame avec les enveloppes convexes
@@ -64,7 +65,7 @@ def get_infos_clusters_enveloppes_convexes(k: int, df: pd.DataFrame, column_geom
 
         # On calcule l'enveloppe convexe
         points = minidf.loc[:, column_geometry]
-        if dict:
+        if is_dict:
             points = gpd.points_from_xy(points.apply(lambda p: p["coordinates"][0]),
                                         points.apply(lambda p: p["coordinates"][1]))
 
