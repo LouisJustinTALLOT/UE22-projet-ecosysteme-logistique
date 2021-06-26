@@ -172,7 +172,7 @@ def swap_xy(geom):
         raise ValueError('Type %r not recognized' % geom.type)
 
 
-def filter_nearby_paris(df: pd.DataFrame, radius: int, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME, dict: bool = False) -> pd.DataFrame:
+def filter_nearby_paris(df: pd.DataFrame, radius: int, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME, is_dict: bool = False) -> pd.DataFrame:
     """
     Filtre les données proches du centre de Paris.
    
@@ -181,7 +181,7 @@ def filter_nearby_paris(df: pd.DataFrame, radius: int, column_geometry: str = CO
     :param column_geometry: la colonne où se trouvent les données géométriques (par défaut : 'geometry')
     :return: la DataFrame filtrée
     """
-    X = get_coords_from_object(df, column_geometry, dict)
+    X = get_coords_from_object(df, column_geometry, is_dict)
 
     l1 = np.pi/180*PARIS_CENTER_COORDS.y
     L1 = np.pi/180*PARIS_CENTER_COORDS.x
@@ -193,16 +193,16 @@ def filter_nearby_paris(df: pd.DataFrame, radius: int, column_geometry: str = CO
     return df[masque].reset_index(drop=True)
 
 
-def get_coords_from_object(df: pd.DataFrame, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME, dict: bool = False) -> np.ndarray:
+def get_coords_from_object(df: pd.DataFrame, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME, is_dict: bool = False) -> np.ndarray:
     """
     Récupère les coordonnées des points de la DataFrame.
 
     :param df: la DataFrame.
     :param column_geometry: la colonne contenant les données géométriques.
-    :param dict: les données sont-elles en dictionnaire ?
+    :param is_dict: les données sont-elles en dictionnaire ?
     :return: les coordonnées sous la forme d'une matrice de deux colonnes (et d'autant de lignes qu'il y a de points)
     """
-    if dict:
+    if is_dict:
         a = pd.Series(df[column_geometry].apply(lambda p: p["coordinates"][0]))
         b = pd.Series(df[column_geometry].apply(lambda p: p["coordinates"][1]))
 

@@ -181,14 +181,14 @@ def nettoyer(df: pd.DataFrame, reduce: bool = False, threshold: int = 1000, colu
     return df.dropna(subset=[column_geometry]).reset_index(drop=True)
 
 
-def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME, dict: bool = False, weight: bool = True) -> Tuple[pd.DataFrame, pd.DataFrame]:
+def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME, is_dict: bool = False, weight: bool = True) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Clusterise à l'aide de l'algorithme des k-moyennes. Attention, fait du en-place.
 
     :param df: La (Geo)DataFrame contenant les points à clusteriser.
     :param k: Le nombre de clusters à calculer.
     :param column_geometry: A spécifier si la colonne contenant les points n'est pas la colonne par défaut ("geometry")
-    :param dict: Indiquer True si jamais la colonne contenant les points ne contient pas d'objets
+    :param is_dict: Indiquer True si jamais la colonne contenant les points ne contient pas d'objets
      shapely.geometry.Points, mais un dictionnaire (en général, lorsque le fichier provient d'un GeoJSON)
     :return: Deux GeoDataFrame.
      Une première GeoDataFrame entrée contenant une colonne en plus ("cluster") : celle-ci permet de savoir pour chaque
@@ -205,7 +205,7 @@ def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_G
     mbk = MiniBatchKMeans(n_clusters=k, random_state=0, batch_size=2048)  # ça va plus vite
 
     # Ceci contient des coordonnées (x, y) des points
-    X = clusterizer_utils.get_coords_from_object(df, column_geometry, dict)
+    X = clusterizer_utils.get_coords_from_object(df, column_geometry, is_dict)
     if len(X) < 1:
         raise ValueError("Table vide")
     Y = clusterizer_utils.vectorized_calculer_poids_code_NAF(df["apet700"]) if weight else None
@@ -289,7 +289,7 @@ def test_geojson():
     Fonction interne (utilisée pour vérifier le bon fonctionnement de la clusterisation).
     """
     df = nettoyer(gpd.read_file("../../essais/gis/input/reducted.geojson"))
-    df, df_clusters = clusterize(df, 10, dict=False)
+    df, df_clusters = clusterize(df, 10, is_dict=False)
     save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
 def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
@@ -340,7 +340,7 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
     t1 = time.time()
     print("On ne garde que les données du centre...", end="    ")
 
-    df = clusterizer_utils.filter_nearby_paris(df, radius=rayon, dict=True)
+    df = clusterizer_utils.filter_nearby_paris(df, radius=rayon, is_dict=True)
 
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
@@ -395,7 +395,7 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
     for no_zone in range(nb_zones):
         try:
             liste_df_clusters.append(
-                clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], dict=True, weight=True)
+                clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], is_dict=True, weight=True)
             )
         except ValueError:
             pass
