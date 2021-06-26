@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="namespacetest__pool" kind="namespace" language="Python">
+    <compoundname>test_pool</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacetest__pool_1a617b2f99bbbe88209c1921ee8551548d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>test_pool.a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <initializer>=  p.map(<ref refid="namespacetest__pool_1a5248ada9dc85810b1d7a1ee20ebdbeb9" kindref="member">f</ref>, [1, 2, 3])</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/multiprocessing/test_pool.py" line="8" column="1" bodyfile="essais/multiprocessing/test_pool.py" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacetest__pool_1a5248ada9dc85810b1d7a1ee20ebdbeb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def test_pool.f</definition>
+        <argsstring>(x)</argsstring>
+        <name>f</name>
+        <param>
+          <type>x</type>
+          <defname>x</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/multiprocessing/test_pool.py" line="3" column="1" bodyfile="essais/multiprocessing/test_pool.py" bodystart="3" bodyend="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="essais/multiprocessing/test_pool.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

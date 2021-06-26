@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="namespacecomparison__clustering__algorithms" kind="namespace" language="Python">
+    <compoundname>comparison_clustering_algorithms</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacecomparison__clustering__algorithms_1ae05061eea023cb7192b0827967122bbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def comparison_clustering_algorithms.swap_xy</definition>
+        <argsstring>(geom)</argsstring>
+        <name>swap_xy</name>
+        <param>
+          <type>geom</type>
+          <defname>geom</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Inverse les coordonnées de l&apos;objet shapely.geometry.
+Utile pour passer objets shapely dans folium (la convention est inversée)
+:param geom: l&apos;objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
+:return: l&apos;objet inversé
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" line="19" column="1" bodyfile="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" bodystart="19" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacecomparison__clustering__algorithms_1a894088f54c68011e298b588193a574b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def comparison_clustering_algorithms.nettoyer</definition>
+        <argsstring>(df, reduce=False, threshold=1000)</argsstring>
+        <name>nettoyer</name>
+        <param>
+          <type>df</type>
+          <defname>df</defname>
+        </param>
+        <param>
+          <type>reduce</type>
+          <defname>reduce</defname>
+          <defval>False</defval>
+        </param>
+        <param>
+          <type>threshold</type>
+          <defname>threshold</defname>
+          <defval>1000</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Nettoie la DataFrame: enlève les na
+Si reduce=True, ne prend que les première données de la (Geo)DataFrame.
+La limite dans ce cas est fixée à threshold (qui vaut 1000 par défaut)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" line="62" column="1" bodyfile="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" bodystart="62" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacecomparison__clustering__algorithms_1acaf5d458210d122302fb41fb74636da6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def comparison_clustering_algorithms.clusterize</definition>
+        <argsstring>(df, k, column_name=&quot;geometry&quot;, dict=False)</argsstring>
+        <name>clusterize</name>
+        <param>
+          <type>df</type>
+          <defname>df</defname>
+        </param>
+        <param>
+          <type>k</type>
+          <defname>k</defname>
+        </param>
+        <param>
+          <type>column_name</type>
+          <defname>column_name</defname>
+          <defval>&quot;geometry&quot;</defval>
+        </param>
+        <param>
+          <type>dict</type>
+          <defname>dict</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Clusterise à l&apos;aide de l&apos;algorithme des k-moyennes.
+
+A besoin d&apos;une DataFrame contenant une colonne avec des Points (par défaut, son nom est geometry)
+Indiquer dict=True si jamais la colonne contenant les Points ne contient 
+pas l&apos;objet Point (module shapely), mais un dictionnaire 
+(quand ça vient pas d&apos;un GeoJSON en général)
+
+Attention, fait du en-place.
+Retourne trois choses :
+- la df rentrée, avec trois colonnes en plus:
+        &quot;cluster&quot; (numéro du cluster), &quot;centroids&quot; (centre de masse correspondant)
+        et &quot;hulls&quot; (enveloppe convexe)
+        Ainsi, pour chaque point, on connaît les infos du cluster auquel il a été affecté
+- les centres de masse et les enveloppes convexes de chaque cluster (concrètement, une GeoDataFrame 
+  avec comme index le numéro du cluster et comme colonnes les centres de masses et les enveloppes convexes)</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" line="76" column="1" bodyfile="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" bodystart="76" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacecomparison__clustering__algorithms_1a92dda61a9e130a9785cf1581c39ea781" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def comparison_clustering_algorithms.save_to_map</definition>
+        <argsstring>(df_clusters, path)</argsstring>
+        <name>save_to_map</name>
+        <param>
+          <type>df_clusters</type>
+          <defname>df_clusters</defname>
+        </param>
+        <param>
+          <type>path</type>
+          <defname>path</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Sauvegarde les centres de gravité des clusters, ainsi que les enveloppes convexes, dans une carte Leaflet
+:param centroids: les centres de gravité (cf. deuxième sortie de la fonction clusterize)
+:param hulls: les enveloppes convesxes (cf. deuxième sortie de la fonction do_convex_hull)
+:param path: le chemin
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" line="182" column="1" bodyfile="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" bodystart="182" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacecomparison__clustering__algorithms_1a304b1c188a34a2007e0a1af569fbdc5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def comparison_clustering_algorithms.informations</definition>
+        <argsstring>(df, df_clusters)</argsstring>
+        <name>informations</name>
+        <param>
+          <type>df</type>
+          <defname>df</defname>
+        </param>
+        <param>
+          <type>df_clusters</type>
+          <defname>df_clusters</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Permet d&apos;ajouter des informations sur les clusters.
+Pour l&apos;instant, ajoute le nombre d&apos;entreprises du cluster dans une colonne &quot;taille&quot;.
+On pourra par exemple ajouter aussi le poids total de chaque cluster quand on aura défini cette notion
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" line="225" column="1" bodyfile="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" bodystart="225" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacecomparison__clustering__algorithms_1a617dbfb39c55a2ba0c304e2060a7c494" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def comparison_clustering_algorithms.test_geojson</definition>
+        <argsstring>()</argsstring>
+        <name>test_geojson</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" line="237" column="1" bodyfile="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" bodystart="237" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacecomparison__clustering__algorithms_1a3d3d13549219033c17fa8bd57a8d34a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def comparison_clustering_algorithms.test_json</definition>
+        <argsstring>()</argsstring>
+        <name>test_json</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" line="243" column="1" bodyfile="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" bodystart="243" bodyend="253"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="essais/comparison_clustering_algorithms/comparison_clustering_algorithms.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

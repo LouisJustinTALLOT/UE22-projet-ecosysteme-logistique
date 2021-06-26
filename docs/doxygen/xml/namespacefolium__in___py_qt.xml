@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="namespacefolium__in___py_qt" kind="namespace" language="Python">
+    <compoundname>folium_in_PyQt</compoundname>
+    <innerclass refid="classfolium__in___py_qt_1_1_interceptor" prot="public">folium_in_PyQt::Interceptor</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacefolium__in___py_qt_1a5dd1391b1c150d32136f15597ac40c16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def folium_in_PyQt.mainPyQt5</definition>
+        <argsstring>()</argsstring>
+        <name>mainPyQt5</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/folium_in_PyQt/folium_in_PyQt.py" line="19" column="1" bodyfile="essais/folium_in_PyQt/folium_in_PyQt.py" bodystart="19" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="essais/folium_in_PyQt/folium_in_PyQt.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

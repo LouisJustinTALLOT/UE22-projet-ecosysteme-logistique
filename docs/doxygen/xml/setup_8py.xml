@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="setup_8py" kind="file" language="Python">
+    <compoundname>setup.py</compoundname>
+    <innernamespace refid="namespacesetup">setup</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacesetup" refkind="compound"><highlight class="keyword">from</highlight><highlight class="normal"><sp/>setuptools<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>setup,<sp/>Extension</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>Cython.Distutils<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>build_ext</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>Cython.Build<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>cythonize</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">#<sp/>python<sp/>setup.py<sp/>build_ext<sp/>--inplace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">ext_options<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>&apos;language&apos;:&quot;c++&quot;,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>&apos;extra_compile_args&apos;:[&quot;-O3&quot;,],</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;include_dirs&apos;</highlight><highlight class="normal">:<sp/>[</highlight><highlight class="stringliteral">&apos;.&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;..&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;../..&apos;</highlight><highlight class="normal">],</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">extensions<sp/>=<sp/>[</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>Extension(</highlight><highlight class="stringliteral">&quot;seine_data_utils&quot;</highlight><highlight class="normal">,<sp/>sources=[</highlight><highlight class="stringliteral">&quot;utils/seine_data_utils.pyx&quot;</highlight><highlight class="normal">],<sp/>**ext_options),</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">]</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><ref refid="namespacesetup" kindref="compound">setup</ref>(</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>ext_modules=cythonize(extensions,<sp/>annotate=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,<sp/>force=</highlight><highlight class="keyword">True</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">)</highlight></codeline>
+    </programlisting>
+    <location file="src/clusterizer/setup.py"/>
+  </compounddef>
+</doxygen>

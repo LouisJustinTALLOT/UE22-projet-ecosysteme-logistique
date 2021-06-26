@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="qt__web_8py" kind="file" language="Python">
+    <compoundname>qt_web.py</compoundname>
+    <innerclass refid="classqt__web_1_1_interceptor" prot="public">qt_web::Interceptor</innerclass>
+    <innernamespace refid="namespaceqt__web">qt_web</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespaceqt__web" refkind="compound"><highlight class="keyword">import</highlight><highlight class="normal"><sp/>sys</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">sys.path.append(</highlight><highlight class="stringliteral">&quot;../../&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>PyQt5.QtWebEngineCore<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>QWebEngineUrlRequestInterceptor</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Pour<sp/>ouvrir<sp/>la<sp/>carte<sp/>dans<sp/>PyQt<sp/>(à<sp/>rendre<sp/>utilisable)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="classqt__web_1_1_interceptor" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classqt__web_1_1_interceptor" kindref="compound">Interceptor</ref>(QWebEngineUrlRequestInterceptor):</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classqt__web_1_1_interceptor_1a27547b191106a2d12200c03dffc337b1" kindref="member">interceptRequest</ref>(self,<sp/>info):</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info.setHttpHeader(b</highlight><highlight class="stringliteral">&quot;Accept-Language&quot;</highlight><highlight class="normal">,<sp/>b</highlight><highlight class="stringliteral">&quot;en-US,en;q=0.9,es;q=0.8,de;q=0.7&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="src/ihm/qt_web.py"/>
+  </compounddef>
+</doxygen>

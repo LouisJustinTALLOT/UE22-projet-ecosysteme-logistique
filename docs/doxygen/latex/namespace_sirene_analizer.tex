@@ -1,0 +1,170 @@
+\hypertarget{namespace_sirene_analizer}{}\doxysection{Référence de l\textquotesingle{}espace de nommage Sirene\+Analizer}
+\label{namespace_sirene_analizer}\index{SireneAnalizer@{SireneAnalizer}}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_ac87b12118762b23663d60ab067116884}{swap\+\_\+xy}} (Base\+Geometry geom)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_ae9da2463d6618661f0e07049e70ea45f}{range\+\_\+hex\+\_\+colors}} (int nombre\+\_\+couleurs)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_a553fe358625a6b3553900d6693d9b7a3}{ouvrir}} (str path, str column\+\_\+points=\textquotesingle{}geometry\textquotesingle{}, bool reduce=False, bool do\+\_\+filter=True)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_ad77ea7285b948e6954919e6ab003bc47}{filter}} (gpd.\+Geo\+Data\+Frame df, str column\+\_\+points=\textquotesingle{}geometry\textquotesingle{}, bool reduce=False, bool do\+\_\+filter=True)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_a6b620e88100b9cde863c4642cc3b6fa9}{clusterize}} (gpd.\+Geo\+Data\+Frame df, int nb\+\_\+clusters)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_ab6f18f8ebb95d7e604945b16c88d8287}{do\+\_\+convex\+\_\+hull}} (gpd.\+Geo\+Data\+Frame df)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_a623943683b810b29f136d02fdb8da7e2}{save\+\_\+to\+\_\+map}} (gpd.\+Geo\+Data\+Frame \mbox{\hyperlink{namespace_sirene_analizer_ae931a4d1c915fcb3740cadcc9f055797}{centroids}}, gpd.\+Geo\+Data\+Frame \mbox{\hyperlink{namespace_sirene_analizer_a6a98f05a3a1b90e3c880ecaab3534e66}{hulls}}, str path=\mbox{\hyperlink{namespace_sirene_analizer_aae334d372d85590f4053e78e9316915a}{clusterized\+\_\+path}}, gpd.\+Geo\+Data\+Frame df=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{namespace_sirene_analizer_a6e171306ccfbb83ca3c0bf3b15e71d05}{reducted\+\_\+name}} = \char`\"{}input\textbackslash{}\textbackslash{}base\+\_\+sirene\+\_\+shortened\+\_\+json\+\_\+cpp.\+json\char`\"{}
+\item 
+string \mbox{\hyperlink{namespace_sirene_analizer_aae334d372d85590f4053e78e9316915a}{clusterized\+\_\+path}} = \char`\"{}output\textbackslash{}\textbackslash{}clusterized\+\_\+sirene.\+html\char`\"{}
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_a3d7c2fd94c1c0ace576182fb6b2ab9f8}{data}} = \mbox{\hyperlink{namespace_sirene_analizer_a553fe358625a6b3553900d6693d9b7a3}{ouvrir}}(\mbox{\hyperlink{namespace_sirene_analizer_a6e171306ccfbb83ca3c0bf3b15e71d05}{reducted\+\_\+name}}, reduce=True)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_a4aec614441f405b6de55f1f1d4c296f4}{data\+\_\+0}} = data.\+copy()
+\item 
+\mbox{\hyperlink{namespace_sirene_analizer_ae931a4d1c915fcb3740cadcc9f055797}{centroids}}
+\item 
+\mbox{\hyperlink{namespace_sirene_analizer_a6a98f05a3a1b90e3c880ecaab3534e66}{hulls}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{namespace_sirene_analizer_a6b620e88100b9cde863c4642cc3b6fa9}\label{namespace_sirene_analizer_a6b620e88100b9cde863c4642cc3b6fa9}} 
+\index{SireneAnalizer@{SireneAnalizer}!clusterize@{clusterize}}
+\index{clusterize@{clusterize}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{clusterize()}{clusterize()}}
+{\footnotesize\ttfamily def Sirene\+Analizer.\+clusterize (\begin{DoxyParamCaption}\item[{gpd.\+Geo\+Data\+Frame}]{df,  }\item[{int}]{nb\+\_\+clusters }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clusterise la GeoDataFrame à l'aide de la méthode des k-moyennes.
+La colonne contenant les points doit s'appeler 'geometry'.
+La GeoDataFrame peut contenir d'autres colonnes.
+
+:param df: la GeoDataFrame à clusteriser (les données doivent se trouver dans la colonne 'geometry')
+:param k: le nombre de clusters
+:return:
+Retourne un tuple.
+En premier : une GeoDataFrame identique, à ceci près que l'on a ajouté les colonnes 'cluster' et 'centroids'.
+(correspondant au numéro du cluster, et à son centre de gravité)
+En deuxième, une GeoDataFrame plus simple avec une unique colonne 'centroids'
+(la ligne est le numéro de cluster, et contient le centre de gravité)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_sirene_analizer_ab6f18f8ebb95d7e604945b16c88d8287}\label{namespace_sirene_analizer_ab6f18f8ebb95d7e604945b16c88d8287}} 
+\index{SireneAnalizer@{SireneAnalizer}!do\_convex\_hull@{do\_convex\_hull}}
+\index{do\_convex\_hull@{do\_convex\_hull}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{do\_convex\_hull()}{do\_convex\_hull()}}
+{\footnotesize\ttfamily def Sirene\+Analizer.\+do\+\_\+convex\+\_\+hull (\begin{DoxyParamCaption}\item[{gpd.\+Geo\+Data\+Frame}]{df }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A partir de données clusterisées (le premier élément retourné par la fonction clusterize)
+(cf. doc de la fonction clusterize), fabrique les enveloppes convexes.
+
+:param df: la GeoDataFrame où les clusters ont déjà été calculés par la fonction clusterize
+:return:
+Retourne un tuple.
+En premier : une GeoDataFrame identique, à ceci près que l'on a ajouté la colonne 'hulls'.
+(correspondant à un Polygon, enveloppe convexe du cluster)
+(il se peut que ce soit un Point, si le cluster ne contient qu'un point, car les Polygons à un point sont interdits)
+En deuxième, une GeoDataFrame plus simple avec une unique colonne 'hulls'
+(la ligne est le numéro de cluster, et contient les enveloppes convexes)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_sirene_analizer_ad77ea7285b948e6954919e6ab003bc47}\label{namespace_sirene_analizer_ad77ea7285b948e6954919e6ab003bc47}} 
+\index{SireneAnalizer@{SireneAnalizer}!filter@{filter}}
+\index{filter@{filter}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{filter()}{filter()}}
+{\footnotesize\ttfamily def Sirene\+Analizer.\+filter (\begin{DoxyParamCaption}\item[{gpd.\+Geo\+Data\+Frame}]{df,  }\item[{str}]{column\+\_\+points = {\ttfamily \textquotesingle{}geometry\textquotesingle{}},  }\item[{bool}]{reduce = {\ttfamily False},  }\item[{bool}]{do\+\_\+filter = {\ttfamily True} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Filtre la GeoDataFrame : enlève les na.
+Si do_filter=True, ne garde que la colonne contenant les points (allège)
+
+:param df: la GeoDataFrame
+:param column_points: la colonne où se trouvent les points
+:param reduce: si True, extrait uniquement 1000 lignes de la GeoDataFrame (pour accélérer le temps de calcul)
+:param do_filter: si True, ne garde que la colonne contenant les points (allège)
+:return: Retourne une GeoDataFrame. Elle ne contient pas de na. Si do_filter est True, l'unique colonne porte le nom 'geometry'.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_sirene_analizer_a553fe358625a6b3553900d6693d9b7a3}\label{namespace_sirene_analizer_a553fe358625a6b3553900d6693d9b7a3}} 
+\index{SireneAnalizer@{SireneAnalizer}!ouvrir@{ouvrir}}
+\index{ouvrir@{ouvrir}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{ouvrir()}{ouvrir()}}
+{\footnotesize\ttfamily def Sirene\+Analizer.\+ouvrir (\begin{DoxyParamCaption}\item[{str}]{path,  }\item[{str}]{column\+\_\+points = {\ttfamily \textquotesingle{}geometry\textquotesingle{}},  }\item[{bool}]{reduce = {\ttfamily False},  }\item[{bool}]{do\+\_\+filter = {\ttfamily True} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Ouvre la GeoDataFrame du chemin spécifié.
+
+:param path: chemin du fichier
+:param column_points: la colonne où se trouvent les points
+:param reduce: si True, extrait uniquement 1000 lignes de la GeoDataFrame (pour accélérer le temps de calcul)
+:param do_filter: si True, ne garde que la colonne contenant les points (allège)
+:return: Retourne une GeoDataFrame. Elle ne contient pas de na. Si do_filter est True, l'unique colonne porte le nom 'geometry'.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_sirene_analizer_ae9da2463d6618661f0e07049e70ea45f}\label{namespace_sirene_analizer_ae9da2463d6618661f0e07049e70ea45f}} 
+\index{SireneAnalizer@{SireneAnalizer}!range\_hex\_colors@{range\_hex\_colors}}
+\index{range\_hex\_colors@{range\_hex\_colors}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{range\_hex\_colors()}{range\_hex\_colors()}}
+{\footnotesize\ttfamily def Sirene\+Analizer.\+range\+\_\+hex\+\_\+colors (\begin{DoxyParamCaption}\item[{int}]{nombre\+\_\+couleurs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_sirene_analizer_a623943683b810b29f136d02fdb8da7e2}\label{namespace_sirene_analizer_a623943683b810b29f136d02fdb8da7e2}} 
+\index{SireneAnalizer@{SireneAnalizer}!save\_to\_map@{save\_to\_map}}
+\index{save\_to\_map@{save\_to\_map}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{save\_to\_map()}{save\_to\_map()}}
+{\footnotesize\ttfamily def Sirene\+Analizer.\+save\+\_\+to\+\_\+map (\begin{DoxyParamCaption}\item[{gpd.\+Geo\+Data\+Frame}]{centroids,  }\item[{gpd.\+Geo\+Data\+Frame}]{hulls,  }\item[{str}]{path = {\ttfamily \mbox{\hyperlink{namespace_sirene_analizer_aae334d372d85590f4053e78e9316915a}{clusterized\+\_\+path}}},  }\item[{gpd.\+Geo\+Data\+Frame}]{df = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sauvegarde les centres de gravité des clusters, ainsi que les enveloppes convexes, dans une carte Leaflet
+:param centroids: les centres de gravité (cf. deuxième sortie de la fonction clusterize)
+:param hulls: les enveloppes convesxes (cf. deuxième sortie de la fonction do_convex_hull)
+:param path: le chemin
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_sirene_analizer_ac87b12118762b23663d60ab067116884}\label{namespace_sirene_analizer_ac87b12118762b23663d60ab067116884}} 
+\index{SireneAnalizer@{SireneAnalizer}!swap\_xy@{swap\_xy}}
+\index{swap\_xy@{swap\_xy}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{swap\_xy()}{swap\_xy()}}
+{\footnotesize\ttfamily def Sirene\+Analizer.\+swap\+\_\+xy (\begin{DoxyParamCaption}\item[{Base\+Geometry}]{geom }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Inverse les coordonnées de l'objet shapely.geometry.
+Utile pour passer objets shapely dans folium (la convention est inversée)
+:param geom: l'objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
+:return: l'objet inversé
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{namespace_sirene_analizer_ae931a4d1c915fcb3740cadcc9f055797}\label{namespace_sirene_analizer_ae931a4d1c915fcb3740cadcc9f055797}} 
+\index{SireneAnalizer@{SireneAnalizer}!centroids@{centroids}}
+\index{centroids@{centroids}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{centroids}{centroids}}
+{\footnotesize\ttfamily Sirene\+Analizer.\+centroids}
+
+\mbox{\Hypertarget{namespace_sirene_analizer_aae334d372d85590f4053e78e9316915a}\label{namespace_sirene_analizer_aae334d372d85590f4053e78e9316915a}} 
+\index{SireneAnalizer@{SireneAnalizer}!clusterized\_path@{clusterized\_path}}
+\index{clusterized\_path@{clusterized\_path}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{clusterized\_path}{clusterized\_path}}
+{\footnotesize\ttfamily string Sirene\+Analizer.\+clusterized\+\_\+path = \char`\"{}output\textbackslash{}\textbackslash{}clusterized\+\_\+sirene.\+html\char`\"{}}
+
+\mbox{\Hypertarget{namespace_sirene_analizer_a3d7c2fd94c1c0ace576182fb6b2ab9f8}\label{namespace_sirene_analizer_a3d7c2fd94c1c0ace576182fb6b2ab9f8}} 
+\index{SireneAnalizer@{SireneAnalizer}!data@{data}}
+\index{data@{data}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily Sirene\+Analizer.\+data = \mbox{\hyperlink{namespace_sirene_analizer_a553fe358625a6b3553900d6693d9b7a3}{ouvrir}}(\mbox{\hyperlink{namespace_sirene_analizer_a6e171306ccfbb83ca3c0bf3b15e71d05}{reducted\+\_\+name}}, reduce=True)}
+
+\mbox{\Hypertarget{namespace_sirene_analizer_a4aec614441f405b6de55f1f1d4c296f4}\label{namespace_sirene_analizer_a4aec614441f405b6de55f1f1d4c296f4}} 
+\index{SireneAnalizer@{SireneAnalizer}!data\_0@{data\_0}}
+\index{data\_0@{data\_0}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{data\_0}{data\_0}}
+{\footnotesize\ttfamily def Sirene\+Analizer.\+data\+\_\+0 = data.\+copy()}
+
+\mbox{\Hypertarget{namespace_sirene_analizer_a6a98f05a3a1b90e3c880ecaab3534e66}\label{namespace_sirene_analizer_a6a98f05a3a1b90e3c880ecaab3534e66}} 
+\index{SireneAnalizer@{SireneAnalizer}!hulls@{hulls}}
+\index{hulls@{hulls}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{hulls}{hulls}}
+{\footnotesize\ttfamily Sirene\+Analizer.\+hulls}
+
+\mbox{\Hypertarget{namespace_sirene_analizer_a6e171306ccfbb83ca3c0bf3b15e71d05}\label{namespace_sirene_analizer_a6e171306ccfbb83ca3c0bf3b15e71d05}} 
+\index{SireneAnalizer@{SireneAnalizer}!reducted\_name@{reducted\_name}}
+\index{reducted\_name@{reducted\_name}!SireneAnalizer@{SireneAnalizer}}
+\doxysubsubsection{\texorpdfstring{reducted\_name}{reducted\_name}}
+{\footnotesize\ttfamily string Sirene\+Analizer.\+reducted\+\_\+name = \char`\"{}input\textbackslash{}\textbackslash{}base\+\_\+sirene\+\_\+shortened\+\_\+json\+\_\+cpp.\+json\char`\"{}}
+

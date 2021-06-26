@@ -1,0 +1,154 @@
+\hypertarget{namespace_b_a_n_analizer}{}\doxysection{Référence de l\textquotesingle{}espace de nommage BANAnalizer}
+\label{namespace_b_a_n_analizer}\index{BANAnalizer@{BANAnalizer}}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_b_a_n_analizer_a0a74446aa5911d31aeb90bcdafa26437}{swap\+\_\+xy}} (geom)
+\item 
+def \mbox{\hyperlink{namespace_b_a_n_analizer_a0265096a3ebf2909f3034c4c0033d14f}{ouvrir}} (path, column\+\_\+points=\textquotesingle{}geometry\textquotesingle{}, reduce=False, do\+\_\+filter=True)
+\item 
+def \mbox{\hyperlink{namespace_b_a_n_analizer_a7a57b7faabe5cf3b04a84620974615ea}{filter}} (df, column\+\_\+points=\textquotesingle{}geometry\textquotesingle{}, reduce=False, do\+\_\+filter=True)
+\item 
+def \mbox{\hyperlink{namespace_b_a_n_analizer_a119fd9cf08e6d37c71d2c637721e6937}{clusterize}} (df, k)
+\item 
+def \mbox{\hyperlink{namespace_b_a_n_analizer_a2d070bd00bad80e0bf6bb9353611f9b3}{do\+\_\+convex\+\_\+hull}} (df)
+\item 
+def \mbox{\hyperlink{namespace_b_a_n_analizer_a5469c861f61bf4d3dad145ab84ca4af4}{save\+\_\+to\+\_\+map}} (\mbox{\hyperlink{namespace_b_a_n_analizer_a48faa009d8432ebf72cb436490d96dac}{centroids}}, \mbox{\hyperlink{namespace_b_a_n_analizer_aad4c2d1152284f52c216077c54174897}{hulls}}, path=\mbox{\hyperlink{namespace_b_a_n_analizer_a66d10444809d0ad83b0ce781fe7e32e8}{clusterized\+\_\+path}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{namespace_b_a_n_analizer_a8c143fba552270be22256d2a3b5b007e}{reducted\+\_\+name}} = \char`\"{}input\textbackslash{}\textbackslash{}reducted.\+geojson\char`\"{}
+\item 
+string \mbox{\hyperlink{namespace_b_a_n_analizer_a66d10444809d0ad83b0ce781fe7e32e8}{clusterized\+\_\+path}} = \char`\"{}output\textbackslash{}\textbackslash{}clusterized.\+html\char`\"{}
+\item 
+def \mbox{\hyperlink{namespace_b_a_n_analizer_a92a8fc5f65291d5a9494ddb7a1f54dfa}{data}} = \mbox{\hyperlink{namespace_b_a_n_analizer_a0265096a3ebf2909f3034c4c0033d14f}{ouvrir}}(\mbox{\hyperlink{namespace_b_a_n_analizer_a8c143fba552270be22256d2a3b5b007e}{reducted\+\_\+name}})
+\item 
+\mbox{\hyperlink{namespace_b_a_n_analizer_a48faa009d8432ebf72cb436490d96dac}{centroids}}
+\item 
+\mbox{\hyperlink{namespace_b_a_n_analizer_aad4c2d1152284f52c216077c54174897}{hulls}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{namespace_b_a_n_analizer_a119fd9cf08e6d37c71d2c637721e6937}\label{namespace_b_a_n_analizer_a119fd9cf08e6d37c71d2c637721e6937}} 
+\index{BANAnalizer@{BANAnalizer}!clusterize@{clusterize}}
+\index{clusterize@{clusterize}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{clusterize()}{clusterize()}}
+{\footnotesize\ttfamily def BANAnalizer.\+clusterize (\begin{DoxyParamCaption}\item[{}]{df,  }\item[{}]{k }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clusterise la GeoDataFrame à l'aide de la méthode des k-moyennes.
+La colonne contenant les points doit s'appeler 'geometry'.
+La GeoDataFrame peut contenir d'autres colonnes.
+
+:param df: la GeoDataFrame à clusteriser (les données doivent se trouver dans la colonne 'geometry')
+:param k: le nombre de clusters
+:return:
+Retourne un tuple.
+En premier : une GeoDataFrame identique, à ceci près que l'on a ajouté les colonnes 'cluster' et 'centroids'.
+(correspondant au numéro du cluster, et à son centre de gravité)
+En deuxième, une GeoDataFrame plus simple avec une unique colonne 'centroids'
+(la ligne est le numéro de cluster, et contient le centre de gravité)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_b_a_n_analizer_a2d070bd00bad80e0bf6bb9353611f9b3}\label{namespace_b_a_n_analizer_a2d070bd00bad80e0bf6bb9353611f9b3}} 
+\index{BANAnalizer@{BANAnalizer}!do\_convex\_hull@{do\_convex\_hull}}
+\index{do\_convex\_hull@{do\_convex\_hull}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{do\_convex\_hull()}{do\_convex\_hull()}}
+{\footnotesize\ttfamily def BANAnalizer.\+do\+\_\+convex\+\_\+hull (\begin{DoxyParamCaption}\item[{}]{df }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A partir de données clusterisées (le premier élément retourné par la fonction clusterize)
+(cf. doc de la fonction clusterize), fabrique les enveloppes convexes.
+
+:param df: la GeoDataFrame où les clusters ont déjà été calculés par la fonction clusterize
+:return:
+Retourne un tuple.
+En premier : une GeoDataFrame identique, à ceci près que l'on a ajouté la colonne 'hulls'.
+(correspondant à un Polygon, enveloppe convexe du cluster)
+(il se peut que ce soit un Point, si le cluster ne contient qu'un point, car les Polygons à un point sont interdits)
+En deuxième, une GeoDataFrame plus simple avec une unique colonne 'hulls'
+(la ligne est le numéro de cluster, et contient les enveloppes convexes)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_b_a_n_analizer_a7a57b7faabe5cf3b04a84620974615ea}\label{namespace_b_a_n_analizer_a7a57b7faabe5cf3b04a84620974615ea}} 
+\index{BANAnalizer@{BANAnalizer}!filter@{filter}}
+\index{filter@{filter}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{filter()}{filter()}}
+{\footnotesize\ttfamily def BANAnalizer.\+filter (\begin{DoxyParamCaption}\item[{}]{df,  }\item[{}]{column\+\_\+points = {\ttfamily \textquotesingle{}geometry\textquotesingle{}},  }\item[{}]{reduce = {\ttfamily False},  }\item[{}]{do\+\_\+filter = {\ttfamily True} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Filtre la GeoDataFrame : enlève les na.
+Si do_filter=True, ne garde que la colonne contenant les points (allège)
+
+:param df: la GeoDataFrame
+:param column_points: la colonne où se trouvent les points
+:param reduce: si True, extrait uniquement 1000 lignes de la GeoDataFrame (pour accélérer le temps de calcul)
+:param do_filter: si True, ne garde que la colonne contenant les points (allège)
+:return: Retourne une GeoDataFrame. Elle ne contient pas de na. Si do_filter est True, l'unique colonne porte le nom 'geometry'.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_b_a_n_analizer_a0265096a3ebf2909f3034c4c0033d14f}\label{namespace_b_a_n_analizer_a0265096a3ebf2909f3034c4c0033d14f}} 
+\index{BANAnalizer@{BANAnalizer}!ouvrir@{ouvrir}}
+\index{ouvrir@{ouvrir}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{ouvrir()}{ouvrir()}}
+{\footnotesize\ttfamily def BANAnalizer.\+ouvrir (\begin{DoxyParamCaption}\item[{}]{path,  }\item[{}]{column\+\_\+points = {\ttfamily \textquotesingle{}geometry\textquotesingle{}},  }\item[{}]{reduce = {\ttfamily False},  }\item[{}]{do\+\_\+filter = {\ttfamily True} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Ouvre la GeoDataFrame du chemin spécifié.
+
+:param path: chemin du fichier
+:param column_points: la colonne où se trouvent les points
+:param reduce: si True, extrait uniquement 1000 lignes de la GeoDataFrame (pour accélérer le temps de calcul)
+:param do_filter: si True, ne garde que la colonne contenant les points (allège)
+:return: Retourne une GeoDataFrame. Elle ne contient pas de na. Si do_filter est True, l'unique colonne porte le nom 'geometry'.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_b_a_n_analizer_a5469c861f61bf4d3dad145ab84ca4af4}\label{namespace_b_a_n_analizer_a5469c861f61bf4d3dad145ab84ca4af4}} 
+\index{BANAnalizer@{BANAnalizer}!save\_to\_map@{save\_to\_map}}
+\index{save\_to\_map@{save\_to\_map}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{save\_to\_map()}{save\_to\_map()}}
+{\footnotesize\ttfamily def BANAnalizer.\+save\+\_\+to\+\_\+map (\begin{DoxyParamCaption}\item[{}]{centroids,  }\item[{}]{hulls,  }\item[{}]{path = {\ttfamily \mbox{\hyperlink{namespace_b_a_n_analizer_a66d10444809d0ad83b0ce781fe7e32e8}{clusterized\+\_\+path}}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sauvegarde les centres de gravité des clusters, ainsi que les enveloppes convexes, dans une carte Leaflet
+:param centroids: les centres de gravité (cf. deuxième sortie de la fonction clusterize)
+:param hulls: les enveloppes convesxes (cf. deuxième sortie de la fonction do_convex_hull)
+:param path: le chemin
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_b_a_n_analizer_a0a74446aa5911d31aeb90bcdafa26437}\label{namespace_b_a_n_analizer_a0a74446aa5911d31aeb90bcdafa26437}} 
+\index{BANAnalizer@{BANAnalizer}!swap\_xy@{swap\_xy}}
+\index{swap\_xy@{swap\_xy}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{swap\_xy()}{swap\_xy()}}
+{\footnotesize\ttfamily def BANAnalizer.\+swap\+\_\+xy (\begin{DoxyParamCaption}\item[{}]{geom }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Inverse les coordonnées de l'objet shapely.geometry.
+Utile pour passer objets shapely dans folium (la convention est inversée)
+:param geom: l'objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
+:return: l'objet inversé
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{namespace_b_a_n_analizer_a48faa009d8432ebf72cb436490d96dac}\label{namespace_b_a_n_analizer_a48faa009d8432ebf72cb436490d96dac}} 
+\index{BANAnalizer@{BANAnalizer}!centroids@{centroids}}
+\index{centroids@{centroids}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{centroids}{centroids}}
+{\footnotesize\ttfamily BANAnalizer.\+centroids}
+
+\mbox{\Hypertarget{namespace_b_a_n_analizer_a66d10444809d0ad83b0ce781fe7e32e8}\label{namespace_b_a_n_analizer_a66d10444809d0ad83b0ce781fe7e32e8}} 
+\index{BANAnalizer@{BANAnalizer}!clusterized\_path@{clusterized\_path}}
+\index{clusterized\_path@{clusterized\_path}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{clusterized\_path}{clusterized\_path}}
+{\footnotesize\ttfamily string BANAnalizer.\+clusterized\+\_\+path = \char`\"{}output\textbackslash{}\textbackslash{}clusterized.\+html\char`\"{}}
+
+\mbox{\Hypertarget{namespace_b_a_n_analizer_a92a8fc5f65291d5a9494ddb7a1f54dfa}\label{namespace_b_a_n_analizer_a92a8fc5f65291d5a9494ddb7a1f54dfa}} 
+\index{BANAnalizer@{BANAnalizer}!data@{data}}
+\index{data@{data}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily BANAnalizer.\+data = \mbox{\hyperlink{namespace_b_a_n_analizer_a0265096a3ebf2909f3034c4c0033d14f}{ouvrir}}(\mbox{\hyperlink{namespace_b_a_n_analizer_a8c143fba552270be22256d2a3b5b007e}{reducted\+\_\+name}})}
+
+\mbox{\Hypertarget{namespace_b_a_n_analizer_aad4c2d1152284f52c216077c54174897}\label{namespace_b_a_n_analizer_aad4c2d1152284f52c216077c54174897}} 
+\index{BANAnalizer@{BANAnalizer}!hulls@{hulls}}
+\index{hulls@{hulls}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{hulls}{hulls}}
+{\footnotesize\ttfamily BANAnalizer.\+hulls}
+
+\mbox{\Hypertarget{namespace_b_a_n_analizer_a8c143fba552270be22256d2a3b5b007e}\label{namespace_b_a_n_analizer_a8c143fba552270be22256d2a3b5b007e}} 
+\index{BANAnalizer@{BANAnalizer}!reducted\_name@{reducted\_name}}
+\index{reducted\_name@{reducted\_name}!BANAnalizer@{BANAnalizer}}
+\doxysubsubsection{\texorpdfstring{reducted\_name}{reducted\_name}}
+{\footnotesize\ttfamily string BANAnalizer.\+reducted\+\_\+name = \char`\"{}input\textbackslash{}\textbackslash{}reducted.\+geojson\char`\"{}}
+
