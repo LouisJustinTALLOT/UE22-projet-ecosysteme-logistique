@@ -9,6 +9,9 @@ from src.clusterizer import clusterizer
 
 
 class Wind(QMainWindow):
+    """
+    Classe contenant l'interface Homme-Machine pour le projet.
+    """
     def __init__(self):
         QMainWindow.__init__(self)
         self.IHM = ihm_pyqt.InputFenetre()
@@ -44,7 +47,10 @@ class Wind(QMainWindow):
             if self.IHM.NAF_voulu.isChecked() :
                 list_secteur = secteur.split()
             else :
-                list_secteur = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U']
+                list_secteur = [
+                    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+                    'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'
+                ]
                 to_remove = secteur.split()
 
                 for lettre in to_remove :
@@ -87,13 +93,13 @@ class Wind(QMainWindow):
                 self.move(0,0)
                 self.showMaximized()
 
+if __name__ == "__main__":
+    # on démarre l'appplication
+    app = QApplication.instance() 
+    if not app:
+        app = QApplication(sys.argv)
+        
+    fen = Wind()
+    fen.show()
 
-# on démarre l'appplication
-app = QApplication.instance() 
-if not app:
-    app = QApplication(sys.argv)
-    
-fen = Wind()
-fen.show()
-
-app.exec_()
+    app.exec_()
