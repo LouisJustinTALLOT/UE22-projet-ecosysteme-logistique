@@ -11,6 +11,7 @@ from multiprocessing import Pool, Process, Array, RawArray
 import cProfile
 
 import sys
+
 sys.path.append("../../")
 
 from sklearn.cluster import KMeans, MiniBatchKMeans
@@ -47,7 +48,12 @@ f_marne,\
 
 @np.vectorize
 def rapport_a_la_seine(xy):
-
+    """
+    TODO
+    
+    :param xy:
+    :return:
+    """
     point_etudie = Point(xy[0], xy[1])
 
     # try:
@@ -134,9 +140,22 @@ def rapport_a_la_seine(xy):
     return 3
 
 def process_rapport_a_la_seine(no_zone:int, df: pd.DataFrame, shared_array: Array) -> None:
+    """
+    TODO
+
+    :param no_zone:
+    :param df:
+    :param shared_array:
+    """
     shared_array[no_zone] = df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
 
 def map_rapport_a_la_seine(args_tuple: Tuple[int, pd.DataFrame]) -> pd.DataFrame:
+    """
+    TODO
+
+    :param args_tuple:
+    :return:
+    """
     no_zone, df = args_tuple
     return df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
 
@@ -162,7 +181,7 @@ def nettoyer(df: pd.DataFrame, reduce: bool = False, threshold: int = 1000, colu
     return df.dropna(subset=[column_geometry]).reset_index(drop=True)
 
 
-def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, weight=True):
+def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME, dict: bool = False, weight: bool = True) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Clusterise à l'aide de l'algorithme des k-moyennes. Attention, fait du en-place.
 
@@ -211,14 +230,16 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, 
     return df, df_infos_clusters
 
 
-def save_to_map(df_clusters, map=None):
+def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> folium.folium.Map:
     """
     Sauvegarde les informations des clusters dans une carte Leaflet.
     Ne retourne rien.
 
     :param df_clusters: La DataFrame contenant les informations de chaque cluster
      (cf. deuxième sortie de la fonction clusterize)
+    :param map: la carte à utiliser (si rien n'est spécifié, utilise Stamen Terrain, plus léger que Leaflet)
     :param path: Le chemin de sortie du fichier.
+    :return une carte complétée.
     """
 
     if map is None:
@@ -226,7 +247,7 @@ def save_to_map(df_clusters, map=None):
                         zoom_start=10,
                         tiles="Stamen Terrain"
                         )
-        
+
 
     couleurs = ['darkslateblue', 'orange', 'darkred', 'black',
                 'purple', 'deeppink', 'green', 'darkgreen', 'maroon',
@@ -263,11 +284,21 @@ def save_to_map(df_clusters, map=None):
     return map
 
 def test_geojson():
+    """
+    Fonction interne (utilisée pour vérifier le bon fonctionnement de la clusterisation).
+    """
     df = nettoyer(gpd.read_file("../../essais/gis/input/reducted.geojson"))
     df, df_clusters = clusterize(df, 10, dict=False)
     save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
 def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
+    """
+    TODO
+
+    :param liste_df:
+    :param nb_clusters:
+    :return:
+    """
     poids_par_zone: np.ndarray = np.zeros(len(liste_df))
     for i in range(len(liste_df)):
         poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700")
@@ -276,7 +307,21 @@ def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
     nb_par_zone = np.maximum(nb_par_zone, np.ones(len(liste_df), dtype=int))  # il faut au moins un cluster par zone considérée
     return nb_par_zone
 
-def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clusterized_map_seine.html", reduce=False, threshold=1000):
+def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50, adresse_map: str = "output/clusterized_map_seine.html",
+              reduce: bool = False,
+              threshold: int = 1000) -> None:
+    """
+    Fonction principale à exécuter pour successivement ouvrir la DataFrame contenant les données,
+    nettoyer la DataFrame, filtrer par secteurs NAF, ne garder que les magasins proche du centre de Paris,
+    séparer par la Seine, clusteriser et sauvegarder dans une carte.
+    :param rayon: le rayon (à partir du centre de Paris).
+    :param secteur_NAF: les secteurs NAF à sélectionner.
+    :param nb_clusters: le nombre de clusters à calculer.
+     La répartition entre les secteurs de la Seine est calculée automatiquement.
+    :param adresse_map: l'adresse de la carte en sortie.
+    :param reduce: mettre True pour n'utiliser qu'une version allégée des données (plus rapide).
+    :param threshold: nombre de données utilisées si reduce=True
+    """
     t1 = time.time()
     print("Ouverture de la DataFrame...", end="    ")
 
@@ -372,6 +417,9 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
 
 
 def test_naf():
+    """
+    Fonction interne (utilisée pour vérifier le bon fonctionnement du filtrage par NAF).
+    """
     print(NAF_utils.get_NAFs_by_section("L"))
 
 if __name__ == "__main__":
