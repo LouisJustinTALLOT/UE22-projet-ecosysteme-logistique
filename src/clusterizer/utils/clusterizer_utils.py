@@ -1,3 +1,9 @@
+"""
+Ce module permet d'extraire simplement nos données des GeoDataFrames, de trouver
+leurs coordonnées, de restreindre le calcul aux points situés dans un certain rayon
+autour de Paris ; il permet également de manipuler les clusters, de calculer leur 
+poids et leur taille.
+"""
 from typing import Callable
 
 import geopandas as gpd

@@ -49,7 +49,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.ihm.ihm_complet.</span></span><span class="sig-name descname"><span class="pre">Wind</span></span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Classe contenant l’interface Homme-Machine pour le projet</p>
+<dd><p>Classe contenant l’interface Homme-Machine pour le projet.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind.appui_bouton_OK">
 <span class="sig-name descname"><span class="pre">appui_bouton_OK</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind.appui_bouton_OK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind.appui_bouton_OK" title="Lien permanent vers cette définition">¶</a></dt>
@@ -248,8 +248,14 @@ si rien n’est spécifié, génère une nouvelle carte</p></li>
 </dd></dl>
 
 </section>
+<section id="fichiers-utilitaires">
+<h2>Fichiers utilitaires<a class="headerlink" href="#fichiers-utilitaires" title="Lien permanent vers ce titre">¶</a></h2>
 <section id="module-src.clusterizer.utils.clusterizer_utils">
-<span id="fonctions-utilitaires"></span><h2>Fonctions utilitaires<a class="headerlink" href="#module-src.clusterizer.utils.clusterizer_utils" title="Lien permanent vers ce titre">¶</a></h2>
+<span id="utilitaires-pour-la-clusterisation"></span><h3>Utilitaires pour la clusterisation<a class="headerlink" href="#module-src.clusterizer.utils.clusterizer_utils" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Ce module permet d’extraire simplement nos données des GeoDataFrames, de trouver
+leurs coordonnées, de restreindre le calcul aux points situés dans un certain rayon
+autour de Paris ; il permet également de manipuler les clusters, de calculer leur 
+poids et leur taille.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster">
 <span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.clusterizer_utils.</span></span><span class="sig-name descname"><span class="pre">calculer_poids_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">naf_column_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">int</span><a class="reference internal" href="_modules/src/clusterizer/utils/clusterizer_utils.html#calculer_poids_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster" title="Lien permanent vers cette définition">¶</a></dt>
@@ -400,6 +406,85 @@ Auteur : <a class="reference external" href="https://gis.stackexchange.com/a/291
 </dd></dl>
 
 </section>
+<section id="module-src.clusterizer.utils.NAF_utils">
+<span id="utilitaires-pour-la-gestion-des-codes-naf"></span><h3>Utilitaires pour la gestion des codes NAF<a class="headerlink" href="#module-src.clusterizer.utils.NAF_utils" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Fonctions pour switcher les conventions de NAF (avec ou sans point intermédiaire)</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.ajouter_point">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.NAF_utils.</span></span><span class="sig-name descname"><span class="pre">ajouter_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code_naf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="_modules/src/clusterizer/utils/NAF_utils.html#ajouter_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.NAF_utils.ajouter_point" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fait passer le code NAF à la convention avec point (s’il n’y est pas)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>code_naf</strong> – Le code à changer</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Le code avec un point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.filter_by_naf">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.NAF_utils.</span></span><span class="sig-name descname"><span class="pre">filter_by_naf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codes_naf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_codes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/utils/NAF_utils.html#filter_by_naf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.NAF_utils.filter_by_naf" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne les établissements dont le code NAF est contenu dans la liste.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – La liste des établissements (convention NAF : sans le point)</p></li>
+<li><p><strong>codes_naf</strong> – Les codes NAF (avec ou sans le point) (sous forme de liste)</p></li>
+<li><p><strong>column_codes</strong> – La colonne où est située le code NAF dans la DataFrame des établissements</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>La DataFrame filtrée.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.get_NAFs_by_section">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.NAF_utils.</span></span><span class="sig-name descname"><span class="pre">get_NAFs_by_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.series.Series</span><a class="reference internal" href="_modules/src/clusterizer/utils/NAF_utils.html#get_NAFs_by_section"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.NAF_utils.get_NAFs_by_section" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fournit la liste des codes NAF de la section correspondante.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>section</strong> – La lettre de la section</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>La liste des codes NAF contenus dans la section (convention : avec points)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.get_description">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.NAF_utils.</span></span><span class="sig-name descname"><span class="pre">get_description</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code_naf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="reference internal" href="_modules/src/clusterizer/utils/NAF_utils.html#get_description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.NAF_utils.get_description" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fournit la description correspondant au code NAF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>code_naf</strong> – le code, avec ou sans point.</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>la description complète.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.retirer_point">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.NAF_utils.</span></span><span class="sig-name descname"><span class="pre">retirer_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code_naf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="_modules/src/clusterizer/utils/NAF_utils.html#retirer_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.NAF_utils.retirer_point" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fait passer le code NAF à la convention sans point (s’il y est)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>code_naf</strong> – Le code à changer</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Le code sans point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
 </section>
 <section id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Lien permanent vers ce titre">¶</a></h1>
@@ -429,7 +514,11 @@ Auteur : <a class="reference external" href="https://gis.stackexchange.com/a/291
 </li>
 <li><a class="reference internal" href="#clusterizer">Clusterizer</a><ul>
 <li><a class="reference internal" href="#module-src.clusterizer.clusterizer">Fichier principal</a></li>
-<li><a class="reference internal" href="#module-src.clusterizer.utils.clusterizer_utils">Fonctions utilitaires</a></li>
+<li><a class="reference internal" href="#fichiers-utilitaires">Fichiers utilitaires</a><ul>
+<li><a class="reference internal" href="#module-src.clusterizer.utils.clusterizer_utils">Utilitaires pour la clusterisation</a></li>
+<li><a class="reference internal" href="#module-src.clusterizer.utils.NAF_utils">Utilitaires pour la gestion des codes NAF</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>

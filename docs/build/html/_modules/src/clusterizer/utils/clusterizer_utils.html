@@ -38,7 +38,13 @@
           <div class="body" role="main">
             
   <h1>Code source de src.clusterizer.utils.clusterizer_utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Ce module permet d&#39;extraire simplement nos données des GeoDataFrames, de trouver</span>
+<span class="sd">leurs coordonnées, de restreindre le calcul aux points situés dans un certain rayon</span>
+<span class="sd">autour de Paris ; il permet également de manipuler les clusters, de calculer leur </span>
+<span class="sd">poids et leur taille.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
 
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>

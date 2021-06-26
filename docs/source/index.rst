@@ -7,7 +7,7 @@ Ecosystème logistique - Documentation
 ======================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
 
 
@@ -50,9 +50,17 @@ Fichier principal
 ..    src.clusterizer.clusterizer.*
    
 
-Fonctions utilitaires
+Fichiers utilitaires
 ----------------------
+
+Utilitaires pour la clusterisation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. automodule:: src.clusterizer.utils.clusterizer_utils
+   :members:
+
+Utilitaires pour la gestion des codes NAF
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: src.clusterizer.utils.NAF_utils
    :members:
 
 Indices and tables

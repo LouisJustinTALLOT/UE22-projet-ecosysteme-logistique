@@ -1,3 +1,4 @@
+"""Fonctions pour switcher les conventions de NAF (avec ou sans point intermédiaire)"""
 from typing import Optional, List
 
 import pandas as pd
@@ -5,9 +6,6 @@ import numpy as np
 
 import os
 
-#==================================================================================
-# Fonctions pour switcher les conventions de NAF (avec ou sans point intermédiaire)
-#==================================================================================
 from pandas import Series
 
 
@@ -83,7 +81,7 @@ def get_NAFs_by_section(section: str) -> Series:
     Fournit la liste des codes NAF de la section correspondante.
 
     :param section: La lettre de la section
-    :returns La liste des codes NAF contenus dans la section (convention : avec points)
+    :return: La liste des codes NAF contenus dans la section (convention : avec points)
     """
     global df_naf_descriptions
 
