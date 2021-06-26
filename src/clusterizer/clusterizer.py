@@ -323,7 +323,9 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
     :param adresse_map: l'adresse de la carte en sortie.
     :param reduce: mettre :code:`True` pour n'utiliser qu'une version allégée des données (plus rapide).
     :param threshold: nombre de données utilisées si reduce= :code:`True` 
-    :return: :code:`None`
+
+    :return: :code:`None` 
+    
     """
     t1 = time.time()
     print("Ouverture de la DataFrame...", end="    ")
