@@ -12,9 +12,46 @@ Ecosystème logistique - Documentation
 
 
 
+Interface Homme-Machine
+========================
+Interface complète
+-------------------
+
+.. automodule:: src.ihm.ihm_complet
+   :members:
+
+
+Interaction avec l'utilisateur *via* fichier CSV
+-------------------------------------------------
+.. automodule:: src.ihm.ihm_csv
+   :members:
+
+Utilitaire : fenêtre d'accueil pour :code:`ihm_complet`
+--------------------------------------------------------
+.. automodule:: src.ihm.ihm_pyqt
+   :members:
+
+Obsolète : 
+-------------
+.. automodule:: src.ihm.web
+   :members:
 
 Clusterizer
 ===================
+
+Fichier principal
+------------------
+.. automodule:: src.clusterizer.clusterizer
+   :members:
+.. .. autosummary::
+..    :recursive:
+..    :nosignatures:
+
+..    src.clusterizer.clusterizer.*
+   
+
+Fonctions utilitaires
+----------------------
 .. automodule:: src.clusterizer.utils.clusterizer_utils
    :members:
 
