@@ -315,13 +315,15 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
     Fonction principale à exécuter pour successivement ouvrir la DataFrame contenant les données,
     nettoyer la DataFrame, filtrer par secteurs NAF, ne garder que les magasins proche du centre de Paris,
     séparer par la Seine, clusteriser et sauvegarder dans une carte.
+    La répartition entre les secteurs de la Seine est calculée automatiquement.
+
     :param rayon: le rayon (à partir du centre de Paris).
     :param secteur_NAF: les secteurs NAF à sélectionner.
     :param nb_clusters: le nombre de clusters à calculer.
-     La répartition entre les secteurs de la Seine est calculée automatiquement.
     :param adresse_map: l'adresse de la carte en sortie.
-    :param reduce: mettre True pour n'utiliser qu'une version allégée des données (plus rapide).
-    :param threshold: nombre de données utilisées si reduce=True
+    :param reduce: mettre :code:`True` pour n'utiliser qu'une version allégée des données (plus rapide).
+    :param threshold: nombre de données utilisées si reduce= :code:`True` 
+    :return: :code:`None`
     """
     t1 = time.time()
     print("Ouverture de la DataFrame...", end="    ")
