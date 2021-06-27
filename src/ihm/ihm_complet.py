@@ -69,18 +69,20 @@ class Wind(QMainWindow):
         nb_cluster_max = self.IHM._donnees[1]
         rayon = self.IHM._donnees[3]
         secteur_NAF = self.IHM._donnees[2]
+        seine_div = self.IHM.seine_div.isChecked()
 
         for nb_clust in range(nb_cluster_min, nb_cluster_max + 1) :
             print("Nombre de cluster =", nb_clust)
             print("Rayon = ", rayon)
             print("Sélection NAF : ", secteur_NAF)
+            print("Séparer par la Seine : ", seine_div)
 
             adresse = "output_ihm/" +str(nb_clust) +"_clusterized_ihm.html"
 
             # Clusterization avec les données utlisateurs
             if __name__ == "__main__":
                 # On exécute le programme avec la base SIRENE :
-                clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse)
+                clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse, seine_div, True)
 
                 # On ouvre le fichier dans PyQt
                 view = QtWebEngineWidgets.QWebEngineView()

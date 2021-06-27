@@ -1,7 +1,7 @@
 import sys
 sys.path.append("../../")
 
-from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel, \
+from PyQt5.QtWidgets import QCheckBox, QWidget, QPushButton, QVBoxLayout, QLabel, \
                             QLineEdit, QHBoxLayout, QRadioButton
 
 
@@ -30,8 +30,7 @@ class InputFenetre(QWidget):
         
         # création du bouton
         self.bouton = QPushButton("Clusterize !")
-        # on connecte le signal "clicked" à la méthode "appui_bouton_copie"
-        # self.bouton.clicked.connect(self.appui_bouton_OK)
+        self.seine_div = QCheckBox("Séparer par la Seine")
         self.NAF_voulu = QRadioButton("Sélectionner uniquement ces secteurs")
         self.NAF_compl = QRadioButton("Sélectionner tous les secteurs sauf ceux-ci")
         self.NAF_voulu.setChecked(True)
@@ -74,6 +73,9 @@ class InputFenetre(QWidget):
         layout_rayon.addWidget(self.champ_rayon)
         layout_rayon.addWidget(self.label_unite)
         layout_princip.addLayout(layout_rayon)
+
+        # Séparer par la Seine
+        layout_princip.addWidget(self.seine_div)
 
         # Bouton
         layout_princip.addWidget(self.bouton)
