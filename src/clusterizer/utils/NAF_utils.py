@@ -59,7 +59,7 @@ def get_description(code_naf):
     :return: la description complète.
     """
     code_naf = ajouter_point(code_naf)
-    return df_naf_descriptions[df_naf_descriptions["code"] == code_naf].reset_index().loc[0, "description"]
+    return df_naf_descriptions[df_naf_descriptions["code"] == code_naf].reset_index(drop=True).loc[0, "description"]
 
 def get_NAFs_by_section(section):
     """
@@ -67,7 +67,7 @@ def get_NAFs_by_section(section):
 
     :param section: La lettre de la section
     :returns La liste des codes NAF contenus dans la section (convention : avec points)
-    """
+    """ 
     masque = df_naf_descriptions["code"] == ("SECTION " + section)
     # normalement ce masque n'est à True qu'à un seul endroit
     # du coup, comme True=1, on utilise cette astuce pour récupérer l'indice de la ligne
@@ -90,4 +90,4 @@ def filter_by_naf(df, codes_naf, column_codes):
     :param column_codes: La colonne où est située le code NAF dans la DataFrame des établissements
     :return: La DataFrame filtrée.
     """
-    return df[vectorized_belongs(df[column_codes], vectorized_retirer_points(codes_naf))].reset_index()
+    return df[vectorized_belongs(df[column_codes], vectorized_retirer_points(codes_naf))].reset_index(drop=True)
