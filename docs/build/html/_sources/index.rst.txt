@@ -31,7 +31,7 @@ Utilitaire : fenêtre d'accueil pour :code:`ihm_complet`
 .. automodule:: src.ihm.ihm_pyqt
    :members:
 
-Obsolète ouverture d'un fichier :code:`HTML` dans un navigateur Web : 
+(Obsolète) Ouverture d'un fichier :code:`HTML` dans un navigateur Web : 
 -------------
 .. automodule:: src.ihm.web
    :members:
@@ -64,6 +64,12 @@ Utilitaires pour la gestion des codes NAF
 .. automodule:: src.clusterizer.utils.NAF_utils
    :members:
 
+
+.. Utilitaires pour la gestion des codes NAF
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. .. doxygenfile:: NAF_utils.py
+
+
 .. Utilitaires pour la séparation par la Seine
 .. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. .. automodule:: src.clusterizer.utils.seine_data_utils
@@ -72,8 +78,11 @@ Utilitaires pour la gestion des codes NAF
 
 Traitement de la base SIRENE
 =============================
-.. automodule:: src.traitement_base_SIRENE.traitement_base_sirene
-   :members:
+.. doxygenfile:: traitement_base_sirene.cpp
+
+
+.. .. automodule:: src.traitement_base_SIRENE.traitement_base_sirene
+..    :members:
 
 
 Indices and tables

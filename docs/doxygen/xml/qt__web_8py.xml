@@ -18,7 +18,7 @@
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9" refid="classqt__web_1_1_interceptor" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classqt__web_1_1_interceptor" kindref="compound">Interceptor</ref>(QWebEngineUrlRequestInterceptor):</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classqt__web_1_1_interceptor_1a27547b191106a2d12200c03dffc337b1" kindref="member">interceptRequest</ref>(self,<sp/>info):</highlight></codeline>
+<codeline lineno="10" refid="classqt__web_1_1_interceptor_1a27547b191106a2d12200c03dffc337b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classqt__web_1_1_interceptor_1a27547b191106a2d12200c03dffc337b1" kindref="member">interceptRequest</ref>(self,<sp/>info):</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info.setHttpHeader(b</highlight><highlight class="stringliteral">&quot;Accept-Language&quot;</highlight><highlight class="normal">,<sp/>b</highlight><highlight class="stringliteral">&quot;en-US,en;q=0.9,es;q=0.8,de;q=0.7&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
     </programlisting>

@@ -278,15 +278,15 @@
     <member refid="namespacetests_1a5ee084c39530e132a48d51e955facc21" kind="function"><name>test2</name></member>
     <member refid="namespacetests_1a5fb245abef6d5ea64a436cbab988116f" kind="function"><name>test1</name></member>
   </compound>
-  <compound refid="namespacetraitement__base__sirene__py" kind="namespace"><name>traitement_base_sirene_py</name>
-    <member refid="namespacetraitement__base__sirene__py_1ae934e8550ae458f9f849b74ac0454d70" kind="variable"><name>json_file</name></member>
-    <member refid="namespacetraitement__base__sirene__py_1a440dd5c1648045640434eafe4d89cea0" kind="variable"><name>json_shortened_file</name></member>
-    <member refid="namespacetraitement__base__sirene__py_1af04a8e3272669f5e5ec61f0933fae8a7" kind="variable"><name>my_result</name></member>
-    <member refid="namespacetraitement__base__sirene__py_1a26399cf9597f335deefab4213196609d" kind="variable"><name>encoding</name></member>
-    <member refid="namespacetraitement__base__sirene__py_1ac37960ead5b418afd0e28c7265b8cd7c" kind="variable"><name>json_text</name></member>
-    <member refid="namespacetraitement__base__sirene__py_1aa0d3522890c6592ffd897c61cbe4a70b" kind="variable"><name>sirene_objects</name></member>
-    <member refid="namespacetraitement__base__sirene__py_1a4d6130c0a61ee284ddfc4a3934fbaa55" kind="variable"><name>t1</name></member>
-    <member refid="namespacetraitement__base__sirene__py_1a41945d9a7fcbd8f38b7d5d815c2497b1" kind="variable"><name>j</name></member>
+  <compound refid="namespacetraitement__base__sirene" kind="namespace"><name>traitement_base_sirene</name>
+    <member refid="namespacetraitement__base__sirene_1adcd2faac4e6715420f7ab139ff7d9778" kind="variable"><name>json_file</name></member>
+    <member refid="namespacetraitement__base__sirene_1a7df30411e1e68ec893bfca9ed20f34d6" kind="variable"><name>json_shortened_file</name></member>
+    <member refid="namespacetraitement__base__sirene_1a0a35a29e08d2eaa5452b6b403f23b449" kind="variable"><name>my_result</name></member>
+    <member refid="namespacetraitement__base__sirene_1aecd62cd1d368f0424ec4b14d82186e62" kind="variable"><name>encoding</name></member>
+    <member refid="namespacetraitement__base__sirene_1afed20519e0543467f24e050de0fd24c4" kind="variable"><name>json_text</name></member>
+    <member refid="namespacetraitement__base__sirene_1a70a4330b46d288d8baa174f112a9710e" kind="variable"><name>sirene_objects</name></member>
+    <member refid="namespacetraitement__base__sirene_1aa5999cc51d7f1ce044861eb34371dbfe" kind="variable"><name>t1</name></member>
+    <member refid="namespacetraitement__base__sirene_1a8bfe8f63a1abb11de330f2184461ec6b" kind="variable"><name>j</name></member>
   </compound>
   <compound refid="namespacetri__par__code___n_a_f" kind="namespace"><name>tri_par_code_NAF</name>
     <member refid="namespacetri__par__code___n_a_f_1ad73dd1e24a0db9d9f385be42d4606b0f" kind="function"><name>swap_xy</name></member>
@@ -367,7 +367,7 @@
   <compound refid="traitement__base__sirene_8cpp" kind="file"><name>traitement_base_sirene.cpp</name>
     <member refid="traitement__base__sirene_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" kind="function"><name>main</name></member>
   </compound>
-  <compound refid="traitement__base__sirene__py_8py" kind="file"><name>traitement_base_sirene_py.py</name>
+  <compound refid="traitement__base__sirene_8py" kind="file"><name>traitement_base_sirene.py</name>
   </compound>
   <compound refid="md_essais_gis_fiche_gis" kind="page"><name>md_essais_gis_fiche_gis</name>
   </compound>

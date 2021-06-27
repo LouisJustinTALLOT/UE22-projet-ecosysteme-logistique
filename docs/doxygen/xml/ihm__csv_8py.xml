@@ -34,19 +34,19 @@
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Lecture<sp/>des<sp/>données...&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Lecture<sp/>du<sp/>tableau<sp/>csv<sp/>et<sp/>récupération<sp/>des<sp/>données</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>fichier<sp/>=<sp/>open(</highlight><highlight class="stringliteral">r&quot;table_choix.csv&quot;</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>myreader<sp/>=<sp/>csv.reader(fichier,<sp/>delimiter<sp/>=</highlight><highlight class="stringliteral">&apos;;&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="27" refid="namespaceihm__csv_1a1b8375bc0acaacdbdc4b00883b3e99d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>fichier<sp/>=<sp/>open(</highlight><highlight class="stringliteral">r&quot;table_choix.csv&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="28" refid="namespaceihm__csv_1a819537847d1ed739f65b3b3464eebee5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>myreader<sp/>=<sp/>csv.reader(fichier,<sp/>delimiter<sp/>=</highlight><highlight class="stringliteral">&apos;;&apos;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Pn<sp/>récupére<sp/>les<sp/>lignes<sp/>du<sp/>fichier<sp/>sous<sp/>forme<sp/>de<sp/>liste<sp/>de<sp/>ligne</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>lignes<sp/>=<sp/>list(myreader)</highlight></codeline>
+<codeline lineno="31" refid="namespaceihm__csv_1a033e4187d6a3c0f6e62382e4c559717e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>lignes<sp/>=<sp/>list(myreader)</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>fichier.close()</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Les<sp/>données<sp/>sont<sp/>sur<sp/>la<sp/>troisième<sp/>ligne<sp/>du<sp/>fichier</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>donnees<sp/>=<sp/>lignes[2]</highlight></codeline>
+<codeline lineno="36" refid="namespaceihm__csv_1abdd2b185476b0c0928008889f3d06602" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>donnees<sp/>=<sp/>lignes[2]</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Valeurs<sp/>par<sp/>défaut</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>nb_cluster<sp/>=<sp/>150</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>rayon<sp/>=<sp/>8</highlight></codeline>
+<codeline lineno="38" refid="namespaceihm__csv_1af2b289be1a88d92c54daa6c8b52cae99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>nb_cluster<sp/>=<sp/>150</highlight></codeline>
+<codeline lineno="39" refid="namespaceihm__csv_1ab87f13e1d58139121d7073aef84bbebd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>rayon<sp/>=<sp/>8</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>donnees[1]<sp/>!=<sp/></highlight><highlight class="stringliteral">&apos;&apos;</highlight><highlight class="normal"><sp/>:</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nb_cluster<sp/>=<sp/>int(donnees[1])</highlight></codeline>
@@ -54,12 +54,12 @@
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>donnees[3]<sp/>!=<sp/></highlight><highlight class="stringliteral">&apos;&apos;</highlight><highlight class="normal"><sp/>:</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rayon<sp/>=<sp/>int(donnees[3])</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>secteur_NAF<sp/>=<sp/>donnees[2]</highlight></codeline>
+<codeline lineno="47" refid="namespaceihm__csv_1a5a3c1545604dfda65065d802a54ce852" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>secteur_NAF<sp/>=<sp/>donnees[2]</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Nombre<sp/>de<sp/>cluster<sp/>=&quot;</highlight><highlight class="normal">,<sp/>nb_cluster)</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Rayon<sp/>=<sp/>&quot;</highlight><highlight class="normal">,<sp/>rayon)</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Sélection<sp/>NAF<sp/>:<sp/>&quot;</highlight><highlight class="normal">,<sp/>secteur_NAF)</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>adresse<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;output_ihm/clusterized_ihm.html&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="namespaceihm__csv_1aed203dfa7bf7d44c606d475cf2e30a17" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>adresse<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;output_ihm/clusterized_ihm.html&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="55"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Clusterization<sp/>avec<sp/>les<sp/>données<sp/>utlisateurs</highlight></codeline>

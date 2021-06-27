@@ -39,7 +39,11 @@ Retourne trois choses :
         Ainsi, pour chaque point, on connaît les infos du cluster auquel il a été affecté
 - les centres de masse et les enveloppes convexes de chaque cluster (concrètement, une GeoDataFrame 
   avec comme index le numéro du cluster et comme colonnes les centres de masses et les enveloppes convexes)\end{DoxyVerb}
- \mbox{\Hypertarget{namespacetri__par__code___n_a_f_a880de1ce44d9ed09ebd29b53bc3ec36f}\label{namespacetri__par__code___n_a_f_a880de1ce44d9ed09ebd29b53bc3ec36f}} 
+ 
+
+Définition à la ligne 77 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_a880de1ce44d9ed09ebd29b53bc3ec36f}\label{namespacetri__par__code___n_a_f_a880de1ce44d9ed09ebd29b53bc3ec36f}} 
 \index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!informations@{informations}}
 \index{informations@{informations}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
 \doxysubsubsection{\texorpdfstring{informations()}{informations()}}
@@ -49,7 +53,11 @@ Retourne trois choses :
 Pour l'instant, ajoute le nombre d'entreprises du cluster dans une colonne "taille".
 On pourra par exemple ajouter aussi le poids total de chaque cluster quand on aura défini cette notion
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacetri__par__code___n_a_f_a25d922137926373642f62bf38f096774}\label{namespacetri__par__code___n_a_f_a25d922137926373642f62bf38f096774}} 
+ 
+
+Définition à la ligne 232 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_a25d922137926373642f62bf38f096774}\label{namespacetri__par__code___n_a_f_a25d922137926373642f62bf38f096774}} 
 \index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!nettoyer@{nettoyer}}
 \index{nettoyer@{nettoyer}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
 \doxysubsubsection{\texorpdfstring{nettoyer()}{nettoyer()}}
@@ -59,7 +67,11 @@ On pourra par exemple ajouter aussi le poids total de chaque cluster quand on au
 Si reduce=True, ne prend que les première données de la (Geo)DataFrame.
 La limite dans ce cas est fixée à threshold (qui vaut 1000 par défaut)
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacetri__par__code___n_a_f_ad00a37cafd9a96a5c88cf37ed30dc742}\label{namespacetri__par__code___n_a_f_ad00a37cafd9a96a5c88cf37ed30dc742}} 
+ 
+
+Définition à la ligne 63 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_ad00a37cafd9a96a5c88cf37ed30dc742}\label{namespacetri__par__code___n_a_f_ad00a37cafd9a96a5c88cf37ed30dc742}} 
 \index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!save\_to\_map@{save\_to\_map}}
 \index{save\_to\_map@{save\_to\_map}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
 \doxysubsubsection{\texorpdfstring{save\_to\_map()}{save\_to\_map()}}
@@ -70,7 +82,11 @@ La limite dans ce cas est fixée à threshold (qui vaut 1000 par défaut)
 :param hulls: les enveloppes convesxes (cf. deuxième sortie de la fonction do_convex_hull)
 :param path: le chemin
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacetri__par__code___n_a_f_ad73dd1e24a0db9d9f385be42d4606b0f}\label{namespacetri__par__code___n_a_f_ad73dd1e24a0db9d9f385be42d4606b0f}} 
+ 
+
+Définition à la ligne 183 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_ad73dd1e24a0db9d9f385be42d4606b0f}\label{namespacetri__par__code___n_a_f_ad73dd1e24a0db9d9f385be42d4606b0f}} 
 \index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!swap\_xy@{swap\_xy}}
 \index{swap\_xy@{swap\_xy}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
 \doxysubsubsection{\texorpdfstring{swap\_xy()}{swap\_xy()}}
@@ -81,9 +97,17 @@ Utile pour passer objets shapely dans folium (la convention est inversée)
 :param geom: l'objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
 :return: l'objet inversé
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacetri__par__code___n_a_f_af1215a113781afb3682612a152a7b605}\label{namespacetri__par__code___n_a_f_af1215a113781afb3682612a152a7b605}} 
+ 
+
+Définition à la ligne 20 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_af1215a113781afb3682612a152a7b605}\label{namespacetri__par__code___n_a_f_af1215a113781afb3682612a152a7b605}} 
 \index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!test\_json@{test\_json}}
 \index{test\_json@{test\_json}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
 \doxysubsubsection{\texorpdfstring{test\_json()}{test\_json()}}
 {\footnotesize\ttfamily def tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+test\+\_\+json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 245 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
 

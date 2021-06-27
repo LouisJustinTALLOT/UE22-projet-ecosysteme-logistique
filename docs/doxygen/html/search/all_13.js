@@ -10,7 +10,7 @@ var searchData=
   ['selection_5fbase_5fsirene_2ecpp_186',['selection_base_SIRENE.cpp',['../selection__base___s_i_r_e_n_e_8cpp.html',1,'']]],
   ['setup_187',['setup',['../namespacesetup.html',1,'']]],
   ['setup_2epy_188',['setup.py',['../setup_8py.html',1,'']]],
-  ['sirene_5fobjects_189',['sirene_objects',['../namespacetraitement__base__sirene__py.html#aa0d3522890c6592ffd897c61cbe4a70b',1,'traitement_base_sirene_py']]],
+  ['sirene_5fobjects_189',['sirene_objects',['../namespacetraitement__base__sirene.html#a70a4330b46d288d8baa174f112a9710e',1,'traitement_base_sirene']]],
   ['sireneanalizer_190',['SireneAnalizer',['../namespace_sirene_analizer.html',1,'']]],
   ['sireneanalizer_2epy_191',['SireneAnalizer.py',['../_sirene_analizer_8py.html',1,'']]],
   ['swap_5fxy_192',['swap_xy',['../namespacecomparison__clustering__algorithms.html#ae05061eea023cb7192b0827967122bbc',1,'comparison_clustering_algorithms.swap_xy()'],['../namespacefolium__control__layer.html#a91f5cc89e8b03ee7aef3eef31d92cae6',1,'folium_control_layer.swap_xy()'],['../namespace_b_a_n_analizer.html#a0a74446aa5911d31aeb90bcdafa26437',1,'BANAnalizer.swap_xy()'],['../namespace_sirene_analizer.html#ac87b12118762b23663d60ab067116884',1,'SireneAnalizer.swap_xy()'],['../namespacetri__par__code___n_a_f.html#ad73dd1e24a0db9d9f385be42d4606b0f',1,'tri_par_code_NAF.swap_xy()'],['../namespaceclusterizer__utils.html#ab8828a4ec46c57e4c2fbcea7c314bb38',1,'clusterizer_utils.swap_xy()']]]

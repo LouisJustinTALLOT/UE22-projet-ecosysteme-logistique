@@ -13,7 +13,7 @@
 <codeline lineno="3"><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceweb_1a8c6d6f421a2ef97de2074e4e38e6df62" kindref="member">open_html</ref>(adresse)<sp/>:</highlight></codeline>
+<codeline lineno="6" refid="namespaceweb_1a8c6d6f421a2ef97de2074e4e38e6df62" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceweb_1a8c6d6f421a2ef97de2074e4e38e6df62" kindref="member">open_html</ref>(adresse)<sp/>:</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="8"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Affichage<sp/>du<sp/>html<sp/>depuis<sp/>python.<sp/>Il<sp/>faut<sp/>être<sp/>dans<sp/>le<sp/>répertoire<sp/>ihm<sp/>pour<sp/>le<sp/>lancer.</highlight></codeline>
 <codeline lineno="9"><highlight class="stringliteral"></highlight></codeline>

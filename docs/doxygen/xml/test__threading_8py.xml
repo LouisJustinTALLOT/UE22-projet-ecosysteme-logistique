@@ -14,7 +14,7 @@
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>time</highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Define<sp/>a<sp/>function<sp/>for<sp/>the<sp/>thread</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetest__threading_1ae036ab1943aa00120a203e1372a45fee" kindref="member">print_time</ref>(<sp/>threadName,<sp/>delay):</highlight></codeline>
+<codeline lineno="7" refid="namespacetest__threading_1ae036ab1943aa00120a203e1372a45fee" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetest__threading_1ae036ab1943aa00120a203e1372a45fee" kindref="member">print_time</ref>(<sp/>threadName,<sp/>delay):</highlight></codeline>
 <codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/>count<sp/>=<sp/>0</highlight></codeline>
 <codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>count<sp/>&lt;<sp/>5:</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>time.sleep(delay)</highlight></codeline>

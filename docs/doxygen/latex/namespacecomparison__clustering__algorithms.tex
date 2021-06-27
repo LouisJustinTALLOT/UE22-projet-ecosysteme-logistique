@@ -41,7 +41,11 @@ Retourne trois choses :
         Ainsi, pour chaque point, on connaît les infos du cluster auquel il a été affecté
 - les centres de masse et les enveloppes convexes de chaque cluster (concrètement, une GeoDataFrame 
   avec comme index le numéro du cluster et comme colonnes les centres de masses et les enveloppes convexes)\end{DoxyVerb}
- \mbox{\Hypertarget{namespacecomparison__clustering__algorithms_a304b1c188a34a2007e0a1af569fbdc5b}\label{namespacecomparison__clustering__algorithms_a304b1c188a34a2007e0a1af569fbdc5b}} 
+ 
+
+Définition à la ligne 76 du fichier comparison\+\_\+clustering\+\_\+algorithms.\+py.
+
+\mbox{\Hypertarget{namespacecomparison__clustering__algorithms_a304b1c188a34a2007e0a1af569fbdc5b}\label{namespacecomparison__clustering__algorithms_a304b1c188a34a2007e0a1af569fbdc5b}} 
 \index{comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}!informations@{informations}}
 \index{informations@{informations}!comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}}
 \doxysubsubsection{\texorpdfstring{informations()}{informations()}}
@@ -51,7 +55,11 @@ Retourne trois choses :
 Pour l'instant, ajoute le nombre d'entreprises du cluster dans une colonne "taille".
 On pourra par exemple ajouter aussi le poids total de chaque cluster quand on aura défini cette notion
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacecomparison__clustering__algorithms_a894088f54c68011e298b588193a574b4}\label{namespacecomparison__clustering__algorithms_a894088f54c68011e298b588193a574b4}} 
+ 
+
+Définition à la ligne 225 du fichier comparison\+\_\+clustering\+\_\+algorithms.\+py.
+
+\mbox{\Hypertarget{namespacecomparison__clustering__algorithms_a894088f54c68011e298b588193a574b4}\label{namespacecomparison__clustering__algorithms_a894088f54c68011e298b588193a574b4}} 
 \index{comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}!nettoyer@{nettoyer}}
 \index{nettoyer@{nettoyer}!comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}}
 \doxysubsubsection{\texorpdfstring{nettoyer()}{nettoyer()}}
@@ -61,7 +69,11 @@ On pourra par exemple ajouter aussi le poids total de chaque cluster quand on au
 Si reduce=True, ne prend que les première données de la (Geo)DataFrame.
 La limite dans ce cas est fixée à threshold (qui vaut 1000 par défaut)
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacecomparison__clustering__algorithms_a92dda61a9e130a9785cf1581c39ea781}\label{namespacecomparison__clustering__algorithms_a92dda61a9e130a9785cf1581c39ea781}} 
+ 
+
+Définition à la ligne 62 du fichier comparison\+\_\+clustering\+\_\+algorithms.\+py.
+
+\mbox{\Hypertarget{namespacecomparison__clustering__algorithms_a92dda61a9e130a9785cf1581c39ea781}\label{namespacecomparison__clustering__algorithms_a92dda61a9e130a9785cf1581c39ea781}} 
 \index{comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}!save\_to\_map@{save\_to\_map}}
 \index{save\_to\_map@{save\_to\_map}!comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}}
 \doxysubsubsection{\texorpdfstring{save\_to\_map()}{save\_to\_map()}}
@@ -72,7 +84,11 @@ La limite dans ce cas est fixée à threshold (qui vaut 1000 par défaut)
 :param hulls: les enveloppes convesxes (cf. deuxième sortie de la fonction do_convex_hull)
 :param path: le chemin
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacecomparison__clustering__algorithms_ae05061eea023cb7192b0827967122bbc}\label{namespacecomparison__clustering__algorithms_ae05061eea023cb7192b0827967122bbc}} 
+ 
+
+Définition à la ligne 182 du fichier comparison\+\_\+clustering\+\_\+algorithms.\+py.
+
+\mbox{\Hypertarget{namespacecomparison__clustering__algorithms_ae05061eea023cb7192b0827967122bbc}\label{namespacecomparison__clustering__algorithms_ae05061eea023cb7192b0827967122bbc}} 
 \index{comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}!swap\_xy@{swap\_xy}}
 \index{swap\_xy@{swap\_xy}!comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}}
 \doxysubsubsection{\texorpdfstring{swap\_xy()}{swap\_xy()}}
@@ -83,15 +99,27 @@ Utile pour passer objets shapely dans folium (la convention est inversée)
 :param geom: l'objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
 :return: l'objet inversé
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacecomparison__clustering__algorithms_a617dbfb39c55a2ba0c304e2060a7c494}\label{namespacecomparison__clustering__algorithms_a617dbfb39c55a2ba0c304e2060a7c494}} 
+ 
+
+Définition à la ligne 19 du fichier comparison\+\_\+clustering\+\_\+algorithms.\+py.
+
+\mbox{\Hypertarget{namespacecomparison__clustering__algorithms_a617dbfb39c55a2ba0c304e2060a7c494}\label{namespacecomparison__clustering__algorithms_a617dbfb39c55a2ba0c304e2060a7c494}} 
 \index{comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}!test\_geojson@{test\_geojson}}
 \index{test\_geojson@{test\_geojson}!comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}}
 \doxysubsubsection{\texorpdfstring{test\_geojson()}{test\_geojson()}}
 {\footnotesize\ttfamily def comparison\+\_\+clustering\+\_\+algorithms.\+test\+\_\+geojson (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 237 du fichier comparison\+\_\+clustering\+\_\+algorithms.\+py.
 
 \mbox{\Hypertarget{namespacecomparison__clustering__algorithms_a3d3d13549219033c17fa8bd57a8d34a6}\label{namespacecomparison__clustering__algorithms_a3d3d13549219033c17fa8bd57a8d34a6}} 
 \index{comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}!test\_json@{test\_json}}
 \index{test\_json@{test\_json}!comparison\_clustering\_algorithms@{comparison\_clustering\_algorithms}}
 \doxysubsubsection{\texorpdfstring{test\_json()}{test\_json()}}
 {\footnotesize\ttfamily def comparison\+\_\+clustering\+\_\+algorithms.\+test\+\_\+json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 243 du fichier comparison\+\_\+clustering\+\_\+algorithms.\+py.
 

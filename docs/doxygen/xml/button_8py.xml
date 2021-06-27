@@ -11,23 +11,23 @@
     <programlisting>
 <codeline lineno="1" refid="namespacebutton" refkind="compound"><highlight class="keyword">from</highlight><highlight class="normal"><sp/><ref refid="namespace_py_qt5_1_1_qt_widgets" kindref="compound">PyQt5.QtWidgets</ref><sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>*</highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">app<sp/>=<sp/>QApplication([])</highlight></codeline>
+<codeline lineno="3" refid="namespacebutton_1a954cbe1bd59f5922191a31a9fa59553c" refkind="member"><highlight class="normal">app<sp/>=<sp/>QApplication([])</highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Création<sp/>de<sp/>la<sp/>fenêtre</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal">window<sp/>=<sp/>QWidget()</highlight></codeline>
+<codeline lineno="6" refid="namespacebutton_1a03e7e301664456e169f81411154f51f3" refkind="member"><highlight class="normal">window<sp/>=<sp/>QWidget()</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Création<sp/>d&apos;une<sp/>boîte</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal">layout<sp/>=<sp/>QVBoxLayout()</highlight></codeline>
+<codeline lineno="9" refid="namespacebutton_1ae889094e1ddac8237773745f16922a04" refkind="member"><highlight class="normal">layout<sp/>=<sp/>QVBoxLayout()</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal">layout.addWidget(QLabel(</highlight><highlight class="stringliteral">&quot;Nombre<sp/>de<sp/>cluster<sp/>:&quot;</highlight><highlight class="normal">))</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Ajout<sp/>des<sp/>deux<sp/>boutons<sp/>dans<sp/>la<sp/>boite</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Les<sp/>boutins<sp/>:</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal">but1<sp/>=<sp/>QPushButton(</highlight><highlight class="stringliteral">&apos;5&apos;</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="16"><highlight class="normal">but2<sp/>=<sp/>QPushButton(</highlight><highlight class="stringliteral">&apos;10&apos;</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="17"><highlight class="normal">but3<sp/>=<sp/>QPushButton(</highlight><highlight class="stringliteral">&apos;15&apos;</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="18"><highlight class="normal">but4<sp/>=<sp/>QPushButton(</highlight><highlight class="stringliteral">&apos;20&apos;</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="19"><highlight class="normal">but5<sp/>=<sp/>QPushButton(</highlight><highlight class="stringliteral">&apos;25&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="15" refid="namespacebutton_1aa56e09f6eef10562fc91a825dfaa03db" refkind="member"><highlight class="normal">but1<sp/>=<sp/>QPushButton(</highlight><highlight class="stringliteral">&apos;5&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="16" refid="namespacebutton_1ab45bba795452cef6813f9bd409a80dd9" refkind="member"><highlight class="normal">but2<sp/>=<sp/>QPushButton(</highlight><highlight class="stringliteral">&apos;10&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="17" refid="namespacebutton_1ab66a7aea9c270107088510f4108e975d" refkind="member"><highlight class="normal">but3<sp/>=<sp/>QPushButton(</highlight><highlight class="stringliteral">&apos;15&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="18" refid="namespacebutton_1aa8b1bcae5ee53aefcf4fdad56aff9ab0" refkind="member"><highlight class="normal">but4<sp/>=<sp/>QPushButton(</highlight><highlight class="stringliteral">&apos;20&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="19" refid="namespacebutton_1aedd934decf2b0f25e695483b2c626daf" refkind="member"><highlight class="normal">but5<sp/>=<sp/>QPushButton(</highlight><highlight class="stringliteral">&apos;25&apos;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal">layout.addWidget(but1)</highlight></codeline>
 <codeline lineno="22"><highlight class="normal">layout.addWidget(but2)</highlight></codeline>
@@ -43,7 +43,7 @@
 <codeline lineno="32"><highlight class="normal">window.resize(500,<sp/>500)</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Interraction<sp/>boutons</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacebutton_1a41e4419a0b037f9a8f48bbc2a0a91a53" kindref="member">on_button_clicked</ref>():</highlight></codeline>
+<codeline lineno="35" refid="namespacebutton_1a41e4419a0b037f9a8f48bbc2a0a91a53" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacebutton_1a41e4419a0b037f9a8f48bbc2a0a91a53" kindref="member">on_button_clicked</ref>():</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>alert<sp/>=<sp/>QMessageBox()</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>alert.setText(</highlight><highlight class="stringliteral">&apos;You<sp/>clicked<sp/>the<sp/>button!&apos;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>alert.exec_()</highlight></codeline>

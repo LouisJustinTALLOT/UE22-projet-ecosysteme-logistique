@@ -41,7 +41,11 @@ Retourne trois choses :
         Ainsi, pour chaque point, on connaît les infos du cluster auquel il a été affecté
 - les centres de masse et les enveloppes convexes de chaque cluster (concrètement, une GeoDataFrame 
   avec comme index le numéro du cluster et comme colonnes les centres de masses et les enveloppes convexes)\end{DoxyVerb}
- \mbox{\Hypertarget{namespacefolium__control__layer_a2e2c5726eeffb646b0897dfdddd58618}\label{namespacefolium__control__layer_a2e2c5726eeffb646b0897dfdddd58618}} 
+ 
+
+Définition à la ligne 77 du fichier folium\+\_\+control\+\_\+layer.\+py.
+
+\mbox{\Hypertarget{namespacefolium__control__layer_a2e2c5726eeffb646b0897dfdddd58618}\label{namespacefolium__control__layer_a2e2c5726eeffb646b0897dfdddd58618}} 
 \index{folium\_control\_layer@{folium\_control\_layer}!informations@{informations}}
 \index{informations@{informations}!folium\_control\_layer@{folium\_control\_layer}}
 \doxysubsubsection{\texorpdfstring{informations()}{informations()}}
@@ -51,7 +55,11 @@ Retourne trois choses :
 Pour l'instant, ajoute le nombre d'entreprises du cluster dans une colonne "taille".
 On pourra par exemple ajouter aussi le poids total de chaque cluster quand on aura défini cette notion
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacefolium__control__layer_a5a1c3642a3d73c58463b468a2fe4778d}\label{namespacefolium__control__layer_a5a1c3642a3d73c58463b468a2fe4778d}} 
+ 
+
+Définition à la ligne 242 du fichier folium\+\_\+control\+\_\+layer.\+py.
+
+\mbox{\Hypertarget{namespacefolium__control__layer_a5a1c3642a3d73c58463b468a2fe4778d}\label{namespacefolium__control__layer_a5a1c3642a3d73c58463b468a2fe4778d}} 
 \index{folium\_control\_layer@{folium\_control\_layer}!nettoyer@{nettoyer}}
 \index{nettoyer@{nettoyer}!folium\_control\_layer@{folium\_control\_layer}}
 \doxysubsubsection{\texorpdfstring{nettoyer()}{nettoyer()}}
@@ -61,7 +69,11 @@ On pourra par exemple ajouter aussi le poids total de chaque cluster quand on au
 Si reduce=True, ne prend que les première données de la (Geo)DataFrame.
 La limite dans ce cas est fixée à threshold (qui vaut 1000 par défaut)
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacefolium__control__layer_a8f64aa2cfd150cd5bbd4f5b59ea8135a}\label{namespacefolium__control__layer_a8f64aa2cfd150cd5bbd4f5b59ea8135a}} 
+ 
+
+Définition à la ligne 63 du fichier folium\+\_\+control\+\_\+layer.\+py.
+
+\mbox{\Hypertarget{namespacefolium__control__layer_a8f64aa2cfd150cd5bbd4f5b59ea8135a}\label{namespacefolium__control__layer_a8f64aa2cfd150cd5bbd4f5b59ea8135a}} 
 \index{folium\_control\_layer@{folium\_control\_layer}!save\_to\_map@{save\_to\_map}}
 \index{save\_to\_map@{save\_to\_map}!folium\_control\_layer@{folium\_control\_layer}}
 \doxysubsubsection{\texorpdfstring{save\_to\_map()}{save\_to\_map()}}
@@ -72,7 +84,11 @@ La limite dans ce cas est fixée à threshold (qui vaut 1000 par défaut)
 :param hulls: les enveloppes convesxes (cf. deuxième sortie de la fonction do_convex_hull)
 :param path: le chemin
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacefolium__control__layer_a91f5cc89e8b03ee7aef3eef31d92cae6}\label{namespacefolium__control__layer_a91f5cc89e8b03ee7aef3eef31d92cae6}} 
+ 
+
+Définition à la ligne 183 du fichier folium\+\_\+control\+\_\+layer.\+py.
+
+\mbox{\Hypertarget{namespacefolium__control__layer_a91f5cc89e8b03ee7aef3eef31d92cae6}\label{namespacefolium__control__layer_a91f5cc89e8b03ee7aef3eef31d92cae6}} 
 \index{folium\_control\_layer@{folium\_control\_layer}!swap\_xy@{swap\_xy}}
 \index{swap\_xy@{swap\_xy}!folium\_control\_layer@{folium\_control\_layer}}
 \doxysubsubsection{\texorpdfstring{swap\_xy()}{swap\_xy()}}
@@ -83,15 +99,27 @@ Utile pour passer objets shapely dans folium (la convention est inversée)
 :param geom: l'objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
 :return: l'objet inversé
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespacefolium__control__layer_ae20d24b9d19844052e9f763f20d45b96}\label{namespacefolium__control__layer_ae20d24b9d19844052e9f763f20d45b96}} 
+ 
+
+Définition à la ligne 20 du fichier folium\+\_\+control\+\_\+layer.\+py.
+
+\mbox{\Hypertarget{namespacefolium__control__layer_ae20d24b9d19844052e9f763f20d45b96}\label{namespacefolium__control__layer_ae20d24b9d19844052e9f763f20d45b96}} 
 \index{folium\_control\_layer@{folium\_control\_layer}!test\_geojson@{test\_geojson}}
 \index{test\_geojson@{test\_geojson}!folium\_control\_layer@{folium\_control\_layer}}
 \doxysubsubsection{\texorpdfstring{test\_geojson()}{test\_geojson()}}
 {\footnotesize\ttfamily def folium\+\_\+control\+\_\+layer.\+test\+\_\+geojson (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 254 du fichier folium\+\_\+control\+\_\+layer.\+py.
 
 \mbox{\Hypertarget{namespacefolium__control__layer_acdd182a59b9fd6fb3c7edf9baa3f4818}\label{namespacefolium__control__layer_acdd182a59b9fd6fb3c7edf9baa3f4818}} 
 \index{folium\_control\_layer@{folium\_control\_layer}!test\_json@{test\_json}}
 \index{test\_json@{test\_json}!folium\_control\_layer@{folium\_control\_layer}}
 \doxysubsubsection{\texorpdfstring{test\_json()}{test\_json()}}
 {\footnotesize\ttfamily def folium\+\_\+control\+\_\+layer.\+test\+\_\+json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 260 du fichier folium\+\_\+control\+\_\+layer.\+py.
 

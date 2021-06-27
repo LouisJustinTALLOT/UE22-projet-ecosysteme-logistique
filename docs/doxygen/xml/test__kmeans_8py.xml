@@ -12,10 +12,10 @@
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>numpy<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>np</highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>matplotlib.pyplot<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>plt</highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">X1<sp/>=<sp/>np.array([[2,<sp/>2],<sp/>[3,<sp/>4],<sp/>[1,<sp/>0],<sp/>[7,<sp/>2],</highlight></codeline>
+<codeline lineno="5" refid="namespacetest__kmeans_1a8ec46308fe73e65e981da68aee5b7f07" refkind="member"><highlight class="normal">X1<sp/>=<sp/>np.array([[2,<sp/>2],<sp/>[3,<sp/>4],<sp/>[1,<sp/>0],<sp/>[7,<sp/>2],</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[4,<sp/>4],<sp/>[10,<sp/>0],<sp/>[1,<sp/>3],<sp/>[9,<sp/>3]])</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal">X2<sp/>=<sp/>np.array([[2.348872,<sp/>48.863495],</highlight></codeline>
+<codeline lineno="8" refid="namespacetest__kmeans_1accdcdca694ec00b8d83b4415a405a863" refkind="member"><highlight class="normal">X2<sp/>=<sp/>np.array([[2.348872,<sp/>48.863495],</highlight></codeline>
 <codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[2.396281,<sp/>48.864938],</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[2.297082,<sp/>48.881103],</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[2.414657,<sp/>48.804343],</highlight></codeline>
@@ -23,7 +23,7 @@
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[2.592439,<sp/>48.912978]])</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal">X<sp/>=<sp/>np.array([[2.348872,<sp/>48.863495],</highlight></codeline>
+<codeline lineno="16" refid="namespacetest__kmeans_1a0631e6d1d335263a59e7bec873233e7a" refkind="member"><highlight class="normal">X<sp/>=<sp/>np.array([[2.348872,<sp/>48.863495],</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[2.396281,<sp/>48.864938],</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[2.297082,<sp/>48.881103],</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[2.428486,<sp/>48.864966],</highlight></codeline>
@@ -1025,13 +1025,13 @@
 <codeline lineno="1015"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[2.389248,<sp/>48.9023],<sp/></highlight></codeline>
 <codeline lineno="1016"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[2.592439,<sp/>48.912978]])</highlight></codeline>
 <codeline lineno="1017"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1018"><highlight class="normal">kmeans=KMeans(n_clusters<sp/>=<sp/>4,<sp/>random_state<sp/>=<sp/>0)</highlight></codeline>
-<codeline lineno="1019"><highlight class="normal">y_means=kmeans.fit_predict(X)</highlight></codeline>
+<codeline lineno="1018" refid="namespacetest__kmeans_1a902e1fa18326cb70dac53882b3716a80" refkind="member"><highlight class="normal">kmeans=KMeans(n_clusters<sp/>=<sp/>4,<sp/>random_state<sp/>=<sp/>0)</highlight></codeline>
+<codeline lineno="1019" refid="namespacetest__kmeans_1a9d93c075ddba0cb10fb49777efb6f86d" refkind="member"><highlight class="normal">y_means=kmeans.fit_predict(X)</highlight></codeline>
 <codeline lineno="1020"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1021"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1022"><highlight class="normal">plt.scatter(X[:,<sp/>0],</highlight></codeline>
 <codeline lineno="1023"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X[:,<sp/>1],</highlight></codeline>
-<codeline lineno="1024"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c=<sp/>y_means</highlight></codeline>
+<codeline lineno="1024" refid="namespacetest__kmeans_1a923f35c4afada529730839eb2d997bb9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c=<sp/>y_means</highlight></codeline>
 <codeline lineno="1025"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
 <codeline lineno="1026"><highlight class="normal">plt.show()</highlight></codeline>
 <codeline lineno="1027"><highlight class="normal"></highlight><highlight class="comment">#<sp/>print(y_means)</highlight><highlight class="normal"></highlight></codeline>

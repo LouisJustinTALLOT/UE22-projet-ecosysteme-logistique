@@ -14,6 +14,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
 sys.setrecursionlimit(1500)
+sys.path.append(os.path.abspath("../breathe"))
 
 
 # -- Project information -----------------------------------------------------
@@ -35,6 +36,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.githubpages',
     'sphinx.ext.inheritance_diagram',
+    'breathe',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -77,3 +79,9 @@ html_static_path = ['_static']
 autodoc_default_flags = ['members', 'show-inheritance']
 
 autosummary_generate = True
+
+breathe_projects = {
+    "ecosyteme_logistique": "../doxygen/xml"
+}
+
+breathe_default_project = "ecosyteme_logistique"

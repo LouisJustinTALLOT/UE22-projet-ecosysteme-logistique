@@ -22,23 +22,23 @@
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>pandas<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Series</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>shapely.geometry<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Polygon,<sp/>MultiPoint,<sp/>Point,<sp/>LineString,<sp/>GeometryCollection</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal">COLUMN_DEFAULT_GEOMETRY_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;geometry&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal">COLUMN_CLUSTER_INDEX_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;cluster&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal">COLUMN_HULLS_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;hulls&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal">COLUMN_CENTROIDS_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;centroids&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal">COLUMN_CLUSTER_SIZE_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;taille&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal">COLUMN_CLUSTER_MASS_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;poids&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="namespaceclusterizer__utils_1a397067a131fa29bb2e32f07c6cd9b550" refkind="member"><highlight class="normal">COLUMN_DEFAULT_GEOMETRY_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;geometry&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="namespaceclusterizer__utils_1a873ebb1d1738daa81932454c8402f4ac" refkind="member"><highlight class="normal">COLUMN_CLUSTER_INDEX_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;cluster&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="namespaceclusterizer__utils_1a64da067438d51e82bf9fca50329b9575" refkind="member"><highlight class="normal">COLUMN_HULLS_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;hulls&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="namespaceclusterizer__utils_1a0e0d5e7941920e45cabf19445ce767e0" refkind="member"><highlight class="normal">COLUMN_CENTROIDS_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;centroids&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="namespaceclusterizer__utils_1af162587a76482f328d73ed57c2b044b8" refkind="member"><highlight class="normal">COLUMN_CLUSTER_SIZE_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;taille&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="namespaceclusterizer__utils_1a4366078253ba0edbda360ae6cc9d1add" refkind="member"><highlight class="normal">COLUMN_CLUSTER_MASS_NAME<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;poids&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">PARIS_CENTER_COORDS<sp/>=<sp/>Point(2.348523,<sp/>48.853345)</highlight></codeline>
+<codeline lineno="24" refid="namespaceclusterizer__utils_1a02138575682c57bd3a59b63bae3dfb38" refkind="member"><highlight class="normal">PARIS_CENTER_COORDS<sp/>=<sp/>Point(2.348523,<sp/>48.853345)</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">#<sp/>=====================</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Fonctions<sp/>principales</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">#<sp/>=====================</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1a5788fa8785e88a80e5a1e584c04ec05b" kindref="member">get_infos_clusters_poids</ref>(df:<sp/>pd.DataFrame,<sp/>column_naf_code:<sp/>str)<sp/>-&gt;<sp/>pd.DataFrame:</highlight></codeline>
+<codeline lineno="31" refid="namespaceclusterizer__utils_1a5788fa8785e88a80e5a1e584c04ec05b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1a5788fa8785e88a80e5a1e584c04ec05b" kindref="member">get_infos_clusters_poids</ref>(df:<sp/>pd.DataFrame,<sp/>column_naf_code:<sp/>str)<sp/>-&gt;<sp/>pd.DataFrame:</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="33"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Fonction<sp/>permettant<sp/>de<sp/>récupérer<sp/>des<sp/>infos<sp/>sur<sp/>les<sp/>clusters<sp/>(poids).</highlight></codeline>
 <codeline lineno="34"><highlight class="stringliteral"></highlight></codeline>
@@ -51,7 +51,7 @@
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pd.DataFrame(Series(series_poids),<sp/>columns=[COLUMN_CLUSTER_MASS_NAME])</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1a1a09a2a4d0cb4435e9341da24dde35df" kindref="member">get_infos_clusters_taille</ref>(df:<sp/>pd.DataFrame)<sp/>-&gt;<sp/>pd.DataFrame:</highlight></codeline>
+<codeline lineno="44" refid="namespaceclusterizer__utils_1a1a09a2a4d0cb4435e9341da24dde35df" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1a1a09a2a4d0cb4435e9341da24dde35df" kindref="member">get_infos_clusters_taille</ref>(df:<sp/>pd.DataFrame)<sp/>-&gt;<sp/>pd.DataFrame:</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="46"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Fonction<sp/>permettant<sp/>de<sp/>récupérer<sp/>des<sp/>infos<sp/>sur<sp/>les<sp/>clusters<sp/>(tailles).</highlight></codeline>
 <codeline lineno="47"><highlight class="stringliteral"></highlight></codeline>
@@ -62,7 +62,7 @@
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pd.DataFrame(df.groupby(COLUMN_CLUSTER_INDEX_NAME).size(),<sp/>columns=[COLUMN_CLUSTER_SIZE_NAME])</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1a67d3497ffce20f00b8670186e255a548" kindref="member">get_infos_clusters_enveloppes_convexes</ref>(k:<sp/>int,<sp/>df:<sp/>pd.DataFrame,<sp/>column_geometry:<sp/>str<sp/>=<sp/>COLUMN_DEFAULT_GEOMETRY_NAME,<sp/>is_dict:<sp/>bool<sp/>=<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">)<sp/>-&gt;<sp/>pd.DataFrame:</highlight></codeline>
+<codeline lineno="55" refid="namespaceclusterizer__utils_1a67d3497ffce20f00b8670186e255a548" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1a67d3497ffce20f00b8670186e255a548" kindref="member">get_infos_clusters_enveloppes_convexes</ref>(k:<sp/>int,<sp/>df:<sp/>pd.DataFrame,<sp/>column_geometry:<sp/>str<sp/>=<sp/>COLUMN_DEFAULT_GEOMETRY_NAME,<sp/>is_dict:<sp/>bool<sp/>=<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">)<sp/>-&gt;<sp/>pd.DataFrame:</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="57"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Fonction<sp/>permettant<sp/>de<sp/>récupérer<sp/>des<sp/>infos<sp/>sur<sp/>les<sp/>clusters<sp/>(enveloppes<sp/>convexes).</highlight></codeline>
 <codeline lineno="58"><highlight class="stringliteral"></highlight></codeline>
@@ -103,7 +103,7 @@
 <codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Fonctions<sp/>utilitaires</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">#<sp/>=====================</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1afa94fd0c30cb29c6f3a78387cc167e89" kindref="member">calculer_poids_code_NAF</ref>(code_naf:<sp/>str)<sp/>-&gt;<sp/>int:</highlight></codeline>
+<codeline lineno="96" refid="namespaceclusterizer__utils_1afa94fd0c30cb29c6f3a78387cc167e89" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1afa94fd0c30cb29c6f3a78387cc167e89" kindref="member">calculer_poids_code_NAF</ref>(code_naf:<sp/>str)<sp/>-&gt;<sp/>int:</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="98"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Calcule<sp/>le<sp/>poids<sp/>d&apos;un<sp/>code<sp/>NAF.</highlight></codeline>
 <codeline lineno="99"><highlight class="stringliteral"></highlight></codeline>
@@ -118,10 +118,10 @@
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"></highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal">vectorized_calculer_poids_code_NAF<sp/>=<sp/>np.vectorize(calculer_poids_code_NAF,<sp/>otypes=[int])</highlight></codeline>
+<codeline lineno="111" refid="namespaceclusterizer__utils_1affa7c2c6862dc269e97b6b0bfa95a4da" refkind="member"><highlight class="normal">vectorized_calculer_poids_code_NAF<sp/>=<sp/>np.vectorize(calculer_poids_code_NAF,<sp/>otypes=[int])</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
 <codeline lineno="113"><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1aba2719bff914168ef7fd424000278568" kindref="member">calculer_poids_cluster</ref>(df:<sp/>pd.DataFrame,<sp/>naf_column_name:<sp/>str)<sp/>-&gt;<sp/>int:</highlight></codeline>
+<codeline lineno="114" refid="namespaceclusterizer__utils_1aba2719bff914168ef7fd424000278568" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1aba2719bff914168ef7fd424000278568" kindref="member">calculer_poids_cluster</ref>(df:<sp/>pd.DataFrame,<sp/>naf_column_name:<sp/>str)<sp/>-&gt;<sp/>int:</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="116"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Calcule<sp/>le<sp/>poids<sp/>d&apos;un<sp/>ensemble<sp/>d&apos;établissements.</highlight></codeline>
 <codeline lineno="117"><highlight class="stringliteral"></highlight></codeline>
@@ -133,7 +133,7 @@
 <codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>np.sum(<ref refid="namespaceclusterizer__utils_1affa7c2c6862dc269e97b6b0bfa95a4da" kindref="member">vectorized_calculer_poids_code_NAF</ref>(df[naf_column_name]))</highlight></codeline>
 <codeline lineno="124"><highlight class="normal"></highlight></codeline>
 <codeline lineno="125"><highlight class="normal"></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1abf24cd2d20d3d162a4d02efc242acdbc" kindref="member">calculer_poids_cluster_wrapper</ref>(naf_column_name:<sp/>str)<sp/>-&gt;<sp/>Callable[[pd.DataFrame,<sp/>str],<sp/>int]:</highlight></codeline>
+<codeline lineno="126" refid="namespaceclusterizer__utils_1abf24cd2d20d3d162a4d02efc242acdbc" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1abf24cd2d20d3d162a4d02efc242acdbc" kindref="member">calculer_poids_cluster_wrapper</ref>(naf_column_name:<sp/>str)<sp/>-&gt;<sp/>Callable[[pd.DataFrame,<sp/>str],<sp/>int]:</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="128"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Wrappe<sp/>calculer_poids_cluster<sp/>pour<sp/>pouvoir<sp/>l&apos;utiliser<sp/>dans<sp/>un<sp/>groupby.</highlight></codeline>
 <codeline lineno="129"><highlight class="stringliteral"></highlight></codeline>
@@ -146,7 +146,7 @@
 <codeline lineno="136"><highlight class="normal"></highlight></codeline>
 <codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>fct</highlight></codeline>
 <codeline lineno="138"><highlight class="normal"></highlight></codeline>
-<codeline lineno="139"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1ab8828a4ec46c57e4c2fbcea7c314bb38" kindref="member">swap_xy</ref>(geom):</highlight></codeline>
+<codeline lineno="139" refid="namespaceclusterizer__utils_1ab8828a4ec46c57e4c2fbcea7c314bb38" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1ab8828a4ec46c57e4c2fbcea7c314bb38" kindref="member">swap_xy</ref>(geom):</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="141"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Inverse<sp/>les<sp/>coordonnées<sp/>de<sp/>l&apos;objet<sp/>shapely.geometry.</highlight></codeline>
 <codeline lineno="142"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Utile<sp/>pour<sp/>passer<sp/>objets<sp/>shapely<sp/>dans<sp/>folium<sp/>(la<sp/>convention<sp/>est<sp/>inversée).</highlight></codeline>
@@ -189,7 +189,7 @@
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">raise</highlight><highlight class="normal"><sp/>ValueError(</highlight><highlight class="stringliteral">&apos;Type<sp/>%r<sp/>not<sp/>recognized&apos;</highlight><highlight class="normal"><sp/>%<sp/>geom.type)</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"></highlight></codeline>
 <codeline lineno="181"><highlight class="normal"></highlight></codeline>
-<codeline lineno="182"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1ae02c5cdf4a0f5c7987cb6eb76575b39d" kindref="member">filter_nearby_paris</ref>(df:<sp/>pd.DataFrame,<sp/>radius:<sp/>int,<sp/>column_geometry:<sp/>str<sp/>=<sp/>COLUMN_DEFAULT_GEOMETRY_NAME,<sp/>is_dict:<sp/>bool<sp/>=<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">)<sp/>-&gt;<sp/>pd.DataFrame:</highlight></codeline>
+<codeline lineno="182" refid="namespaceclusterizer__utils_1ae02c5cdf4a0f5c7987cb6eb76575b39d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1ae02c5cdf4a0f5c7987cb6eb76575b39d" kindref="member">filter_nearby_paris</ref>(df:<sp/>pd.DataFrame,<sp/>radius:<sp/>int,<sp/>column_geometry:<sp/>str<sp/>=<sp/>COLUMN_DEFAULT_GEOMETRY_NAME,<sp/>is_dict:<sp/>bool<sp/>=<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">)<sp/>-&gt;<sp/>pd.DataFrame:</highlight></codeline>
 <codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="184"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Filtre<sp/>les<sp/>données<sp/>proches<sp/>du<sp/>centre<sp/>de<sp/>Paris.</highlight></codeline>
 <codeline lineno="185"><highlight class="stringliteral"><sp/><sp/><sp/></highlight></codeline>
@@ -210,7 +210,7 @@
 <codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>df[masque].reset_index(drop=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="201"><highlight class="normal"></highlight></codeline>
 <codeline lineno="202"><highlight class="normal"></highlight></codeline>
-<codeline lineno="203"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1a4aab52450ec0e5c333c03f2cfa4694e2" kindref="member">get_coords_from_object</ref>(df:<sp/>pd.DataFrame,<sp/>column_geometry:<sp/>str<sp/>=<sp/>COLUMN_DEFAULT_GEOMETRY_NAME,<sp/>is_dict:<sp/>bool<sp/>=<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">)<sp/>-&gt;<sp/>np.ndarray:</highlight></codeline>
+<codeline lineno="203" refid="namespaceclusterizer__utils_1a4aab52450ec0e5c333c03f2cfa4694e2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceclusterizer__utils_1a4aab52450ec0e5c333c03f2cfa4694e2" kindref="member">get_coords_from_object</ref>(df:<sp/>pd.DataFrame,<sp/>column_geometry:<sp/>str<sp/>=<sp/>COLUMN_DEFAULT_GEOMETRY_NAME,<sp/>is_dict:<sp/>bool<sp/>=<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">)<sp/>-&gt;<sp/>np.ndarray:</highlight></codeline>
 <codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="205"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Récupère<sp/>les<sp/>coordonnées<sp/>des<sp/>points<sp/>de<sp/>la<sp/>DataFrame.</highlight></codeline>
 <codeline lineno="206"><highlight class="stringliteral"></highlight></codeline>

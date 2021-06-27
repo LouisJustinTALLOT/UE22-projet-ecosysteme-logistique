@@ -23,9 +23,9 @@
 <codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="13"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Classe<sp/>contenant<sp/>l&apos;interface<sp/>Homme-Machine<sp/>pour<sp/>le<sp/>projet.</highlight></codeline>
 <codeline lineno="14"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classihm__complet_1_1_wind_1ab686565c9ab7786fcd55779f96372a0c" kindref="member">__init__</ref>(self):</highlight></codeline>
+<codeline lineno="15" refid="classihm__complet_1_1_wind_1ab686565c9ab7786fcd55779f96372a0c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classihm__complet_1_1_wind_1ab686565c9ab7786fcd55779f96372a0c" kindref="member">__init__</ref>(self):</highlight></codeline>
 <codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QMainWindow.__init__(self)</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classihm__complet_1_1_wind_1a0420288cae3cd1d8e0a7e9d710cb8d49" kindref="member">IHM</ref>IHM<sp/>=<sp/><ref refid="classihm__pyqt_1_1_input_fenetre" kindref="compound">ihm_pyqt.InputFenetre</ref>()</highlight></codeline>
+<codeline lineno="17" refid="classihm__complet_1_1_wind_1a0420288cae3cd1d8e0a7e9d710cb8d49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classihm__complet_1_1_wind_1a0420288cae3cd1d8e0a7e9d710cb8d49" kindref="member">IHM</ref>IHM<sp/>=<sp/><ref refid="classihm__pyqt_1_1_input_fenetre" kindref="compound">ihm_pyqt.InputFenetre</ref>()</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classihm__complet_1_1_wind_1a0420288cae3cd1d8e0a7e9d710cb8d49" kindref="member">IHM</ref>IHM.bouton.clicked.connect(self.<ref refid="classihm__complet_1_1_wind_1a638e2f7a91c62d969f1ce432e5784a9d" kindref="member">appui_bouton_OK</ref>appui_bouton_OK)</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
@@ -34,7 +34,7 @@
 <codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.resize(500,<sp/>500)</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classihm__complet_1_1_wind_1a638e2f7a91c62d969f1ce432e5784a9d" kindref="member">appui_bouton_OK</ref>(self)<sp/>-&gt;<sp/>None:</highlight></codeline>
+<codeline lineno="26" refid="classihm__complet_1_1_wind_1a638e2f7a91c62d969f1ce432e5784a9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classihm__complet_1_1_wind_1a638e2f7a91c62d969f1ce432e5784a9d" kindref="member">appui_bouton_OK</ref>(self)<sp/>-&gt;<sp/>None:</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="28"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Listener<sp/>pour<sp/>le<sp/>bouton<sp/>ok.</highlight></codeline>
 <codeline lineno="29"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Prépare<sp/>les<sp/>données<sp/>pour<sp/>lancer<sp/>la<sp/>clusterisation<sp/>et<sp/>l&apos;affichage<sp/>de<sp/>la<sp/>carte.</highlight></codeline>
@@ -71,7 +71,7 @@
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classihm__complet_1_1_wind_1a603671de43246375c8c26d06bf76d138" kindref="member">lancement_clustering</ref>lancement_clustering()</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"></highlight></codeline>
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classihm__complet_1_1_wind_1a603671de43246375c8c26d06bf76d138" kindref="member">lancement_clustering</ref>(self)<sp/><sp/>-&gt;<sp/>None:</highlight></codeline>
+<codeline lineno="63" refid="classihm__complet_1_1_wind_1a603671de43246375c8c26d06bf76d138" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classihm__complet_1_1_wind_1a603671de43246375c8c26d06bf76d138" kindref="member">lancement_clustering</ref>(self)<sp/><sp/>-&gt;<sp/>None:</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
 <codeline lineno="65"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Lance<sp/>la<sp/>clusterisation<sp/>à<sp/>l&apos;aide<sp/>des<sp/>paramètres<sp/>entrés<sp/>par<sp/>l&apos;utilisateur.</highlight></codeline>
 <codeline lineno="66"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ensuite,<sp/>affiche<sp/>la<sp/>carte.</highlight></codeline>
@@ -106,11 +106,11 @@
 <codeline lineno="95"><highlight class="normal"></highlight></codeline>
 <codeline lineno="96"><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>__name__<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;__main__&quot;</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>on<sp/>démarre<sp/>l&apos;appplication</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>app<sp/>=<sp/>QApplication.instance()<sp/></highlight></codeline>
+<codeline lineno="98" refid="namespaceihm__complet_1ada7d0408a8cd9f662044aab03760451c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>app<sp/>=<sp/>QApplication.instance()<sp/></highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>app:</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>app<sp/>=<sp/>QApplication(sys.argv)</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>fen<sp/>=<sp/><ref refid="classihm__complet_1_1_wind" kindref="compound">Wind</ref>()</highlight></codeline>
+<codeline lineno="102" refid="namespaceihm__complet_1a1bdb9f58d489440daf696b5bcf800481" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>fen<sp/>=<sp/><ref refid="classihm__complet_1_1_wind" kindref="compound">Wind</ref>()</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>fen.show()</highlight></codeline>
 <codeline lineno="104"><highlight class="normal"></highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>app.exec_()</highlight></codeline>

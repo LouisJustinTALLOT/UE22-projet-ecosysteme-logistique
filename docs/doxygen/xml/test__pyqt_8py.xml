@@ -15,12 +15,12 @@
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Première<sp/>étape<sp/>:<sp/>création<sp/>d&apos;une<sp/>application<sp/>Qt<sp/>avec<sp/>QApplication</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/>afin<sp/>d&apos;avoir<sp/>un<sp/>fonctionnement<sp/>correct<sp/>avec<sp/>IDLE<sp/>ou<sp/>Spyder</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/>on<sp/>vérifie<sp/>s&apos;il<sp/>existe<sp/>déjà<sp/>une<sp/>instance<sp/>de<sp/>QApplication</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal">app<sp/>=<sp/>QApplication.instance()<sp/></highlight></codeline>
+<codeline lineno="8" refid="namespacetest__pyqt_1a2289169eefa5d7b13d5cbad71cfd3b8e" refkind="member"><highlight class="normal">app<sp/>=<sp/>QApplication.instance()<sp/></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>app:<sp/></highlight><highlight class="comment">#<sp/>sinon<sp/>on<sp/>crée<sp/>une<sp/>instance<sp/>de<sp/>QApplication</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>app<sp/>=<sp/>QApplication(sys.argv)</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">#<sp/>création<sp/>d&apos;une<sp/>fenêtre<sp/>avec<sp/>QWidget<sp/>dont<sp/>on<sp/>place<sp/>la<sp/>référence<sp/>dans<sp/>fen</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal">fen<sp/>=<sp/>QWidget()</highlight></codeline>
+<codeline lineno="13" refid="namespacetest__pyqt_1a0d580c06f07add82b5a3cfe6542b3bee" refkind="member"><highlight class="normal">fen<sp/>=<sp/>QWidget()</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">#<sp/>on<sp/>donne<sp/>un<sp/>titre<sp/>à<sp/>la<sp/>fenêtre</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal">fen.setWindowTitle(</highlight><highlight class="stringliteral">&quot;Premiere<sp/>fenetre&quot;</highlight><highlight class="normal">)</highlight></codeline>
@@ -31,7 +31,7 @@
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">#<sp/>on<sp/>fixe<sp/>la<sp/>position<sp/>de<sp/>la<sp/>fenêtre</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal">fen.move(300,50)</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">fen.label<sp/>=<sp/>QLabel(</highlight><highlight class="stringliteral">&quot;hello&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="24" refid="namespacetest__pyqt_1a0e1f3887a247e4b5d48e1d6c37bad639" refkind="member"><highlight class="normal">fen.label<sp/>=<sp/>QLabel(</highlight><highlight class="stringliteral">&quot;hello&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="25"><highlight class="normal">fen.label.show()</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">#<sp/>la<sp/>fenêtre<sp/>est<sp/>rendue<sp/>visible</highlight><highlight class="normal"></highlight></codeline>
