@@ -1,5 +1,5 @@
-from pprint import pprint
-from typing import List, Tuple
+from pprint import pformat, pprint
+from typing import Dict, List, Tuple
 import geopandas as gpd
 import pandas as pd
 import numpy as np
@@ -10,13 +10,16 @@ from multiprocessing import Pool, Process, Array, RawArray
 
 import cProfile
 
-import sys
+from pycallgraph import PyCallGraph
+from pycallgraph.output import GraphvizOutput
 
+import sys
+from shapely.geometry.multipolygon import MultiPolygon
 sys.path.append("../../")
 
 from sklearn.cluster import KMeans, MiniBatchKMeans
 
-from shapely.geometry import Polygon
+from shapely.geometry import Polygon, Point
 
 from src.clusterizer.utils import NAF_utils
 from src.clusterizer.utils import clusterizer_utils
@@ -26,9 +29,7 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
     COLUMN_CENTROIDS_NAME, \
     COLUMN_DEFAULT_GEOMETRY_NAME, \
     COLUMN_CLUSTER_MASS_NAME
-
-from src.clusterizer.seine_data_utils import Frontiere, get_frontieres_utiles, Point
-
+from src.clusterizer.utils.seine_data_utils import rapport_a_la_seine, DICT_GDF_ZONES, NB_ZONES
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
@@ -36,110 +37,6 @@ Clusterise en utilisant l'algorithme des k-moyennes.
 
 DEBUG_PLOT = False # pour afficher les points et frontières (debugging)
 
-f_seine_nord, \
-f_seine_ouest, \
-f_seine_petit_droite, \
-f_seine_petit_gauche, \
-f_seine_central, \
-f_seine_alfort_1_gauche,\
-f_seine_alfort_2_droite,\
-f_seine_alfort_3_gauche,\
-f_marne,\
-= get_frontieres_utiles()
-
-
-@np.vectorize
-def rapport_a_la_seine(xy):
-    """
-    TODO
-    
-    :param xy:
-    :return:
-    """
-    point_etudie = Point(xy[0], xy[1])
-
-    # try:
-    #     f_seine_ouest.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if e.res:
-    #         return 0
-
-    try:
-        if f_seine_ouest.en_dessous(point_etudie):
-            if DEBUG_PLOT:
-                point_etudie.plot("red")
-            return 0
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-
-    # try:
-    #     f_seine_central.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if e.res:
-    #         return 1
-
-    try:
-        if f_seine_central.en_dessous(point_etudie) :
-            if DEBUG_PLOT:
-                point_etudie.plot("green")
-            return 1
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-
-    # try:
-    #     f_marne.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if e.res:
-    #         return 1
-    try:
-        if f_marne.en_dessous(point_etudie) :
-            if DEBUG_PLOT:
-                point_etudie.plot("green")
-            return 1
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-
-    # try:
-    #     f_seine_central.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if not e.res:
-    #         return 2
-    try:
-        if not f_seine_central.en_dessous(point_etudie):
-            if DEBUG_PLOT:
-                point_etudie.plot("blue")
-            return 2
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-
-    # try:
-    #     f_seine_alfort_1_gauche.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if e.res:
-    #         return 2
-    try:
-        if f_seine_alfort_1_gauche.en_dessous(point_etudie):
-            if DEBUG_PLOT:
-                point_etudie.plot("blue")
-            return 2
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-
-    # try:
-    #     f_seine_alfort_2_droite.en_dessous(point_etudie)
-    # except Frontiere.DansLaFrontiereNotError as e:
-    #     if e.res:
-    #         return 2
-    try:
-        if f_seine_alfort_2_droite.en_dessous(point_etudie):
-            if DEBUG_PLOT:
-                point_etudie.plot("blue")
-            return 2
-    except Frontiere.HorsDeLaFrontiereError:
-        pass
-    if DEBUG_PLOT:
-        point_etudie.plot("black")
-    return 3
 
 def process_rapport_a_la_seine(no_zone:int, df: pd.DataFrame, shared_array: Array) -> None:
     """
@@ -251,10 +148,9 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
                         tiles="Stamen Terrain"
                         )
 
-
-    couleurs = ['darkslateblue', 'orange', 'darkred', 'black',
-                'purple', 'deeppink', 'green', 'darkgreen', 'maroon',
-                'darkblue', 'chocolate', 'blue', 'red']
+    couleurs = ['cadetblue', 'orange', 'darkred', 'black',
+                'purple', 'gray', 'darkgreen', 'lightgreen',
+                'darkblue', 'blue', 'red']
 
     centroids = df_clusters.loc[:, COLUMN_CENTROIDS_NAME]
     hulls = df_clusters.loc[:, COLUMN_HULLS_NAME]
@@ -278,6 +174,11 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
             polygon = clusterizer_utils.swap_xy(polygon)
             coords = polygon.exterior.coords
             folium.Polygon(locations=coords, popup=title, color=couleurs[k % len(couleurs)]).add_to(map)
+        elif type(polygon) == MultiPolygon:
+            for poly in polygon:
+                poly = clusterizer_utils.swap_xy(poly)
+                coords = poly.exterior.coords
+                folium.Polygon(locations=coords, popup=title, color=couleurs[k % len(couleurs)]).add_to(map)
 
     map.get_root().html.add_child(
         folium.Element(str(
@@ -302,6 +203,14 @@ def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
     :param nb_clusters:
     :return:
     """
+    # poids_par_zone: np.ndarray = np.zeros(len(liste_df))
+    # for i in range(len(liste_df)):
+        # poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700") 
+        # poids_total = np.sum(poids_par_zone)
+    # return np.ceil((poids_par_zone / poids_total * nb_clusters)).astype(int)
+    # # nb_par_zone = np.rint((poids_par_zone / poids_total * nb_clusters)).astype(int)
+    # # nb_par_zone = list(np.maximum(nb_par_zone, np.ones(len(liste_df), dtype=int)))  # il faut au moins un cluster par zone considérée
+    # # return nb_par_zone
     poids_par_zone: np.ndarray = np.zeros(len(liste_df))
     for i in range(len(liste_df)):
         poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700")
@@ -359,34 +268,18 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
     # Maisons-Alfort,
     # Courbevoie-Asnières
 
-    nb_zones = 4
+    masque = rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
+
     liste_df = []
-    for no_zone in range(nb_zones):
+    for no_zone in DICT_GDF_ZONES.keys():
+        # print("key ", no_zone)
         liste_df.append(
             # df[numba_rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])), no_zone)]
-            df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
+            df[no_zone == masque].reset_index(drop=True)
         )
 
+    # pprint(liste_df)
 
-    # print(liste_df[0].head(5))
-    # input()
-    # print("\n\n\n")
-    # print(liste_df[0].to_numpy())
-    # input()
-    # liste_df = RawArray(pd.DataFrame, nb_zones)
-    # liste_processes : List[Process] = []
-
-    # for i in range(nb_zones):
-    #     liste_processes.append(Process(target=process_rapport_a_la_seine, args= (i, df, liste_df)))
-
-    # for i in range(nb_zones):
-    #     liste_processes[i].start()
-    # for i in range(nb_zones):
-    #     liste_processes[i].join()
-
-
-    # with Pool(nb_zones) as p:
-    #     liste_df = p.map(map_rapport_a_la_seine, [(i, df) for i in range(nb_zones)])
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
@@ -398,13 +291,15 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
     # pprint(nb_clusters_par_zone)
 
 
-    for no_zone in range(nb_zones):
+    for no_zone in range(NB_ZONES):
         try:
             liste_df_clusters.append(
                 clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], is_dict=True, weight=True)
             )
-        except ValueError:
+        except ValueError as e:
+            print(e, no_zone)
             pass
+
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
@@ -436,19 +331,11 @@ if __name__ == "__main__":
     if DEBUG_PLOT:
         main_json(reduce=True)
 
-        f_seine_nord.plot(couleur="black")
-        f_seine_ouest.plot(couleur="purple")
-        f_seine_petit_droite.plot(couleur="black")
-        f_seine_petit_gauche.plot(couleur="black")
-        f_seine_central.plot(couleur="black")
-        f_seine_alfort_1_gauche.plot(couleur="black")
-        f_seine_alfort_2_droite.plot(couleur="black")
-        f_seine_alfort_3_gauche.plot(couleur="black")
-        f_marne.plot(couleur="black")
-        plt.show()
-
     else:
-        main_json(adresse_map="output/clusterized_map_improve_nb_clusters.html")
         # main_json(reduce = True, adresse_map="output/clusterized_map_optim_de_cython.html")
-        # main_json(adresse_map="output/clusterized_map_IHM.html")
-        # cProfile.run('main_json(adresse_map="output/clusterized_map_optim_de_cython.html")')
+        # main_json(adresse_map="output/clusterized_map_optim_de_cython.html")
+        # cProfile.run('main_json(adresse_map="output/clusterized_map_with_shapefile.html", reduce=True, threshold=10000)')
+        # cProfile.run('main_json(rayon=1000, adresse_map="output/clusterized_map_with_shapefile.html")')
+        # main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
+        with PyCallGraph(output=GraphvizOutput()):
+            main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)

@@ -11,6 +11,8 @@ import numpy as np
 import pandas as pd
 from pandas import Series
 from shapely.geometry import Polygon, MultiPoint, Point, LineString, GeometryCollection
+from shapely.geometry.multipolygon import MultiPolygon
+from . import concave_hull_utils
 
 COLUMN_DEFAULT_GEOMETRY_NAME = "geometry"
 COLUMN_CLUSTER_INDEX_NAME = "cluster"
@@ -79,13 +81,19 @@ def get_infos_clusters_enveloppes_convexes(k: int, df: pd.DataFrame, column_geom
         else:
             multi_point = MultiPoint(points.array)
 
-        hull = multi_point.convex_hull
+        hull = list(Polygon(multi_point).boundary.coords)
 
-        if type(hull) == Point or type(hull) == LineString or type(hull) == GeometryCollection:
-            # S'il n'y a qu'un point dans le cluster, on ne peut pas créer de Polygon
-            temp_hulls[n] = hull
-        else:
-            temp_hulls[n] = Polygon(hull)
+        alpha = Polygon(hull).area
+
+        result_hull = concave_hull_utils.alpha_shape(hull, alpha=alpha)[0]
+        n_iter = 0
+        while n_iter<5 and ((type(result_hull) == MultiPolygon and len(result_hull) > 3) or result_hull.area < 10*Polygon(hull).area):
+
+            alpha *= 2
+            result_hull = concave_hull_utils.alpha_shape(hull, alpha=alpha)[0]
+            n_iter += 1
+
+        temp_hulls[n] = result_hull
 
     return gpd.GeoDataFrame(gpd.GeoSeries(temp_hulls), columns=[COLUMN_HULLS_NAME])
 
