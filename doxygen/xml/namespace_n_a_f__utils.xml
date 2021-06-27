@@ -103,7 +103,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/clusterizer/utils/NAF_utils.py" line="30" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="30" bodyend="48"/>
+        <location file="src/clusterizer/utils/NAF_utils.py" line="30" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="30" bodyend="54"/>
       </memberdef>
       <memberdef kind="function" id="namespace_n_a_f__utils_1aca0a3e5dc0966df2dcc77dcd33d2c47c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>str</type>

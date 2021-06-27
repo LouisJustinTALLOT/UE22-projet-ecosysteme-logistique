@@ -56,7 +56,7 @@
 <codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">#==============================================================</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Cette<sp/>DataFrame<sp/>contient<sp/>toutes<sp/>les<sp/>descrptions<sp/>des<sp/>codes<sp/>NAF</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">#==============================================================</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal">df_naf_descriptions<sp/>=<sp/>pd.read_csv(</highlight><highlight class="stringliteral">&quot;..\\..\\src\\ressources\\naf_descriptions.csv&quot;</highlight><highlight class="normal">,<sp/>sep=</highlight><highlight class="stringliteral">&quot;;&quot;</highlight><highlight class="normal">,<sp/>encoding=</highlight><highlight class="stringliteral">&apos;utf8&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">#==============================================================</highlight><highlight class="normal"></highlight></codeline>
