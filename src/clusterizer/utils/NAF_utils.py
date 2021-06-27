@@ -44,6 +44,12 @@ def retirer_point(code_naf: str) -> Optional[str]:
 
 
 #==============================================================
+# Cette DataFrame contient toutes les descrptions des codes NAF
+#==============================================================
+df_naf_descriptions = pd.read_csv("..\\..\\src\\ressources\\naf_descriptions.csv", sep=";", encoding='utf8')
+
+
+#==============================================================
 # Fonctions vectorisées
 #==============================================================
 vectorized_belongs = np.vectorize(lambda code, codes_naf : code in codes_naf, excluded=[1])
