@@ -337,5 +337,10 @@ if __name__ == "__main__":
         # cProfile.run('main_json(adresse_map="output/clusterized_map_with_shapefile.html", reduce=True, threshold=10000)')
         # cProfile.run('main_json(rayon=1000, adresse_map="output/clusterized_map_with_shapefile.html")')
         # main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
-        with PyCallGraph(output=GraphvizOutput()):
-            main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
+        # with PyCallGraph(output=GraphvizOutput()):
+        #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
+        main_json(rayon=8, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
+        # with PyCallGraph(output=GraphvizOutput()):
+        #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
+        # cProfile.run('main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=100_000)')
+
