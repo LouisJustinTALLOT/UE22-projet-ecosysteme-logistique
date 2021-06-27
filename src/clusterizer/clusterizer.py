@@ -224,7 +224,7 @@ def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
     nb_par_zone = np.maximum(nb_par_zone, np.ones(len(liste_df), dtype=int))  # il faut au moins un cluster par zone considérée
     return nb_par_zone
 
-def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50, adresse_map: str = "output/clusterized_map_seine.html",
+def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 50, adresse_map: str = "output/clusterized_map_seine.html",
               reduce: bool = False,
               threshold: int = 1000) -> None:
     """
