@@ -82,7 +82,7 @@ class Wind(QMainWindow):
             # Clusterization avec les données utlisateurs
             if __name__ == "__main__":
                 # On exécute le programme avec la base SIRENE :
-                clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse, seine_div, True)
+                clusterizer.main_json(rayon, secteur_NAF, nb_clust, adresse, seine_div)
 
                 # On ouvre le fichier dans PyQt
                 view = QtWebEngineWidgets.QWebEngineView()
