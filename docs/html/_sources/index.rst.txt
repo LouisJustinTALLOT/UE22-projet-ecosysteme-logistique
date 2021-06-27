@@ -32,7 +32,7 @@ Utilitaire : fenêtre d'accueil pour :code:`ihm_complet`
    :members:
 
 (Obsolète) Ouverture d'un fichier :code:`HTML` dans un navigateur Web : 
--------------
+-------------------------------------------------------------------------
 .. automodule:: src.ihm.web
    :members:
 

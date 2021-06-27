@@ -46,7 +46,7 @@ def retirer_point(code_naf: str) -> Optional[str]:
 #==============================================================
 # Cette DataFrame contient toutes les descrptions des codes NAF
 #==============================================================
-df_naf_descriptions = pd.read_csv("..\\..\\src\\ressources\\naf_descriptions.csv", sep=";", encoding='utf8')
+
 
 
 #==============================================================
