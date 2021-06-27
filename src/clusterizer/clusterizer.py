@@ -12,6 +12,7 @@ from numba import jit, vectorize, float64, int64
 import cProfile
 
 import sys
+from shapely.geometry.multipolygon import MultiPolygon
 sys.path.append("../../")
 
 from sklearn.cluster import KMeans, MiniBatchKMeans
@@ -166,8 +167,8 @@ def save_to_map(df_clusters, map=None):
                         )
 
     couleurs = ['cadetblue', 'orange', 'darkred', 'black',
-                'purple', 'gray', 'green', 'darkgreen', 'lightgreen',
-                'darkblue', 'white', 'blue', 'red']
+                'purple', 'gray', 'darkgreen', 'lightgreen',
+                'darkblue', 'blue', 'red']
 
     centroids = df_clusters.loc[:, COLUMN_CENTROIDS_NAME]
     hulls = df_clusters.loc[:, COLUMN_HULLS_NAME]
@@ -191,6 +192,11 @@ def save_to_map(df_clusters, map=None):
             polygon = clusterizer_utils.swap_xy(polygon)
             coords = polygon.exterior.coords
             folium.Polygon(locations=coords, popup=title, color=couleurs[k % len(couleurs)]).add_to(map)
+        elif type(polygon) == MultiPolygon:
+            for poly in polygon:
+                poly = clusterizer_utils.swap_xy(poly)
+                coords = poly.exterior.coords
+                folium.Polygon(locations=coords, popup=title, color=couleurs[k % len(couleurs)]).add_to(map)
 
     map.get_root().html.add_child(
         folium.Element(str(
@@ -269,8 +275,9 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
                 clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], dict=True, weight=True)
             )
         except ValueError as e:
-            print(e)
+            print(e, no_zone)
             pass
+
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()

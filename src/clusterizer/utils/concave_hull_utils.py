@@ -1,19 +1,23 @@
+from pprint import pprint
 import numpy as np
 import shapely
 import fiona
 import shapely.geometry as geometry
-from shapely.ops import cascaded_union, polygonize
+from shapely.geometry import Polygon
+from shapely.geometry.multipolygon import MultiPolygon
+from shapely.ops import cascaded_union, polygonize, unary_union
 from scipy.spatial import Delaunay
 from shapely.geometry import mapping
 import math
 
-def alpha_shape(points, alpha=0.005, buffer=0):
+def alpha_shape(points, alpha=0.01, buffer=0):
     """
     Basé sur https://gis.stackexchange.com/a/289972/187654
     """
 
-    if len(points) < 20:
-        return geometry.MultiPoint(points).convex_hull, None
+    # if len(points) < 20:
+    #     print("AAAAAAHHH UNE ENVELOPPE CONVEXE")
+    #     return geometry.MultiPoint(points).convex_hull, None
 
     def add_edge(edges, edge_points, coords, i, j):
         """
@@ -56,7 +60,7 @@ def alpha_shape(points, alpha=0.005, buffer=0):
             area = 0
         # print(ia, ib, ic, area)
         circum_r = a*b*c/(4.0*area+10**-5)
-        print(circum_r)
+        # print(circum_r)
         # Here's the radius filter.
         if circum_r < alpha:
             add_edge(edges, edge_points, coords, ia, ib)
@@ -70,19 +74,25 @@ def alpha_shape(points, alpha=0.005, buffer=0):
 
     except Exception as e:
         print(e)
+        print("ici")
         return None, None
 
     # Lets check, if the resulting polygon contains at least 90% of the points.
     # If not, we return the convex hull.
 
-    points_total = len(points)
-    points_inside = 0
+    # points_total = len(points)
+    # points_inside = 0
 
-    for p in shapely.geometry.MultiPoint(points):
-        points_inside += concave_hull.contains(p)
+    # for p in shapely.geometry.MultiPoint(points):
+    #     points_inside += concave_hull.contains(p)
 
     
     if not concave_hull.is_empty:
+        # pprint(concave_hull)
+        # if type(concave_hull) == MultiPolygon:
+        #     pprint(list(concave_hull))
+        #     pprint(unary_union(concave_hull))
+        #     return polygonize(unary_union(concave_hull)), edge_points
         return concave_hull, edge_points
     # elif points_inside/points_total<0.9:
     else:
