@@ -1,11 +1,12 @@
 from functools import reduce
+from pprint import pprint
 import geopandas as gpd
 import math
 import pandas as pd
 import numpy as np
 from pandas import Series
 from shapely.geometry import Polygon, MultiPoint, Point, LineString, GeometryCollection
-
+from . import concave_hull_utils
 
 COLUMN_DEFAULT_GEOMETRY_NAME = "geometry"
 COLUMN_CLUSTER_INDEX_NAME = "cluster"
@@ -76,14 +77,19 @@ def get_infos_clusters_enveloppes_convexes(k, df, column_geometry=COLUMN_DEFAULT
         # hull = multi_point.convex_hull
         # temp_hulls[n] = Polygon(Polygon(multi_point).boundary.coords)
         hull = list(Polygon(multi_point).boundary.coords)
+        # pprint(hull)
+        # raise Exception("")
 
-        center = reduce(lambda a, b: (a[0] + b[0], a[1] + b[1]), hull, (0, 0))
-        center = (center[0] / len(hull), (center[1] / len(hull)))
+        # center = reduce(lambda a, b: (a[0] + b[0], a[1] + b[1]), hull, (0, 0))
+        # center = (center[0] / len(hull), (center[1] / len(hull)))
 
-        hull.sort(key = lambda a: math.atan2(a[1] - center[1], a[0] - center[0]))
+        # hull.sort(key = lambda a: math.atan2(a[1] - center[1], a[0] - center[0]))
 
+        # temp_hulls[n] = Polygon(hull)
 
-        temp_hulls[n] = Polygon(hull)
+        # pprint(concave_hull_utils.alpha_shape(hull))
+        temp_hulls[n] = concave_hull_utils.alpha_shape(hull)[0]
+        # raise Exception("")
 
         # if type(hull) == Point or type(hull) == LineString or type(hull) == GeometryCollection:
         #     # S'il n'y a qu'un point dans le cluster, on ne peut pas créer de Polygon
