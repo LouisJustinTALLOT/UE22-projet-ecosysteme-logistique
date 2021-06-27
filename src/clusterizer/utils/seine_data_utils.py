@@ -3,6 +3,7 @@ from typing import Dict
 import geopandas as gpd
 import numpy as np
 from shapely.geometry import Point, Polygon
+from shapely.strtree import STRtree
 
 FILE_PATH = Path(__file__).resolve()
 BASE_DIR = FILE_PATH.parent.parent.parent.parent
@@ -41,3 +42,45 @@ def rapport_a_la_seine(xy):
 
     # print(coord, "out of all zones")
     return NB_ZONES
+
+def rapport_a_la_seine_spatial_index(array_coords: np.ndarray):
+    """
+    
+    """
+    # on crée d'abord des shapely.geometry.Point 
+    # pour tous les points de la base de données
+
+
+    # with np.printoptions(threshold=np.inf):
+    #     print(repr(array_coords))
+    # array_coords.tofile("points", ",")
+
+    list_points_array_coords = list(map(lambda x: Point(*x), list(array_coords)))
+
+    # un R-Tree
+    points_tree = STRtree(list_points_array_coords)
+
+    # pprint(points_tree)
+    
+    dict_res_appartenance = {}
+    # puis on va faire l'intersection de tous ces points avec nos polygones
+    # en utilisant des R-Trees  
+    for no_zone, polygon in DICT_GDF_ZONES.items():
+        # print(len([o for o in points_tree.query(polygon) if o.intersects(polygon)]))
+        dict_res_appartenance[no_zone] = [o for o in points_tree.query(polygon) if o.intersects(polygon)]
+        print(len(dict_res_appartenance[no_zone]))
+    
+    res = -1 * np.ones(array_coords.shape[0], dtype=int)
+    # print(res)
+    # return
+    for i in range(len(res)):
+        for no_zone, list_appartenance in dict_res_appartenance.items():
+            if list_points_array_coords[i] in list_appartenance:
+                res[i] = int(no_zone)
+                break
+        # print(res[i])
+        if res[i] == -1:
+            res[i] = NB_ZONES
+ 
+    return res
+    
