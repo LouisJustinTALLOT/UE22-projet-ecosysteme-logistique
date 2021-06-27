@@ -1,0 +1,47 @@
+\hypertarget{clusterizer__utils_8py}{}\doxysection{Référence du fichier src/clusterizer/utils/clusterizer\+\_\+utils.py}
+\label{clusterizer__utils_8py}\index{src/clusterizer/utils/clusterizer\_utils.py@{src/clusterizer/utils/clusterizer\_utils.py}}
+\doxysubsection*{Espaces de nommage}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceclusterizer__utils}{clusterizer\+\_\+utils}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+pd.\+Data\+Frame \mbox{\hyperlink{namespaceclusterizer__utils_a5788fa8785e88a80e5a1e584c04ec05b}{clusterizer\+\_\+utils.\+get\+\_\+infos\+\_\+clusters\+\_\+poids}} (pd.\+Data\+Frame df, str column\+\_\+naf\+\_\+code)
+\item 
+pd.\+Data\+Frame \mbox{\hyperlink{namespaceclusterizer__utils_a1a09a2a4d0cb4435e9341da24dde35df}{clusterizer\+\_\+utils.\+get\+\_\+infos\+\_\+clusters\+\_\+taille}} (pd.\+Data\+Frame df)
+\item 
+pd.\+Data\+Frame \mbox{\hyperlink{namespaceclusterizer__utils_a67d3497ffce20f00b8670186e255a548}{clusterizer\+\_\+utils.\+get\+\_\+infos\+\_\+clusters\+\_\+enveloppes\+\_\+convexes}} (int k, pd.\+Data\+Frame df, str column\+\_\+geometry=COLUMN\+\_\+\+DEFAULT\+\_\+\+GEOMETRY\+\_\+\+NAME, bool is\+\_\+dict=False)
+\item 
+int \mbox{\hyperlink{namespaceclusterizer__utils_afa94fd0c30cb29c6f3a78387cc167e89}{clusterizer\+\_\+utils.\+calculer\+\_\+poids\+\_\+code\+\_\+\+NAF}} (str code\+\_\+naf)
+\item 
+int \mbox{\hyperlink{namespaceclusterizer__utils_aba2719bff914168ef7fd424000278568}{clusterizer\+\_\+utils.\+calculer\+\_\+poids\+\_\+cluster}} (pd.\+Data\+Frame df, str naf\+\_\+column\+\_\+name)
+\item 
+Callable\mbox{[}\mbox{[}pd.\+Data\+Frame, str\mbox{]}, int\mbox{]} \mbox{\hyperlink{namespaceclusterizer__utils_abf24cd2d20d3d162a4d02efc242acdbc}{clusterizer\+\_\+utils.\+calculer\+\_\+poids\+\_\+cluster\+\_\+wrapper}} (str naf\+\_\+column\+\_\+name)
+\item 
+def \mbox{\hyperlink{namespaceclusterizer__utils_ab8828a4ec46c57e4c2fbcea7c314bb38}{clusterizer\+\_\+utils.\+swap\+\_\+xy}} (geom)
+\item 
+pd.\+Data\+Frame \mbox{\hyperlink{namespaceclusterizer__utils_ae02c5cdf4a0f5c7987cb6eb76575b39d}{clusterizer\+\_\+utils.\+filter\+\_\+nearby\+\_\+paris}} (pd.\+Data\+Frame df, int radius, str column\+\_\+geometry=COLUMN\+\_\+\+DEFAULT\+\_\+\+GEOMETRY\+\_\+\+NAME, bool is\+\_\+dict=False)
+\item 
+np.\+ndarray \mbox{\hyperlink{namespaceclusterizer__utils_a4aab52450ec0e5c333c03f2cfa4694e2}{clusterizer\+\_\+utils.\+get\+\_\+coords\+\_\+from\+\_\+object}} (pd.\+Data\+Frame df, str column\+\_\+geometry=COLUMN\+\_\+\+DEFAULT\+\_\+\+GEOMETRY\+\_\+\+NAME, bool is\+\_\+dict=False)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{namespaceclusterizer__utils_a397067a131fa29bb2e32f07c6cd9b550}{clusterizer\+\_\+utils.\+COLUMN\+\_\+\+DEFAULT\+\_\+\+GEOMETRY\+\_\+\+NAME}} = \char`\"{}geometry\char`\"{}
+\item 
+string \mbox{\hyperlink{namespaceclusterizer__utils_a873ebb1d1738daa81932454c8402f4ac}{clusterizer\+\_\+utils.\+COLUMN\+\_\+\+CLUSTER\+\_\+\+INDEX\+\_\+\+NAME}} = \char`\"{}cluster\char`\"{}
+\item 
+string \mbox{\hyperlink{namespaceclusterizer__utils_a64da067438d51e82bf9fca50329b9575}{clusterizer\+\_\+utils.\+COLUMN\+\_\+\+HULLS\+\_\+\+NAME}} = \char`\"{}hulls\char`\"{}
+\item 
+string \mbox{\hyperlink{namespaceclusterizer__utils_a0e0d5e7941920e45cabf19445ce767e0}{clusterizer\+\_\+utils.\+COLUMN\+\_\+\+CENTROIDS\+\_\+\+NAME}} = \char`\"{}centroids\char`\"{}
+\item 
+string \mbox{\hyperlink{namespaceclusterizer__utils_af162587a76482f328d73ed57c2b044b8}{clusterizer\+\_\+utils.\+COLUMN\+\_\+\+CLUSTER\+\_\+\+SIZE\+\_\+\+NAME}} = \char`\"{}taille\char`\"{}
+\item 
+string \mbox{\hyperlink{namespaceclusterizer__utils_a4366078253ba0edbda360ae6cc9d1add}{clusterizer\+\_\+utils.\+COLUMN\+\_\+\+CLUSTER\+\_\+\+MASS\+\_\+\+NAME}} = \char`\"{}poids\char`\"{}
+\item 
+\mbox{\hyperlink{namespaceclusterizer__utils_a02138575682c57bd3a59b63bae3dfb38}{clusterizer\+\_\+utils.\+PARIS\+\_\+\+CENTER\+\_\+\+COORDS}} = Point(2.\+348523, 48.\+853345)
+\item 
+\mbox{\hyperlink{namespaceclusterizer__utils_affa7c2c6862dc269e97b6b0bfa95a4da}{clusterizer\+\_\+utils.\+vectorized\+\_\+calculer\+\_\+poids\+\_\+code\+\_\+\+NAF}} = np.\+vectorize(calculer\+\_\+poids\+\_\+code\+\_\+\+NAF, otypes=\mbox{[}int\mbox{]})
+\end{DoxyCompactItemize}

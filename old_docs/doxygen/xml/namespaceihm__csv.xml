@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="namespaceihm__csv" kind="namespace" language="Python">
+    <compoundname>ihm_csv</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceihm__csv_1a1b8375bc0acaacdbdc4b00883b3e99d3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>ihm_csv.fichier</definition>
+        <argsstring></argsstring>
+        <name>fichier</name>
+        <initializer>=  open(r&quot;table_choix.csv&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/ihm/ihm_csv.py" line="27" column="1" bodyfile="src/ihm/ihm_csv.py" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceihm__csv_1a819537847d1ed739f65b3b3464eebee5" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>ihm_csv.myreader</definition>
+        <argsstring></argsstring>
+        <name>myreader</name>
+        <initializer>=  csv.reader(<ref refid="namespaceihm__csv_1a1b8375bc0acaacdbdc4b00883b3e99d3" kindref="member">fichier</ref>, delimiter =&apos;;&apos;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/ihm/ihm_csv.py" line="28" column="1" bodyfile="src/ihm/ihm_csv.py" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceihm__csv_1a033e4187d6a3c0f6e62382e4c559717e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>ihm_csv.lignes</definition>
+        <argsstring></argsstring>
+        <name>lignes</name>
+        <initializer>=  list(<ref refid="namespaceihm__csv_1a819537847d1ed739f65b3b3464eebee5" kindref="member">myreader</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/ihm/ihm_csv.py" line="31" column="1" bodyfile="src/ihm/ihm_csv.py" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceihm__csv_1abdd2b185476b0c0928008889f3d06602" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>ihm_csv.donnees</definition>
+        <argsstring></argsstring>
+        <name>donnees</name>
+        <initializer>=  <ref refid="namespaceihm__csv_1a033e4187d6a3c0f6e62382e4c559717e" kindref="member">lignes</ref>[2]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/ihm/ihm_csv.py" line="36" column="1" bodyfile="src/ihm/ihm_csv.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceihm__csv_1af2b289be1a88d92c54daa6c8b52cae99" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>ihm_csv.nb_cluster</definition>
+        <argsstring></argsstring>
+        <name>nb_cluster</name>
+        <initializer>=  150</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/ihm/ihm_csv.py" line="38" column="1" bodyfile="src/ihm/ihm_csv.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceihm__csv_1ab87f13e1d58139121d7073aef84bbebd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>ihm_csv.rayon</definition>
+        <argsstring></argsstring>
+        <name>rayon</name>
+        <initializer>=  8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/ihm/ihm_csv.py" line="39" column="1" bodyfile="src/ihm/ihm_csv.py" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceihm__csv_1a5a3c1545604dfda65065d802a54ce852" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>ihm_csv.secteur_NAF</definition>
+        <argsstring></argsstring>
+        <name>secteur_NAF</name>
+        <initializer>=  <ref refid="namespaceihm__csv_1abdd2b185476b0c0928008889f3d06602" kindref="member">donnees</ref>[2]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/ihm/ihm_csv.py" line="47" column="1" bodyfile="src/ihm/ihm_csv.py" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceihm__csv_1aed203dfa7bf7d44c606d475cf2e30a17" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ihm_csv.adresse</definition>
+        <argsstring></argsstring>
+        <name>adresse</name>
+        <initializer>=  &quot;output_ihm/clusterized_ihm.html&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/ihm/ihm_csv.py" line="52" column="1" bodyfile="src/ihm/ihm_csv.py" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Première interface Homme-machine : utilisation d&apos;un tableau `CSV` pour récupérer les informations données par l&apos;utilisateur
+
+Paramètres modifiables dans la fonction :code:`clusterize` : le nombre de clusters
+
+TODO : Paramètres modifiables souhaités en plus : encadrement du nombre de clusters, taille des clusters
+</verbatim> </para>
+    </detaileddescription>
+    <location file="src/ihm/ihm_csv.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

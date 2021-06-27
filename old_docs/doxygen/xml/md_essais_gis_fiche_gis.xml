@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="md_essais_gis_fiche_gis" kind="page">
+    <compoundname>md_essais_gis_fiche_gis</compoundname>
+    <title>Fiche : GIS en python</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="md_essais_gis_fiche_gis_1autotoc_md1">
+<title>Module &lt;tt&gt;shapely&lt;/tt&gt;</title>
+<para><bold>Fonction</bold> : librairie pour des formes géométriques</para>
+<para><bold>Installation</bold> : <computeroutput>conda install shapely</computeroutput></para>
+<para><bold>Comment importer (en général)</bold> : faire <computeroutput>from shapely.geometry import Point, LineString, Polygon</computeroutput></para>
+<para><bold>Classes principales</bold> :<itemizedlist>
+<listitem><para><computeroutput>Point</computeroutput> : représente un point géographique</para>
+</listitem><listitem><para><computeroutput>LineString</computeroutput> : représente une ligne brisée (<emphasis>ie</emphasis> contient plusieurs points)</para>
+</listitem><listitem><para><computeroutput>Polygon</computeroutput> : représente un polygone (avec un extérieur et intérieur pour autoriser des aires négatives)</para>
+</listitem></itemizedlist>
+</para>
+<para>Et leurs version &quot;multi&quot;, où un objet <computeroutput>MultiPoint</computeroutput>, <computeroutput>MultiLineString</computeroutput> et <computeroutput>MultiPolygon</computeroutput> représentent une collection de tels objets.</para>
+<para>Il existe des opérations sur ces objets (aire, centre de masse, etc.)</para>
+<para><bold>Opérations géométriques</bold> :<itemizedlist>
+<listitem><para>Point (ou ligne ou polygone) dans un polygone : au choix, <computeroutput>polygon.contains(point)</computeroutput> ou <computeroutput>point.within(polygon)</computeroutput>.</para>
+</listitem><listitem><para>Intersection / contact : le contact est un cas particulier d&apos;intersection (où les points commus doivent nécessairement être sur la frontière). Utiliser les méthodes <computeroutput>intersects</computeroutput> et <computeroutput>touches</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+<para>Pour plus de détails, voir <ulink url="https://automating-gis-processes.github.io/2016/Lesson1-Geometric-Objects.html">ce document</ulink></para>
+</sect1>
+<sect1 id="md_essais_gis_fiche_gis_1autotoc_md2">
+<title>Module &lt;tt&gt;geopandas&lt;/tt&gt;</title>
+<para><bold>Fonction</bold> : surcouche de <computeroutput>pandas</computeroutput> pour les fichiers géographiques (GIS, Geographic Information System). Permet par exemple d&apos;ouvrir les <computeroutput>shapefile</computeroutput>, standard pour ce les fichiers GIS.</para>
+<para><bold>Installation</bold> : <computeroutput>conda install geopandas</computeroutput></para>
+<para><bold>Comment importer</bold> : faire <computeroutput>import geopandas as gpd</computeroutput></para>
+<para><bold>Fonctions principales</bold> :<itemizedlist>
+<listitem><para>Ouvertures de fichiers comme avec <computeroutput>pandas</computeroutput> (ex : <computeroutput>gpd.read_file(chemin)</computeroutput>)</para>
+</listitem><listitem><para>Ecriture de fichiers comme avec <computeroutput>pandas</computeroutput> (ex : <computeroutput>gpd.to_file(chemin)</computeroutput>)</para>
+</listitem><listitem><para>Sélection comme avec <computeroutput>pandas</computeroutput> :<itemizedlist>
+<listitem><para><computeroutput>dataframe.loc(...)</computeroutput> pour les accès (slices autorisés) et les écritures</para>
+</listitem><listitem><para><computeroutput>dataframe.iterrows()</computeroutput> pour itérer sur les numéros de ligne et leur contenu à la fois</para>
+</listitem><listitem><para><lsquo/>dataframe[&apos;nom_de_colonne<rsquo/>] = None<computeroutput>pour créer une nouvelle colonne *</computeroutput>dataframe[&apos;nom_de_colonne&apos;].mean()<computeroutput>pour faire une opération numpy sur une colonne de données (ici, moyenne)</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><computeroutput>Plot :</computeroutput>data.plot&lt;tt&gt;plote les formes géométriques stockées dedans, lorsqu&apos;elles sont compatibles avecshapely<computeroutput>(nécessite le module</computeroutput>descartes<computeroutput>) (cf. section correspondante)</computeroutput></para>
+</listitem><listitem><para><computeroutput>Regroupement :</computeroutput>dataframe.groupby(&apos;nom_de_colonne&apos;)` créé un objet semblable à un dictionnaire :<itemizedlist>
+<listitem><para>les clés sont les objets de la colonne sélectionnée par lesquels on regroupe les objets (par exemple, le nom de l&apos;espèce marine)</para>
+</listitem><listitem><para>les valeurs sont une <computeroutput>DataFrame</computeroutput> contenant les mêmes colonnes que la <computeroutput>DataFrame</computeroutput> originale, mais uniquement les lignes correspondant à la valeur par laquelle on regroupe</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Fonctions de join</bold> : Il existe plusieurs fonctionnalités selon ce qu&apos;on entend par join, ou plus généralement les opérations ensemblistes :<itemizedlist>
+<listitem><para>Table join (comme en SQL):<itemizedlist>
+<listitem><para>Pour l&apos;utiliser : <lsquo/>dataframe1.merge(dataframe2, on=&apos;nom_de_colonne<rsquo/>)<computeroutput>.</computeroutput></para>
+</listitem><listitem><para><computeroutput>Si les noms de colonnes sont différents, fournir les paramètres</computeroutput>left_on<computeroutput>et</computeroutput>right_on<computeroutput>.</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><computeroutput>Overlay : fait des intersections spatiales entre plusieurs tables, ou plus généralement des opérations ensemblistes spatiales (union, différence, etc.) (ex : intersecte une</computeroutput>DataFrame<computeroutput>de polygones avec une autre)</computeroutput></para>
+</listitem><listitem><para><computeroutput>Join spatial : un peu plus subtil, fusionne des</computeroutput>GeoDataFrame<computeroutput>avec un critère particulier :</computeroutput>intersects<computeroutput>,</computeroutput>contains<computeroutput>et</computeroutput>within` (ex : fusionne les lignes où un point d&apos;une table est dans un polygone d&apos;une autre table)</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Agrégation</bold> : Fonctionnalité permettant d&apos;agréger (rassembler) des lignes d&apos;une <computeroutput>DataFrame</computeroutput> avec un critère particulier (ex : la valeur d&apos;une colonne) Exemple d&apos;utilisation : fusionner des zones géographiques par temps d&apos;itinéraire vers une gare. Utilisation : <computeroutput>dataframe.dissolve(by=&quot;colonne_par_laquelle_trier&quot;)</computeroutput></para>
+<para><bold>Applications d&apos;opérateurs binaires</bold> Voir <ulink url="https://automating-gis-processes.github.io/2016/Lesson4-reclassify.html#">ce document</ulink></para>
+<para>Pour plus de détails, voir <ulink url="https://automating-gis-processes.github.io/2016/Lesson2-geopandas-basics.html">ce document</ulink></para>
+</sect1>
+<sect1 id="md_essais_gis_fiche_gis_1autotoc_md3">
+<title>Affichage sur une carte</title>
+<para>Il existe plein de modules permettant d&apos;afficher sur une carte.</para>
+<sect2 id="md_essais_gis_fiche_gis_1autotoc_md4">
+<title>Avec &lt;tt&gt;geopandas&lt;/tt&gt; (ie &lt;tt&gt;matplotlib&lt;/tt&gt;)</title>
+<para>Ce sont des <bold>cartes statiques</bold></para>
+<para>On utilise <computeroutput>dataframe.plot()</computeroutput>.<itemizedlist>
+<listitem><para>Retourne le plot correspondant (si on veut l&apos;utiliser plus tard), utile pour :</para>
+</listitem><listitem><para><computeroutput>ax=</computeroutput> pour indiquer si on veut superposer l&apos;affichage sur un plot déjà existant (ex : routes sur une carte)</para>
+</listitem><listitem><para>Si une colonne est spécifiée (<lsquo/>column=&apos;ma_colonne<rsquo/><computeroutput>), sépare la carte en classes d&apos;équivalences en fonction de la valeur de la colonne, en fonction du schema spécifié</computeroutput></para>
+</listitem><listitem><para><computeroutput>Le schema c&apos;est la façon avec laquelle le module créé les classes d&apos;équivalences. Le paramètre</computeroutput>k<computeroutput>définit le nombre de classes d&apos;équivalences à utiliser. Exemple de schéma =</computeroutput>scheme=&quot;quantiles&quot;<computeroutput>. Le schema est coloré par une</computeroutput>cmap`. <linebreak/>
+</para>
+</listitem><listitem><para>Couleur :<itemizedlist>
+<listitem><para>soit <lsquo/>color=&apos;r<rsquo/><computeroutput>: colore uniformément en rouge</computeroutput></para>
+</listitem><listitem><para><computeroutput>soit</computeroutput>cmap=&quot;Reds&quot;<computeroutput>: colore avec une &quot;carte de couleurs&quot; (ici rouge) reconnue par le module (utile si on a spécifié une colonne par exemple)</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><computeroutput>La transparence :</computeroutput>alpha=0.9<computeroutput>par exemple (1 totalement opaque, 0 totalement transparent) *</computeroutput>linewidth=` permet de définir l&apos;épaisseur des lignes</para>
+</listitem></itemizedlist>
+</para>
+<para><computeroutput>plt.tight_layout()</computeroutput> permet d&apos;afficher plus sur la même fenêtre.</para>
+</sect2>
+<sect2 id="md_essais_gis_fiche_gis_1autotoc_md5">
+<title>Avec &lt;tt&gt;bokeh&lt;/tt&gt;</title>
+<para>Ce sont des <bold>cartes dynamiques</bold></para>
+<para><bold>Installation</bold> : <computeroutput>conda install bokeh</computeroutput></para>
+<para>A faire (césar)</para>
+</sect2>
+<sect2 id="md_essais_gis_fiche_gis_1autotoc_md6">
+<title>Avec &lt;tt&gt;leaflet&lt;/tt&gt; (ie &lt;tt&gt;folium&lt;/tt&gt;)</title>
+<para>C&apos;est le module <computeroutput>folium</computeroutput> dans pyton qui fait le boulot.</para>
+<para><bold>Installation</bold> : <computeroutput>conda install folium</computeroutput></para>
+<para><itemizedlist>
+<listitem><para>Créer une carte : folium.Map() avec les paramètres<itemizedlist>
+<listitem><para><computeroutput>location=[lat,lon]</computeroutput> : position initiale de la carte</para>
+</listitem><listitem><para><computeroutput>zoom_start=10</computeroutput> : zoom initial (plus c&apos;est grand, plus c&apos;est proche)</para>
+</listitem><listitem><para><computeroutput>control_scale=true</computeroutput> : affichage de l&apos;échelle</para>
+</listitem><listitem><para><computeroutput>tiles</computeroutput> : indique quelle carte utiliser (ex : `tiles=&quot;OpenStreeMap&quot;)</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<para>Pour plus d&apos;infos, voir <ulink url="https://python-visualization.github.io/folium/quickstart.html">ce document</ulink></para>
+</sect2>
+</sect1>
+<sect1 id="md_essais_gis_fiche_gis_1autotoc_md7">
+<title>CRS (Coordinate Reference System)</title>
+<para>C&apos;est un attribut des <computeroutput>shapefile</computeroutput>, permettant de savoir quels systèmes de coordonnées ils utilisent.<itemizedlist>
+<listitem><para>Pour connaître le CRS d&apos;une table, faire <computeroutput>dataframe.crs</computeroutput></para>
+</listitem><listitem><para>Pour changer le CRS d&apos;une table, faire <computeroutput>dataframe.to_crs(crs=un_crs_donne, inplace=true)</computeroutput> (ou <computeroutput>inplace=false</computeroutput> si on veut pas de surplace)</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md_essais_gis_fiche_gis_1autotoc_md8">
+<title>Geocoding</title>
+<para>Le geocoding est une technologie permettant de passer d&apos;adresse à coordonnées (et vice-versa), grâce à une API tierce. Pour faire un appel à une API, importer <computeroutput>from geopandas.tools import geocode</computeroutput> et utiliser la fonction : <computeroutput>geocode</computeroutput> en spécifiant une clé api.</para>
+<para>A faire... (césar) </para>
+</sect1>
+    </detaileddescription>
+    <location file="essais/gis/fiche/gis.md"/>
+  </compounddef>
+</doxygen>

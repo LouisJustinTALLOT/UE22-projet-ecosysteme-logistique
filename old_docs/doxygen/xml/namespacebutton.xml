@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="namespacebutton" kind="namespace" language="Python">
+    <compoundname>button</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacebutton_1a954cbe1bd59f5922191a31a9fa59553c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>button.app</definition>
+        <argsstring></argsstring>
+        <name>app</name>
+        <initializer>=  QApplication([])</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/button.py" line="3" column="1" bodyfile="essais/affichage/button.py" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacebutton_1a03e7e301664456e169f81411154f51f3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>button.window</definition>
+        <argsstring></argsstring>
+        <name>window</name>
+        <initializer>=  QWidget()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/button.py" line="6" column="1" bodyfile="essais/affichage/button.py" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacebutton_1ae889094e1ddac8237773745f16922a04" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>button.layout</definition>
+        <argsstring></argsstring>
+        <name>layout</name>
+        <initializer>=  QVBoxLayout()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/button.py" line="9" column="1" bodyfile="essais/affichage/button.py" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacebutton_1aa56e09f6eef10562fc91a825dfaa03db" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>button.but1</definition>
+        <argsstring></argsstring>
+        <name>but1</name>
+        <initializer>=  QPushButton(&apos;5&apos;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/button.py" line="15" column="1" bodyfile="essais/affichage/button.py" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacebutton_1ab45bba795452cef6813f9bd409a80dd9" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>button.but2</definition>
+        <argsstring></argsstring>
+        <name>but2</name>
+        <initializer>=  QPushButton(&apos;10&apos;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/button.py" line="16" column="1" bodyfile="essais/affichage/button.py" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacebutton_1ab66a7aea9c270107088510f4108e975d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>button.but3</definition>
+        <argsstring></argsstring>
+        <name>but3</name>
+        <initializer>=  QPushButton(&apos;15&apos;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/button.py" line="17" column="1" bodyfile="essais/affichage/button.py" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacebutton_1aa8b1bcae5ee53aefcf4fdad56aff9ab0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>button.but4</definition>
+        <argsstring></argsstring>
+        <name>but4</name>
+        <initializer>=  QPushButton(&apos;20&apos;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/button.py" line="18" column="1" bodyfile="essais/affichage/button.py" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacebutton_1aedd934decf2b0f25e695483b2c626daf" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>button.but5</definition>
+        <argsstring></argsstring>
+        <name>but5</name>
+        <initializer>=  QPushButton(&apos;25&apos;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/button.py" line="19" column="1" bodyfile="essais/affichage/button.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacebutton_1a41e4419a0b037f9a8f48bbc2a0a91a53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def button.on_button_clicked</definition>
+        <argsstring>()</argsstring>
+        <name>on_button_clicked</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/button.py" line="35" column="1" bodyfile="essais/affichage/button.py" bodystart="35" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="essais/affichage/button.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

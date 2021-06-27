@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="dir_fb8d4f7a216c8ccfffe52c6be87cdef9" kind="dir">
+    <compoundname>essais/affichage</compoundname>
+    <innerfile refid="button_8py">button.py</innerfile>
+    <innerfile refid="event__souris_8py">event_souris.py</innerfile>
+    <innerfile refid="test__pyqt_8py">test_pyqt.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="essais/affichage/"/>
+  </compounddef>
+</doxygen>

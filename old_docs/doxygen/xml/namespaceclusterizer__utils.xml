@@ -1,0 +1,389 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="namespaceclusterizer__utils" kind="namespace" language="Python">
+    <compoundname>clusterizer_utils</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceclusterizer__utils_1a397067a131fa29bb2e32f07c6cd9b550" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string clusterizer_utils.COLUMN_DEFAULT_GEOMETRY_NAME</definition>
+        <argsstring></argsstring>
+        <name>COLUMN_DEFAULT_GEOMETRY_NAME</name>
+        <initializer>=  &quot;geometry&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="15" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceclusterizer__utils_1a873ebb1d1738daa81932454c8402f4ac" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string clusterizer_utils.COLUMN_CLUSTER_INDEX_NAME</definition>
+        <argsstring></argsstring>
+        <name>COLUMN_CLUSTER_INDEX_NAME</name>
+        <initializer>=  &quot;cluster&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="16" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceclusterizer__utils_1a64da067438d51e82bf9fca50329b9575" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string clusterizer_utils.COLUMN_HULLS_NAME</definition>
+        <argsstring></argsstring>
+        <name>COLUMN_HULLS_NAME</name>
+        <initializer>=  &quot;hulls&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="17" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceclusterizer__utils_1a0e0d5e7941920e45cabf19445ce767e0" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string clusterizer_utils.COLUMN_CENTROIDS_NAME</definition>
+        <argsstring></argsstring>
+        <name>COLUMN_CENTROIDS_NAME</name>
+        <initializer>=  &quot;centroids&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="18" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceclusterizer__utils_1af162587a76482f328d73ed57c2b044b8" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string clusterizer_utils.COLUMN_CLUSTER_SIZE_NAME</definition>
+        <argsstring></argsstring>
+        <name>COLUMN_CLUSTER_SIZE_NAME</name>
+        <initializer>=  &quot;taille&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="19" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceclusterizer__utils_1a4366078253ba0edbda360ae6cc9d1add" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string clusterizer_utils.COLUMN_CLUSTER_MASS_NAME</definition>
+        <argsstring></argsstring>
+        <name>COLUMN_CLUSTER_MASS_NAME</name>
+        <initializer>=  &quot;poids&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="20" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceclusterizer__utils_1a02138575682c57bd3a59b63bae3dfb38" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>clusterizer_utils.PARIS_CENTER_COORDS</definition>
+        <argsstring></argsstring>
+        <name>PARIS_CENTER_COORDS</name>
+        <initializer>=  Point(2.348523, 48.853345)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="24" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceclusterizer__utils_1affa7c2c6862dc269e97b6b0bfa95a4da" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>clusterizer_utils.vectorized_calculer_poids_code_NAF</definition>
+        <argsstring></argsstring>
+        <name>vectorized_calculer_poids_code_NAF</name>
+        <initializer>=  np.vectorize(<ref refid="namespaceclusterizer__utils_1afa94fd0c30cb29c6f3a78387cc167e89" kindref="member">calculer_poids_code_NAF</ref>, otypes=[int])</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="111" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceclusterizer__utils_1a5788fa8785e88a80e5a1e584c04ec05b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame clusterizer_utils.get_infos_clusters_poids</definition>
+        <argsstring>(pd.DataFrame df, str column_naf_code)</argsstring>
+        <name>get_infos_clusters_poids</name>
+        <param>
+          <type>pd.DataFrame</type>
+          <declname>df</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>column_naf_code</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Fonction permettant de récupérer des infos sur les clusters (poids).
+
+:param df: La DataFrame où l&apos;on a déjà ajouté le numéro des clusters (laissée intacte).
+:param column_naf_code: Le nom de la colonne où se situent les codes NAF.
+:return: Une nouvelle GeoDataFrame associant à chaque numéro de cluster le poids de celui-ci
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="31" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="31" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceclusterizer__utils_1a1a09a2a4d0cb4435e9341da24dde35df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame clusterizer_utils.get_infos_clusters_taille</definition>
+        <argsstring>(pd.DataFrame df)</argsstring>
+        <name>get_infos_clusters_taille</name>
+        <param>
+          <type>pd.DataFrame</type>
+          <declname>df</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Fonction permettant de récupérer des infos sur les clusters (tailles).
+
+:param df: La DataFrame où l&apos;on a déjà ajouté le numéro des clusters (laissée intacte).
+:return: Une nouvelle GeoDataFrame associant à chaque numéro de cluster la taille de celui-ci
+ (nombre d&apos;établissements)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="44" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="44" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceclusterizer__utils_1a67d3497ffce20f00b8670186e255a548" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame clusterizer_utils.get_infos_clusters_enveloppes_convexes</definition>
+        <argsstring>(int k, pd.DataFrame df, str column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, bool is_dict=False)</argsstring>
+        <name>get_infos_clusters_enveloppes_convexes</name>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>pd.DataFrame</type>
+          <declname>df</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>column_geometry</declname>
+          <defval><ref refid="namespaceclusterizer__utils_1a397067a131fa29bb2e32f07c6cd9b550" kindref="member">COLUMN_DEFAULT_GEOMETRY_NAME</ref></defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_dict</declname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Fonction permettant de récupérer des infos sur les clusters (enveloppes convexes).
+
+:param k: Nombre de clusters
+:param df: La DataFrame où l&apos;on a déjà ajouté le numéro des clusters (laissée intacte).
+:param column_geometry: Le nom de la colonne où se situent les données géometriques (par défaut, &quot;geometry&quot;).
+:param is_dict: True si les paramètres sont sous forme de dictionnaire
+:return: Une GeoDataFrame associant à chaque numéro de cluster son enveloppe convexe.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="55" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="55" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceclusterizer__utils_1afa94fd0c30cb29c6f3a78387cc167e89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int clusterizer_utils.calculer_poids_code_NAF</definition>
+        <argsstring>(str code_naf)</argsstring>
+        <name>calculer_poids_code_NAF</name>
+        <param>
+          <type>str</type>
+          <declname>code_naf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Calcule le poids d&apos;un code NAF.
+
+:param code_naf: Le code NAF à calculer (dans une des deux conventions : avec ou sans points).
+:return: Le poids du code NAF.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="96" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="96" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceclusterizer__utils_1aba2719bff914168ef7fd424000278568" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int clusterizer_utils.calculer_poids_cluster</definition>
+        <argsstring>(pd.DataFrame df, str naf_column_name)</argsstring>
+        <name>calculer_poids_cluster</name>
+        <param>
+          <type>pd.DataFrame</type>
+          <declname>df</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>naf_column_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Calcule le poids d&apos;un ensemble d&apos;établissements.
+
+:param df: La DataFrame contenant tous les établissements.
+ Rien n&apos;est requis, à part avoir une colonne où sont situés les codes NAF.
+:param naf_column_name: Le nom de la colonne contenant les codes NAF.
+:returns: Le poids du cluster.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="114" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="114" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceclusterizer__utils_1abf24cd2d20d3d162a4d02efc242acdbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Callable[[pd.DataFrame, str], int]</type>
+        <definition> Callable[[pd.DataFrame, str], int] clusterizer_utils.calculer_poids_cluster_wrapper</definition>
+        <argsstring>(str naf_column_name)</argsstring>
+        <name>calculer_poids_cluster_wrapper</name>
+        <param>
+          <type>str</type>
+          <declname>naf_column_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Wrappe calculer_poids_cluster pour pouvoir l&apos;utiliser dans un groupby.
+
+:param naf_column_name: La colonne où se situent les codes NAF.
+:return: cf. la fonction calculer_poids_cluster.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="126" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="126" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceclusterizer__utils_1ab8828a4ec46c57e4c2fbcea7c314bb38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def clusterizer_utils.swap_xy</definition>
+        <argsstring>(geom)</argsstring>
+        <name>swap_xy</name>
+        <param>
+          <type>geom</type>
+          <defname>geom</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Inverse les coordonnées de l&apos;objet shapely.geometry.
+Utile pour passer objets shapely dans folium (la convention est inversée).
+Auteur : https://gis.stackexchange.com/a/291293
+
+:param geom: L&apos;objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
+:return: l&apos;objet inversé
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="139" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="139" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceclusterizer__utils_1ae02c5cdf4a0f5c7987cb6eb76575b39d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame clusterizer_utils.filter_nearby_paris</definition>
+        <argsstring>(pd.DataFrame df, int radius, str column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, bool is_dict=False)</argsstring>
+        <name>filter_nearby_paris</name>
+        <param>
+          <type>pd.DataFrame</type>
+          <declname>df</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>column_geometry</declname>
+          <defval><ref refid="namespaceclusterizer__utils_1a397067a131fa29bb2e32f07c6cd9b550" kindref="member">COLUMN_DEFAULT_GEOMETRY_NAME</ref></defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_dict</declname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Filtre les données proches du centre de Paris.
+
+:param df: la DataFrame à filtrer
+:param radius: le rayon (en kilomètres)
+:param column_geometry: la colonne où se trouvent les données géométriques (par défaut : &apos;geometry&apos;)
+:return: la DataFrame filtrée
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="182" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="182" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceclusterizer__utils_1a4aab52450ec0e5c333c03f2cfa4694e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>np.ndarray</type>
+        <definition> np.ndarray clusterizer_utils.get_coords_from_object</definition>
+        <argsstring>(pd.DataFrame df, str column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, bool is_dict=False)</argsstring>
+        <name>get_coords_from_object</name>
+        <param>
+          <type>pd.DataFrame</type>
+          <declname>df</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>column_geometry</declname>
+          <defval><ref refid="namespaceclusterizer__utils_1a397067a131fa29bb2e32f07c6cd9b550" kindref="member">COLUMN_DEFAULT_GEOMETRY_NAME</ref></defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_dict</declname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Récupère les coordonnées des points de la DataFrame.
+
+:param df: la DataFrame.
+:param column_geometry: la colonne contenant les données géométriques.
+:param is_dict: les données sont-elles en dictionnaire ?
+:return: les coordonnées sous la forme d&apos;une matrice de deux colonnes (et d&apos;autant de lignes qu&apos;il y a de points)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/clusterizer_utils.py" line="203" column="1" bodyfile="src/clusterizer/utils/clusterizer_utils.py" bodystart="203" bodyend="223"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Ce module permet d&apos;extraire simplement nos données des GeoDataFrames, de trouver
+leurs coordonnées, de restreindre le calcul aux points situés dans un certain rayon
+autour de Paris ; il permet également de manipuler les clusters, de calculer leur 
+poids et leur taille.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="src/clusterizer/utils/clusterizer_utils.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="dir_a70f50a1c05194546cc6722af59c7a71" kind="dir">
+    <compoundname>src/clusterizer/utils</compoundname>
+    <innerfile refid="clusterizer__utils_8py">clusterizer_utils.py</innerfile>
+    <innerfile refid="_n_a_f__utils_8py">NAF_utils.py</innerfile>
+    <innerfile refid="seine__data__utils_8c">seine_data_utils.c</innerfile>
+    <innerfile refid="seine__data__utils_8cpp">seine_data_utils.cpp</innerfile>
+    <innerfile refid="seine__data__utils__py_8py">seine_data_utils_py.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/clusterizer/utils/"/>
+  </compounddef>
+</doxygen>

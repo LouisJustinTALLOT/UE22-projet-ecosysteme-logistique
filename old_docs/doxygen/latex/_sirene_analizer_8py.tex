@@ -1,0 +1,39 @@
+\hypertarget{_sirene_analizer_8py}{}\doxysection{Référence du fichier essais/gis/\+Sirene\+Analizer.py}
+\label{_sirene_analizer_8py}\index{essais/gis/SireneAnalizer.py@{essais/gis/SireneAnalizer.py}}
+\doxysubsection*{Espaces de nommage}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_sirene_analizer}{Sirene\+Analizer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_ac87b12118762b23663d60ab067116884}{Sirene\+Analizer.\+swap\+\_\+xy}} (Base\+Geometry geom)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_ae9da2463d6618661f0e07049e70ea45f}{Sirene\+Analizer.\+range\+\_\+hex\+\_\+colors}} (int nombre\+\_\+couleurs)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_a553fe358625a6b3553900d6693d9b7a3}{Sirene\+Analizer.\+ouvrir}} (str path, str column\+\_\+points=\textquotesingle{}geometry\textquotesingle{}, bool reduce=False, bool do\+\_\+filter=True)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_ad77ea7285b948e6954919e6ab003bc47}{Sirene\+Analizer.\+filter}} (gpd.\+Geo\+Data\+Frame df, str column\+\_\+points=\textquotesingle{}geometry\textquotesingle{}, bool reduce=False, bool do\+\_\+filter=True)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_a6b620e88100b9cde863c4642cc3b6fa9}{Sirene\+Analizer.\+clusterize}} (gpd.\+Geo\+Data\+Frame df, int nb\+\_\+clusters)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_ab6f18f8ebb95d7e604945b16c88d8287}{Sirene\+Analizer.\+do\+\_\+convex\+\_\+hull}} (gpd.\+Geo\+Data\+Frame df)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_a623943683b810b29f136d02fdb8da7e2}{Sirene\+Analizer.\+save\+\_\+to\+\_\+map}} (gpd.\+Geo\+Data\+Frame centroids, gpd.\+Geo\+Data\+Frame hulls, str path=clusterized\+\_\+path, gpd.\+Geo\+Data\+Frame df=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{namespace_sirene_analizer_a6e171306ccfbb83ca3c0bf3b15e71d05}{Sirene\+Analizer.\+reducted\+\_\+name}} = \char`\"{}input\textbackslash{}\textbackslash{}base\+\_\+sirene\+\_\+shortened\+\_\+json\+\_\+cpp.\+json\char`\"{}
+\item 
+string \mbox{\hyperlink{namespace_sirene_analizer_aae334d372d85590f4053e78e9316915a}{Sirene\+Analizer.\+clusterized\+\_\+path}} = \char`\"{}output\textbackslash{}\textbackslash{}clusterized\+\_\+sirene.\+html\char`\"{}
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_a3d7c2fd94c1c0ace576182fb6b2ab9f8}{Sirene\+Analizer.\+data}} = ouvrir(reducted\+\_\+name, reduce=True)
+\item 
+def \mbox{\hyperlink{namespace_sirene_analizer_a4aec614441f405b6de55f1f1d4c296f4}{Sirene\+Analizer.\+data\+\_\+0}} = data.\+copy()
+\item 
+\mbox{\hyperlink{namespace_sirene_analizer_ae931a4d1c915fcb3740cadcc9f055797}{Sirene\+Analizer.\+centroids}}
+\item 
+\mbox{\hyperlink{namespace_sirene_analizer_a6a98f05a3a1b90e3c880ecaab3534e66}{Sirene\+Analizer.\+hulls}}
+\end{DoxyCompactItemize}

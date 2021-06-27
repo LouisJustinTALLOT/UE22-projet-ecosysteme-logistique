@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="_b_a_n_reducter_8py" kind="file" language="Python">
+    <compoundname>BANReducter.py</compoundname>
+    <innernamespace refid="namespace_b_a_n_reducter">BANReducter</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespace_b_a_n_reducter" refkind="compound"><highlight class="keyword">import</highlight><highlight class="normal"><sp/>geopandas<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>gpd</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="3"><highlight class="stringliteral">Ce<sp/>fichier<sp/>ne<sp/>sert<sp/>qu&apos;à<sp/>réduire<sp/>la<sp/>base<sp/>pour<sp/>qu&apos;elle<sp/>soit<sp/>manipulable<sp/>en<sp/>temps<sp/>fini</highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="namespace_b_a_n_reducter_1a53037004f3bbea3b7a1b1e308c3a038e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_b_a_n_reducter_1a53037004f3bbea3b7a1b1e308c3a038e" kindref="member">reduct</ref>():</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Ouverture<sp/>du<sp/>fichier...&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>file<sp/>=<sp/>gpd.read_file(</highlight><highlight class="stringliteral">&quot;input\\base-adresse-75.geojson&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Fichier<sp/>ouvert<sp/>!&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;En-tête<sp/>du<sp/>fichier<sp/>:&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>print(file.head())</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Sauvegarde<sp/>dans<sp/>un<sp/>fichier<sp/>réduit...&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>new_file<sp/>=<sp/>file.loc[:10000]</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>new_file.to_file(</highlight><highlight class="stringliteral">&quot;output\\reducted.geojson&quot;</highlight><highlight class="normal">,<sp/>driver=</highlight><highlight class="stringliteral">&quot;GeoJSON&quot;</highlight><highlight class="normal">,<sp/>encoding=</highlight><highlight class="stringliteral">&quot;UTF-8&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Sauvegarde<sp/>effectuée,<sp/>dans<sp/>\&quot;reducted.geojson\&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Test<sp/>d&apos;ouverture...&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>file<sp/>=<sp/>gpd.read_file(</highlight><highlight class="stringliteral">&quot;input\\reducted.geojson&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>print(file.head())</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Fin...&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><ref refid="namespace_b_a_n_reducter_1a53037004f3bbea3b7a1b1e308c3a038e" kindref="member">reduct</ref>()</highlight></codeline>
+    </programlisting>
+    <location file="essais/gis/BANReducter.py"/>
+  </compounddef>
+</doxygen>
