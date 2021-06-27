@@ -246,13 +246,13 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
 
     liste_df = []
     for no_zone in DICT_GDF_ZONES.keys():
-        print("key ", no_zone)
+        # print("key ", no_zone)
         liste_df.append(
             # df[numba_rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])), no_zone)]
             df[no_zone == masque].reset_index(drop=True)
         )
 
-    pprint(liste_df)
+    # pprint(liste_df)
 
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
@@ -260,8 +260,8 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     print("Clusterisation...", end="    ")
 
     liste_df_clusters = []
-    # nb_clusters_par_zone = calcule_nb_clusters_par_zone(liste_df, nb_clusters)
-    nb_clusters_par_zone = [10]*NB_ZONES
+    nb_clusters_par_zone = calcule_nb_clusters_par_zone(liste_df, nb_clusters)
+    # nb_clusters_par_zone = [10]*NB_ZONES
 
     for no_zone in range(NB_ZONES):
         try:
