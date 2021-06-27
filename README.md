@@ -4,6 +4,12 @@
 
 ### Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot
 
+#### Documentation
+
+La documentation du projet est disponible à cette adresse : 
+
+[https://louisjustintallot.github.io/UE22-projet-ecosysteme-logistique/html/index.html](https://louisjustintallot.github.io/UE22-projet-ecosysteme-logistique/html/index.html)
+
 #### Dépendances
 
 Ce projet dépend des technologies et ressources suivantes :
