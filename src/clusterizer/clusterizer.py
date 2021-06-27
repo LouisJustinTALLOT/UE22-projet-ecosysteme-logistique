@@ -23,6 +23,7 @@ from sklearn.cluster import KMeans, MiniBatchKMeans
 from shapely.geometry import Polygon, Point
 
 from src.clusterizer.utils import NAF_utils
+from src.clusterizer.utils import seine_data_utils
 from src.clusterizer.utils import clusterizer_utils
 from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
     COLUMN_CLUSTER_INDEX_NAME, \
