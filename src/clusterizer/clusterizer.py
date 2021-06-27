@@ -25,7 +25,9 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
     COLUMN_CENTROIDS_NAME, \
     COLUMN_DEFAULT_GEOMETRY_NAME, \
     COLUMN_CLUSTER_MASS_NAME
-from src.clusterizer.utils.seine_data_utils_py import Frontiere, get_frontieres_utiles, Point
+
+from src.clusterizer.seine_data_utils import Frontiere, get_frontieres_utiles, Point
+
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
