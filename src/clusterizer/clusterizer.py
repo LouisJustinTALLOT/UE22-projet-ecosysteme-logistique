@@ -29,7 +29,7 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
                                                     COLUMN_CENTROIDS_NAME, \
                                                     COLUMN_DEFAULT_GEOMETRY_NAME, \
                                                     COLUMN_CLUSTER_MASS_NAME
-from src.clusterizer.utils.seine_data_utils import rapport_a_la_seine, DICT_GDF_ZONES, NB_ZONES
+from src.clusterizer.utils.seine_data_utils import rapport_a_la_seine, rapport_a_la_seine_spatial_index, DICT_GDF_ZONES, NB_ZONES
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
