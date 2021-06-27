@@ -1,4 +1,5 @@
 from pathlib import Path
+from pprint import pprint
 from typing import Dict
 import geopandas as gpd
 import numpy as np
@@ -84,3 +85,34 @@ def rapport_a_la_seine_spatial_index(array_coords: np.ndarray):
  
     return res
     
+
+if __name__ == "__main__":
+    import time
+    with open("points", 'r', encoding='utf8') as file:
+        array = np.array(eval(file.read()))
+    t1 = time.time()
+    rapport_a_la_seine_spatial_index(array)
+    t2 = time.time()
+    print(f"{t2-t1:3.3f} secondes avec index")
+    print(array)
+    print(tuple(array[0]))
+    print("\n\n\n\n")
+    print(np.array([tuple(x) for x in array])[:,0])
+    array2 = np.array([tuple(x) for x in array])
+    # rapport_a_la_seine(np.array([tuple(x) for x in array]))
+
+    for coord in zip(array2[:,0], array2[:,1]):
+        # coord = (xy[0], xy[1])
+
+        for no_zone, gdf in DICT_GDF_ZONES.items():
+            if Point(*coord).within(gdf):
+                # print(coord, no_zone)
+                # return no_zone
+                pass
+
+        # print(coord, "out of all zones")
+        # return NB_ZONES
+
+    t3 = time.time()
+    print(f"{t3-t2:3.3f} secondes sans index")
+
