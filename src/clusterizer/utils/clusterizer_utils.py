@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 from pandas import Series
 from shapely.geometry import Polygon, MultiPoint, Point, LineString, GeometryCollection
+from shapely.geometry.multipolygon import MultiPolygon
 from . import concave_hull_utils
 
 COLUMN_DEFAULT_GEOMETRY_NAME = "geometry"
@@ -88,7 +89,22 @@ def get_infos_clusters_enveloppes_convexes(k, df, column_geometry=COLUMN_DEFAULT
         # temp_hulls[n] = Polygon(hull)
 
         # pprint(concave_hull_utils.alpha_shape(hull))
-        temp_hulls[n] = concave_hull_utils.alpha_shape(hull)[0]
+
+        alpha = Polygon(hull).area
+        # print(n, Polygon(hull).area)
+        # if Polygon(hull).area > 0.001: # hardcodé, d'après les résultats du print au-dessus
+        #     temp_hulls[n] = concave_hull_utils.alpha_shape(hull, alpha=0.02)[0]
+        # else:
+        #     temp_hulls[n] = concave_hull_utils.alpha_shape(hull, alpha=0.01)[0]
+        result_hull = concave_hull_utils.alpha_shape(hull, alpha=alpha)[0]
+        n_iter = 0
+        while n_iter<5 and ((type(result_hull) == MultiPolygon and len(result_hull) > 3) or result_hull.area < 10*Polygon(hull).area):
+            # print(alpha)
+            alpha *= 2
+            result_hull = concave_hull_utils.alpha_shape(hull, alpha=alpha)[0]
+            n_iter += 1
+
+        temp_hulls[n] = result_hull
         # raise Exception("")
 
         # if type(hull) == Point or type(hull) == LineString or type(hull) == GeometryCollection:

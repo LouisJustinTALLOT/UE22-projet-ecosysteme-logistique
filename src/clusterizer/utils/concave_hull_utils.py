@@ -35,7 +35,7 @@ def alpha_shape(points, alpha=0.01, buffer=0):
     try:
         tri = Delaunay(coords)
     except Exception as e :
-        print(e)
+        print("delaunay", e)
         return None, None
 
     edges = set()
@@ -96,7 +96,7 @@ def alpha_shape(points, alpha=0.01, buffer=0):
         return concave_hull, edge_points
     # elif points_inside/points_total<0.9:
     else:
-        raise Exception("Convex")
+        # raise Exception("Convex")
         return geometry.MultiPoint(points).convex_hull, None
     # else:
     #     return None, None
