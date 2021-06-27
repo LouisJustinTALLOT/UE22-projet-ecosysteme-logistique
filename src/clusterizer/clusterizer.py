@@ -148,8 +148,8 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
                         tiles="Stamen Terrain"
                         )
 
-    couleurs = ['cadetblue', 'orange', 'darkred', 'black',
-                'purple', 'gray', 'darkgreen', 'lightgreen',
+    couleurs = ['darkslateblue', 'orange', 'darkred', 'black',
+                'purple', 'chocolate', 'darkgreen', 'seagreen',
                 'darkblue', 'blue', 'red']
 
     centroids = df_clusters.loc[:, COLUMN_CENTROIDS_NAME]
@@ -159,10 +159,11 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
 
     for k, point in enumerate(centroids):
         if point is not None:
-            title = f"Centre de masse du cluster {k} : {sizes[k]} établissements. Poids : {poids[k]}"
+            title = f"Centre de masse du cluster {k} : {sizes[k]} etablissements. Poids : {poids[k]}"
             folium.CircleMarker(location=[point.y, point.x],
                           popup=title,
-                          radius=1
+                          radius=3,
+                          color = 'purple'
                          # icon=folium.Icon(color=couleurs[k % len(couleurs)], icon='info-sign')
                           ).add_to(map)
 
