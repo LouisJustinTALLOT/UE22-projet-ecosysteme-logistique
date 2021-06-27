@@ -23,7 +23,6 @@ from sklearn.cluster import KMeans, MiniBatchKMeans
 from shapely.geometry import Polygon, Point
 
 from src.clusterizer.utils import NAF_utils
-from src.clusterizer.utils import seine_data_utils
 from src.clusterizer.utils import clusterizer_utils
 from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
     COLUMN_CLUSTER_INDEX_NAME, \
@@ -31,6 +30,7 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
     COLUMN_CENTROIDS_NAME, \
     COLUMN_DEFAULT_GEOMETRY_NAME, \
     COLUMN_CLUSTER_MASS_NAME
+from src.clusterizer.utils.seine_data_utils import rapport_a_la_seine, DICT_GDF_ZONES, NB_ZONES
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
@@ -39,41 +39,6 @@ Pour avoir des exemples d'utilisation, aller à la toute fin où il y a les test
 """
 
 DEBUG_PLOT = False # pour afficher les points et frontières (debugging)
-
-DICT_ZONES_IDF = {
-    0 : "IDF_zone_est",
-    1 : "IDF_zone_nord_ouest",
-    2 : "IDF_zone_nord",
-    3 : "IDF_zone_Paris_ouest",
-    4 : "IDF_zone_sud",
-}
-
-DIR_SHP_FILES = "../../data/IDF_5_zones/"
-
-DICT_GDF_ZONES: Dict[int, Polygon] = {}
-
-for i in DICT_ZONES_IDF.keys():
-    DICT_GDF_ZONES[i] = gpd.read_file(DIR_SHP_FILES + DICT_ZONES_IDF[i] + ".shp")['geometry'][0]
-
-# pprint(DICT_GDF_ZONES[0].contains(Point(2.3, 48.4)))
-
-# pprint([(i, pformat(DICT_GDF_ZONES[i])) for i in DICT_ZONES_IDF.keys()])
-
-# raise BaseException
-
-NB_ZONES = len(DICT_ZONES_IDF)
-
-@np.vectorize
-def rapport_a_la_seine(xy):
-    coord = (xy[0], xy[1])
-
-    for no_zone, gdf in DICT_GDF_ZONES.items():
-        if Point(*coord).within(gdf):
-            # print(coord, no_zone)
-            return no_zone
-
-    # print(coord, "out of all zones")
-    return NB_ZONES
 
 
 def process_rapport_a_la_seine(no_zone:int, df: pd.DataFrame, shared_array: Array) -> None:
