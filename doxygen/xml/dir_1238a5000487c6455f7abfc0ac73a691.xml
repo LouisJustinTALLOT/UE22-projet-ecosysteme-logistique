@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="dir_1238a5000487c6455f7abfc0ac73a691" kind="dir">
+    <compoundname>essais/multiprocessing</compoundname>
+    <innerfile refid="test__pool_8py">test_pool.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="essais/multiprocessing/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="classseine__data__utils__py_1_1_frontiere" kind="class" language="Python" prot="public">
+    <compoundname>seine_data_utils_py::Frontiere</compoundname>
+    <innerclass refid="classseine__data__utils__py_1_1_frontiere_1_1_dans_la_frontiere_not_error" prot="public">seine_data_utils_py::Frontiere::DansLaFrontiereNotError</innerclass>
+    <innerclass refid="classseine__data__utils__py_1_1_frontiere_1_1_hors_de_la_frontiere_error" prot="public">seine_data_utils_py::Frontiere::HorsDeLaFrontiereError</innerclass>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classseine__data__utils__py_1_1_frontiere_1a44aa87f1387132303023aebac8348a5c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>seine_data_utils_py.Frontiere::liste_segments</definition>
+        <argsstring></argsstring>
+        <name>liste_segments</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/seine_data_utils_py.py" line="163" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classseine__data__utils__py_1_1_frontiere_1a6e7397fe71837fd0650b417a240138ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None seine_data_utils_py.Frontiere.__init__</definition>
+        <argsstring>(self, List[Segment] liste_segments)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>List</type>
+          <declname>liste_segments</declname>
+          <array>[Segment]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/seine_data_utils_py.py" line="162" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="162" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classseine__data__utils__py_1_1_frontiere_1a0580ca2740477b6c39cdb5ec62949926" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool seine_data_utils_py.Frontiere.en_dessous</definition>
+        <argsstring>(self, Point point)</argsstring>
+        <name>en_dessous</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classseine__data__utils__py_1_1_point" kindref="compound">Point</ref></type>
+          <declname>point</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Détermine si la frontière est en-dessous du point donné
+   i.e si le point test au-dessus de la frontière
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/seine_data_utils_py.py" line="171" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="171" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classseine__data__utils__py_1_1_frontiere_1a4e3db34d779cb829d8da49d8b4211710" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def seine_data_utils_py.Frontiere.plot</definition>
+        <argsstring>(self, couleur=&quot;red&quot;)</argsstring>
+        <name>plot</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>couleur</type>
+          <defname>couleur</defname>
+          <defval>&quot;red&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/seine_data_utils_py.py" line="188" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="188" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="classseine__data__utils__py_1_1_frontiere_1a57091e6e90fd4d8993887dda683ab505" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def seine_data_utils_py.Frontiere.__repr__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__repr__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/seine_data_utils_py.py" line="192" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="192" bodyend="194"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/clusterizer/utils/seine_data_utils_py.py" line="161" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="161" bodyend="195"/>
+    <listofallmembers>
+      <member refid="classseine__data__utils__py_1_1_frontiere_1a6e7397fe71837fd0650b417a240138ca" prot="public" virt="non-virtual"><scope>seine_data_utils_py::Frontiere</scope><name>__init__</name></member>
+      <member refid="classseine__data__utils__py_1_1_frontiere_1a57091e6e90fd4d8993887dda683ab505" prot="public" virt="non-virtual"><scope>seine_data_utils_py::Frontiere</scope><name>__repr__</name></member>
+      <member refid="classseine__data__utils__py_1_1_frontiere_1a0580ca2740477b6c39cdb5ec62949926" prot="public" virt="non-virtual"><scope>seine_data_utils_py::Frontiere</scope><name>en_dessous</name></member>
+      <member refid="classseine__data__utils__py_1_1_frontiere_1a44aa87f1387132303023aebac8348a5c" prot="public" virt="non-virtual"><scope>seine_data_utils_py::Frontiere</scope><name>liste_segments</name></member>
+      <member refid="classseine__data__utils__py_1_1_frontiere_1a4e3db34d779cb829d8da49d8b4211710" prot="public" virt="non-virtual"><scope>seine_data_utils_py::Frontiere</scope><name>plot</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

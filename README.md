@@ -4,6 +4,12 @@
 
 ### Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot
 
+#### Documentation
+
+La documentation du projet est disponible à cette adresse : 
+
+[https://louisjustintallot.github.io/UE22-projet-ecosysteme-logistique](https://louisjustintallot.github.io/UE22-projet-ecosysteme-logistique)
+
 #### Dépendances
 
 Ce projet dépend des technologies et ressources suivantes :
@@ -48,7 +54,8 @@ Ce projet dépend des technologies et ressources suivantes :
     * [`matplotlib`](https://matplotlib.org) pour analyser les données issues des bases ainsi que visualiser le résultat du clustering
     * [`Jupyter`](https://jupyter.org/) pour développer de manière plus rapide (supporte même `Folium`)
     * [`PyQt5`](https://www.riverbankcomputing.com/software/pyqt/) pour réaliser l'interface homme-machine
-  
+    * [`QtWebEngine`](https://wiki.qt.io/QtWebEngine) pour afficher les fichiers `HTML` générés par `Folium` dans l'interface `PyQt`
+    * [`Cython`](https://cython.org/) pour compiler certains de nos modules et accélérer notre code
   * Les librairies `C++` :
     * `iostream` pour les entrées/sorties
     * `fstream` pour lire/écrire les fichiers

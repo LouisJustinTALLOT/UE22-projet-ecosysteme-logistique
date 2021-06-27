@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="fr">
+  <compound refid="classseine__data__utils__py_1_1_frontiere_1_1_dans_la_frontiere_not_error" kind="class"><name>seine_data_utils_py::Frontiere::DansLaFrontiereNotError</name>
+    <member refid="classseine__data__utils__py_1_1_frontiere_1_1_dans_la_frontiere_not_error_1a5508053fcc6f7366b15119c1d8298519" kind="variable"><name>res</name></member>
+    <member refid="classseine__data__utils__py_1_1_frontiere_1_1_dans_la_frontiere_not_error_1a6de4ed40cd11d70eea1f8281dd567782" kind="function"><name>__init__</name></member>
+  </compound>
+  <compound refid="classseine__data__utils__py_1_1_segment_1_1_dans_le_segment_not_error" kind="class"><name>seine_data_utils_py::Segment::DansLeSegmentNotError</name>
+    <member refid="classseine__data__utils__py_1_1_segment_1_1_dans_le_segment_not_error_1ac43503c10d2ace5734f4f409b4dd68c1" kind="variable"><name>res</name></member>
+    <member refid="classseine__data__utils__py_1_1_segment_1_1_dans_le_segment_not_error_1a55eaf1b0c20c50310bd65c09cee1a1e3" kind="function"><name>__init__</name></member>
+  </compound>
+  <compound refid="classevent__souris_1_1_fenetre" kind="class"><name>event_souris::Fenetre</name>
+    <member refid="classevent__souris_1_1_fenetre_1ab4859c3e85fe480a9c7fc4de7f7c78c8" kind="function"><name>__init__</name></member>
+    <member refid="classevent__souris_1_1_fenetre_1ac05a599a410345ada4cb3777aaf39bfb" kind="function"><name>mousePressEvent</name></member>
+  </compound>
+  <compound refid="classseine__data__utils__py_1_1_frontiere" kind="class"><name>seine_data_utils_py::Frontiere</name>
+    <member refid="classseine__data__utils__py_1_1_frontiere_1a44aa87f1387132303023aebac8348a5c" kind="variable"><name>liste_segments</name></member>
+    <member refid="classseine__data__utils__py_1_1_frontiere_1a6e7397fe71837fd0650b417a240138ca" kind="function"><name>__init__</name></member>
+    <member refid="classseine__data__utils__py_1_1_frontiere_1a0580ca2740477b6c39cdb5ec62949926" kind="function"><name>en_dessous</name></member>
+    <member refid="classseine__data__utils__py_1_1_frontiere_1a4e3db34d779cb829d8da49d8b4211710" kind="function"><name>plot</name></member>
+    <member refid="classseine__data__utils__py_1_1_frontiere_1a57091e6e90fd4d8993887dda683ab505" kind="function"><name>__repr__</name></member>
+  </compound>
+  <compound refid="classseine__data__utils__py_1_1_frontiere_1_1_hors_de_la_frontiere_error" kind="class"><name>seine_data_utils_py::Frontiere::HorsDeLaFrontiereError</name>
+  </compound>
+  <compound refid="classihm__pyqt_1_1_input_fenetre" kind="class"><name>ihm_pyqt::InputFenetre</name>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1ae02e35e34ced9dbd8d53bc90f22f5af6" kind="variable"><name>_donnees</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1a4f03f33c139b077df83c9fe18e5fb529" kind="variable"><name>_valid</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1aa90e0217521216fee77eb281c6adbda6" kind="variable"><name>champ_nb_cluster_min</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1ac5c272261279b8a4017d0b962a074e6f" kind="variable"><name>champ_nb_cluster_max</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1a48dde74d077db129fa3f9fa8d61dc403" kind="variable"><name>champ_secteur</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1a2624a18709f8ba97f157e2a0361104dd" kind="variable"><name>champ_rayon</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1a263d7308cd1d348b262591989fcd0587" kind="variable"><name>bouton</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1a1c0cf9aa4273a92c8c3bec207c0a8f6a" kind="variable"><name>NAF_voulu</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1af88f19d17a22d200e349a39a1d844431" kind="variable"><name>NAF_compl</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1ab6bb1538cb42af0dd4bf47243c865793" kind="variable"><name>label_cluster</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1a37816d7c9384d1a432bbc107f1b39c39" kind="variable"><name>label_cluster_min</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1a5f13b981f59b695250a6dbcc39dc2bfc" kind="variable"><name>label_cluster_max</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1acb1d8225117d1041f050e78957a573bd" kind="variable"><name>label_secteur</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1a2d2258b06e9fd94571173b2942e6db01" kind="variable"><name>label_rayon</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1a6241cf6eddf71ebf83d7675cc6e2983a" kind="variable"><name>label_unite</name></member>
+    <member refid="classihm__pyqt_1_1_input_fenetre_1af16308994fe904092df6e7ac6ba1ea99" kind="function"><name>__init__</name></member>
+  </compound>
+  <compound refid="classfolium__in___py_qt_1_1_interceptor" kind="class"><name>folium_in_PyQt::Interceptor</name>
+    <member refid="classfolium__in___py_qt_1_1_interceptor_1a9fd131b3f38b817fd09187e04374129b" kind="function"><name>interceptRequest</name></member>
+  </compound>
+  <compound refid="classqt__web_1_1_interceptor" kind="class"><name>qt_web::Interceptor</name>
+    <member refid="classqt__web_1_1_interceptor_1a27547b191106a2d12200c03dffc337b1" kind="function"><name>interceptRequest</name></member>
+  </compound>
+  <compound refid="classseine__data__utils__py_1_1_point" kind="class"><name>seine_data_utils_py::Point</name>
+    <member refid="classseine__data__utils__py_1_1_point_1af6c1f0da50a7cf15010dd8618abff3f7" kind="variable"><name>x</name></member>
+    <member refid="classseine__data__utils__py_1_1_point_1a1a71dcd70db2970b873583ca8e1fdd12" kind="variable"><name>y</name></member>
+    <member refid="classseine__data__utils__py_1_1_point_1a1ea8ae7da0cdeaa565bbd53de905c1b6" kind="function"><name>__init__</name></member>
+    <member refid="classseine__data__utils__py_1_1_point_1ab0df154d6ed6a5e61f87525b97bac69c" kind="function"><name>__repr__</name></member>
+    <member refid="classseine__data__utils__py_1_1_point_1aaae3204cd61db8ded6622bd89742d17b" kind="function"><name>plot</name></member>
+  </compound>
+  <compound refid="classseine__data__utils__py_1_1_segment" kind="class"><name>seine_data_utils_py::Segment</name>
+    <member refid="classseine__data__utils__py_1_1_segment_1af3a2a80a51d11ffc63593527d20aa5d3" kind="variable"><name>point_gauche</name></member>
+    <member refid="classseine__data__utils__py_1_1_segment_1aa415770ef02f825956fd4bd86b358008" kind="variable"><name>point_droit</name></member>
+    <member refid="classseine__data__utils__py_1_1_segment_1a2bd403ef3fc19bef6bf21403bdab70b7" kind="variable"><name>b</name></member>
+    <member refid="classseine__data__utils__py_1_1_segment_1a9f4bf7002aa1ed19fed8725b688802ac" kind="function"><name>__init__</name></member>
+    <member refid="classseine__data__utils__py_1_1_segment_1ae34cf1552f350ef7910b565f1eb72c0f" kind="function"><name>eq_droite</name></member>
+    <member refid="classseine__data__utils__py_1_1_segment_1a0b3fdeb7dd84b2f3aca22f291665f7bc" kind="function"><name>en_dessous</name></member>
+    <member refid="classseine__data__utils__py_1_1_segment_1abad98142329e5e981360f55f218a2fbc" kind="function"><name>__repr__</name></member>
+    <member refid="classseine__data__utils__py_1_1_segment_1a65510b9a296a2f8917d030ad16f973d9" kind="function"><name>plot</name></member>
+  </compound>
+  <compound refid="classihm__complet_1_1_wind" kind="class"><name>ihm_complet::Wind</name>
+    <member refid="classihm__complet_1_1_wind_1a0420288cae3cd1d8e0a7e9d710cb8d49" kind="variable"><name>IHM</name></member>
+    <member refid="classihm__complet_1_1_wind_1ab686565c9ab7786fcd55779f96372a0c" kind="function"><name>__init__</name></member>
+    <member refid="classihm__complet_1_1_wind_1a638e2f7a91c62d969f1ce432e5784a9d" kind="function"><name>appui_bouton_OK</name></member>
+    <member refid="classihm__complet_1_1_wind_1a603671de43246375c8c26d06bf76d138" kind="function"><name>lancement_clustering</name></member>
+  </compound>
+  <compound refid="namespace_b_a_n_analizer" kind="namespace"><name>BANAnalizer</name>
+    <member refid="namespace_b_a_n_analizer_1a8c143fba552270be22256d2a3b5b007e" kind="variable"><name>reducted_name</name></member>
+    <member refid="namespace_b_a_n_analizer_1a66d10444809d0ad83b0ce781fe7e32e8" kind="variable"><name>clusterized_path</name></member>
+    <member refid="namespace_b_a_n_analizer_1a92a8fc5f65291d5a9494ddb7a1f54dfa" kind="variable"><name>data</name></member>
+    <member refid="namespace_b_a_n_analizer_1a48faa009d8432ebf72cb436490d96dac" kind="variable"><name>centroids</name></member>
+    <member refid="namespace_b_a_n_analizer_1aad4c2d1152284f52c216077c54174897" kind="variable"><name>hulls</name></member>
+    <member refid="namespace_b_a_n_analizer_1a0a74446aa5911d31aeb90bcdafa26437" kind="function"><name>swap_xy</name></member>
+    <member refid="namespace_b_a_n_analizer_1a0265096a3ebf2909f3034c4c0033d14f" kind="function"><name>ouvrir</name></member>
+    <member refid="namespace_b_a_n_analizer_1a7a57b7faabe5cf3b04a84620974615ea" kind="function"><name>filter</name></member>
+    <member refid="namespace_b_a_n_analizer_1a119fd9cf08e6d37c71d2c637721e6937" kind="function"><name>clusterize</name></member>
+    <member refid="namespace_b_a_n_analizer_1a2d070bd00bad80e0bf6bb9353611f9b3" kind="function"><name>do_convex_hull</name></member>
+    <member refid="namespace_b_a_n_analizer_1a5469c861f61bf4d3dad145ab84ca4af4" kind="function"><name>save_to_map</name></member>
+  </compound>
+  <compound refid="namespace_b_a_n_reducter" kind="namespace"><name>BANReducter</name>
+    <member refid="namespace_b_a_n_reducter_1a53037004f3bbea3b7a1b1e308c3a038e" kind="function"><name>reduct</name></member>
+  </compound>
+  <compound refid="namespacebutton" kind="namespace"><name>button</name>
+    <member refid="namespacebutton_1a954cbe1bd59f5922191a31a9fa59553c" kind="variable"><name>app</name></member>
+    <member refid="namespacebutton_1a03e7e301664456e169f81411154f51f3" kind="variable"><name>window</name></member>
+    <member refid="namespacebutton_1ae889094e1ddac8237773745f16922a04" kind="variable"><name>layout</name></member>
+    <member refid="namespacebutton_1aa56e09f6eef10562fc91a825dfaa03db" kind="variable"><name>but1</name></member>
+    <member refid="namespacebutton_1ab45bba795452cef6813f9bd409a80dd9" kind="variable"><name>but2</name></member>
+    <member refid="namespacebutton_1ab66a7aea9c270107088510f4108e975d" kind="variable"><name>but3</name></member>
+    <member refid="namespacebutton_1aa8b1bcae5ee53aefcf4fdad56aff9ab0" kind="variable"><name>but4</name></member>
+    <member refid="namespacebutton_1aedd934decf2b0f25e695483b2c626daf" kind="variable"><name>but5</name></member>
+    <member refid="namespacebutton_1a41e4419a0b037f9a8f48bbc2a0a91a53" kind="function"><name>on_button_clicked</name></member>
+  </compound>
+  <compound refid="namespaceclusterizer" kind="namespace"><name>clusterizer</name>
+    <member refid="namespaceclusterizer_1a542f5de9409b4069e9a09942141e50cf" kind="variable"><name>DEBUG_PLOT</name></member>
+    <member refid="namespaceclusterizer_1a38579bf57d0235945ae91a8794fa34d7" kind="variable"><name>reduce</name></member>
+    <member refid="namespaceclusterizer_1a5060abb4181ceaa4bdff6d2ae776c6d1" kind="variable"><name>couleur</name></member>
+    <member refid="namespaceclusterizer_1a8bf5bca9511b93fde174595b5a2d2db4" kind="variable"><name>adresse_map</name></member>
+    <member refid="namespaceclusterizer_1a1842efc97d44e8e752733c4d063f523a" kind="function"><name>rapport_a_la_seine</name></member>
+    <member refid="namespaceclusterizer_1a46c1c161d2d1f3c4da2b499b8b4077d8" kind="function"><name>process_rapport_a_la_seine</name></member>
+    <member refid="namespaceclusterizer_1ada962bb8f1ec417142e11c0ca8cca63a" kind="function"><name>map_rapport_a_la_seine</name></member>
+    <member refid="namespaceclusterizer_1aeec4083b19ab1b2b6b1dece87329556d" kind="function"><name>nettoyer</name></member>
+    <member refid="namespaceclusterizer_1a3af79889960331fc4392936526bc8ad6" kind="function"><name>clusterize</name></member>
+    <member refid="namespaceclusterizer_1a3347b353b00237f8b17fd025f019c50f" kind="function"><name>save_to_map</name></member>
+    <member refid="namespaceclusterizer_1a786e8ab3d593d24c6ddf8cdb68f93d2b" kind="function"><name>test_geojson</name></member>
+    <member refid="namespaceclusterizer_1a1d9da37ce74295e212c2458159132e1a" kind="function"><name>calcule_nb_clusters_par_zone</name></member>
+    <member refid="namespaceclusterizer_1a3baf2ddde23e317d27bb6e1234a4a061" kind="function"><name>main_json</name></member>
+    <member refid="namespaceclusterizer_1a2a47baec99d0af254595a53d0a496c84" kind="function"><name>test_naf</name></member>
+  </compound>
+  <compound refid="namespaceclusterizer__utils" kind="namespace"><name>clusterizer_utils</name>
+    <member refid="namespaceclusterizer__utils_1a397067a131fa29bb2e32f07c6cd9b550" kind="variable"><name>COLUMN_DEFAULT_GEOMETRY_NAME</name></member>
+    <member refid="namespaceclusterizer__utils_1a873ebb1d1738daa81932454c8402f4ac" kind="variable"><name>COLUMN_CLUSTER_INDEX_NAME</name></member>
+    <member refid="namespaceclusterizer__utils_1a64da067438d51e82bf9fca50329b9575" kind="variable"><name>COLUMN_HULLS_NAME</name></member>
+    <member refid="namespaceclusterizer__utils_1a0e0d5e7941920e45cabf19445ce767e0" kind="variable"><name>COLUMN_CENTROIDS_NAME</name></member>
+    <member refid="namespaceclusterizer__utils_1af162587a76482f328d73ed57c2b044b8" kind="variable"><name>COLUMN_CLUSTER_SIZE_NAME</name></member>
+    <member refid="namespaceclusterizer__utils_1a4366078253ba0edbda360ae6cc9d1add" kind="variable"><name>COLUMN_CLUSTER_MASS_NAME</name></member>
+    <member refid="namespaceclusterizer__utils_1a02138575682c57bd3a59b63bae3dfb38" kind="variable"><name>PARIS_CENTER_COORDS</name></member>
+    <member refid="namespaceclusterizer__utils_1affa7c2c6862dc269e97b6b0bfa95a4da" kind="variable"><name>vectorized_calculer_poids_code_NAF</name></member>
+    <member refid="namespaceclusterizer__utils_1a5788fa8785e88a80e5a1e584c04ec05b" kind="function"><name>get_infos_clusters_poids</name></member>
+    <member refid="namespaceclusterizer__utils_1a1a09a2a4d0cb4435e9341da24dde35df" kind="function"><name>get_infos_clusters_taille</name></member>
+    <member refid="namespaceclusterizer__utils_1a67d3497ffce20f00b8670186e255a548" kind="function"><name>get_infos_clusters_enveloppes_convexes</name></member>
+    <member refid="namespaceclusterizer__utils_1afa94fd0c30cb29c6f3a78387cc167e89" kind="function"><name>calculer_poids_code_NAF</name></member>
+    <member refid="namespaceclusterizer__utils_1aba2719bff914168ef7fd424000278568" kind="function"><name>calculer_poids_cluster</name></member>
+    <member refid="namespaceclusterizer__utils_1abf24cd2d20d3d162a4d02efc242acdbc" kind="function"><name>calculer_poids_cluster_wrapper</name></member>
+    <member refid="namespaceclusterizer__utils_1ab8828a4ec46c57e4c2fbcea7c314bb38" kind="function"><name>swap_xy</name></member>
+    <member refid="namespaceclusterizer__utils_1ae02c5cdf4a0f5c7987cb6eb76575b39d" kind="function"><name>filter_nearby_paris</name></member>
+    <member refid="namespaceclusterizer__utils_1a4aab52450ec0e5c333c03f2cfa4694e2" kind="function"><name>get_coords_from_object</name></member>
+  </compound>
+  <compound refid="namespacecomparison__clustering__algorithms" kind="namespace"><name>comparison_clustering_algorithms</name>
+    <member refid="namespacecomparison__clustering__algorithms_1ae05061eea023cb7192b0827967122bbc" kind="function"><name>swap_xy</name></member>
+    <member refid="namespacecomparison__clustering__algorithms_1a894088f54c68011e298b588193a574b4" kind="function"><name>nettoyer</name></member>
+    <member refid="namespacecomparison__clustering__algorithms_1acaf5d458210d122302fb41fb74636da6" kind="function"><name>clusterize</name></member>
+    <member refid="namespacecomparison__clustering__algorithms_1a92dda61a9e130a9785cf1581c39ea781" kind="function"><name>save_to_map</name></member>
+    <member refid="namespacecomparison__clustering__algorithms_1a304b1c188a34a2007e0a1af569fbdc5b" kind="function"><name>informations</name></member>
+    <member refid="namespacecomparison__clustering__algorithms_1a617dbfb39c55a2ba0c304e2060a7c494" kind="function"><name>test_geojson</name></member>
+    <member refid="namespacecomparison__clustering__algorithms_1a3d3d13549219033c17fa8bd57a8d34a6" kind="function"><name>test_json</name></member>
+  </compound>
+  <compound refid="namespaceconf" kind="namespace"><name>conf</name>
+    <member refid="namespaceconf_1a45653c983098153b78e33600e39230eb" kind="variable"><name>project</name></member>
+    <member refid="namespaceconf_1a33fa97cf51dcb25970fbf53f10159589" kind="variable"><name>copyright</name></member>
+    <member refid="namespaceconf_1a637c239d256432248aa8d9f3ab0b8c52" kind="variable"><name>author</name></member>
+    <member refid="namespaceconf_1ae475e080536acb271a0a0efe56c3ba42" kind="variable"><name>extensions</name></member>
+    <member refid="namespaceconf_1a4aa7a2bc17feeaa23e59b244158394b5" kind="variable"><name>language</name></member>
+    <member refid="namespaceconf_1a7ad48fb6f3e9b129c02346ea0d3527c1" kind="variable"><name>exclude_patterns</name></member>
+    <member refid="namespaceconf_1a6c3bfcc1a44546c1c75ce20f55bd0fd6" kind="variable"><name>html_theme</name></member>
+    <member refid="namespaceconf_1aeaafa42217d24810edc9b116b88a4585" kind="variable"><name>html_theme_options</name></member>
+    <member refid="namespaceconf_1aad1fe7669bcae16063c77543f4fbcce8" kind="variable"><name>autodoc_default_flags</name></member>
+    <member refid="namespaceconf_1a8f68ed1142fb4b92094385f9991c5274" kind="variable"><name>autosummary_generate</name></member>
+    <member refid="namespaceconf_1acb47d2c0c2904fa7d36b63142533f383" kind="variable"><name>breathe_projects</name></member>
+  </compound>
+  <compound refid="namespaceevent__souris" kind="namespace"><name>event_souris</name>
+    <member refid="namespaceevent__souris_1aee0fb91c1955ce38897972aaca895f8d" kind="variable"><name>app</name></member>
+    <member refid="namespaceevent__souris_1a6b0d2ee33e27b17c9cdc615ef704684e" kind="variable"><name>fen</name></member>
+  </compound>
+  <compound refid="namespacefolium__control__layer" kind="namespace"><name>folium_control_layer</name>
+    <member refid="namespacefolium__control__layer_1a91f5cc89e8b03ee7aef3eef31d92cae6" kind="function"><name>swap_xy</name></member>
+    <member refid="namespacefolium__control__layer_1a5a1c3642a3d73c58463b468a2fe4778d" kind="function"><name>nettoyer</name></member>
+    <member refid="namespacefolium__control__layer_1a7e78130c1c89eb17637d301afc77b511" kind="function"><name>clusterize</name></member>
+    <member refid="namespacefolium__control__layer_1a8f64aa2cfd150cd5bbd4f5b59ea8135a" kind="function"><name>save_to_map</name></member>
+    <member refid="namespacefolium__control__layer_1a2e2c5726eeffb646b0897dfdddd58618" kind="function"><name>informations</name></member>
+    <member refid="namespacefolium__control__layer_1ae20d24b9d19844052e9f763f20d45b96" kind="function"><name>test_geojson</name></member>
+    <member refid="namespacefolium__control__layer_1acdd182a59b9fd6fb3c7edf9baa3f4818" kind="function"><name>test_json</name></member>
+  </compound>
+  <compound refid="namespacefolium__in___py_qt" kind="namespace"><name>folium_in_PyQt</name>
+    <member refid="namespacefolium__in___py_qt_1a5dd1391b1c150d32136f15597ac40c16" kind="function"><name>mainPyQt5</name></member>
+  </compound>
+  <compound refid="namespaceihm__complet" kind="namespace"><name>ihm_complet</name>
+    <member refid="namespaceihm__complet_1ada7d0408a8cd9f662044aab03760451c" kind="variable"><name>app</name></member>
+    <member refid="namespaceihm__complet_1a1bdb9f58d489440daf696b5bcf800481" kind="variable"><name>fen</name></member>
+  </compound>
+  <compound refid="namespaceihm__csv" kind="namespace"><name>ihm_csv</name>
+    <member refid="namespaceihm__csv_1a1b8375bc0acaacdbdc4b00883b3e99d3" kind="variable"><name>fichier</name></member>
+    <member refid="namespaceihm__csv_1a819537847d1ed739f65b3b3464eebee5" kind="variable"><name>myreader</name></member>
+    <member refid="namespaceihm__csv_1a033e4187d6a3c0f6e62382e4c559717e" kind="variable"><name>lignes</name></member>
+    <member refid="namespaceihm__csv_1abdd2b185476b0c0928008889f3d06602" kind="variable"><name>donnees</name></member>
+    <member refid="namespaceihm__csv_1af2b289be1a88d92c54daa6c8b52cae99" kind="variable"><name>nb_cluster</name></member>
+    <member refid="namespaceihm__csv_1ab87f13e1d58139121d7073aef84bbebd" kind="variable"><name>rayon</name></member>
+    <member refid="namespaceihm__csv_1a5a3c1545604dfda65065d802a54ce852" kind="variable"><name>secteur_NAF</name></member>
+    <member refid="namespaceihm__csv_1aed203dfa7bf7d44c606d475cf2e30a17" kind="variable"><name>adresse</name></member>
+  </compound>
+  <compound refid="namespaceihm__pyqt" kind="namespace"><name>ihm_pyqt</name>
+  </compound>
+  <compound refid="namespace_n_a_f__utils" kind="namespace"><name>NAF_utils</name>
+    <member refid="namespace_n_a_f__utils_1affd2a664e10c8b665564640868f0bd0b" kind="variable"><name>df_naf_descriptions</name></member>
+    <member refid="namespace_n_a_f__utils_1ae8e053be6df8954e50801601d25af2fa" kind="variable"><name>vectorized_belongs</name></member>
+    <member refid="namespace_n_a_f__utils_1a83ee8163b21cbfc66a04d9b6a3c2a8bf" kind="variable"><name>vectorized_starts_with</name></member>
+    <member refid="namespace_n_a_f__utils_1ad2512fdc1b4c70046ce51573afa5981a" kind="variable"><name>vectorized_retirer_points</name></member>
+    <member refid="namespace_n_a_f__utils_1ac6050e8ebf6e60910b584c04cd0d2f61" kind="function"><name>ajouter_point</name></member>
+    <member refid="namespace_n_a_f__utils_1abcce9e92c40f0b72db9cd948d5807ddd" kind="function"><name>retirer_point</name></member>
+    <member refid="namespace_n_a_f__utils_1aca0a3e5dc0966df2dcc77dcd33d2c47c" kind="function"><name>get_description</name></member>
+    <member refid="namespace_n_a_f__utils_1a1fe02847c67bcc048c209dbc79ac0880" kind="function"><name>get_NAFs_by_section</name></member>
+    <member refid="namespace_n_a_f__utils_1a0e7dd8fd0c6ec68d47f461d7e8819da2" kind="function"><name>filter_by_naf</name></member>
+  </compound>
+  <compound refid="namespace_py_qt5_1_1_qt_widgets" kind="namespace"><name>PyQt5::QtWidgets</name>
+  </compound>
+  <compound refid="namespaceqt__web" kind="namespace"><name>qt_web</name>
+  </compound>
+  <compound refid="namespaceseine__data__utils__py" kind="namespace"><name>seine_data_utils_py</name>
+    <member refid="namespaceseine__data__utils__py_1addd6752f501c719256640b0dedfbe0f2" kind="variable"><name>FILE_PATH</name></member>
+    <member refid="namespaceseine__data__utils__py_1a57e1daa6414d4a1acfef2dd682520ef5" kind="variable"><name>BASE_DIR</name></member>
+    <member refid="namespaceseine__data__utils__py_1a1c6315847dfa7c7467ac003d5d64d71e" kind="variable"><name>REGEX_COORDINATES</name></member>
+    <member refid="namespaceseine__data__utils__py_1aa4bce08204f2ca9d69fd03a9e2259c5d" kind="variable"><name>liste_coordonnees</name></member>
+    <member refid="namespaceseine__data__utils__py_1afe80a64b22d819ac393c6d44f80299e5" kind="variable"><name>liste_points</name></member>
+    <member refid="namespaceseine__data__utils__py_1a40e64053616c1b3764e49fd123243446" kind="variable"><name>frontiere_nord</name></member>
+    <member refid="namespaceseine__data__utils__py_1a61446cc303db8ee339e1121117e5777a" kind="variable"><name>frontiere_ouest</name></member>
+    <member refid="namespaceseine__data__utils__py_1ace8737e50fbdfa365d722456d54c5d14" kind="variable"><name>frontiere_Marne</name></member>
+    <member refid="namespaceseine__data__utils__py_1a7f3f8a879e3dd69d5b329a08366b1910" kind="variable"><name>liste_droites_Seine</name></member>
+    <member refid="namespaceseine__data__utils__py_1a8d96dc4b6356e02541e32082751c6205" kind="variable"><name>liste_droites_Marne</name></member>
+    <member refid="namespaceseine__data__utils__py_1a260bceb3365a8f915cbce8e15b383a9c" kind="variable"><name>x</name></member>
+    <member refid="namespaceseine__data__utils__py_1a256d42a623b8b73cc32d5f037280c7b5" kind="variable"><name>linewidth</name></member>
+    <member refid="namespaceseine__data__utils__py_1af61fede4a3a0bfa27d2dff12ba677bfc" kind="variable"><name>y</name></member>
+    <member refid="namespaceseine__data__utils__py_1a77cfe59ee865d23a3998b4b5e1bd75e1" kind="variable"><name>color</name></member>
+    <member refid="namespaceseine__data__utils__py_1a26cf656121c7fb50f9a7993904a47433" kind="variable"><name>marker</name></member>
+    <member refid="namespaceseine__data__utils__py_1a03f17ccf4dd04cf0088bd74e06393e43" kind="function"><name>get_KML_data</name></member>
+    <member refid="namespaceseine__data__utils__py_1aca515e542513af5c4deddb8b4c02f761" kind="function"><name>get_coords</name></member>
+    <member refid="namespaceseine__data__utils__py_1af043a9063f8ac94fb434df66a1212fc3" kind="function"><name>calcul_droites</name></member>
+    <member refid="namespaceseine__data__utils__py_1add8c41d9b3b986f64b507f17f70760e5" kind="function"><name>_not_in_frontiere</name></member>
+    <member refid="namespaceseine__data__utils__py_1ab6e8add97243e1b17acb183e10e9acc8" kind="function"><name>_dans_la_frontiere</name></member>
+    <member refid="namespaceseine__data__utils__py_1a903d42f6fbfa65c2be4ca663bb932caf" kind="function"><name>get_frontieres_utiles</name></member>
+  </compound>
+  <compound refid="namespacesetup" kind="namespace"><name>setup</name>
+    <member refid="namespacesetup_1aa9edfd9dac18501a2dbe279682c75be1" kind="variable"><name>ext_options</name></member>
+    <member refid="namespacesetup_1ab6b72d56ff85e52faea3f1487c6904f8" kind="variable"><name>extensions</name></member>
+    <member refid="namespacesetup_1a1bf56ea61d1e9865f316116dca2fbfea" kind="variable"><name>ext_modules</name></member>
+  </compound>
+  <compound refid="namespace_sirene_analizer" kind="namespace"><name>SireneAnalizer</name>
+    <member refid="namespace_sirene_analizer_1a6e171306ccfbb83ca3c0bf3b15e71d05" kind="variable"><name>reducted_name</name></member>
+    <member refid="namespace_sirene_analizer_1aae334d372d85590f4053e78e9316915a" kind="variable"><name>clusterized_path</name></member>
+    <member refid="namespace_sirene_analizer_1a3d7c2fd94c1c0ace576182fb6b2ab9f8" kind="variable"><name>data</name></member>
+    <member refid="namespace_sirene_analizer_1a4aec614441f405b6de55f1f1d4c296f4" kind="variable"><name>data_0</name></member>
+    <member refid="namespace_sirene_analizer_1ae931a4d1c915fcb3740cadcc9f055797" kind="variable"><name>centroids</name></member>
+    <member refid="namespace_sirene_analizer_1a6a98f05a3a1b90e3c880ecaab3534e66" kind="variable"><name>hulls</name></member>
+    <member refid="namespace_sirene_analizer_1ac87b12118762b23663d60ab067116884" kind="function"><name>swap_xy</name></member>
+    <member refid="namespace_sirene_analizer_1ae9da2463d6618661f0e07049e70ea45f" kind="function"><name>range_hex_colors</name></member>
+    <member refid="namespace_sirene_analizer_1a553fe358625a6b3553900d6693d9b7a3" kind="function"><name>ouvrir</name></member>
+    <member refid="namespace_sirene_analizer_1ad77ea7285b948e6954919e6ab003bc47" kind="function"><name>filter</name></member>
+    <member refid="namespace_sirene_analizer_1a6b620e88100b9cde863c4642cc3b6fa9" kind="function"><name>clusterize</name></member>
+    <member refid="namespace_sirene_analizer_1ab6f18f8ebb95d7e604945b16c88d8287" kind="function"><name>do_convex_hull</name></member>
+    <member refid="namespace_sirene_analizer_1a623943683b810b29f136d02fdb8da7e2" kind="function"><name>save_to_map</name></member>
+  </compound>
+  <compound refid="namespacetest" kind="namespace"><name>test</name>
+    <member refid="namespacetest_1af1bc2423c9adf840e19f312208b984c0" kind="variable"><name>df_test</name></member>
+    <member refid="namespacetest_1a36f4a59eba5f56c9dd8479d873878da7" kind="function"><name>test_calculer_poids_cluster</name></member>
+    <member refid="namespacetest_1a0455051bccb2026500f1a9bbfa660cd6" kind="function"><name>test_ajouter_point</name></member>
+    <member refid="namespacetest_1af707891f54e600394c9bd96c5fa9a737" kind="function"><name>test_retirer_point</name></member>
+    <member refid="namespacetest_1ac0e688047e06664349794dcc3bec04cb" kind="function"><name>test_get_description</name></member>
+    <member refid="namespacetest_1a584444535b3787f5c37587c5a538f682" kind="function"><name>test_get_NAFs_by_section</name></member>
+    <member refid="namespacetest_1a653d10886c42790c25b47fd820c6b555" kind="function"><name>test_numero_cluster</name></member>
+    <member refid="namespacetest_1a3416fbab1723c12ab80ef3c9fca31630" kind="function"><name>test_get_infos_clusters_taille</name></member>
+    <member refid="namespacetest_1a20ecf216174a9c691a02d3698457335c" kind="function"><name>test_centre_de_masse</name></member>
+  </compound>
+  <compound refid="namespacetest__kmeans" kind="namespace"><name>test_kmeans</name>
+    <member refid="namespacetest__kmeans_1a8ec46308fe73e65e981da68aee5b7f07" kind="variable"><name>X1</name></member>
+    <member refid="namespacetest__kmeans_1accdcdca694ec00b8d83b4415a405a863" kind="variable"><name>X2</name></member>
+    <member refid="namespacetest__kmeans_1a0631e6d1d335263a59e7bec873233e7a" kind="variable"><name>X</name></member>
+    <member refid="namespacetest__kmeans_1a902e1fa18326cb70dac53882b3716a80" kind="variable"><name>kmeans</name></member>
+    <member refid="namespacetest__kmeans_1a9d93c075ddba0cb10fb49777efb6f86d" kind="variable"><name>y_means</name></member>
+    <member refid="namespacetest__kmeans_1a923f35c4afada529730839eb2d997bb9" kind="variable"><name>c</name></member>
+  </compound>
+  <compound refid="namespacetest__pool" kind="namespace"><name>test_pool</name>
+    <member refid="namespacetest__pool_1a617b2f99bbbe88209c1921ee8551548d" kind="variable"><name>a</name></member>
+    <member refid="namespacetest__pool_1a5248ada9dc85810b1d7a1ee20ebdbeb9" kind="function"><name>f</name></member>
+  </compound>
+  <compound refid="namespacetest__pyqt" kind="namespace"><name>test_pyqt</name>
+    <member refid="namespacetest__pyqt_1a2289169eefa5d7b13d5cbad71cfd3b8e" kind="variable"><name>app</name></member>
+    <member refid="namespacetest__pyqt_1a0d580c06f07add82b5a3cfe6542b3bee" kind="variable"><name>fen</name></member>
+    <member refid="namespacetest__pyqt_1a0e1f3887a247e4b5d48e1d6c37bad639" kind="variable"><name>label</name></member>
+  </compound>
+  <compound refid="namespacetest__threading" kind="namespace"><name>test_threading</name>
+    <member refid="namespacetest__threading_1ae036ab1943aa00120a203e1372a45fee" kind="function"><name>print_time</name></member>
+  </compound>
+  <compound refid="namespacetests" kind="namespace"><name>tests</name>
+    <member refid="namespacetests_1af788cce7648613d76f05b87b81cc4838" kind="variable"><name>cle_api</name></member>
+    <member refid="namespacetests_1a6273d31510e1ea1f7a5e7a53b7dcae63" kind="variable"><name>fp</name></member>
+    <member refid="namespacetests_1ab8448817fafb7e9f52196409c9989fc0" kind="variable"><name>data</name></member>
+    <member refid="namespacetests_1a92385491a24e8c1a8ab23de255e39c58" kind="variable"><name>data2</name></member>
+    <member refid="namespacetests_1a0f0790b457e84e5a3bbb4b7120569c14" kind="function"><name>test10</name></member>
+    <member refid="namespacetests_1a1d0c81f2316f110a4778b827265b3632" kind="function"><name>test9</name></member>
+    <member refid="namespacetests_1ab4765770df5437f9673d6b51a903691e" kind="function"><name>test8</name></member>
+    <member refid="namespacetests_1a03f65900b8ce9913108bba2faf4b24e4" kind="function"><name>test7</name></member>
+    <member refid="namespacetests_1a7295f3a3b3ce46398f281b78fc7a4a5d" kind="function"><name>test6</name></member>
+    <member refid="namespacetests_1ac7305f534d3230bd14ac4ab795fd8dd5" kind="function"><name>test5</name></member>
+    <member refid="namespacetests_1a66683f7c6315e02a18d8c029f84f84b8" kind="function"><name>test4</name></member>
+    <member refid="namespacetests_1affde824aab979a124701fd45fd2d193f" kind="function"><name>test3</name></member>
+    <member refid="namespacetests_1a5ee084c39530e132a48d51e955facc21" kind="function"><name>test2</name></member>
+    <member refid="namespacetests_1a5fb245abef6d5ea64a436cbab988116f" kind="function"><name>test1</name></member>
+  </compound>
+  <compound refid="namespacetraitement__base__sirene" kind="namespace"><name>traitement_base_sirene</name>
+    <member refid="namespacetraitement__base__sirene_1adcd2faac4e6715420f7ab139ff7d9778" kind="variable"><name>json_file</name></member>
+    <member refid="namespacetraitement__base__sirene_1a7df30411e1e68ec893bfca9ed20f34d6" kind="variable"><name>json_shortened_file</name></member>
+    <member refid="namespacetraitement__base__sirene_1a0a35a29e08d2eaa5452b6b403f23b449" kind="variable"><name>my_result</name></member>
+    <member refid="namespacetraitement__base__sirene_1aecd62cd1d368f0424ec4b14d82186e62" kind="variable"><name>encoding</name></member>
+    <member refid="namespacetraitement__base__sirene_1afed20519e0543467f24e050de0fd24c4" kind="variable"><name>json_text</name></member>
+    <member refid="namespacetraitement__base__sirene_1a70a4330b46d288d8baa174f112a9710e" kind="variable"><name>sirene_objects</name></member>
+    <member refid="namespacetraitement__base__sirene_1aa5999cc51d7f1ce044861eb34371dbfe" kind="variable"><name>t1</name></member>
+    <member refid="namespacetraitement__base__sirene_1a8bfe8f63a1abb11de330f2184461ec6b" kind="variable"><name>j</name></member>
+  </compound>
+  <compound refid="namespacetri__par__code___n_a_f" kind="namespace"><name>tri_par_code_NAF</name>
+    <member refid="namespacetri__par__code___n_a_f_1ad73dd1e24a0db9d9f385be42d4606b0f" kind="function"><name>swap_xy</name></member>
+    <member refid="namespacetri__par__code___n_a_f_1a25d922137926373642f62bf38f096774" kind="function"><name>nettoyer</name></member>
+    <member refid="namespacetri__par__code___n_a_f_1ad21bba4ed8b3853302bd9b2987e36a07" kind="function"><name>clusterize</name></member>
+    <member refid="namespacetri__par__code___n_a_f_1ad00a37cafd9a96a5c88cf37ed30dc742" kind="function"><name>save_to_map</name></member>
+    <member refid="namespacetri__par__code___n_a_f_1a880de1ce44d9ed09ebd29b53bc3ec36f" kind="function"><name>informations</name></member>
+    <member refid="namespacetri__par__code___n_a_f_1af1215a113781afb3682612a152a7b605" kind="function"><name>test_json</name></member>
+  </compound>
+  <compound refid="namespaceweb" kind="namespace"><name>web</name>
+    <member refid="namespaceweb_1a8c6d6f421a2ef97de2074e4e38e6df62" kind="function"><name>open_html</name></member>
+  </compound>
+  <compound refid="button_8py" kind="file"><name>button.py</name>
+  </compound>
+  <compound refid="event__souris_8py" kind="file"><name>event_souris.py</name>
+  </compound>
+  <compound refid="test__pyqt_8py" kind="file"><name>test_pyqt.py</name>
+  </compound>
+  <compound refid="comparison__clustering__algorithms_8py" kind="file"><name>comparison_clustering_algorithms.py</name>
+  </compound>
+  <compound refid="selection__base___s_i_r_e_n_e_8cpp" kind="file"><name>selection_base_SIRENE.cpp</name>
+    <member refid="selection__base___s_i_r_e_n_e_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="folium__control__layer_8py" kind="file"><name>folium_control_layer.py</name>
+  </compound>
+  <compound refid="folium__in___py_qt_8py" kind="file"><name>folium_in_PyQt.py</name>
+  </compound>
+  <compound refid="_b_a_n_analizer_8py" kind="file"><name>BANAnalizer.py</name>
+  </compound>
+  <compound refid="_b_a_n_reducter_8py" kind="file"><name>BANReducter.py</name>
+  </compound>
+  <compound refid="gis_8md" kind="file"><name>gis.md</name>
+  </compound>
+  <compound refid="tests_8py" kind="file"><name>tests.py</name>
+  </compound>
+  <compound refid="_sirene_analizer_8py" kind="file"><name>SireneAnalizer.py</name>
+  </compound>
+  <compound refid="test__kmeans_8py" kind="file"><name>test_kmeans.py</name>
+  </compound>
+  <compound refid="test__pool_8py" kind="file"><name>test_pool.py</name>
+  </compound>
+  <compound refid="essais_2_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  </compound>
+  <compound refid="_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  </compound>
+  <compound refid="test__threading_8py" kind="file"><name>test_threading.py</name>
+  </compound>
+  <compound refid="tri__par__code___n_a_f_8py" kind="file"><name>tri_par_code_NAF.py</name>
+  </compound>
+  <compound refid="conf_8py" kind="file"><name>conf.py</name>
+  </compound>
+  <compound refid="clusterizer_8py" kind="file"><name>clusterizer.py</name>
+  </compound>
+  <compound refid="setup_8py" kind="file"><name>setup.py</name>
+  </compound>
+  <compound refid="clusterizer__utils_8py" kind="file"><name>clusterizer_utils.py</name>
+  </compound>
+  <compound refid="_n_a_f__utils_8py" kind="file"><name>NAF_utils.py</name>
+  </compound>
+  <compound refid="seine__data__utils_8c" kind="file"><name>seine_data_utils.c</name>
+    <member refid="seine__data__utils_8c_1ac9efdaac9411d0868b715edccca3269d" kind="define"><name>PY_SSIZE_T_CLEAN</name></member>
+  </compound>
+  <compound refid="seine__data__utils_8cpp" kind="file"><name>seine_data_utils.cpp</name>
+    <member refid="seine__data__utils_8cpp_1ac9efdaac9411d0868b715edccca3269d" kind="define"><name>PY_SSIZE_T_CLEAN</name></member>
+  </compound>
+  <compound refid="seine__data__utils__py_8py" kind="file"><name>seine_data_utils_py.py</name>
+  </compound>
+  <compound refid="ihm__complet_8py" kind="file"><name>ihm_complet.py</name>
+  </compound>
+  <compound refid="ihm__csv_8py" kind="file"><name>ihm_csv.py</name>
+  </compound>
+  <compound refid="ihm__pyqt_8py" kind="file"><name>ihm_pyqt.py</name>
+  </compound>
+  <compound refid="qt__web_8py" kind="file"><name>qt_web.py</name>
+  </compound>
+  <compound refid="web_8py" kind="file"><name>web.py</name>
+  </compound>
+  <compound refid="traitement__base__sirene_8cpp" kind="file"><name>traitement_base_sirene.cpp</name>
+    <member refid="traitement__base__sirene_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="traitement__base__sirene_8py" kind="file"><name>traitement_base_sirene.py</name>
+  </compound>
+  <compound refid="test_8py" kind="file"><name>test.py</name>
+  </compound>
+  <compound refid="md_essais_gis_fiche_gis" kind="page"><name>md_essais_gis_fiche_gis</name>
+  </compound>
+  <compound refid="md_essais__r_e_a_d_m_e" kind="page"><name>md_essais_README</name>
+  </compound>
+  <compound refid="md__r_e_a_d_m_e" kind="page"><name>md_README</name>
+  </compound>
+  <compound refid="dir_fb8d4f7a216c8ccfffe52c6be87cdef9" kind="dir"><name>essais/affichage</name>
+  </compound>
+  <compound refid="dir_ec13a877a3c163706f93bc56ff2b1e27" kind="dir"><name>src/clusterizer</name>
+  </compound>
+  <compound refid="dir_2bb04cb6bc0e3ff4641342b10579d6cf" kind="dir"><name>essais/comparison_clustering_algorithms</name>
+  </compound>
+  <compound refid="dir_14b92e71addcc13ac78103fb90982bb8" kind="dir"><name>essais</name>
+  </compound>
+  <compound refid="dir_96e87fcae88118b8eec950f9ff8f6b1f" kind="dir"><name>essais/gis/fiche</name>
+  </compound>
+  <compound refid="dir_646cc50b23dbced3dd2bc5a3d3b0ed57" kind="dir"><name>essais/folium_control_layer</name>
+  </compound>
+  <compound refid="dir_27e66d3894668f9e4ab5ea8bfa0f1aa4" kind="dir"><name>essais/folium_in_PyQt</name>
+  </compound>
+  <compound refid="dir_039806178a0258c3170cffbbe68b70d8" kind="dir"><name>essais/gis</name>
+  </compound>
+  <compound refid="dir_593807af7826fd1d0221c5a9ec2a2a29" kind="dir"><name>src/ihm</name>
+  </compound>
+  <compound refid="dir_1238a5000487c6455f7abfc0ac73a691" kind="dir"><name>essais/multiprocessing</name>
+  </compound>
+  <compound refid="dir_61bc218f43250cdecb180b5f895a4e4d" kind="dir"><name>sphinx_source</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+  <compound refid="dir_59425e443f801f1f2fd8bbe4959a3ccf" kind="dir"><name>tests</name>
+  </compound>
+  <compound refid="dir_d7ef203052daf5b01160a3ad2c5cfdef" kind="dir"><name>tests/tests_src</name>
+  </compound>
+  <compound refid="dir_c1712f052a315f3ce95f84aa7b3884bf" kind="dir"><name>essais/threading</name>
+  </compound>
+  <compound refid="dir_ef3e937f697dcc08969d2b11782ec7aa" kind="dir"><name>src/traitement_base_SIRENE</name>
+  </compound>
+  <compound refid="dir_2dccd91a0af1e62e43c06c4e2a84bc70" kind="dir"><name>essais/tri_par_code_NAF</name>
+  </compound>
+  <compound refid="dir_a70f50a1c05194546cc6722af59c7a71" kind="dir"><name>src/clusterizer/utils</name>
+  </compound>
+</doxygenindex>

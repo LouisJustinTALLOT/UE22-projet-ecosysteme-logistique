@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="dir_2bb04cb6bc0e3ff4641342b10579d6cf" kind="dir">
+    <compoundname>essais/comparison_clustering_algorithms</compoundname>
+    <innerfile refid="comparison__clustering__algorithms_8py">comparison_clustering_algorithms.py</innerfile>
+    <innerfile refid="selection__base___s_i_r_e_n_e_8cpp">selection_base_SIRENE.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="essais/comparison_clustering_algorithms/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="dir_61bc218f43250cdecb180b5f895a4e4d" kind="dir">
+    <compoundname>sphinx_source</compoundname>
+    <innerfile refid="conf_8py">conf.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sphinx_source/"/>
+  </compounddef>
+</doxygen>

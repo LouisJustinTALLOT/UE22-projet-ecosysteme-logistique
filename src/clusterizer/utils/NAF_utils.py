@@ -1,11 +1,18 @@
+"""Fonctions pour switcher les conventions de NAF (avec ou sans point intermédiaire)"""
+from typing import Optional, List
+
 import pandas as pd
 import numpy as np
 
-#==================================================================================
-# Fonctions pour switcher les conventions de NAF (avec ou sans point intermédiaire)
-#==================================================================================
+import os
 
-def ajouter_point(code_naf):
+from pandas import Series
+
+
+df_naf_descriptions = None # Cette DataFrame contient toutes les descriptions des codes NAF
+
+
+def ajouter_point(code_naf: str) -> Optional[str]:
     """
     Fait passer le code NAF à la convention avec point (s'il n'y est pas)
 
@@ -20,7 +27,7 @@ def ajouter_point(code_naf):
         # Il n'y a pas de point, on l'ajoute
         return code_naf[0] + code_naf[1] + "." + code_naf[2:]
 
-def retirer_point(code_naf):
+def retirer_point(code_naf: str) -> Optional[str]:
     """
     Fait passer le code NAF à la convention sans point (s'il y est)
 
@@ -35,10 +42,12 @@ def retirer_point(code_naf):
         # Il y a un point, on le retire
         return code_naf[0] + code_naf[1] + code_naf[3:]
 
+
 #==============================================================
 # Cette DataFrame contient toutes les descrptions des codes NAF
 #==============================================================
-df_naf_descriptions = pd.read_csv("..\\ressources\\naf_descriptions.csv", sep=";", encoding='utf8')
+
+
 
 #==============================================================
 # Fonctions vectorisées
@@ -51,23 +60,45 @@ vectorized_retirer_points = np.vectorize(retirer_point)
 # Fonctions utiles pour le projet
 #==============================================================
 
-def get_description(code_naf):
+def get_description(code_naf: str) -> str:
     """
     Fournit la description correspondant au code NAF.
 
     :param code_naf: le code, avec ou sans point.
     :return: la description complète.
     """
-    code_naf = ajouter_point(code_naf)
-    return df_naf_descriptions[df_naf_descriptions["code"] == code_naf].reset_index().loc[0, "description"]
+    global df_naf_descriptions
 
-def get_NAFs_by_section(section):
+    if df_naf_descriptions is None:
+        # on ne l'a pas encore importée
+        df_naf_descriptions = pd.read_csv(
+            os.path.join(
+                os.path.dirname(__file__), "../../ressources/naf_descriptions.csv"
+                ), 
+            sep=";", 
+            encoding='utf8'
+        )
+
+    code_naf = ajouter_point(code_naf)
+    return df_naf_descriptions[df_naf_descriptions["code"] == code_naf].reset_index(drop=True).loc[0, "description"]
+
+def get_NAFs_by_section(section: str) -> Series:
     """
     Fournit la liste des codes NAF de la section correspondante.
 
     :param section: La lettre de la section
-    :returns La liste des codes NAF contenus dans la section (convention : avec points)
+    :return: La liste des codes NAF contenus dans la section (convention : avec points)
     """
+    global df_naf_descriptions
+
+    if df_naf_descriptions is None:
+        # on ne l'a pas encore importée
+        df_naf_descriptions = pd.read_csv(
+            os.path.join(os.path.dirname(__file__), "../../ressources/naf_descriptions.csv"), 
+            sep=";", 
+            encoding='utf8'
+        )
+
     masque = df_naf_descriptions["code"] == ("SECTION " + section)
     # normalement ce masque n'est à True qu'à un seul endroit
     # du coup, comme True=1, on utilise cette astuce pour récupérer l'indice de la ligne
@@ -81,7 +112,7 @@ def get_NAFs_by_section(section):
 
     return df_naf_descriptions["code"][debut_section:fin_section].dropna()
 
-def filter_by_naf(df, codes_naf, column_codes):
+def filter_by_naf(df: pd.DataFrame, codes_naf: List[str], column_codes: str) -> pd.DataFrame:
     """
     Retourne les établissements dont le code NAF est contenu dans la liste.
 
@@ -90,4 +121,4 @@ def filter_by_naf(df, codes_naf, column_codes):
     :param column_codes: La colonne où est située le code NAF dans la DataFrame des établissements
     :return: La DataFrame filtrée.
     """
-    return df[vectorized_belongs(df[column_codes], vectorized_retirer_points(codes_naf))].reset_index()
+    return df[vectorized_belongs(df[column_codes], vectorized_retirer_points(codes_naf))].reset_index(drop=True)

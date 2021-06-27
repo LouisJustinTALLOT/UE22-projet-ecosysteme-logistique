@@ -1,0 +1,253 @@
+\hypertarget{namespaceclusterizer}{}\doxysection{Référence de l\textquotesingle{}espace de nommage clusterizer}
+\label{namespaceclusterizer}\index{clusterizer@{clusterizer}}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaceclusterizer_a1842efc97d44e8e752733c4d063f523a}{rapport\+\_\+a\+\_\+la\+\_\+seine}} (xy)
+\item 
+None \mbox{\hyperlink{namespaceclusterizer_a46c1c161d2d1f3c4da2b499b8b4077d8}{process\+\_\+rapport\+\_\+a\+\_\+la\+\_\+seine}} (int no\+\_\+zone, pd.\+Data\+Frame df, Array shared\+\_\+array)
+\item 
+pd.\+Data\+Frame \mbox{\hyperlink{namespaceclusterizer_ada962bb8f1ec417142e11c0ca8cca63a}{map\+\_\+rapport\+\_\+a\+\_\+la\+\_\+seine}} (Tuple\mbox{[}int, pd.\+Data\+Frame\mbox{]} args\+\_\+tuple)
+\item 
+pd.\+Data\+Frame \mbox{\hyperlink{namespaceclusterizer_aeec4083b19ab1b2b6b1dece87329556d}{nettoyer}} (pd.\+Data\+Frame df, bool \mbox{\hyperlink{namespaceclusterizer_a38579bf57d0235945ae91a8794fa34d7}{reduce}}=False, int threshold=1000, str column\+\_\+geometry=COLUMN\+\_\+\+DEFAULT\+\_\+\+GEOMETRY\+\_\+\+NAME)
+\item 
+Tuple\mbox{[}pd.\+Data\+Frame, pd.\+Data\+Frame\mbox{]} \mbox{\hyperlink{namespaceclusterizer_a3af79889960331fc4392936526bc8ad6}{clusterize}} (pd.\+Data\+Frame df, int k, str column\+\_\+geometry=COLUMN\+\_\+\+DEFAULT\+\_\+\+GEOMETRY\+\_\+\+NAME, bool is\+\_\+dict=False, bool weight=True)
+\item 
+folium.\+folium.\+Map \mbox{\hyperlink{namespaceclusterizer_a3347b353b00237f8b17fd025f019c50f}{save\+\_\+to\+\_\+map}} (pd.\+Data\+Frame df\+\_\+clusters, folium.\+folium.\+Map map=None)
+\item 
+def \mbox{\hyperlink{namespaceclusterizer_a786e8ab3d593d24c6ddf8cdb68f93d2b}{test\+\_\+geojson}} ()
+\item 
+def \mbox{\hyperlink{namespaceclusterizer_a1d9da37ce74295e212c2458159132e1a}{calcule\+\_\+nb\+\_\+clusters\+\_\+par\+\_\+zone}} (liste\+\_\+df, nb\+\_\+clusters)
+\item 
+None \mbox{\hyperlink{namespaceclusterizer_a3baf2ddde23e317d27bb6e1234a4a061}{main\+\_\+json}} (int rayon=8, List\mbox{[}str\mbox{]} secteur\+\_\+\+NAF=\textquotesingle{}\textquotesingle{}, int nb\+\_\+clusters=50, str \mbox{\hyperlink{namespaceclusterizer_a8bf5bca9511b93fde174595b5a2d2db4}{adresse\+\_\+map}}=\char`\"{}output/clusterized\+\_\+map\+\_\+seine.\+html\char`\"{}, bool \mbox{\hyperlink{namespaceclusterizer_a38579bf57d0235945ae91a8794fa34d7}{reduce}}=False, int threshold=1000)
+\item 
+def \mbox{\hyperlink{namespaceclusterizer_a2a47baec99d0af254595a53d0a496c84}{test\+\_\+naf}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespaceclusterizer_a542f5de9409b4069e9a09942141e50cf}{DEBUG\+\_\+\+PLOT}} = False
+\item 
+\mbox{\hyperlink{namespaceclusterizer_a38579bf57d0235945ae91a8794fa34d7}{reduce}}
+\item 
+\mbox{\hyperlink{namespaceclusterizer_a5060abb4181ceaa4bdff6d2ae776c6d1}{couleur}}
+\item 
+\mbox{\hyperlink{namespaceclusterizer_a8bf5bca9511b93fde174595b5a2d2db4}{adresse\+\_\+map}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{namespaceclusterizer_a1d9da37ce74295e212c2458159132e1a}\label{namespaceclusterizer_a1d9da37ce74295e212c2458159132e1a}} 
+\index{clusterizer@{clusterizer}!calcule\_nb\_clusters\_par\_zone@{calcule\_nb\_clusters\_par\_zone}}
+\index{calcule\_nb\_clusters\_par\_zone@{calcule\_nb\_clusters\_par\_zone}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{calcule\_nb\_clusters\_par\_zone()}{calcule\_nb\_clusters\_par\_zone()}}
+{\footnotesize\ttfamily def clusterizer.\+calcule\+\_\+nb\+\_\+clusters\+\_\+par\+\_\+zone (\begin{DoxyParamCaption}\item[{}]{liste\+\_\+df,  }\item[{}]{nb\+\_\+clusters }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}TODO
+
+:param liste_df:
+:param nb_clusters:
+:return:
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 297 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_a3af79889960331fc4392936526bc8ad6}\label{namespaceclusterizer_a3af79889960331fc4392936526bc8ad6}} 
+\index{clusterizer@{clusterizer}!clusterize@{clusterize}}
+\index{clusterize@{clusterize}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{clusterize()}{clusterize()}}
+{\footnotesize\ttfamily  Tuple\mbox{[}pd.\+Data\+Frame, pd.\+Data\+Frame\mbox{]} clusterizer.\+clusterize (\begin{DoxyParamCaption}\item[{pd.\+Data\+Frame}]{df,  }\item[{int}]{k,  }\item[{str }]{column\+\_\+geometry = {\ttfamily COLUMN\+\_\+DEFAULT\+\_\+GEOMETRY\+\_\+NAME},  }\item[{bool }]{is\+\_\+dict = {\ttfamily False},  }\item[{bool }]{weight = {\ttfamily True} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clusterise à l'aide de l'algorithme des k-moyennes. Attention, fait du en-place.
+
+:param df: La (Geo)DataFrame contenant les points à clusteriser.
+:param k: Le nombre de clusters à calculer.
+:param column_geometry: A spécifier si la colonne contenant les points n'est pas la colonne par défaut ("geometry")
+:param is_dict: Indiquer True si jamais la colonne contenant les points ne contient pas d'objets
+ shapely.geometry.Points, mais un dictionnaire (en général, lorsque le fichier provient d'un GeoJSON)
+:return: Deux GeoDataFrame.
+ Une première GeoDataFrame entrée contenant une colonne en plus ("cluster") : celle-ci permet de savoir pour chaque
+ point le numéro du cluster qui lui a été affecté.
+ Une deuxième GeoDataFrame contenant les informations détaillées de chaque cluster : centre de masse ("centroids"),
+ enveloppe convexe ("hulls") et nombre d'établissements dans le cluster ("taille")
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 186 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_a3baf2ddde23e317d27bb6e1234a4a061}\label{namespaceclusterizer_a3baf2ddde23e317d27bb6e1234a4a061}} 
+\index{clusterizer@{clusterizer}!main\_json@{main\_json}}
+\index{main\_json@{main\_json}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{main\_json()}{main\_json()}}
+{\footnotesize\ttfamily  None clusterizer.\+main\+\_\+json (\begin{DoxyParamCaption}\item[{int }]{rayon = {\ttfamily 8},  }\item[{List\mbox{[}str\mbox{]} }]{secteur\+\_\+\+NAF = {\ttfamily \textquotesingle{}\textquotesingle{}},  }\item[{int }]{nb\+\_\+clusters = {\ttfamily 50},  }\item[{str }]{adresse\+\_\+map = {\ttfamily \char`\"{}output/clusterized\+\_\+map\+\_\+seine.html\char`\"{}},  }\item[{bool }]{reduce = {\ttfamily False},  }\item[{int }]{threshold = {\ttfamily 1000} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Fonction principale à exécuter pour successivement ouvrir la DataFrame contenant les données,
+nettoyer la DataFrame, filtrer par secteurs NAF, ne garder que les magasins proche du centre de Paris,
+séparer par la Seine, clusteriser et sauvegarder dans une carte.
+La répartition entre les secteurs de la Seine est calculée automatiquement.
+
+:param rayon: le rayon (à partir du centre de Paris).
+:param secteur_NAF: les secteurs NAF à sélectionner.
+:param nb_clusters: le nombre de clusters à calculer.
+:param adresse_map: l'adresse de la carte en sortie.
+:param reduce: mettre :code:`True` pour n'utiliser qu'une version allégée des données (plus rapide).
+:param threshold: nombre de données utilisées si reduce= :code:`True` 
+
+:return: :code:`None` \end{DoxyVerb}
+ 
+
+Définition à la ligne 313 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_ada962bb8f1ec417142e11c0ca8cca63a}\label{namespaceclusterizer_ada962bb8f1ec417142e11c0ca8cca63a}} 
+\index{clusterizer@{clusterizer}!map\_rapport\_a\_la\_seine@{map\_rapport\_a\_la\_seine}}
+\index{map\_rapport\_a\_la\_seine@{map\_rapport\_a\_la\_seine}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{map\_rapport\_a\_la\_seine()}{map\_rapport\_a\_la\_seine()}}
+{\footnotesize\ttfamily  pd.\+Data\+Frame clusterizer.\+map\+\_\+rapport\+\_\+a\+\_\+la\+\_\+seine (\begin{DoxyParamCaption}\item[{Tuple\mbox{[}int, pd.\+Data\+Frame\mbox{]}}]{args\+\_\+tuple }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}TODO
+
+:param args_tuple:
+:return:
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 154 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_aeec4083b19ab1b2b6b1dece87329556d}\label{namespaceclusterizer_aeec4083b19ab1b2b6b1dece87329556d}} 
+\index{clusterizer@{clusterizer}!nettoyer@{nettoyer}}
+\index{nettoyer@{nettoyer}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{nettoyer()}{nettoyer()}}
+{\footnotesize\ttfamily  pd.\+Data\+Frame clusterizer.\+nettoyer (\begin{DoxyParamCaption}\item[{pd.\+Data\+Frame}]{df,  }\item[{bool }]{reduce = {\ttfamily False},  }\item[{int }]{threshold = {\ttfamily 1000},  }\item[{str }]{column\+\_\+geometry = {\ttfamily COLUMN\+\_\+DEFAULT\+\_\+GEOMETRY\+\_\+NAME} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Nettoie la DataFrame. Enlève les na.
+Si spécifié, ne retient que les premières données de la DataFrame.
+
+:param df: La DataFrame.
+:param reduce: Si True, ne prend que les premières données.
+:param threshold: Dans le cas où reduce=True, nombre de données à sélectionner.
+:param column_geometry: A spécifier si la colonne contenant les points n'est pas la colonne par défaut ("geometry")
+:return: Une DataFrame nettoyée.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 166 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_a46c1c161d2d1f3c4da2b499b8b4077d8}\label{namespaceclusterizer_a46c1c161d2d1f3c4da2b499b8b4077d8}} 
+\index{clusterizer@{clusterizer}!process\_rapport\_a\_la\_seine@{process\_rapport\_a\_la\_seine}}
+\index{process\_rapport\_a\_la\_seine@{process\_rapport\_a\_la\_seine}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{process\_rapport\_a\_la\_seine()}{process\_rapport\_a\_la\_seine()}}
+{\footnotesize\ttfamily  None clusterizer.\+process\+\_\+rapport\+\_\+a\+\_\+la\+\_\+seine (\begin{DoxyParamCaption}\item[{int}]{no\+\_\+zone,  }\item[{pd.\+Data\+Frame}]{df,  }\item[{Array}]{shared\+\_\+array }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}TODO
+
+:param no_zone:
+:param df:
+:param shared_array:
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 144 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_a1842efc97d44e8e752733c4d063f523a}\label{namespaceclusterizer_a1842efc97d44e8e752733c4d063f523a}} 
+\index{clusterizer@{clusterizer}!rapport\_a\_la\_seine@{rapport\_a\_la\_seine}}
+\index{rapport\_a\_la\_seine@{rapport\_a\_la\_seine}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{rapport\_a\_la\_seine()}{rapport\_a\_la\_seine()}}
+{\footnotesize\ttfamily def clusterizer.\+rapport\+\_\+a\+\_\+la\+\_\+seine (\begin{DoxyParamCaption}\item[{}]{xy }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}TODO
+
+:param xy:
+:return:
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 52 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_a3347b353b00237f8b17fd025f019c50f}\label{namespaceclusterizer_a3347b353b00237f8b17fd025f019c50f}} 
+\index{clusterizer@{clusterizer}!save\_to\_map@{save\_to\_map}}
+\index{save\_to\_map@{save\_to\_map}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{save\_to\_map()}{save\_to\_map()}}
+{\footnotesize\ttfamily  folium.\+folium.\+Map clusterizer.\+save\+\_\+to\+\_\+map (\begin{DoxyParamCaption}\item[{pd.\+Data\+Frame}]{df\+\_\+clusters,  }\item[{folium.\+folium.\+Map }]{map = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sauvegarde les informations des clusters dans une carte Leaflet.
+Retourne la carte
+
+:param df_clusters: La DataFrame contenant les informations de chaque cluster
+ (cf. deuxième sortie de la fonction clusterize)
+:param map: la carte à utiliser
+ si un paramètre est spécifié : réecrit par dessus.
+ si rien n'est spécifié, génère une nouvelle carte
+:return une carte complétée.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 235 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_a786e8ab3d593d24c6ddf8cdb68f93d2b}\label{namespaceclusterizer_a786e8ab3d593d24c6ddf8cdb68f93d2b}} 
+\index{clusterizer@{clusterizer}!test\_geojson@{test\_geojson}}
+\index{test\_geojson@{test\_geojson}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{test\_geojson()}{test\_geojson()}}
+{\footnotesize\ttfamily def clusterizer.\+test\+\_\+geojson (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Fonction interne (utilisée pour vérifier le bon fonctionnement de la clusterisation).
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 289 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_a2a47baec99d0af254595a53d0a496c84}\label{namespaceclusterizer_a2a47baec99d0af254595a53d0a496c84}} 
+\index{clusterizer@{clusterizer}!test\_naf@{test\_naf}}
+\index{test\_naf@{test\_naf}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{test\_naf()}{test\_naf()}}
+{\footnotesize\ttfamily def clusterizer.\+test\+\_\+naf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Fonction interne (utilisée pour vérifier le bon fonctionnement du filtrage par NAF).
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 426 du fichier clusterizer.\+py.
+
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{namespaceclusterizer_a8bf5bca9511b93fde174595b5a2d2db4}\label{namespaceclusterizer_a8bf5bca9511b93fde174595b5a2d2db4}} 
+\index{clusterizer@{clusterizer}!adresse\_map@{adresse\_map}}
+\index{adresse\_map@{adresse\_map}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{adresse\_map}{adresse\_map}}
+{\footnotesize\ttfamily clusterizer.\+adresse\+\_\+map}
+
+
+
+Définition à la ligne 451 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_a5060abb4181ceaa4bdff6d2ae776c6d1}\label{namespaceclusterizer_a5060abb4181ceaa4bdff6d2ae776c6d1}} 
+\index{clusterizer@{clusterizer}!couleur@{couleur}}
+\index{couleur@{couleur}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{couleur}{couleur}}
+{\footnotesize\ttfamily clusterizer.\+couleur}
+
+
+
+Définition à la ligne 439 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_a542f5de9409b4069e9a09942141e50cf}\label{namespaceclusterizer_a542f5de9409b4069e9a09942141e50cf}} 
+\index{clusterizer@{clusterizer}!DEBUG\_PLOT@{DEBUG\_PLOT}}
+\index{DEBUG\_PLOT@{DEBUG\_PLOT}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_PLOT}{DEBUG\_PLOT}}
+{\footnotesize\ttfamily bool clusterizer.\+DEBUG\+\_\+\+PLOT = False}
+
+
+
+Définition à la ligne 37 du fichier clusterizer.\+py.
+
+\mbox{\Hypertarget{namespaceclusterizer_a38579bf57d0235945ae91a8794fa34d7}\label{namespaceclusterizer_a38579bf57d0235945ae91a8794fa34d7}} 
+\index{clusterizer@{clusterizer}!reduce@{reduce}}
+\index{reduce@{reduce}!clusterizer@{clusterizer}}
+\doxysubsubsection{\texorpdfstring{reduce}{reduce}}
+{\footnotesize\ttfamily clusterizer.\+reduce}
+
+
+
+Définition à la ligne 437 du fichier clusterizer.\+py.
+

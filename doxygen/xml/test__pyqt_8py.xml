@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="test__pyqt_8py" kind="file" language="Python">
+    <compoundname>test_pyqt.py</compoundname>
+    <innernamespace refid="namespacetest__pyqt">test_pyqt</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacetest__pyqt" refkind="compound"><highlight class="comment">#<sp/>importations<sp/>à<sp/>faire<sp/>pour<sp/>la<sp/>réalisation<sp/>d&apos;une<sp/>interface<sp/>graphique</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>sys</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/><ref refid="namespace_py_qt5_1_1_qt_widgets" kindref="compound">PyQt5.QtWidgets</ref><sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>QApplication,<sp/>QWidget,<sp/>QLabel</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Première<sp/>étape<sp/>:<sp/>création<sp/>d&apos;une<sp/>application<sp/>Qt<sp/>avec<sp/>QApplication</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/>afin<sp/>d&apos;avoir<sp/>un<sp/>fonctionnement<sp/>correct<sp/>avec<sp/>IDLE<sp/>ou<sp/>Spyder</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/>on<sp/>vérifie<sp/>s&apos;il<sp/>existe<sp/>déjà<sp/>une<sp/>instance<sp/>de<sp/>QApplication</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="namespacetest__pyqt_1a2289169eefa5d7b13d5cbad71cfd3b8e" refkind="member"><highlight class="normal">app<sp/>=<sp/>QApplication.instance()<sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>app:<sp/></highlight><highlight class="comment">#<sp/>sinon<sp/>on<sp/>crée<sp/>une<sp/>instance<sp/>de<sp/>QApplication</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>app<sp/>=<sp/>QApplication(sys.argv)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">#<sp/>création<sp/>d&apos;une<sp/>fenêtre<sp/>avec<sp/>QWidget<sp/>dont<sp/>on<sp/>place<sp/>la<sp/>référence<sp/>dans<sp/>fen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="namespacetest__pyqt_1a0d580c06f07add82b5a3cfe6542b3bee" refkind="member"><highlight class="normal">fen<sp/>=<sp/>QWidget()</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">#<sp/>on<sp/>donne<sp/>un<sp/>titre<sp/>à<sp/>la<sp/>fenêtre</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">fen.setWindowTitle(</highlight><highlight class="stringliteral">&quot;Premiere<sp/>fenetre&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">#<sp/>on<sp/>fixe<sp/>la<sp/>taille<sp/>de<sp/>la<sp/>fenêtre</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">fen.resize(500,500)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">#<sp/>on<sp/>fixe<sp/>la<sp/>position<sp/>de<sp/>la<sp/>fenêtre</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">fen.move(300,50)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="namespacetest__pyqt_1a0e1f3887a247e4b5d48e1d6c37bad639" refkind="member"><highlight class="normal">fen.label<sp/>=<sp/>QLabel(</highlight><highlight class="stringliteral">&quot;hello&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">fen.label.show()</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">#<sp/>la<sp/>fenêtre<sp/>est<sp/>rendue<sp/>visible</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">fen.show()</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">#<sp/>exécution<sp/>de<sp/>l&apos;application,<sp/>l&apos;exécution<sp/>permet<sp/>de<sp/>gérer<sp/>les<sp/>événements</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">app.exec_()</highlight></codeline>
+    </programlisting>
+    <location file="essais/affichage/test_pyqt.py"/>
+  </compounddef>
+</doxygen>

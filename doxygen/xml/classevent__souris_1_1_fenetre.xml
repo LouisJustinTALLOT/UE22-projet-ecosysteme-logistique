@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="classevent__souris_1_1_fenetre" kind="class" language="Python" prot="public">
+    <compoundname>event_souris::Fenetre</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QWidget</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classevent__souris_1_1_fenetre_1ab4859c3e85fe480a9c7fc4de7f7c78c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def event_souris.Fenetre.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/event_souris.py" line="6" column="1" bodyfile="essais/affichage/event_souris.py" bodystart="6" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classevent__souris_1_1_fenetre_1ac05a599a410345ada4cb3777aaf39bfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def event_souris.Fenetre.mousePressEvent</definition>
+        <argsstring>(self, event)</argsstring>
+        <name>mousePressEvent</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>event</type>
+          <defname>event</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="essais/affichage/event_souris.py" line="11" column="1" bodyfile="essais/affichage/event_souris.py" bodystart="11" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>event_souris.Fenetre</label>
+        <link refid="classevent__souris_1_1_fenetre"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QWidget</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>event_souris.Fenetre</label>
+        <link refid="classevent__souris_1_1_fenetre"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QWidget</label>
+      </node>
+    </collaborationgraph>
+    <location file="essais/affichage/event_souris.py" line="5" column="1" bodyfile="essais/affichage/event_souris.py" bodystart="5" bodyend="14"/>
+    <listofallmembers>
+      <member refid="classevent__souris_1_1_fenetre_1ab4859c3e85fe480a9c7fc4de7f7c78c8" prot="public" virt="non-virtual"><scope>event_souris::Fenetre</scope><name>__init__</name></member>
+      <member refid="classevent__souris_1_1_fenetre_1ac05a599a410345ada4cb3777aaf39bfb" prot="public" virt="non-virtual"><scope>event_souris::Fenetre</scope><name>mousePressEvent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

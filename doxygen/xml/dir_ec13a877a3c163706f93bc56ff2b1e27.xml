@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="dir_ec13a877a3c163706f93bc56ff2b1e27" kind="dir">
+    <compoundname>src/clusterizer</compoundname>
+    <innerdir refid="dir_a70f50a1c05194546cc6722af59c7a71">src/clusterizer/utils</innerdir>
+    <innerfile refid="clusterizer_8py">clusterizer.py</innerfile>
+    <innerfile refid="setup_8py">setup.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/clusterizer/"/>
+  </compounddef>
+</doxygen>

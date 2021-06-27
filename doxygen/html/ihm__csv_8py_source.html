@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ecosystème logistique:  Fichier source de src/ihm/ihm_csv.py</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Ecosystème logistique
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_593807af7826fd1d0221c5a9ec2a2a29.html">ihm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ihm_csv.py</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ihm__csv_8py.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespaceihm__csv.html">    1</a></span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="stringliteral">Première interface Homme-machine : utilisation d&#39;un tableau `CSV` pour récupérer les informations données par l&#39;utilisateur</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="stringliteral">Paramètres modifiables dans la fonction :code:`clusterize` : le nombre de clusters</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="stringliteral">TODO : Paramètres modifiables souhaités en plus : encadrement du nombre de clusters, taille des clusters</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> csv</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> folium</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">import</span> sys</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;sys.path.append(<span class="stringliteral">&quot;../../&quot;</span>)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">from</span> src.clusterizer <span class="keyword">import</span> clusterizer</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">from</span> src.ihm <span class="keyword">import</span> web</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    print(<span class="stringliteral">&quot;Lecture des données...&quot;</span>)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment"># Lecture du tableau csv et récupération des données</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="namespaceihm__csv.html#a1b8375bc0acaacdbdc4b00883b3e99d3">   27</a></span>&#160;    fichier = open(<span class="stringliteral">r&quot;table_choix.csv&quot;</span>)</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="namespaceihm__csv.html#a819537847d1ed739f65b3b3464eebee5">   28</a></span>&#160;    myreader = csv.reader(fichier, delimiter =<span class="stringliteral">&#39;;&#39;</span>)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment"># Pn récupére les lignes du fichier sous forme de liste de ligne</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="namespaceihm__csv.html#a033e4187d6a3c0f6e62382e4c559717e">   31</a></span>&#160;    lignes = list(myreader)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    fichier.close()</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment"># Les données sont sur la troisième ligne du fichier</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespaceihm__csv.html#abdd2b185476b0c0928008889f3d06602">   36</a></span>&#160;    donnees = lignes[2]</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment"># Valeurs par défaut</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="namespaceihm__csv.html#af2b289be1a88d92c54daa6c8b52cae99">   38</a></span>&#160;    nb_cluster = 150</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="namespaceihm__csv.html#ab87f13e1d58139121d7073aef84bbebd">   39</a></span>&#160;    rayon = 8</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span> donnees[1] != <span class="stringliteral">&#39;&#39;</span> :</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        nb_cluster = int(donnees[1])</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">if</span> donnees[3] != <span class="stringliteral">&#39;&#39;</span> :</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        rayon = int(donnees[3])</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="namespaceihm__csv.html#a5a3c1545604dfda65065d802a54ce852">   47</a></span>&#160;    secteur_NAF = donnees[2]</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    print(<span class="stringliteral">&quot;Nombre de cluster =&quot;</span>, nb_cluster)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    print(<span class="stringliteral">&quot;Rayon = &quot;</span>, rayon)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    print(<span class="stringliteral">&quot;Sélection NAF : &quot;</span>, secteur_NAF)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="namespaceihm__csv.html#aed203dfa7bf7d44c606d475cf2e30a17">   52</a></span>&#160;    adresse = <span class="stringliteral">&quot;output_ihm/clusterized_ihm.html&quot;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">    Clusterization avec les données utlisateurs</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment"># On exécute le programme avec la base SIRENE :</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="namespaceclusterizer.html#a3baf2ddde23e317d27bb6e1234a4a061">clusterizer.main_json</a>(rayon, secteur_NAF, nb_cluster, adresse)</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment"># On ouvre le fichier dans le navigateur (actuellement chrome)</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="namespaceweb.html#a8c6d6f421a2ef97de2074e4e38e6df62">web.open_html</a>(adresse)</div>
+<div class="ttc" id="anamespaceclusterizer_html_a3baf2ddde23e317d27bb6e1234a4a061"><div class="ttname"><a href="namespaceclusterizer.html#a3baf2ddde23e317d27bb6e1234a4a061">clusterizer.main_json</a></div><div class="ttdeci">None main_json(int rayon=8, List[str] secteur_NAF='', int nb_clusters=50, str adresse_map=&quot;output/clusterized_map_seine.html&quot;, bool reduce=False, int threshold=1000)</div><div class="ttdef"><b>Definition:</b> <a href="clusterizer_8py_source.html#l00313">clusterizer.py:315</a></div></div>
+<div class="ttc" id="anamespaceweb_html_a8c6d6f421a2ef97de2074e4e38e6df62"><div class="ttname"><a href="namespaceweb.html#a8c6d6f421a2ef97de2074e4e38e6df62">web.open_html</a></div><div class="ttdeci">def open_html(adresse)</div><div class="ttdef"><b>Definition:</b> <a href="web_8py_source.html#l00006">web.py:6</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="tests_8py" kind="file" language="Python">
+    <compoundname>tests.py</compoundname>
+    <innernamespace refid="namespacetests">tests</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacetests" refkind="compound"><highlight class="keyword">from</highlight><highlight class="normal"><sp/>shapely.geometry<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Point,<sp/>LineString,<sp/>Polygon</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>geopandas<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>gpd</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>pandas<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>pd</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>matplotlib.pyplot<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>plt</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>fiona.crs<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>from_epsg</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>geopandas.tools<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>geocode</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>bokeh.plotting<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>figure,<sp/>save</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="namespacetests_1af788cce7648613d76f05b87b81cc4838" refkind="member"><highlight class="normal">cle_api<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;AIzaSyBke6w6E7-WK-Qwx7MCEgXYfWua2qQbqHc&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Juste<sp/>pour<sp/>tout<sp/>afficher</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">pd.set_option(</highlight><highlight class="stringliteral">&apos;max_columns&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="namespacetests_1a6273d31510e1ea1f7a5e7a53b7dcae63" refkind="member"><highlight class="normal">fp<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data\\DAMSELFISH_distributions.shp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="namespacetests_1ab8448817fafb7e9f52196409c9989fc0" refkind="member"><highlight class="normal">data<sp/>=<sp/>gpd.read_file(fp)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">fp<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;addresses.txt&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="namespacetests_1a92385491a24e8c1a8ab23de255e39c58" refkind="member"><highlight class="normal">data2<sp/>=<sp/>pd.read_csv(fp,<sp/>sep=</highlight><highlight class="stringliteral">&quot;;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="namespacetests_1a0f0790b457e84e5a3bbb4b7120569c14" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetests_1a0f0790b457e84e5a3bbb4b7120569c14" kindref="member">test10</ref>():</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal">binaryClassifier(row,<sp/>source_col,<sp/>output_col,<sp/>threshold):</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>If<sp/>area<sp/>of<sp/>input<sp/>geometry<sp/>is<sp/>lower<sp/>that<sp/>the<sp/>threshold<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>row[source_col]<sp/>&lt;<sp/>threshold:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Update<sp/>the<sp/>output<sp/>column<sp/>with<sp/>value<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>row[output_col]<sp/>=<sp/>0</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>If<sp/>area<sp/>of<sp/>input<sp/>geometry<sp/>is<sp/>higher<sp/>than<sp/>the<sp/>threshold<sp/>value<sp/>update<sp/>with<sp/>value<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>row[output_col]<sp/>=<sp/>1</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Return<sp/>the<sp/>updated<sp/>row</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>row</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>fp<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data2\\Corine2012_Uusimaa.shp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>data<sp/>=<sp/>gpd.read_file(fp)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>selected_cols<sp/>=<sp/>[</highlight><highlight class="stringliteral">&apos;Level1&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;Level1Eng&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;Level2&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;Level2Eng&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;Level3&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;Level3Eng&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;Luokka3&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;geometry&apos;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>data<sp/>=<sp/>data[selected_cols]</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>lakes<sp/>=<sp/>data.loc[data[</highlight><highlight class="stringliteral">&apos;Level3Eng&apos;</highlight><highlight class="normal">]<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;Water<sp/>bodies&apos;</highlight><highlight class="normal">].copy()</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>lakes[</highlight><highlight class="stringliteral">&apos;area&apos;</highlight><highlight class="normal">]<sp/>=<sp/>lakes.area</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>lakes[</highlight><highlight class="stringliteral">&apos;area_km2&apos;</highlight><highlight class="normal">]<sp/>=<sp/>lakes[</highlight><highlight class="stringliteral">&apos;area&apos;</highlight><highlight class="normal">]<sp/>/<sp/>1000000</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>l_mean_size<sp/>=<sp/>lakes[</highlight><highlight class="stringliteral">&apos;area_km2&apos;</highlight><highlight class="normal">].mean()</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>lakes[</highlight><highlight class="stringliteral">&apos;small_big&apos;</highlight><highlight class="normal">]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>lakes<sp/>=<sp/>lakes.apply(binaryClassifier,<sp/>source_col=</highlight><highlight class="stringliteral">&apos;area_km2&apos;</highlight><highlight class="normal">,<sp/>output_col=</highlight><highlight class="stringliteral">&apos;small_big&apos;</highlight><highlight class="normal">,<sp/>threshold=l_mean_size,<sp/>axis=1)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>lakes.plot(column=</highlight><highlight class="stringliteral">&apos;small_big&apos;</highlight><highlight class="normal">,<sp/>linewidth=0.05,<sp/>cmap=</highlight><highlight class="stringliteral">&quot;seismic&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>plt.tight_layout()</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>plt.show()</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="namespacetests_1a1d0c81f2316f110a4778b827265b3632" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetests_1a1d0c81f2316f110a4778b827265b3632" kindref="member">test9</ref>():</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>p<sp/>=<sp/>figure(title=</highlight><highlight class="stringliteral">&quot;une<sp/>figure&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>x_coords<sp/>=<sp/>[0,<sp/>1,<sp/>2,<sp/>3,<sp/>4]</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>y_coords<sp/>=<sp/>[5,<sp/>4,<sp/>1,<sp/>2,<sp/>0]</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>p.circle(x=x_coords,<sp/>y=y_coords,<sp/>size=10,<sp/>color=</highlight><highlight class="stringliteral">&quot;red&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>outfp<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data3\\interactive_plot.html&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>save(obj=p,<sp/>filename=outfp)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="namespacetests_1ab4765770df5437f9673d6b51a903691e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetests_1ab4765770df5437f9673d6b51a903691e" kindref="member">test8</ref>():</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Filepaths</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>grid_fp<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data3\\TravelTimes_to_5975375_RailwayStation.shp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>roads_fp<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data3\\roads.shp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>metro_fp<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data3\\metro.shp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Read<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>grid<sp/>=<sp/>gpd.read_file(grid_fp)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>roads<sp/>=<sp/>gpd.read_file(roads_fp)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>metro<sp/>=<sp/>gpd.read_file(metro_fp)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>roads.to_crs(grid.crs,<sp/>inplace=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>metro.to_crs(grid.crs,<sp/>inplace=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>print(grid.crs)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>print(roads.crs)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>print(metro.crs)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Visualize<sp/>the<sp/>travel<sp/>times<sp/>into<sp/>9<sp/>classes<sp/>using<sp/>&quot;Quantiles&quot;<sp/>classification<sp/>scheme</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Add<sp/>also<sp/>a<sp/>little<sp/>bit<sp/>of<sp/>transparency<sp/>with<sp/>`alpha`<sp/>parameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>(ranges<sp/>from<sp/>0<sp/>to<sp/>1<sp/>where<sp/>0<sp/>is<sp/>fully<sp/>transparent<sp/>and<sp/>1<sp/>has<sp/>no<sp/>transparency)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>my_map<sp/>=<sp/>grid.plot(column=</highlight><highlight class="stringliteral">&quot;car_r_t&quot;</highlight><highlight class="normal">,<sp/>linewidth=0.03,<sp/>cmap=</highlight><highlight class="stringliteral">&quot;Reds&quot;</highlight><highlight class="normal">,<sp/>scheme=</highlight><highlight class="stringliteral">&quot;quantiles&quot;</highlight><highlight class="normal">,<sp/>k=9,<sp/>alpha=0.9)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Add<sp/>roads<sp/>on<sp/>top<sp/>of<sp/>the<sp/>grid</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>(use<sp/>ax<sp/>parameter<sp/>to<sp/>define<sp/>the<sp/>map<sp/>on<sp/>top<sp/>of<sp/>which<sp/>the<sp/>second<sp/>items<sp/>are<sp/>plotted)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>roads.plot(ax=my_map,<sp/>color=</highlight><highlight class="stringliteral">&quot;grey&quot;</highlight><highlight class="normal">,<sp/>linewidth=1.5)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Add<sp/>metro<sp/>on<sp/>top<sp/>of<sp/>the<sp/>previous<sp/>map</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>metro.plot(ax=my_map,<sp/>color=</highlight><highlight class="stringliteral">&quot;red&quot;</highlight><highlight class="normal">,<sp/>linewidth=2.5)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Remove<sp/>the<sp/>empty<sp/>white-space<sp/>around<sp/>the<sp/>axes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>plt.tight_layout()</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Save<sp/>the<sp/>figure<sp/>as<sp/>png<sp/>file<sp/>with<sp/>resolution<sp/>of<sp/>300<sp/>dpi</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>outfp<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data3\\static_map.png&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>plt.savefig(outfp,<sp/>dpi=300)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>plt.show()</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="namespacetests_1a03f65900b8ce9913108bba2faf4b24e4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetests_1a03f65900b8ce9913108bba2faf4b24e4" kindref="member">test7</ref>():</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>fp<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data2\\Helsinki_borders.shp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>hel<sp/>=<sp/>gpd.read_file(fp)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>fp<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data2\\TravelTimes_to_5975375_RailwayStation.shp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>grid<sp/>=<sp/>gpd.read_file(fp)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>basemap<sp/>=<sp/>hel.plot(linewidth=0.02,<sp/>alpha=0.5)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>grid.plot(ax=basemap,<sp/>linewidth=0.02,<sp/>color=</highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">,<sp/>alpha=0.5)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>plt.tight_layout()</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>plt.show()</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/>gpd.overlay(grid,<sp/>hel,<sp/>how=</highlight><highlight class="stringliteral">&apos;intersection&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>result.plot(color=</highlight><highlight class="stringliteral">&apos;y&apos;</highlight><highlight class="normal">,<sp/>alpha=0.2)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>plt.show()</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>result_aggregated<sp/>=<sp/>result.dissolve(by=</highlight><highlight class="stringliteral">&quot;car_r_t&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>base<sp/>=<sp/>result_aggregated.loc[0:10].plot(color=</highlight><highlight class="stringliteral">&quot;b&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;len&quot;</highlight><highlight class="normal">,<sp/>result_aggregated.shape[0])</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>result_aggregated.loc[10:20].plot(ax=base,<sp/>color=</highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>result_aggregated.loc[20:30].plot(ax=base,<sp/>color=</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>result_aggregated.loc[30:40].plot(ax=base,<sp/>color=</highlight><highlight class="stringliteral">&quot;m&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>result_aggregated.loc[40:50].plot(ax=base,<sp/>color=</highlight><highlight class="stringliteral">&quot;k&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>plt.show(linewidth=0.2)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="namespacetests_1a7295f3a3b3ce46398f281b78fc7a4a5d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetests_1a7295f3a3b3ce46398f281b78fc7a4a5d" kindref="member">test6</ref>():</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Pour<sp/>que<sp/>ça<sp/>marche<sp/>faut<sp/>payer<sp/>xd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>geo<sp/>=<sp/>geocode(data2[</highlight><highlight class="stringliteral">&apos;address&apos;</highlight><highlight class="normal">],<sp/>api_key=cle_api)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>print(geo.head())</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="namespacetests_1ac7305f534d3230bd14ac4ab795fd8dd5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetests_1ac7305f534d3230bd14ac4ab795fd8dd5" kindref="member">test5</ref>():</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>print(data.columns)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>grouped<sp/>=<sp/>data.groupby(</highlight><highlight class="stringliteral">&apos;BINOMIAL&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>print(grouped)</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>key,<sp/>values<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>grouped:</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;\n\n===========&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Key&quot;</highlight><highlight class="normal">,<sp/>key)</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(values)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(values.columns)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="namespacetests_1a66683f7c6315e02a18d8c029f84f84b8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetests_1a66683f7c6315e02a18d8c029f84f84b8" kindref="member">test4</ref>():</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>newdata<sp/>=<sp/>gpd.GeoDataFrame()</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>newdata[</highlight><highlight class="stringliteral">&apos;geometry&apos;</highlight><highlight class="normal">]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>newdata[</highlight><highlight class="stringliteral">&apos;Location&apos;</highlight><highlight class="normal">]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>coordinates<sp/>=<sp/>[(24.950899,<sp/>60.169158),<sp/>(24.953492,<sp/>60.169158),<sp/>(24.953510,<sp/>60.170104),<sp/>(24.950958,<sp/>60.169990)]</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>polygon<sp/>=<sp/>Polygon(coordinates)</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>newdata.loc[0]<sp/>=<sp/>[polygon,<sp/></highlight><highlight class="stringliteral">&quot;Senate&quot;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>print(newdata)</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>newdata.crs<sp/>=<sp/>from_epsg(4326)</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>print(newdata.crs)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>out<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data\\Senate.shp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>newdata.to_file(out)</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166" refid="namespacetests_1affde824aab979a124701fd45fd2d193f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetests_1affde824aab979a124701fd45fd2d193f" kindref="member">test3</ref>():</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>selection<sp/>=<sp/>data[0:5]</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>index,<sp/>row<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>selection.iterrows():</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>index<sp/>represents<sp/>the<sp/>number<sp/>of<sp/>the<sp/>row</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>row<sp/>is<sp/>the<sp/>entire<sp/>row</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>to<sp/>get<sp/>an<sp/>element<sp/>of<sp/>the<sp/>row<sp/>(ie<sp/>a<sp/>row<sp/>intersected<sp/>with<sp/>a<sp/>column),<sp/>do<sp/>row[&apos;geometry&apos;]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>area<sp/>=<sp/>row[</highlight><highlight class="stringliteral">&apos;geometry&apos;</highlight><highlight class="normal">].area</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;At<sp/>row<sp/>n&quot;</highlight><highlight class="normal">,<sp/>index,<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>we<sp/>have<sp/>area=&quot;</highlight><highlight class="normal">,<sp/>area)</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Creation<sp/>of<sp/>an<sp/>empty<sp/>column</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>data[</highlight><highlight class="stringliteral">&apos;area&apos;</highlight><highlight class="normal">]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>index,<sp/>row<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>selection.iterrows():</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data.loc[index,<sp/></highlight><highlight class="stringliteral">&apos;area&apos;</highlight><highlight class="normal">]<sp/>=<sp/>row[</highlight><highlight class="stringliteral">&apos;geometry&apos;</highlight><highlight class="normal">].area</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Mean<sp/>:<sp/>&quot;</highlight><highlight class="normal">,<sp/>data[</highlight><highlight class="stringliteral">&apos;area&apos;</highlight><highlight class="normal">].mean())</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183" refid="namespacetests_1a5ee084c39530e132a48d51e955facc21" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetests_1a5ee084c39530e132a48d51e955facc21" kindref="member">test2</ref>():</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Displaying</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>print(data.head())</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>data.plot()</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>plt.show()</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>print(data.crs)</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Exporting</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>out<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Data\\DAMSELFISH_distributions_SELECTION.shp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>selection<sp/>=<sp/>data[0:50]</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>selection.to_file(out)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195" refid="namespacetests_1a5fb245abef6d5ea64a436cbab988116f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacetests_1a5fb245abef6d5ea64a436cbab988116f" kindref="member">test1</ref>():</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Les<sp/>trois<sp/>objets<sp/>principaux<sp/>sont<sp/>Point,<sp/>LineString<sp/>et<sp/>Polygon</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>point1<sp/>=<sp/>Point(2,<sp/>5)</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>point2<sp/>=<sp/>Point(1,<sp/>6)</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>point3<sp/>=<sp/>Point(3,<sp/>4)</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>line<sp/>=<sp/>LineString([point1,<sp/>point2,<sp/>point3])</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Toutes<sp/>les<sp/>abscisses</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>print(line.xy[0])</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Centre<sp/>de<sp/>masse</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>print(line.centroid)</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>poly2<sp/>=<sp/>Polygon([[p.x,<sp/>p.y]<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>p<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>[point1,<sp/>point2,<sp/>point3]])</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>print(poly2.centroid)</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><ref refid="namespacetests_1a0f0790b457e84e5a3bbb4b7120569c14" kindref="member">test10</ref>()</highlight></codeline>
+    </programlisting>
+    <location file="essais/gis/fiche/tests.py"/>
+  </compounddef>
+</doxygen>
