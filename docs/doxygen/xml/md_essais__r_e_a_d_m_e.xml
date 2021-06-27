@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="md_essais__r_e_a_d_m_e" kind="page">
+    <compoundname>md_essais_README</compoundname>
+    <title>Dossier de tests</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><table rows="13" cols="2"><row>
+<entry thead="yes"><para>Dossier   </para>
+</entry><entry thead="yes"><para>Descriptif    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>init_osm</computeroutput>   </para>
+</entry><entry thead="no"><para>Affichage d&apos;une carte OpenStreetMap en JavaScript avec Leaflet    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>arrondissements</computeroutput>   </para>
+</entry><entry thead="no"><para>On affiche les arrondissements de Paris avec Leaflet    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>EHPADS</computeroutput>   </para>
+</entry><entry thead="no"><para>On place certains EHPADs parisiens sur la carte    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>donnees</computeroutput>   </para>
+</entry><entry thead="no"><para>Les restaurants et magasins parisiens sur la carte, un peu lourd    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>test_leaflet_marker_cluster</computeroutput>   </para>
+</entry><entry thead="no"><para>On teste l&apos;exemple de la documentation de Leaflet.MarkerCluster    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>points_cluster</computeroutput>   </para>
+</entry><entry thead="no"><para>On affiche restaurants/magasins sous forme de clusters    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>test_leaflet_control_layers</computeroutput>   </para>
+</entry><entry thead="no"><para>Tentative d&apos;afficher les différentes bases en layers et de les contrôler    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>test_POO</computeroutput>   </para>
+</entry><entry thead="no"><para>Tentative de programmation orientée objet en JS, marche mais moche    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>gis</computeroutput>   </para>
+</entry><entry thead="no"><para>Passage à GeoPandas, clustering des données des BAN et base SIRENE    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>affichage</computeroutput>   </para>
+</entry><entry thead="no"><para>Test de PyQt pour l&apos;interface utilisateur    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="namespacefolium__control__layer" kindref="compound">folium_control_layer</ref></computeroutput>   </para>
+</entry><entry thead="no"><para>On contrôle de manière interactive ce qu&apos;on affiche sur la carte    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="namespacetri__par__code___n_a_f" kindref="compound">tri_par_code_NAF</ref></computeroutput>   </para>
+</entry><entry thead="no"><para>On clusterise des données regroupées par code NAF (<emphasis>i.e.</emphasis> par type d&apos;établissement)   </para>
+</entry></row>
+</table>
+</para>
+    </detaileddescription>
+    <location file="essais/README.md"/>
+  </compounddef>
+</doxygen>

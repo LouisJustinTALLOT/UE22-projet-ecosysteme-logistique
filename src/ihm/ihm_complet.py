@@ -9,6 +9,9 @@ from src.clusterizer import clusterizer
 
 
 class Wind(QMainWindow):
+    """
+    Classe contenant l'interface Homme-Machine pour le projet.
+    """
     def __init__(self):
         QMainWindow.__init__(self)
         self.IHM = ihm_pyqt.InputFenetre()
@@ -20,8 +23,13 @@ class Wind(QMainWindow):
         self.resize(500, 500)
 
 
-    def appui_bouton_OK(self):
-        # Récupération des données de l'interface 
+    def appui_bouton_OK(self) -> None:
+        """
+        Listener pour le bouton ok.
+        Prépare les données pour lancer la clusterisation et l'affichage de la carte.
+        cf. lancement_clustering
+        """
+        # Récupération des données de l'interface
         nb_cluster_min = self.IHM.champ_nb_cluster_min.text()
         nb_cluster_max = self.IHM.champ_nb_cluster_max.text()
         secteur = self.IHM.champ_secteur.text()
@@ -39,7 +47,10 @@ class Wind(QMainWindow):
             if self.IHM.NAF_voulu.isChecked() :
                 list_secteur = secteur.split()
             else :
-                list_secteur = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U']
+                list_secteur = [
+                    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+                    'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'
+                ]
                 to_remove = secteur.split()
 
                 for lettre in to_remove :
@@ -49,7 +60,11 @@ class Wind(QMainWindow):
         self.lancement_clustering()
 
    
-    def lancement_clustering(self) :
+    def lancement_clustering(self)  -> None:
+        """
+        Lance la clusterisation à l'aide des paramètres entrés par l'utilisateur.
+        Ensuite, affiche la carte.
+        """
         nb_cluster_min = self.IHM._donnees[0]
         nb_cluster_max = self.IHM._donnees[1]
         rayon = self.IHM._donnees[3]
@@ -78,13 +93,13 @@ class Wind(QMainWindow):
                 self.move(0,0)
                 self.showMaximized()
 
+if __name__ == "__main__":
+    # on démarre l'appplication
+    app = QApplication.instance() 
+    if not app:
+        app = QApplication(sys.argv)
+        
+    fen = Wind()
+    fen.show()
 
-# on démarre l'appplication
-app = QApplication.instance() 
-if not app:
-    app = QApplication(sys.argv)
-    
-fen = Wind()
-fen.show()
-
-app.exec_()
+    app.exec_()

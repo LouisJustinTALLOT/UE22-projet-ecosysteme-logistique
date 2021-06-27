@@ -11,6 +11,7 @@ from multiprocessing import Pool, Process, Array, RawArray
 import cProfile
 
 import sys
+
 sys.path.append("../../")
 
 from sklearn.cluster import KMeans, MiniBatchKMeans
@@ -31,8 +32,6 @@ from src.clusterizer.seine_data_utils import Frontiere, get_frontieres_utiles, P
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
-
-Pour avoir des exemples d'utilisation, aller à la toute fin où il y a les tests
 """
 
 DEBUG_PLOT = False # pour afficher les points et frontières (debugging)
@@ -51,7 +50,12 @@ f_marne,\
 
 @np.vectorize
 def rapport_a_la_seine(xy):
-
+    """
+    TODO
+    
+    :param xy:
+    :return:
+    """
     point_etudie = Point(xy[0], xy[1])
 
     # try:
@@ -67,7 +71,7 @@ def rapport_a_la_seine(xy):
             return 0
     except Frontiere.HorsDeLaFrontiereError:
         pass
-    
+
     # try:
     #     f_seine_central.en_dessous(point_etudie)
     # except Frontiere.DansLaFrontiereNotError as e:
@@ -138,17 +142,31 @@ def rapport_a_la_seine(xy):
     return 3
 
 def process_rapport_a_la_seine(no_zone:int, df: pd.DataFrame, shared_array: Array) -> None:
+    """
+    TODO
+
+    :param no_zone:
+    :param df:
+    :param shared_array:
+    """
     shared_array[no_zone] = df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
 
 def map_rapport_a_la_seine(args_tuple: Tuple[int, pd.DataFrame]) -> pd.DataFrame:
+    """
+    TODO
+
+    :param args_tuple:
+    :return:
+    """
     no_zone, df = args_tuple
     return df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
 
 
 
-def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME):
+def nettoyer(df: pd.DataFrame, reduce: bool = False, threshold: int = 1000, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME) -> pd.DataFrame:
     """
-    Nettoie la DataFrame. Enlève les na, et si spécifié, ne prend que les premières données de la (Geo)DataFrame.
+    Nettoie la DataFrame. Enlève les na.
+    Si spécifié, ne retient que les premières données de la DataFrame.
 
     :param df: La DataFrame.
     :param reduce: Si True, ne prend que les premières données.
@@ -156,20 +174,23 @@ def nettoyer(df, reduce=False, threshold=1000, column_geometry=COLUMN_DEFAULT_GE
     :param column_geometry: A spécifier si la colonne contenant les points n'est pas la colonne par défaut ("geometry")
     :return: Une DataFrame nettoyée.
     """
+
+
+
     if reduce and df.size >= threshold:
         df = df[:threshold]
 
     return df.dropna(subset=[column_geometry]).reset_index(drop=True)
 
 
-def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, weight=True):
+def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME, is_dict: bool = False, weight: bool = True) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Clusterise à l'aide de l'algorithme des k-moyennes. Attention, fait du en-place.
 
     :param df: La (Geo)DataFrame contenant les points à clusteriser.
     :param k: Le nombre de clusters à calculer.
     :param column_geometry: A spécifier si la colonne contenant les points n'est pas la colonne par défaut ("geometry")
-    :param dict: Indiquer True si jamais la colonne contenant les points ne contient pas d'objets
+    :param is_dict: Indiquer True si jamais la colonne contenant les points ne contient pas d'objets
      shapely.geometry.Points, mais un dictionnaire (en général, lorsque le fichier provient d'un GeoJSON)
     :return: Deux GeoDataFrame.
      Une première GeoDataFrame entrée contenant une colonne en plus ("cluster") : celle-ci permet de savoir pour chaque
@@ -186,7 +207,7 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, 
     mbk = MiniBatchKMeans(n_clusters=k, random_state=0, batch_size=2048)  # ça va plus vite
 
     # Ceci contient des coordonnées (x, y) des points
-    X = clusterizer_utils.get_coords_from_object(df, column_geometry, dict)
+    X = clusterizer_utils.get_coords_from_object(df, column_geometry, is_dict)
     if len(X) < 1:
         raise ValueError("Table vide")
     Y = clusterizer_utils.vectorized_calculer_poids_code_NAF(df["apet700"]) if weight else None
@@ -205,20 +226,23 @@ def clusterize(df, k, column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, dict=False, 
                                      )
     df_infos_clusters = df_infos_clusters.join(clusterizer_utils.get_infos_clusters_taille(df))
     df_infos_clusters = df_infos_clusters.join(
-        clusterizer_utils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry))
+        clusterizer_utils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry, is_dict))
     df_infos_clusters = df_infos_clusters.join(clusterizer_utils.get_infos_clusters_poids(df, "apet700"))
 
     return df, df_infos_clusters
 
 
-def save_to_map(df_clusters, map=None):
+def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> folium.folium.Map:
     """
     Sauvegarde les informations des clusters dans une carte Leaflet.
-    Ne retourne rien.
+    Retourne la carte
 
     :param df_clusters: La DataFrame contenant les informations de chaque cluster
      (cf. deuxième sortie de la fonction clusterize)
-    :param path: Le chemin de sortie du fichier.
+    :param map: la carte à utiliser
+     si un paramètre est spécifié : réecrit par dessus.
+     si rien n'est spécifié, génère une nouvelle carte
+    :return une carte complétée.
     """
 
     if map is None:
@@ -226,7 +250,7 @@ def save_to_map(df_clusters, map=None):
                         zoom_start=10,
                         tiles="Stamen Terrain"
                         )
-        
+
 
     couleurs = ['darkslateblue', 'orange', 'darkred', 'black',
                 'purple', 'deeppink', 'green', 'darkgreen', 'maroon',
@@ -263,20 +287,48 @@ def save_to_map(df_clusters, map=None):
     return map
 
 def test_geojson():
+    """
+    Fonction interne (utilisée pour vérifier le bon fonctionnement de la clusterisation).
+    """
     df = nettoyer(gpd.read_file("../../essais/gis/input/reducted.geojson"))
-    df, df_clusters = clusterize(df, 10, dict=False)
+    df, df_clusters = clusterize(df, 10, is_dict=False)
     save_to_map(df_clusters).save("output/INSERT_NAME.html")
 
 def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
+    """
+    TODO
+
+    :param liste_df:
+    :param nb_clusters:
+    :return:
+    """
     poids_par_zone: np.ndarray = np.zeros(len(liste_df))
     for i in range(len(liste_df)):
-        poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700") 
+        poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700")
     poids_total = np.sum(poids_par_zone)
     nb_par_zone = np.rint((poids_par_zone / poids_total * nb_clusters)).astype(int)
     nb_par_zone = np.maximum(nb_par_zone, np.ones(len(liste_df), dtype=int))  # il faut au moins un cluster par zone considérée
     return nb_par_zone
 
-def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clusterized_map_seine.html", reduce=False, threshold=1000):
+def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50, adresse_map: str = "output/clusterized_map_seine.html",
+              reduce: bool = False,
+              threshold: int = 1000) -> None:
+    """
+    Fonction principale à exécuter pour successivement ouvrir la DataFrame contenant les données,
+    nettoyer la DataFrame, filtrer par secteurs NAF, ne garder que les magasins proche du centre de Paris,
+    séparer par la Seine, clusteriser et sauvegarder dans une carte.
+    La répartition entre les secteurs de la Seine est calculée automatiquement.
+
+    :param rayon: le rayon (à partir du centre de Paris).
+    :param secteur_NAF: les secteurs NAF à sélectionner.
+    :param nb_clusters: le nombre de clusters à calculer.
+    :param adresse_map: l'adresse de la carte en sortie.
+    :param reduce: mettre :code:`True` pour n'utiliser qu'une version allégée des données (plus rapide).
+    :param threshold: nombre de données utilisées si reduce= :code:`True` 
+
+    :return: :code:`None` 
+    
+    """
     t1 = time.time()
     print("Ouverture de la DataFrame...", end="    ")
 
@@ -294,13 +346,13 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     t1 = time.time()
     print("On ne garde que les données du centre...", end="    ")
 
-    df = clusterizer_utils.filter_nearby_paris(df, radius=rayon, dict=True)
+    df = clusterizer_utils.filter_nearby_paris(df, radius=rayon, is_dict=True)
 
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
     print("On sépare par la Seine...", end="    ")
-    
+
     # on va avoir au moins 4 zones:
     # rive Gauche,
     # rive Droite,
@@ -332,7 +384,7 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     # for i in range(nb_zones):
     #     liste_processes[i].join()
 
-    
+
     # with Pool(nb_zones) as p:
     #     liste_df = p.map(map_rapport_a_la_seine, [(i, df) for i in range(nb_zones)])
     t2 = time.time()
@@ -349,14 +401,14 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
     for no_zone in range(nb_zones):
         try:
             liste_df_clusters.append(
-                clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], dict=True, weight=True)
+                clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], is_dict=True, weight=True)
             )
         except ValueError:
             pass
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
-    print("Sauvegarde sur la carte...", end="    ")
+    print("Génération de la carte et sauvegarde...", end="    ")
 
     map = save_to_map(liste_df_clusters[0][1])
 
@@ -372,13 +424,16 @@ def main_json(rayon=8, secteur_NAF='', nb_clusters=50, adresse_map="output/clust
 
 
 def test_naf():
+    """
+    Fonction interne (utilisée pour vérifier le bon fonctionnement du filtrage par NAF).
+    """
     print(NAF_utils.get_NAFs_by_section("L"))
 
 if __name__ == "__main__":
 
     # On exécute le programme avec la base SIRENE :
 
-    if DEBUG_PLOT:    
+    if DEBUG_PLOT:
         main_json(reduce=True)
 
         f_seine_nord.plot(couleur="black")

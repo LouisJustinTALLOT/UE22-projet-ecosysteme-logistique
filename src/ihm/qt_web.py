@@ -1,10 +1,6 @@
 import sys
 sys.path.append("../../")
 
-from PyQt5 import QtWebEngineWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
-
-
 from PyQt5.QtWebEngineCore import QWebEngineUrlRequestInterceptor
 
 # Pour ouvrir la carte dans PyQt (à rendre utilisable)

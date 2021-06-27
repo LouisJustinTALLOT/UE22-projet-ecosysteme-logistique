@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="namespace_n_a_f__utils" kind="namespace" language="Python">
+    <compoundname>NAF_utils</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespace_n_a_f__utils_1affd2a664e10c8b665564640868f0bd0b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>NAF_utils.df_naf_descriptions</definition>
+        <argsstring></argsstring>
+        <name>df_naf_descriptions</name>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/NAF_utils.py" line="12" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_n_a_f__utils_1ae8e053be6df8954e50801601d25af2fa" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>NAF_utils.vectorized_belongs</definition>
+        <argsstring></argsstring>
+        <name>vectorized_belongs</name>
+        <initializer>=  np.vectorize(lambda code, codes_naf : code in codes_naf, excluded=[1])</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/NAF_utils.py" line="49" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_n_a_f__utils_1a83ee8163b21cbfc66a04d9b6a3c2a8bf" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>NAF_utils.vectorized_starts_with</definition>
+        <argsstring></argsstring>
+        <name>vectorized_starts_with</name>
+        <initializer>=  np.vectorize(lambda str1, str2: str(str1).startswith(str2), excluded=[1])</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/NAF_utils.py" line="50" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_n_a_f__utils_1ad2512fdc1b4c70046ce51573afa5981a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>NAF_utils.vectorized_retirer_points</definition>
+        <argsstring></argsstring>
+        <name>vectorized_retirer_points</name>
+        <initializer>=  np.vectorize(<ref refid="namespace_n_a_f__utils_1abcce9e92c40f0b72db9cd948d5807ddd" kindref="member">retirer_point</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/NAF_utils.py" line="51" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_n_a_f__utils_1ac6050e8ebf6e60910b584c04cd0d2f61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[str]</type>
+        <definition> Optional[str] NAF_utils.ajouter_point</definition>
+        <argsstring>(str code_naf)</argsstring>
+        <name>ajouter_point</name>
+        <param>
+          <type>str</type>
+          <declname>code_naf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Fait passer le code NAF à la convention avec point (s&apos;il n&apos;y est pas)
+
+:param code_naf: Le code à changer
+:return: Le code avec un point.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/NAF_utils.py" line="15" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="15" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_n_a_f__utils_1abcce9e92c40f0b72db9cd948d5807ddd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[str]</type>
+        <definition> Optional[str] NAF_utils.retirer_point</definition>
+        <argsstring>(str code_naf)</argsstring>
+        <name>retirer_point</name>
+        <param>
+          <type>str</type>
+          <declname>code_naf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Fait passer le code NAF à la convention sans point (s&apos;il y est)
+
+:param code_naf: Le code à changer
+:return: Le code sans point.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/NAF_utils.py" line="30" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="30" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_n_a_f__utils_1aca0a3e5dc0966df2dcc77dcd33d2c47c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str NAF_utils.get_description</definition>
+        <argsstring>(str code_naf)</argsstring>
+        <name>get_description</name>
+        <param>
+          <type>str</type>
+          <declname>code_naf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Fournit la description correspondant au code NAF.
+
+:param code_naf: le code, avec ou sans point.
+:return: la description complète.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/NAF_utils.py" line="57" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="57" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_n_a_f__utils_1a1fe02847c67bcc048c209dbc79ac0880" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Series</type>
+        <definition> Series NAF_utils.get_NAFs_by_section</definition>
+        <argsstring>(str section)</argsstring>
+        <name>get_NAFs_by_section</name>
+        <param>
+          <type>str</type>
+          <declname>section</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Fournit la liste des codes NAF de la section correspondante.
+
+:param section: La lettre de la section
+:return: La liste des codes NAF contenus dans la section (convention : avec points)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/NAF_utils.py" line="79" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="79" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_n_a_f__utils_1a0e7dd8fd0c6ec68d47f461d7e8819da2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame NAF_utils.filter_by_naf</definition>
+        <argsstring>(pd.DataFrame df, List[str] codes_naf, str column_codes)</argsstring>
+        <name>filter_by_naf</name>
+        <param>
+          <type>pd.DataFrame</type>
+          <declname>df</declname>
+        </param>
+        <param>
+          <type>List</type>
+          <declname>codes_naf</declname>
+          <array>[str]</array>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>column_codes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Retourne les établissements dont le code NAF est contenu dans la liste.
+
+:param df: La liste des établissements (convention NAF : sans le point)
+:param codes_naf: Les codes NAF (avec ou sans le point) (sous forme de liste)
+:param column_codes: La colonne où est située le code NAF dans la DataFrame des établissements
+:return: La DataFrame filtrée.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/NAF_utils.py" line="109" column="1" bodyfile="src/clusterizer/utils/NAF_utils.py" bodystart="109" bodyend="118"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Fonctions pour switcher les conventions de NAF (avec ou sans point intermédiaire)</verbatim> </para>
+    </detaileddescription>
+    <location file="src/clusterizer/utils/NAF_utils.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

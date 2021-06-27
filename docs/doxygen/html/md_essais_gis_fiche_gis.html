@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ecosystème logistique: Fiche : GIS en python</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Ecosystème logistique
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Fiche : GIS en python </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
+Module &lt;tt&gt;shapely&lt;/tt&gt;</h1>
+<p><b>Fonction</b> : librairie pour des formes géométriques</p>
+<p><b>Installation</b> : <code>conda install shapely</code></p>
+<p><b>Comment importer (en général)</b> : faire <code>from shapely.geometry import Point, LineString, Polygon</code></p>
+<p><b>Classes principales</b> :</p><ul>
+<li><code>Point</code> : représente un point géographique</li>
+<li><code>LineString</code> : représente une ligne brisée (<em>ie</em> contient plusieurs points)</li>
+<li><code>Polygon</code> : représente un polygone (avec un extérieur et intérieur pour autoriser des aires négatives)</li>
+</ul>
+<p>Et leurs version "multi", où un objet <code>MultiPoint</code>, <code>MultiLineString</code> et <code>MultiPolygon</code> représentent une collection de tels objets.</p>
+<p>Il existe des opérations sur ces objets (aire, centre de masse, etc.)</p>
+<p><b>Opérations géométriques</b> :</p><ul>
+<li>Point (ou ligne ou polygone) dans un polygone : au choix, <code>polygon.contains(point)</code> ou <code>point.within(polygon)</code>.</li>
+<li>Intersection / contact : le contact est un cas particulier d'intersection (où les points commus doivent nécessairement être sur la frontière). Utiliser les méthodes <code>intersects</code> et <code>touches</code></li>
+</ul>
+<p>Pour plus de détails, voir <a href="https://automating-gis-processes.github.io/2016/Lesson1-Geometric-Objects.html">ce document</a></p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Module &lt;tt&gt;geopandas&lt;/tt&gt;</h1>
+<p><b>Fonction</b> : surcouche de <code>pandas</code> pour les fichiers géographiques (GIS, Geographic Information System). Permet par exemple d'ouvrir les <code>shapefile</code>, standard pour ce les fichiers GIS.</p>
+<p><b>Installation</b> : <code>conda install geopandas</code></p>
+<p><b>Comment importer</b> : faire <code>import geopandas as gpd</code></p>
+<p><b>Fonctions principales</b> :</p><ul>
+<li>Ouvertures de fichiers comme avec <code>pandas</code> (ex : <code>gpd.read_file(chemin)</code>)</li>
+<li>Ecriture de fichiers comme avec <code>pandas</code> (ex : <code>gpd.to_file(chemin)</code>)</li>
+<li>Sélection comme avec <code>pandas</code> :<ul>
+<li><code>dataframe.loc(...)</code> pour les accès (slices autorisés) et les écritures</li>
+<li><code>dataframe.iterrows()</code> pour itérer sur les numéros de ligne et leur contenu à la fois</li>
+<li>&lsquo;dataframe['nom_de_colonne&rsquo;] = None<code>pour créer une nouvelle colonne *</code>dataframe['nom_de_colonne'].mean()<code>pour faire une opération numpy sur une colonne de données (ici, moyenne)</code></li>
+</ul>
+</li>
+<li><code>Plot :</code>data.plot&lt;tt&gt;plote les formes géométriques stockées dedans, lorsqu'elles sont compatibles avecshapely<code>(nécessite le module</code>descartes<code>) (cf. section correspondante)</code></li>
+<li><code>Regroupement :</code>dataframe.groupby('nom_de_colonne')` créé un objet semblable à un dictionnaire :<ul>
+<li>les clés sont les objets de la colonne sélectionnée par lesquels on regroupe les objets (par exemple, le nom de l'espèce marine)</li>
+<li>les valeurs sont une <code>DataFrame</code> contenant les mêmes colonnes que la <code>DataFrame</code> originale, mais uniquement les lignes correspondant à la valeur par laquelle on regroupe</li>
+</ul>
+</li>
+</ul>
+<p><b>Fonctions de join</b> : Il existe plusieurs fonctionnalités selon ce qu'on entend par join, ou plus généralement les opérations ensemblistes :</p><ul>
+<li>Table join (comme en SQL):<ul>
+<li>Pour l'utiliser : &lsquo;dataframe1.merge(dataframe2, on='nom_de_colonne&rsquo;)<code>.</code></li>
+<li><code>Si les noms de colonnes sont différents, fournir les paramètres</code>left_on<code>et</code>right_on<code>.</code></li>
+</ul>
+</li>
+<li><code>Overlay : fait des intersections spatiales entre plusieurs tables, ou plus généralement des opérations ensemblistes spatiales (union, différence, etc.) (ex : intersecte une</code>DataFrame<code>de polygones avec une autre)</code></li>
+<li><code>Join spatial : un peu plus subtil, fusionne des</code>GeoDataFrame<code>avec un critère particulier :</code>intersects<code>,</code>contains<code>et</code>within` (ex : fusionne les lignes où un point d'une table est dans un polygone d'une autre table)</li>
+</ul>
+<p><b>Agrégation</b> : Fonctionnalité permettant d'agréger (rassembler) des lignes d'une <code>DataFrame</code> avec un critère particulier (ex : la valeur d'une colonne) Exemple d'utilisation : fusionner des zones géographiques par temps d'itinéraire vers une gare. Utilisation : <code>dataframe.dissolve(by="colonne_par_laquelle_trier")</code></p>
+<p><b>Applications d'opérateurs binaires</b> Voir <a href="https://automating-gis-processes.github.io/2016/Lesson4-reclassify.html#">ce document</a></p>
+<p>Pour plus de détails, voir <a href="https://automating-gis-processes.github.io/2016/Lesson2-geopandas-basics.html">ce document</a></p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Affichage sur une carte</h1>
+<p>Il existe plein de modules permettant d'afficher sur une carte.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Avec &lt;tt&gt;geopandas&lt;/tt&gt; (ie &lt;tt&gt;matplotlib&lt;/tt&gt;)</h2>
+<p>Ce sont des <b>cartes statiques</b></p>
+<p>On utilise <code>dataframe.plot()</code>.</p><ul>
+<li>Retourne le plot correspondant (si on veut l'utiliser plus tard), utile pour :</li>
+<li><code>ax=</code> pour indiquer si on veut superposer l'affichage sur un plot déjà existant (ex : routes sur une carte)</li>
+<li>Si une colonne est spécifiée (&lsquo;column='ma_colonne&rsquo;<code>), sépare la carte en classes d'équivalences en fonction de la valeur de la colonne, en fonction du schema spécifié</code></li>
+<li><code>Le schema c'est la façon avec laquelle le module créé les classes d'équivalences. Le paramètre</code>k<code>définit le nombre de classes d'équivalences à utiliser. Exemple de schéma =</code>scheme="quantiles"<code>. Le schema est coloré par une</code>cmap`. <br  />
+</li>
+<li>Couleur :<ul>
+<li>soit &lsquo;color='r&rsquo;<code>: colore uniformément en rouge</code></li>
+<li><code>soit</code>cmap="Reds"<code>: colore avec une "carte de couleurs" (ici rouge) reconnue par le module (utile si on a spécifié une colonne par exemple)</code></li>
+</ul>
+</li>
+<li><code>La transparence :</code>alpha=0.9<code>par exemple (1 totalement opaque, 0 totalement transparent) *</code>linewidth=` permet de définir l'épaisseur des lignes</li>
+</ul>
+<p><code>plt.tight_layout()</code> permet d'afficher plus sur la même fenêtre.</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Avec &lt;tt&gt;bokeh&lt;/tt&gt;</h2>
+<p>Ce sont des <b>cartes dynamiques</b></p>
+<p><b>Installation</b> : <code>conda install bokeh</code></p>
+<p>A faire (césar)</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Avec &lt;tt&gt;leaflet&lt;/tt&gt; (ie &lt;tt&gt;folium&lt;/tt&gt;)</h2>
+<p>C'est le module <code>folium</code> dans pyton qui fait le boulot.</p>
+<p><b>Installation</b> : <code>conda install folium</code></p>
+<ul>
+<li>Créer une carte : folium.Map() avec les paramètres<ul>
+<li><code>location=[lat,lon]</code> : position initiale de la carte</li>
+<li><code>zoom_start=10</code> : zoom initial (plus c'est grand, plus c'est proche)</li>
+<li><code>control_scale=true</code> : affichage de l'échelle</li>
+<li><code>tiles</code> : indique quelle carte utiliser (ex : `tiles="OpenStreeMap")</li>
+</ul>
+</li>
+</ul>
+<p>Pour plus d'infos, voir <a href="https://python-visualization.github.io/folium/quickstart.html">ce document</a></p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+CRS (Coordinate Reference System)</h1>
+<p>C'est un attribut des <code>shapefile</code>, permettant de savoir quels systèmes de coordonnées ils utilisent.</p><ul>
+<li>Pour connaître le CRS d'une table, faire <code>dataframe.crs</code></li>
+<li>Pour changer le CRS d'une table, faire <code>dataframe.to_crs(crs=un_crs_donne, inplace=true)</code> (ou <code>inplace=false</code> si on veut pas de surplace)</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Geocoding</h1>
+<p>Le geocoding est une technologie permettant de passer d'adresse à coordonnées (et vice-versa), grâce à une API tierce. Pour faire un appel à une API, importer <code>from geopandas.tools import geocode</code> et utiliser la fonction : <code>geocode</code> en spécifiant une clé api.</p>
+<p>A faire... (césar) </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

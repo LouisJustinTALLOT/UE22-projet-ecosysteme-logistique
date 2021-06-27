@@ -1,0 +1,113 @@
+\hypertarget{namespacetri__par__code___n_a_f}{}\doxysection{Référence de l\textquotesingle{}espace de nommage tri\+\_\+par\+\_\+code\+\_\+\+NAF}
+\label{namespacetri__par__code___n_a_f}\index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacetri__par__code___n_a_f_ad73dd1e24a0db9d9f385be42d4606b0f}{swap\+\_\+xy}} (geom)
+\item 
+def \mbox{\hyperlink{namespacetri__par__code___n_a_f_a25d922137926373642f62bf38f096774}{nettoyer}} (df, reduce=False, threshold=1000)
+\item 
+def \mbox{\hyperlink{namespacetri__par__code___n_a_f_ad21bba4ed8b3853302bd9b2987e36a07}{clusterize}} (df, k, column\+\_\+name=\char`\"{}geometry\char`\"{}, dict=False)
+\item 
+def \mbox{\hyperlink{namespacetri__par__code___n_a_f_ad00a37cafd9a96a5c88cf37ed30dc742}{save\+\_\+to\+\_\+map}} (df\+\_\+clusters, map, nom=\char`\"{}\char`\"{}, couleur=\char`\"{}\char`\"{})
+\item 
+def \mbox{\hyperlink{namespacetri__par__code___n_a_f_a880de1ce44d9ed09ebd29b53bc3ec36f}{informations}} (df, df\+\_\+clusters)
+\item 
+def \mbox{\hyperlink{namespacetri__par__code___n_a_f_af1215a113781afb3682612a152a7b605}{test\+\_\+json}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_ad21bba4ed8b3853302bd9b2987e36a07}\label{namespacetri__par__code___n_a_f_ad21bba4ed8b3853302bd9b2987e36a07}} 
+\index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!clusterize@{clusterize}}
+\index{clusterize@{clusterize}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
+\doxysubsubsection{\texorpdfstring{clusterize()}{clusterize()}}
+{\footnotesize\ttfamily def tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+clusterize (\begin{DoxyParamCaption}\item[{}]{df,  }\item[{}]{k,  }\item[{}]{column\+\_\+name = {\ttfamily \char`\"{}geometry\char`\"{}},  }\item[{}]{dict = {\ttfamily False} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clusterise à l'aide de l'algorithme des k-moyennes.
+
+A besoin d'une DataFrame contenant une colonne avec des Points (par défaut, son nom est geometry)
+Indiquer dict=True si jamais la colonne contenant les Points ne contient 
+pas l'objet Point (module shapely), mais un dictionnaire 
+(quand ça vient pas d'un GeoJSON en général)
+
+Attention, fait du en-place.
+Retourne trois choses :
+- la df rentrée, avec trois colonnes en plus:
+        "cluster" (numéro du cluster), "centroids" (centre de masse correspondant)
+        et "hulls" (enveloppe convexe)
+        Ainsi, pour chaque point, on connaît les infos du cluster auquel il a été affecté
+- les centres de masse et les enveloppes convexes de chaque cluster (concrètement, une GeoDataFrame 
+  avec comme index le numéro du cluster et comme colonnes les centres de masses et les enveloppes convexes)\end{DoxyVerb}
+ 
+
+Définition à la ligne 77 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_a880de1ce44d9ed09ebd29b53bc3ec36f}\label{namespacetri__par__code___n_a_f_a880de1ce44d9ed09ebd29b53bc3ec36f}} 
+\index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!informations@{informations}}
+\index{informations@{informations}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
+\doxysubsubsection{\texorpdfstring{informations()}{informations()}}
+{\footnotesize\ttfamily def tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+informations (\begin{DoxyParamCaption}\item[{}]{df,  }\item[{}]{df\+\_\+clusters }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Permet d'ajouter des informations sur les clusters.
+Pour l'instant, ajoute le nombre d'entreprises du cluster dans une colonne "taille".
+On pourra par exemple ajouter aussi le poids total de chaque cluster quand on aura défini cette notion
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 232 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_a25d922137926373642f62bf38f096774}\label{namespacetri__par__code___n_a_f_a25d922137926373642f62bf38f096774}} 
+\index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!nettoyer@{nettoyer}}
+\index{nettoyer@{nettoyer}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
+\doxysubsubsection{\texorpdfstring{nettoyer()}{nettoyer()}}
+{\footnotesize\ttfamily def tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+nettoyer (\begin{DoxyParamCaption}\item[{}]{df,  }\item[{}]{reduce = {\ttfamily False},  }\item[{}]{threshold = {\ttfamily 1000} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Nettoie la DataFrame: enlève les na
+Si reduce=True, ne prend que les première données de la (Geo)DataFrame.
+La limite dans ce cas est fixée à threshold (qui vaut 1000 par défaut)
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 63 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_ad00a37cafd9a96a5c88cf37ed30dc742}\label{namespacetri__par__code___n_a_f_ad00a37cafd9a96a5c88cf37ed30dc742}} 
+\index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!save\_to\_map@{save\_to\_map}}
+\index{save\_to\_map@{save\_to\_map}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
+\doxysubsubsection{\texorpdfstring{save\_to\_map()}{save\_to\_map()}}
+{\footnotesize\ttfamily def tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+save\+\_\+to\+\_\+map (\begin{DoxyParamCaption}\item[{}]{df\+\_\+clusters,  }\item[{}]{map,  }\item[{}]{nom = {\ttfamily \char`\"{}\char`\"{}},  }\item[{}]{couleur = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sauvegarde les centres de gravité des clusters, ainsi que les enveloppes convexes, dans une carte Leaflet
+:param centroids: les centres de gravité (cf. deuxième sortie de la fonction clusterize)
+:param hulls: les enveloppes convesxes (cf. deuxième sortie de la fonction do_convex_hull)
+:param path: le chemin
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 183 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_ad73dd1e24a0db9d9f385be42d4606b0f}\label{namespacetri__par__code___n_a_f_ad73dd1e24a0db9d9f385be42d4606b0f}} 
+\index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!swap\_xy@{swap\_xy}}
+\index{swap\_xy@{swap\_xy}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
+\doxysubsubsection{\texorpdfstring{swap\_xy()}{swap\_xy()}}
+{\footnotesize\ttfamily def tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+swap\+\_\+xy (\begin{DoxyParamCaption}\item[{}]{geom }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Inverse les coordonnées de l'objet shapely.geometry.
+Utile pour passer objets shapely dans folium (la convention est inversée)
+:param geom: l'objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)
+:return: l'objet inversé
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 20 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
+\mbox{\Hypertarget{namespacetri__par__code___n_a_f_af1215a113781afb3682612a152a7b605}\label{namespacetri__par__code___n_a_f_af1215a113781afb3682612a152a7b605}} 
+\index{tri\_par\_code\_NAF@{tri\_par\_code\_NAF}!test\_json@{test\_json}}
+\index{test\_json@{test\_json}!tri\_par\_code\_NAF@{tri\_par\_code\_NAF}}
+\doxysubsubsection{\texorpdfstring{test\_json()}{test\_json()}}
+{\footnotesize\ttfamily def tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+test\+\_\+json (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 245 du fichier tri\+\_\+par\+\_\+code\+\_\+\+NAF.\+py.
+
