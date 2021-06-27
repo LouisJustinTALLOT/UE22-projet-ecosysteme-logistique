@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Mines<sp/>ParisTech<sp/>-<sp/>PSL</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>UE22<sp/>-<sp/>Projet<sp/>d&apos;informatique<sp/>-<sp/>Ecosystème<sp/>Logistique</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Judith<sp/>Bellon,<sp/>Gabrielle<sp/>Vernet,<sp/>César<sp/>Almecija,<sp/>Louis-Justin<sp/>Tallot</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Dépendances</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Ce<sp/>projet<sp/>dépend<sp/>des<sp/>technologies<sp/>et<sp/>ressources<sp/>suivantes<sp/>:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Langages<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>`HTML<sp/>5`,<sp/>`CSS<sp/>3`,<sp/>et<sp/>`Javascript`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>`Python`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>`C++`<sp/>compilé<sp/>avec<sp/>`g++`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Formats<sp/>de<sp/>fichiers<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>[`JSON`](https://fr.wikipedia.org/wiki/JavaScript_Object_Notation)<sp/>majoritairement</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>[`GEOJSON`](https://fr.wikipedia.org/wiki/GeoJSON)<sp/>également,<sp/>parfois<sp/>plus<sp/>adapté</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>[`CSV`](https://fr.wikipedia.org/wiki/Comma-separated_values)<sp/>pour<sp/>explorer<sp/>les<sp/>données<sp/>de<sp/>manière<sp/>plus<sp/>convéniente<sp/>avec<sp/>Excel</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Ressources,<sp/>plugins,<sp/>packages<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>[`OpenStreetMap`](https://www.openstreetmap.org)<sp/>pour<sp/>les<sp/>fonds<sp/>de<sp/>carte</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>[Base<sp/>OpenData<sp/>Île<sp/>de<sp/>France](https://data.iledefrance.fr/)<sp/>et<sp/>notamment<sp/>les<sp/>bases<sp/>de<sp/>données<sp/>suivantes<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[Base<sp/>Sirene<sp/>des<sp/>entreprises<sp/>et<sp/>de<sp/>leurs<sp/>établissements](https://data.iledefrance.fr/explore/dataset/base-sirene)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[BAN<sp/>-<sp/>Base<sp/>Adresse<sp/>Nationale<sp/>-<sp/>Paris](https://data.iledefrance.fr/explore/dataset/base-adresse-75)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[BAN<sp/>-<sp/>Base<sp/>Adresse<sp/>Nationale<sp/>-<sp/>Hauts-de-Seine](https://data.iledefrance.fr/explore/dataset/base-adresse-92)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[BAN<sp/>-<sp/>Base<sp/>Adresse<sp/>Nationale<sp/>-<sp/>Val-de-Marne](https://data.iledefrance.fr/explore/dataset/base-adresse-94)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[BAN<sp/>-<sp/>Base<sp/>Adresse<sp/>Nationale<sp/>-<sp/>Val-de-Marne](https://data.iledefrance.fr/explore/dataset/base-adresse-94)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[BAN<sp/>-<sp/>Base<sp/>Adresse<sp/>Nationale<sp/>-<sp/>Seine-Saint-Denis](https://data.iledefrance.fr/explore/dataset/base-adresse-93)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>Les<sp/>plugins<sp/>Javascript<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`Leaflet`](https://leafletjs.com/)<sp/>pour<sp/>insérer<sp/>des<sp/>cartes<sp/>OSM<sp/>dans<sp/>les<sp/>pages<sp/>web</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>le<sp/>projet<sp/>[`Leaflet/Leaflet.markercluster`](https://github.com/Leaflet/Leaflet.markercluster)<sp/>pour<sp/>regrouper<sp/>les<sp/>points<sp/>et<sp/>accélèrer<sp/>l&apos;affichage</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>le<sp/>projet<sp/>[`pointhi/leaflet-color-markers`](https://github.com/pointhi/leaflet-color-markers)<sp/>pour<sp/>des<sp/>marqueurs<sp/>de<sp/>couleurs<sp/>variées</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>Les<sp/>packages<sp/>Python<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`GeoPandas`](https://geopandas.org/)<sp/>pour<sp/>analyser<sp/>et<sp/>traiter<sp/>les<sp/>données<sp/>géographiques</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`Folium`](https://python-visualization.github.io/folium/)<sp/>pour<sp/>générer<sp/>des<sp/>cartes<sp/>et<sp/>fichiers<sp/>`HTML`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`json`](https://docs.python.org/fr/3/library/json.html)<sp/>pour<sp/>traiter<sp/>des<sp/>fichiers<sp/>`JSON`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`ijson`](https://pypi.org/project/ijson/)<sp/>pour<sp/>traiter<sp/>de<sp/>manière<sp/>itérative<sp/>de<sp/>lourds<sp/>fichiers<sp/>`JSON`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`time`](https://docs.python.org/fr/3/library/time.html)<sp/>pour<sp/>mesurer<sp/>le<sp/>temps<sp/>de<sp/>traitement</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`matplotlib`](https://matplotlib.org)<sp/>pour<sp/>analyser<sp/>les<sp/>données<sp/>issues<sp/>des<sp/>bases<sp/>ainsi<sp/>que<sp/>visualiser<sp/>le<sp/>résultat<sp/>du<sp/>clustering</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`Jupyter`](https://jupyter.org/)<sp/>pour<sp/>développer<sp/>de<sp/>manière<sp/>plus<sp/>rapide<sp/>(supporte<sp/>même<sp/>`Folium`)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`PyQt5`](https://www.riverbankcomputing.com/software/pyqt/)<sp/>pour<sp/>réaliser<sp/>l&apos;interface<sp/>homme-machine</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`QtWebEngine`](https://wiki.qt.io/QtWebEngine)<sp/>pour<sp/>afficher<sp/>les<sp/>fichiers<sp/>`HTML`<sp/>générés<sp/>par<sp/>`Folium`<sp/>dans<sp/>l&apos;interface<sp/>`PyQt`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>[`Cython`](https://cython.org/)<sp/>pour<sp/>compiler<sp/>certains<sp/>de<sp/>nos<sp/>modules<sp/>et<sp/>accélérer<sp/>notre<sp/>code</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>Les<sp/>librairies<sp/>`C++`<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>`iostream`<sp/>pour<sp/>les<sp/>entrées/sorties</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>`fstream`<sp/>pour<sp/>lire/écrire<sp/>les<sp/>fichiers</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>`string`<sp/>pour<sp/>manipuler<sp/>les<sp/>chaînes<sp/>de<sp/>caractères</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>`chrono`<sp/>pour<sp/>mesurer<sp/>le<sp/>temps<sp/>d&apos;exécution<sp/>des<sp/>différentes<sp/>parties<sp/>du<sp/>programme</highlight></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

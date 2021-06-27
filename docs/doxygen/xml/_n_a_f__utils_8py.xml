@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="_n_a_f__utils_8py" kind="file" language="Python">
+    <compoundname>NAF_utils.py</compoundname>
+    <innernamespace refid="namespace_n_a_f__utils">NAF_utils</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespace_n_a_f__utils" refkind="compound"><highlight class="stringliteral">&quot;&quot;&quot;Fonctions<sp/>pour<sp/>switcher<sp/>les<sp/>conventions<sp/>de<sp/>NAF<sp/>(avec<sp/>ou<sp/>sans<sp/>point<sp/>intermédiaire)&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>typing<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Optional,<sp/>List</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>pandas<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>pd</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>numpy<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>np</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>os</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>pandas<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Series</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="namespace_n_a_f__utils_1affd2a664e10c8b665564640868f0bd0b" refkind="member"><highlight class="normal">df_naf_descriptions<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">#<sp/>Cette<sp/>DataFrame<sp/>contient<sp/>toutes<sp/>les<sp/>descriptions<sp/>des<sp/>codes<sp/>NAF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="namespace_n_a_f__utils_1ac6050e8ebf6e60910b584c04cd0d2f61" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_n_a_f__utils_1ac6050e8ebf6e60910b584c04cd0d2f61" kindref="member">ajouter_point</ref>(code_naf:<sp/>str)<sp/>-&gt;<sp/>Optional[str]:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="17"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Fait<sp/>passer<sp/>le<sp/>code<sp/>NAF<sp/>à<sp/>la<sp/>convention<sp/>avec<sp/>point<sp/>(s&apos;il<sp/>n&apos;y<sp/>est<sp/>pas)</highlight></codeline>
+<codeline lineno="18"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="19"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>code_naf:<sp/>Le<sp/>code<sp/>à<sp/>changer</highlight></codeline>
+<codeline lineno="20"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:return:<sp/>Le<sp/>code<sp/>avec<sp/>un<sp/>point.</highlight></codeline>
+<codeline lineno="21"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>code_naf<sp/></highlight><highlight class="keywordflow">is</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">or</highlight><highlight class="normal"><sp/>len(code_naf)<sp/>&lt;<sp/>3:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>S&apos;il<sp/>ne<sp/>s&apos;agit<sp/>pas<sp/>d&apos;un<sp/>code<sp/>NAF,<sp/>on<sp/>ne<sp/>fait<sp/>rien</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>code_naf</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>code_naf[2]<sp/>!=<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Il<sp/>n&apos;y<sp/>a<sp/>pas<sp/>de<sp/>point,<sp/>on<sp/>l&apos;ajoute</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>code_naf[0]<sp/>+<sp/>code_naf[1]<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal"><sp/>+<sp/>code_naf[2:]</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="namespace_n_a_f__utils_1abcce9e92c40f0b72db9cd948d5807ddd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_n_a_f__utils_1abcce9e92c40f0b72db9cd948d5807ddd" kindref="member">retirer_point</ref>(code_naf:<sp/>str)<sp/>-&gt;<sp/>Optional[str]:</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="32"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Fait<sp/>passer<sp/>le<sp/>code<sp/>NAF<sp/>à<sp/>la<sp/>convention<sp/>sans<sp/>point<sp/>(s&apos;il<sp/>y<sp/>est)</highlight></codeline>
+<codeline lineno="33"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="34"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>code_naf:<sp/>Le<sp/>code<sp/>à<sp/>changer</highlight></codeline>
+<codeline lineno="35"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:return:<sp/>Le<sp/>code<sp/>sans<sp/>point.</highlight></codeline>
+<codeline lineno="36"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>code_naf<sp/></highlight><highlight class="keywordflow">is</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">or</highlight><highlight class="normal"><sp/>len(code_naf)<sp/>&lt;<sp/>3:</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>S&apos;il<sp/>ne<sp/>s&apos;agit<sp/>pas<sp/>d&apos;un<sp/>code<sp/>NAF,<sp/>on<sp/>ne<sp/>fait<sp/>rien</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>code_naf</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>code_naf[2]<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Il<sp/>y<sp/>a<sp/>un<sp/>point,<sp/>on<sp/>le<sp/>retire</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>code_naf[0]<sp/>+<sp/>code_naf[1]<sp/>+<sp/>code_naf[3:]</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">#==============================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Fonctions<sp/>vectorisées</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">#==============================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="namespace_n_a_f__utils_1ae8e053be6df8954e50801601d25af2fa" refkind="member"><highlight class="normal">vectorized_belongs<sp/>=<sp/>np.vectorize(</highlight><highlight class="keyword">lambda</highlight><highlight class="normal"><sp/>code,<sp/>codes_naf<sp/>:<sp/>code<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>codes_naf,<sp/>excluded=[1])</highlight></codeline>
+<codeline lineno="50" refid="namespace_n_a_f__utils_1a83ee8163b21cbfc66a04d9b6a3c2a8bf" refkind="member"><highlight class="normal">vectorized_starts_with<sp/>=<sp/>np.vectorize(</highlight><highlight class="keyword">lambda</highlight><highlight class="normal"><sp/>str1,<sp/>str2:<sp/>str(str1).startswith(str2),<sp/>excluded=[1])</highlight></codeline>
+<codeline lineno="51" refid="namespace_n_a_f__utils_1ad2512fdc1b4c70046ce51573afa5981a" refkind="member"><highlight class="normal">vectorized_retirer_points<sp/>=<sp/>np.vectorize(retirer_point)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">#==============================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Fonctions<sp/>utiles<sp/>pour<sp/>le<sp/>projet</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">#==============================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="namespace_n_a_f__utils_1aca0a3e5dc0966df2dcc77dcd33d2c47c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_n_a_f__utils_1aca0a3e5dc0966df2dcc77dcd33d2c47c" kindref="member">get_description</ref>(code_naf:<sp/>str)<sp/>-&gt;<sp/>str:</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="59"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Fournit<sp/>la<sp/>description<sp/>correspondant<sp/>au<sp/>code<sp/>NAF.</highlight></codeline>
+<codeline lineno="60"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="61"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>code_naf:<sp/>le<sp/>code,<sp/>avec<sp/>ou<sp/>sans<sp/>point.</highlight></codeline>
+<codeline lineno="62"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:return:<sp/>la<sp/>description<sp/>complète.</highlight></codeline>
+<codeline lineno="63"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">global</highlight><highlight class="normal"><sp/>df_naf_descriptions</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>df_naf_descriptions<sp/></highlight><highlight class="keywordflow">is</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>on<sp/>ne<sp/>l&apos;a<sp/>pas<sp/>encore<sp/>importée</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>df_naf_descriptions<sp/>=<sp/>pd.read_csv(</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os.path.join(</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os.path.dirname(__file__),<sp/></highlight><highlight class="stringliteral">&quot;../../ressources/naf_descriptions.csv&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>),<sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sep=</highlight><highlight class="stringliteral">&quot;;&quot;</highlight><highlight class="normal">,<sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>encoding=</highlight><highlight class="stringliteral">&apos;utf8&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>code_naf<sp/>=<sp/><ref refid="namespace_n_a_f__utils_1ac6050e8ebf6e60910b584c04cd0d2f61" kindref="member">ajouter_point</ref>(code_naf)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>df_naf_descriptions[df_naf_descriptions[</highlight><highlight class="stringliteral">&quot;code&quot;</highlight><highlight class="normal">]<sp/>==<sp/>code_naf].reset_index(drop=</highlight><highlight class="keyword">True</highlight><highlight class="normal">).loc[0,<sp/></highlight><highlight class="stringliteral">&quot;description&quot;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="namespace_n_a_f__utils_1a1fe02847c67bcc048c209dbc79ac0880" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_n_a_f__utils_1a1fe02847c67bcc048c209dbc79ac0880" kindref="member">get_NAFs_by_section</ref>(section:<sp/>str)<sp/>-&gt;<sp/>Series:</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="81"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Fournit<sp/>la<sp/>liste<sp/>des<sp/>codes<sp/>NAF<sp/>de<sp/>la<sp/>section<sp/>correspondante.</highlight></codeline>
+<codeline lineno="82"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="83"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>section:<sp/>La<sp/>lettre<sp/>de<sp/>la<sp/>section</highlight></codeline>
+<codeline lineno="84"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:return:<sp/>La<sp/>liste<sp/>des<sp/>codes<sp/>NAF<sp/>contenus<sp/>dans<sp/>la<sp/>section<sp/>(convention<sp/>:<sp/>avec<sp/>points)</highlight></codeline>
+<codeline lineno="85"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">global</highlight><highlight class="normal"><sp/>df_naf_descriptions</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>df_naf_descriptions<sp/></highlight><highlight class="keywordflow">is</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>on<sp/>ne<sp/>l&apos;a<sp/>pas<sp/>encore<sp/>importée</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>df_naf_descriptions<sp/>=<sp/>pd.read_csv(</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os.path.join(os.path.dirname(__file__),<sp/></highlight><highlight class="stringliteral">&quot;../../ressources/naf_descriptions.csv&quot;</highlight><highlight class="normal">),<sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sep=</highlight><highlight class="stringliteral">&quot;;&quot;</highlight><highlight class="normal">,<sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>encoding=</highlight><highlight class="stringliteral">&apos;utf8&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>masque<sp/>=<sp/>df_naf_descriptions[</highlight><highlight class="stringliteral">&quot;code&quot;</highlight><highlight class="normal">]<sp/>==<sp/>(</highlight><highlight class="stringliteral">&quot;SECTION<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>section)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>normalement<sp/>ce<sp/>masque<sp/>n&apos;est<sp/>à<sp/>True<sp/>qu&apos;à<sp/>un<sp/>seul<sp/>endroit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>du<sp/>coup,<sp/>comme<sp/>True=1,<sp/>on<sp/>utilise<sp/>cette<sp/>astuce<sp/>pour<sp/>récupérer<sp/>l&apos;indice<sp/>de<sp/>la<sp/>ligne</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>debut_section<sp/>=<sp/>np.argmax(masque)<sp/>+<sp/>1</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>masque<sp/>=<sp/><ref refid="namespace_n_a_f__utils_1a83ee8163b21cbfc66a04d9b6a3c2a8bf" kindref="member">vectorized_starts_with</ref>(df_naf_descriptions[</highlight><highlight class="stringliteral">&quot;code&quot;</highlight><highlight class="normal">],<sp/></highlight><highlight class="stringliteral">&quot;SECTION&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>longueur_section<sp/>=<sp/>np.argmax(masque[debut_section:])</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>fin_section<sp/>=<sp/>debut_section<sp/>+<sp/>longueur_section</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>debut_section<sp/>est<sp/>inclusif,<sp/>fin_section<sp/>exclusif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>df_naf_descriptions[</highlight><highlight class="stringliteral">&quot;code&quot;</highlight><highlight class="normal">][debut_section:fin_section].dropna()</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="namespace_n_a_f__utils_1a0e7dd8fd0c6ec68d47f461d7e8819da2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_n_a_f__utils_1a0e7dd8fd0c6ec68d47f461d7e8819da2" kindref="member">filter_by_naf</ref>(df:<sp/>pd.DataFrame,<sp/>codes_naf:<sp/>List[str],<sp/>column_codes:<sp/>str)<sp/>-&gt;<sp/>pd.DataFrame:</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="111"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Retourne<sp/>les<sp/>établissements<sp/>dont<sp/>le<sp/>code<sp/>NAF<sp/>est<sp/>contenu<sp/>dans<sp/>la<sp/>liste.</highlight></codeline>
+<codeline lineno="112"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="113"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>df:<sp/>La<sp/>liste<sp/>des<sp/>établissements<sp/>(convention<sp/>NAF<sp/>:<sp/>sans<sp/>le<sp/>point)</highlight></codeline>
+<codeline lineno="114"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>codes_naf:<sp/>Les<sp/>codes<sp/>NAF<sp/>(avec<sp/>ou<sp/>sans<sp/>le<sp/>point)<sp/>(sous<sp/>forme<sp/>de<sp/>liste)</highlight></codeline>
+<codeline lineno="115"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>column_codes:<sp/>La<sp/>colonne<sp/>où<sp/>est<sp/>située<sp/>le<sp/>code<sp/>NAF<sp/>dans<sp/>la<sp/>DataFrame<sp/>des<sp/>établissements</highlight></codeline>
+<codeline lineno="116"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:return:<sp/>La<sp/>DataFrame<sp/>filtrée.</highlight></codeline>
+<codeline lineno="117"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>df[<ref refid="namespace_n_a_f__utils_1ae8e053be6df8954e50801601d25af2fa" kindref="member">vectorized_belongs</ref>(df[column_codes],<sp/><ref refid="namespace_n_a_f__utils_1ad2512fdc1b4c70046ce51573afa5981a" kindref="member">vectorized_retirer_points</ref>(codes_naf))].reset_index(drop=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+    </programlisting>
+    <location file="src/clusterizer/utils/NAF_utils.py"/>
+  </compounddef>
+</doxygen>

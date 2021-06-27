@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="dir_646cc50b23dbced3dd2bc5a3d3b0ed57" kind="dir">
+    <compoundname>essais/folium_control_layer</compoundname>
+    <innerfile refid="folium__control__layer_8py">folium_control_layer.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="essais/folium_control_layer/"/>
+  </compounddef>
+</doxygen>

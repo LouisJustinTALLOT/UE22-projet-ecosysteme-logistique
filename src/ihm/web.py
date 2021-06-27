@@ -2,11 +2,14 @@ import webbrowser
 import os
 
 
-"""
-Affichage du html depuis python
-il faut être dans le répertoire ihm pour le lancer
-"""
+
 def open_html(adresse) :
+    """
+    Affichage du html depuis python. Il faut être dans le répertoire ihm pour le lancer.
+
+    :param adresse: l'adresse du fichier à ouvrir
+
+    """
     # récupérer le chemin du répertoire courant
     path = os.getcwd()
 

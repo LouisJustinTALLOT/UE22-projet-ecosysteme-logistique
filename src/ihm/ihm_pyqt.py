@@ -6,7 +6,8 @@ from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel, \
 
 
 class InputFenetre(QWidget):
-    """Le widget qui permet à l'utilisateur de rentrer les paramètres de clustering
+    """
+    Le widget qui permet à l'utilisateur de rentrer les paramètres de clustering
     """
     def __init__(self):
         QWidget.__init__(self)
