@@ -11,6 +11,9 @@ import numba as nb
 from numba import jit, vectorize, float64, int64
 import cProfile
 
+from pycallgraph import PyCallGraph
+from pycallgraph.output import GraphvizOutput
+
 import sys
 from shapely.geometry.multipolygon import MultiPolygon
 sys.path.append("../../")
@@ -311,4 +314,6 @@ if __name__ == "__main__":
         # main_json(adresse_map="output/clusterized_map_optim_de_cython.html")
         # cProfile.run('main_json(adresse_map="output/clusterized_map_with_shapefile.html", reduce=True, threshold=10000)')
         # cProfile.run('main_json(rayon=1000, adresse_map="output/clusterized_map_with_shapefile.html")')
-        main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
+        # main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
+        with PyCallGraph(output=GraphvizOutput()):
+            main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
