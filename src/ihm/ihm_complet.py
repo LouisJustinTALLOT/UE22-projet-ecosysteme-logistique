@@ -30,7 +30,7 @@ class Wind(QMainWindow):
         # On suppose pour l'instant que l'utilisateur n'est pas stupide
         self.IHM._donnees[0] = int(nb_cluster_min)
         self.IHM._donnees[1] = int(nb_cluster_max)
-        self.IHM._donnees[3] = int(rayon)
+        self.IHM._donnees[3] = float(rayon)
 
         # La liste des secteurs NAFs
         list_secteur = ['']
