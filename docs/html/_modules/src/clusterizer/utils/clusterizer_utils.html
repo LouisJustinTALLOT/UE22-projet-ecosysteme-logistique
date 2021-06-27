@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>src.clusterizer.utils.clusterizer_utils &#8212; Documentation Ecosystème logistique </title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/nature.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/translations.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="Index général"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Index des modules Python"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Documentation Ecosystème logistique </a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" accesskey="U">Code du module</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">src.clusterizer.utils.clusterizer_utils</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Code source de src.clusterizer.utils.clusterizer_utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Ce module permet d&#39;extraire simplement nos données des GeoDataFrames, de trouver</span>
+<span class="sd">leurs coordonnées, de restreindre le calcul aux points situés dans un certain rayon</span>
+<span class="sd">autour de Paris ; il permet également de manipuler les clusters, de calculer leur </span>
+<span class="sd">poids et leur taille.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">Series</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">MultiPoint</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">GeometryCollection</span>
+
+<span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span> <span class="o">=</span> <span class="s2">&quot;geometry&quot;</span>
+<span class="n">COLUMN_CLUSTER_INDEX_NAME</span> <span class="o">=</span> <span class="s2">&quot;cluster&quot;</span>
+<span class="n">COLUMN_HULLS_NAME</span> <span class="o">=</span> <span class="s2">&quot;hulls&quot;</span>
+<span class="n">COLUMN_CENTROIDS_NAME</span> <span class="o">=</span> <span class="s2">&quot;centroids&quot;</span>
+<span class="n">COLUMN_CLUSTER_SIZE_NAME</span> <span class="o">=</span> <span class="s2">&quot;taille&quot;</span>
+<span class="n">COLUMN_CLUSTER_MASS_NAME</span> <span class="o">=</span> <span class="s2">&quot;poids&quot;</span>
+
+
+
+<span class="n">PARIS_CENTER_COORDS</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">2.348523</span><span class="p">,</span> <span class="mf">48.853345</span><span class="p">)</span>
+
+<span class="c1"># =====================</span>
+<span class="c1"># Fonctions principales</span>
+<span class="c1"># =====================</span>
+
+
+<div class="viewcode-block" id="get_infos_clusters_poids"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_poids">[docs]</a><span class="k">def</span> <span class="nf">get_infos_clusters_poids</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">column_naf_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fonction permettant de récupérer des infos sur les clusters (poids).</span>
+
+<span class="sd">    :param df: La DataFrame où l&#39;on a déjà ajouté le numéro des clusters (laissée intacte).</span>
+<span class="sd">    :param column_naf_code: Le nom de la colonne où se situent les codes NAF.</span>
+<span class="sd">    :return: Une nouvelle GeoDataFrame associant à chaque numéro de cluster le poids de celui-ci</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">series_poids</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">COLUMN_CLUSTER_INDEX_NAME</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">calculer_poids_cluster_wrapper</span><span class="p">(</span><span class="n">column_naf_code</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Series</span><span class="p">(</span><span class="n">series_poids</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">COLUMN_CLUSTER_MASS_NAME</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="get_infos_clusters_taille"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_taille">[docs]</a><span class="k">def</span> <span class="nf">get_infos_clusters_taille</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fonction permettant de récupérer des infos sur les clusters (tailles).</span>
+
+<span class="sd">    :param df: La DataFrame où l&#39;on a déjà ajouté le numéro des clusters (laissée intacte).</span>
+<span class="sd">    :return: Une nouvelle GeoDataFrame associant à chaque numéro de cluster la taille de celui-ci</span>
+<span class="sd">     (nombre d&#39;établissements)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">COLUMN_CLUSTER_INDEX_NAME</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">COLUMN_CLUSTER_SIZE_NAME</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="get_infos_clusters_enveloppes_convexes"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_enveloppes_convexes">[docs]</a><span class="k">def</span> <span class="nf">get_infos_clusters_enveloppes_convexes</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fonction permettant de récupérer des infos sur les clusters (enveloppes convexes).</span>
+
+<span class="sd">    :param k: Nombre de clusters</span>
+<span class="sd">    :param df: La DataFrame où l&#39;on a déjà ajouté le numéro des clusters (laissée intacte).</span>
+<span class="sd">    :param column_geometry: Le nom de la colonne où se situent les données géometriques (par défaut, &quot;geometry&quot;).</span>
+<span class="sd">    :param is_dict: True si les paramètres sont sous forme de dictionnaire</span>
+<span class="sd">    :return: Une GeoDataFrame associant à chaque numéro de cluster son enveloppe convexe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Tableau numpy temporaire. Il ne sert qu&#39;à la création de la GeoDataFrame avec les enveloppes convexes</span>
+    <span class="n">temp_hulls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">Polygon</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="c1"># Cette DataFrame contient les points du cluster numéro n</span>
+        <span class="n">minidf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">COLUMN_CLUSTER_INDEX_NAME</span><span class="p">]</span> <span class="o">==</span> <span class="n">n</span><span class="p">]</span>
+
+        <span class="c1"># On calcule l&#39;enveloppe convexe</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">minidf</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">column_geometry</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">is_dict</span><span class="p">:</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
+                                        <span class="n">points</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+
+            <span class="n">multi_point</span> <span class="o">=</span> <span class="n">MultiPoint</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">Point</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">multi_point</span> <span class="o">=</span> <span class="n">MultiPoint</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">array</span><span class="p">)</span>
+
+        <span class="n">hull</span> <span class="o">=</span> <span class="n">multi_point</span><span class="o">.</span><span class="n">convex_hull</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">hull</span><span class="p">)</span> <span class="o">==</span> <span class="n">Point</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">hull</span><span class="p">)</span> <span class="o">==</span> <span class="n">LineString</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">hull</span><span class="p">)</span> <span class="o">==</span> <span class="n">GeometryCollection</span><span class="p">:</span>
+            <span class="c1"># S&#39;il n&#39;y a qu&#39;un point dans le cluster, on ne peut pas créer de Polygon</span>
+            <span class="n">temp_hulls</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">hull</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">temp_hulls</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">hull</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span><span class="n">temp_hulls</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">COLUMN_HULLS_NAME</span><span class="p">])</span></div>
+
+<span class="c1"># =====================</span>
+<span class="c1"># Fonctions utilitaires</span>
+<span class="c1"># =====================</span>
+
+<div class="viewcode-block" id="calculer_poids_code_NAF"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.calculer_poids_code_NAF">[docs]</a><span class="k">def</span> <span class="nf">calculer_poids_code_NAF</span><span class="p">(</span><span class="n">code_naf</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcule le poids d&#39;un code NAF.</span>
+
+<span class="sd">    :param code_naf: Le code NAF à calculer (dans une des deux conventions : avec ou sans points).</span>
+<span class="sd">    :return: Le poids du code NAF.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">debut</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">code_naf</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="mi">49</span> <span class="o">&lt;=</span> <span class="n">debut</span> <span class="o">&lt;=</span> <span class="mi">56</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">4</span>
+
+    <span class="k">return</span> <span class="mi">1</span></div>
+
+
+<span class="n">vectorized_calculer_poids_code_NAF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">calculer_poids_code_NAF</span><span class="p">,</span> <span class="n">otypes</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span>
+
+
+<div class="viewcode-block" id="calculer_poids_cluster"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster">[docs]</a><span class="k">def</span> <span class="nf">calculer_poids_cluster</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">naf_column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcule le poids d&#39;un ensemble d&#39;établissements.</span>
+
+<span class="sd">    :param df: La DataFrame contenant tous les établissements.</span>
+<span class="sd">     Rien n&#39;est requis, à part avoir une colonne où sont situés les codes NAF.</span>
+<span class="sd">    :param naf_column_name: Le nom de la colonne contenant les codes NAF.</span>
+<span class="sd">    :returns: Le poids du cluster.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vectorized_calculer_poids_code_NAF</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">naf_column_name</span><span class="p">]))</span></div>
+
+
+<div class="viewcode-block" id="calculer_poids_cluster_wrapper"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster_wrapper">[docs]</a><span class="k">def</span> <span class="nf">calculer_poids_cluster_wrapper</span><span class="p">(</span><span class="n">naf_column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wrappe calculer_poids_cluster pour pouvoir l&#39;utiliser dans un groupby.</span>
+
+<span class="sd">    :param naf_column_name: La colonne où se situent les codes NAF.</span>
+<span class="sd">    :return: cf. la fonction calculer_poids_cluster.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">fct</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">calculer_poids_cluster</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">naf_column_name</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fct</span></div>
+
+<div class="viewcode-block" id="swap_xy"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.swap_xy">[docs]</a><span class="k">def</span> <span class="nf">swap_xy</span><span class="p">(</span><span class="n">geom</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inverse les coordonnées de l&#39;objet shapely.geometry.</span>
+<span class="sd">    Utile pour passer objets shapely dans folium (la convention est inversée).</span>
+<span class="sd">    Auteur : https://gis.stackexchange.com/a/291293</span>
+
+<span class="sd">    :param geom: L&#39;objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)</span>
+<span class="sd">    :return: l&#39;objet inversé</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">geom</span><span class="o">.</span><span class="n">is_empty</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">geom</span>
+
+    <span class="k">if</span> <span class="n">geom</span><span class="o">.</span><span class="n">has_z</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">swap_xy_coords</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">swap_xy_coords</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Process coordinates from each supported geometry type</span>
+    <span class="k">if</span> <span class="n">geom</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;Point&#39;</span><span class="p">,</span> <span class="s1">&#39;LineString&#39;</span><span class="p">,</span> <span class="s1">&#39;LinearRing&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">geom</span><span class="p">)(</span><span class="nb">list</span><span class="p">(</span><span class="n">swap_xy_coords</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">coords</span><span class="p">)))</span>
+
+    <span class="k">elif</span> <span class="n">geom</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;Polygon&#39;</span><span class="p">:</span>
+        <span class="n">ring</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">exterior</span>
+        <span class="n">shell</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">ring</span><span class="p">)(</span><span class="nb">list</span><span class="p">(</span><span class="n">swap_xy_coords</span><span class="p">(</span><span class="n">ring</span><span class="o">.</span><span class="n">coords</span><span class="p">)))</span>
+        <span class="n">holes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">interiors</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">ring</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">holes</span><span class="p">):</span>
+            <span class="n">holes</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">ring</span><span class="p">)(</span><span class="nb">list</span><span class="p">(</span><span class="n">swap_xy_coords</span><span class="p">(</span><span class="n">ring</span><span class="o">.</span><span class="n">coords</span><span class="p">)))</span>
+
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">geom</span><span class="p">)(</span><span class="n">shell</span><span class="p">,</span> <span class="n">holes</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">geom</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Multi&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">geom</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;GeometryCollection&#39;</span><span class="p">:</span>
+        <span class="c1"># Recursive call</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">geom</span><span class="p">)([</span><span class="n">swap_xy</span><span class="p">(</span><span class="n">part</span><span class="p">)</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">geom</span><span class="o">.</span><span class="n">geoms</span><span class="p">])</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Type </span><span class="si">%r</span><span class="s1"> not recognized&#39;</span> <span class="o">%</span> <span class="n">geom</span><span class="o">.</span><span class="n">type</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="filter_nearby_paris"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.filter_nearby_paris">[docs]</a><span class="k">def</span> <span class="nf">filter_nearby_paris</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Filtre les données proches du centre de Paris.</span>
+<span class="sd">   </span>
+<span class="sd">    :param df: la DataFrame à filtrer</span>
+<span class="sd">    :param radius: le rayon (en kilomètres)</span>
+<span class="sd">    :param column_geometry: la colonne où se trouvent les données géométriques (par défaut : &#39;geometry&#39;)</span>
+<span class="sd">    :return: la DataFrame filtrée</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">get_coords_from_object</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">)</span>
+
+    <span class="n">l1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">PARIS_CENTER_COORDS</span><span class="o">.</span><span class="n">y</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">PARIS_CENTER_COORDS</span><span class="o">.</span><span class="n">x</span>
+    <span class="n">l2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">distances</span> <span class="o">=</span> <span class="mi">20000</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">L1</span><span class="o">-</span><span class="n">L2</span><span class="p">)))</span>
+    <span class="n">masque</span> <span class="o">=</span> <span class="n">distances</span> <span class="o">&lt;=</span> <span class="n">radius</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">masque</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_coords_from_object"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.get_coords_from_object">[docs]</a><span class="k">def</span> <span class="nf">get_coords_from_object</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Récupère les coordonnées des points de la DataFrame.</span>
+
+<span class="sd">    :param df: la DataFrame.</span>
+<span class="sd">    :param column_geometry: la colonne contenant les données géométriques.</span>
+<span class="sd">    :param is_dict: les données sont-elles en dictionnaire ?</span>
+<span class="sd">    :return: les coordonnées sous la forme d&#39;une matrice de deux colonnes (et d&#39;autant de lignes qu&#39;il y a de points)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_dict</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column_geometry</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column_geometry</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column_geometry</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column_geometry</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">X</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="Index général"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Index des modules Python"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Documentation Ecosystème logistique </a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Code du module</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">src.clusterizer.utils.clusterizer_utils</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021 Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

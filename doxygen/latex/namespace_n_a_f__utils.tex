@@ -1,0 +1,153 @@
+\hypertarget{namespace_n_a_f__utils}{}\doxysection{Référence de l\textquotesingle{}espace de nommage NAF\+\_\+utils}
+\label{namespace_n_a_f__utils}\index{NAF\_utils@{NAF\_utils}}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+Optional\mbox{[}str\mbox{]} \mbox{\hyperlink{namespace_n_a_f__utils_ac6050e8ebf6e60910b584c04cd0d2f61}{ajouter\+\_\+point}} (str code\+\_\+naf)
+\item 
+Optional\mbox{[}str\mbox{]} \mbox{\hyperlink{namespace_n_a_f__utils_abcce9e92c40f0b72db9cd948d5807ddd}{retirer\+\_\+point}} (str code\+\_\+naf)
+\item 
+str \mbox{\hyperlink{namespace_n_a_f__utils_aca0a3e5dc0966df2dcc77dcd33d2c47c}{get\+\_\+description}} (str code\+\_\+naf)
+\item 
+Series \mbox{\hyperlink{namespace_n_a_f__utils_a1fe02847c67bcc048c209dbc79ac0880}{get\+\_\+\+NAFs\+\_\+by\+\_\+section}} (str section)
+\item 
+pd.\+Data\+Frame \mbox{\hyperlink{namespace_n_a_f__utils_a0e7dd8fd0c6ec68d47f461d7e8819da2}{filter\+\_\+by\+\_\+naf}} (pd.\+Data\+Frame df, List\mbox{[}str\mbox{]} codes\+\_\+naf, str column\+\_\+codes)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_n_a_f__utils_affd2a664e10c8b665564640868f0bd0b}{df\+\_\+naf\+\_\+descriptions}} = None
+\item 
+\mbox{\hyperlink{namespace_n_a_f__utils_ae8e053be6df8954e50801601d25af2fa}{vectorized\+\_\+belongs}} = np.\+vectorize(lambda code, codes\+\_\+naf \+: code in codes\+\_\+naf, excluded=\mbox{[}1\mbox{]})
+\item 
+\mbox{\hyperlink{namespace_n_a_f__utils_a83ee8163b21cbfc66a04d9b6a3c2a8bf}{vectorized\+\_\+starts\+\_\+with}} = np.\+vectorize(lambda str1, str2\+: str(str1).startswith(str2), excluded=\mbox{[}1\mbox{]})
+\item 
+\mbox{\hyperlink{namespace_n_a_f__utils_ad2512fdc1b4c70046ce51573afa5981a}{vectorized\+\_\+retirer\+\_\+points}} = np.\+vectorize(\mbox{\hyperlink{namespace_n_a_f__utils_abcce9e92c40f0b72db9cd948d5807ddd}{retirer\+\_\+point}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\begin{DoxyVerb}Fonctions pour switcher les conventions de NAF (avec ou sans point intermédiaire)\end{DoxyVerb}
+ 
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{namespace_n_a_f__utils_ac6050e8ebf6e60910b584c04cd0d2f61}\label{namespace_n_a_f__utils_ac6050e8ebf6e60910b584c04cd0d2f61}} 
+\index{NAF\_utils@{NAF\_utils}!ajouter\_point@{ajouter\_point}}
+\index{ajouter\_point@{ajouter\_point}!NAF\_utils@{NAF\_utils}}
+\doxysubsubsection{\texorpdfstring{ajouter\_point()}{ajouter\_point()}}
+{\footnotesize\ttfamily  Optional\mbox{[}str\mbox{]} NAF\+\_\+utils.\+ajouter\+\_\+point (\begin{DoxyParamCaption}\item[{str}]{code\+\_\+naf }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Fait passer le code NAF à la convention avec point (s'il n'y est pas)
+
+:param code_naf: Le code à changer
+:return: Le code avec un point.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 15 du fichier NAF\+\_\+utils.\+py.
+
+\mbox{\Hypertarget{namespace_n_a_f__utils_a0e7dd8fd0c6ec68d47f461d7e8819da2}\label{namespace_n_a_f__utils_a0e7dd8fd0c6ec68d47f461d7e8819da2}} 
+\index{NAF\_utils@{NAF\_utils}!filter\_by\_naf@{filter\_by\_naf}}
+\index{filter\_by\_naf@{filter\_by\_naf}!NAF\_utils@{NAF\_utils}}
+\doxysubsubsection{\texorpdfstring{filter\_by\_naf()}{filter\_by\_naf()}}
+{\footnotesize\ttfamily  pd.\+Data\+Frame NAF\+\_\+utils.\+filter\+\_\+by\+\_\+naf (\begin{DoxyParamCaption}\item[{pd.\+Data\+Frame}]{df,  }\item[{List\mbox{[}str\mbox{]}}]{codes\+\_\+naf,  }\item[{str}]{column\+\_\+codes }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Retourne les établissements dont le code NAF est contenu dans la liste.
+
+:param df: La liste des établissements (convention NAF : sans le point)
+:param codes_naf: Les codes NAF (avec ou sans le point) (sous forme de liste)
+:param column_codes: La colonne où est située le code NAF dans la DataFrame des établissements
+:return: La DataFrame filtrée.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 115 du fichier NAF\+\_\+utils.\+py.
+
+\mbox{\Hypertarget{namespace_n_a_f__utils_aca0a3e5dc0966df2dcc77dcd33d2c47c}\label{namespace_n_a_f__utils_aca0a3e5dc0966df2dcc77dcd33d2c47c}} 
+\index{NAF\_utils@{NAF\_utils}!get\_description@{get\_description}}
+\index{get\_description@{get\_description}!NAF\_utils@{NAF\_utils}}
+\doxysubsubsection{\texorpdfstring{get\_description()}{get\_description()}}
+{\footnotesize\ttfamily  str NAF\+\_\+utils.\+get\+\_\+description (\begin{DoxyParamCaption}\item[{str}]{code\+\_\+naf }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Fournit la description correspondant au code NAF.
+
+:param code_naf: le code, avec ou sans point.
+:return: la description complète.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 63 du fichier NAF\+\_\+utils.\+py.
+
+\mbox{\Hypertarget{namespace_n_a_f__utils_a1fe02847c67bcc048c209dbc79ac0880}\label{namespace_n_a_f__utils_a1fe02847c67bcc048c209dbc79ac0880}} 
+\index{NAF\_utils@{NAF\_utils}!get\_NAFs\_by\_section@{get\_NAFs\_by\_section}}
+\index{get\_NAFs\_by\_section@{get\_NAFs\_by\_section}!NAF\_utils@{NAF\_utils}}
+\doxysubsubsection{\texorpdfstring{get\_NAFs\_by\_section()}{get\_NAFs\_by\_section()}}
+{\footnotesize\ttfamily  Series NAF\+\_\+utils.\+get\+\_\+\+NAFs\+\_\+by\+\_\+section (\begin{DoxyParamCaption}\item[{str}]{section }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Fournit la liste des codes NAF de la section correspondante.
+
+:param section: La lettre de la section
+:return: La liste des codes NAF contenus dans la section (convention : avec points)
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 85 du fichier NAF\+\_\+utils.\+py.
+
+\mbox{\Hypertarget{namespace_n_a_f__utils_abcce9e92c40f0b72db9cd948d5807ddd}\label{namespace_n_a_f__utils_abcce9e92c40f0b72db9cd948d5807ddd}} 
+\index{NAF\_utils@{NAF\_utils}!retirer\_point@{retirer\_point}}
+\index{retirer\_point@{retirer\_point}!NAF\_utils@{NAF\_utils}}
+\doxysubsubsection{\texorpdfstring{retirer\_point()}{retirer\_point()}}
+{\footnotesize\ttfamily  Optional\mbox{[}str\mbox{]} NAF\+\_\+utils.\+retirer\+\_\+point (\begin{DoxyParamCaption}\item[{str}]{code\+\_\+naf }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Fait passer le code NAF à la convention sans point (s'il y est)
+
+:param code_naf: Le code à changer
+:return: Le code sans point.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 30 du fichier NAF\+\_\+utils.\+py.
+
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{namespace_n_a_f__utils_affd2a664e10c8b665564640868f0bd0b}\label{namespace_n_a_f__utils_affd2a664e10c8b665564640868f0bd0b}} 
+\index{NAF\_utils@{NAF\_utils}!df\_naf\_descriptions@{df\_naf\_descriptions}}
+\index{df\_naf\_descriptions@{df\_naf\_descriptions}!NAF\_utils@{NAF\_utils}}
+\doxysubsubsection{\texorpdfstring{df\_naf\_descriptions}{df\_naf\_descriptions}}
+{\footnotesize\ttfamily NAF\+\_\+utils.\+df\+\_\+naf\+\_\+descriptions = None}
+
+
+
+Définition à la ligne 12 du fichier NAF\+\_\+utils.\+py.
+
+\mbox{\Hypertarget{namespace_n_a_f__utils_ae8e053be6df8954e50801601d25af2fa}\label{namespace_n_a_f__utils_ae8e053be6df8954e50801601d25af2fa}} 
+\index{NAF\_utils@{NAF\_utils}!vectorized\_belongs@{vectorized\_belongs}}
+\index{vectorized\_belongs@{vectorized\_belongs}!NAF\_utils@{NAF\_utils}}
+\doxysubsubsection{\texorpdfstring{vectorized\_belongs}{vectorized\_belongs}}
+{\footnotesize\ttfamily NAF\+\_\+utils.\+vectorized\+\_\+belongs = np.\+vectorize(lambda code, codes\+\_\+naf \+: code in codes\+\_\+naf, excluded=\mbox{[}1\mbox{]})}
+
+
+
+Définition à la ligne 55 du fichier NAF\+\_\+utils.\+py.
+
+\mbox{\Hypertarget{namespace_n_a_f__utils_ad2512fdc1b4c70046ce51573afa5981a}\label{namespace_n_a_f__utils_ad2512fdc1b4c70046ce51573afa5981a}} 
+\index{NAF\_utils@{NAF\_utils}!vectorized\_retirer\_points@{vectorized\_retirer\_points}}
+\index{vectorized\_retirer\_points@{vectorized\_retirer\_points}!NAF\_utils@{NAF\_utils}}
+\doxysubsubsection{\texorpdfstring{vectorized\_retirer\_points}{vectorized\_retirer\_points}}
+{\footnotesize\ttfamily NAF\+\_\+utils.\+vectorized\+\_\+retirer\+\_\+points = np.\+vectorize(\mbox{\hyperlink{namespace_n_a_f__utils_abcce9e92c40f0b72db9cd948d5807ddd}{retirer\+\_\+point}})}
+
+
+
+Définition à la ligne 57 du fichier NAF\+\_\+utils.\+py.
+
+\mbox{\Hypertarget{namespace_n_a_f__utils_a83ee8163b21cbfc66a04d9b6a3c2a8bf}\label{namespace_n_a_f__utils_a83ee8163b21cbfc66a04d9b6a3c2a8bf}} 
+\index{NAF\_utils@{NAF\_utils}!vectorized\_starts\_with@{vectorized\_starts\_with}}
+\index{vectorized\_starts\_with@{vectorized\_starts\_with}!NAF\_utils@{NAF\_utils}}
+\doxysubsubsection{\texorpdfstring{vectorized\_starts\_with}{vectorized\_starts\_with}}
+{\footnotesize\ttfamily NAF\+\_\+utils.\+vectorized\+\_\+starts\+\_\+with = np.\+vectorize(lambda str1, str2\+: str(str1).startswith(str2), excluded=\mbox{[}1\mbox{]})}
+
+
+
+Définition à la ligne 56 du fichier NAF\+\_\+utils.\+py.
+
