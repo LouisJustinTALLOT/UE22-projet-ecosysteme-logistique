@@ -24,11 +24,11 @@ from shapely.geometry import Polygon, Point
 from src.clusterizer.utils import NAF_utils
 from src.clusterizer.utils import clusterizer_utils
 from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
-    COLUMN_CLUSTER_INDEX_NAME, \
-    COLUMN_CLUSTER_SIZE_NAME, \
-    COLUMN_CENTROIDS_NAME, \
-    COLUMN_DEFAULT_GEOMETRY_NAME, \
-    COLUMN_CLUSTER_MASS_NAME
+                                                    COLUMN_CLUSTER_INDEX_NAME, \
+                                                    COLUMN_CLUSTER_SIZE_NAME, \
+                                                    COLUMN_CENTROIDS_NAME, \
+                                                    COLUMN_DEFAULT_GEOMETRY_NAME, \
+                                                    COLUMN_CLUSTER_MASS_NAME
 from src.clusterizer.utils.seine_data_utils import rapport_a_la_seine, DICT_GDF_ZONES, NB_ZONES
 
 """
@@ -72,8 +72,6 @@ def nettoyer(df: pd.DataFrame, reduce: bool = False, threshold: int = 1000, colu
     :return: Une DataFrame nettoyée.
     """
 
-
-
     if reduce and df.size >= threshold:
         df = df[:threshold]
 
@@ -100,7 +98,7 @@ def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_G
     # Commençons par faire le clustering et récupérer les centres
     # ==========================================================
 
-    # kmeans = KMeans(n_clusters=k, random_state=0)
+
     mbk = MiniBatchKMeans(n_clusters=k, random_state=0, batch_size=2048)  # ça va plus vite
 
     # Ceci contient des coordonnées (x, y) des points
@@ -114,8 +112,10 @@ def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_G
 
     df = df.join(df_point_cluster)
 
-    # La DataFrame "df_infos_clusters" associe à chaque numéro de cluster les informations correspondantes.
-    # En détails : une colonne "centroids" (centres de masse), une colonne "hulls" (enveloppes convexes),
+    # La DataFrame "df_infos_clusters" associe à chaque numéro de cluster les 
+    # informations correspondantes.
+    # En détails : une colonne "centroids" (centres de masse), 
+    # une colonne "hulls" (enveloppes convexes),
     # une colonne "taille" (nombre d'établissements)
     df_infos_clusters = pd.DataFrame(gpd.points_from_xy(mbk.cluster_centers_[:, 0],
                                                         mbk.cluster_centers_[:, 1]),
@@ -123,7 +123,8 @@ def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_G
                                      )
     df_infos_clusters = df_infos_clusters.join(clusterizer_utils.get_infos_clusters_taille(df))
     df_infos_clusters = df_infos_clusters.join(
-        clusterizer_utils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry, is_dict))
+        clusterizer_utils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry, is_dict)
+    )
     df_infos_clusters = df_infos_clusters.join(clusterizer_utils.get_infos_clusters_poids(df, "apet700"))
 
     return df, df_infos_clusters
@@ -143,14 +144,16 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
     """
 
     if map is None:
-        map = folium.Map(location=[48.844952, 2.339193],
-                        zoom_start=10,
-                        tiles="Stamen Terrain"
-                        )
+        map = folium.Map(
+            location=[48.844952, 2.339193],
+            zoom_start=10,
+            tiles="Stamen Terrain"
+        )
 
-    couleurs = ['cadetblue', 'orange', 'darkred', 'black',
-                'purple', 'gray', 'darkgreen', 'lightgreen',
-                'darkblue', 'blue', 'red']
+    couleurs = [
+        'cadetblue', 'orange', 'darkred', 'black', 'purple', 'gray', 
+        'darkgreen', 'lightgreen','darkblue', 'blue', 'red'
+    ]
 
     centroids = df_clusters.loc[:, COLUMN_CENTROIDS_NAME]
     hulls = df_clusters.loc[:, COLUMN_HULLS_NAME]
@@ -160,11 +163,12 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
     for k, point in enumerate(centroids):
         if point is not None:
             title = f"Centre de masse du cluster {k} : {sizes[k]} établissements. Poids : {poids[k]}"
-            folium.CircleMarker(location=[point.y, point.x],
-                          popup=title,
-                          radius=1
-                         # icon=folium.Icon(color=couleurs[k % len(couleurs)], icon='info-sign')
-                          ).add_to(map)
+            folium.CircleMarker(
+                location=[point.y, point.x],
+                popup=title,
+                radius=1
+                # icon=folium.Icon(color=couleurs[k % len(couleurs)], icon='info-sign')
+            ).add_to(map)
 
     for k, polygon in enumerate(hulls):
         title = f"Cluster {k}"
@@ -174,6 +178,7 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
             polygon = clusterizer_utils.swap_xy(polygon)
             coords = polygon.exterior.coords
             folium.Polygon(locations=coords, popup=title, color=couleurs[k % len(couleurs)]).add_to(map)
+
         elif type(polygon) == MultiPolygon:
             for poly in polygon:
                 poly = clusterizer_utils.swap_xy(poly)
@@ -262,23 +267,12 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
     t1 = time.time()
     print("On sépare par la Seine...", end="    ")
 
-    # on va avoir au moins 4 zones:
-    # rive Gauche,
-    # rive Droite,
-    # Maisons-Alfort,
-    # Courbevoie-Asnières
-
-    masque = rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
+    # masque = rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
+    masque = rapport_a_la_seine_spatial_index(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
 
     liste_df = []
     for no_zone in DICT_GDF_ZONES.keys():
-        # print("key ", no_zone)
-        liste_df.append(
-            # df[numba_rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])), no_zone)]
-            df[no_zone == masque].reset_index(drop=True)
-        )
-
-    # pprint(liste_df)
+        liste_df.append(df[no_zone == masque].reset_index(drop=True))
 
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
@@ -288,8 +282,6 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
     liste_df_clusters = []
 
     nb_clusters_par_zone = calcule_nb_clusters_par_zone(liste_df, nb_clusters)
-    # pprint(nb_clusters_par_zone)
-
 
     for no_zone in range(NB_ZONES):
         try:
@@ -325,7 +317,6 @@ def test_naf():
     print(NAF_utils.get_NAFs_by_section("L"))
 
 if __name__ == "__main__":
-
     # On exécute le programme avec la base SIRENE :
 
     if DEBUG_PLOT:
