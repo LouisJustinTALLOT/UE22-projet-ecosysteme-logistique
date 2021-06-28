@@ -1,7 +1,7 @@
 import sys
 sys.path.append("../../")
 
-from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel, \
+from PyQt5.QtWidgets import QCheckBox, QWidget, QPushButton, QVBoxLayout, QLabel, \
                             QLineEdit, QHBoxLayout, QRadioButton
 
 
@@ -20,20 +20,20 @@ class InputFenetre(QWidget):
 
         # création du champ de texte
         self.champ_nb_cluster_min = QLineEdit()
-        self.champ_nb_cluster_min.setText("10")
+        self.champ_nb_cluster_min.setText("12")
         self.champ_nb_cluster_max = QLineEdit()
-        self.champ_nb_cluster_max.setText("10")
+        self.champ_nb_cluster_max.setText("12")
         self.champ_secteur = QLineEdit()
+        self.champ_secteur.setText("G I Q")
         self.champ_rayon = QLineEdit()
         self.champ_rayon.setText("10")
         
         # création du bouton
         self.bouton = QPushButton("Clusterize !")
-        # on connecte le signal "clicked" à la méthode "appui_bouton_copie"
-        # self.bouton.clicked.connect(self.appui_bouton_OK)
+        self.seine_div = QCheckBox("Séparer par la Seine")
         self.NAF_voulu = QRadioButton("Sélectionner uniquement ces secteurs")
         self.NAF_compl = QRadioButton("Sélectionner tous les secteurs sauf ceux-ci")
-        self.NAF_compl.setChecked(True)
+        self.NAF_voulu.setChecked(True)
  
         # création des étiquettes
         self.label_cluster = QLabel("Nombre de clusters")
@@ -65,14 +65,17 @@ class InputFenetre(QWidget):
         # Layout Secteur
         layout_princip.addWidget(self.label_secteur)
         layout_princip.addWidget(self.champ_secteur)
-        layout_princip.addWidget(self.NAF_compl)
         layout_princip.addWidget(self.NAF_voulu)
+        layout_princip.addWidget(self.NAF_compl)
 
         # Layout rayon
         layout_rayon.addWidget(self.label_rayon)
         layout_rayon.addWidget(self.champ_rayon)
         layout_rayon.addWidget(self.label_unite)
         layout_princip.addLayout(layout_rayon)
+
+        # Séparer par la Seine
+        layout_princip.addWidget(self.seine_div)
 
         # Bouton
         layout_princip.addWidget(self.bouton)

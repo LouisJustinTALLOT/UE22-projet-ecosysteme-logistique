@@ -202,6 +202,7 @@ def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
     return nb_par_zone
 
 def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 50, adresse_map: str = "output/clusterized_map_seine.html",
+              seine_divide: bool = True,
               reduce: bool = False,
               threshold: int = 1000) -> None:
     """
@@ -214,6 +215,7 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
     :param secteur_NAF: les secteurs NAF à sélectionner.
     :param nb_clusters: le nombre de clusters à calculer.
     :param adresse_map: l'adresse de la carte en sortie.
+    :param seine_divide: mettre `True` pour séparer les clusters par la Seine
     :param reduce: mettre :code:`True` pour n'utiliser qu'une version allégée des données (plus rapide).
     :param threshold: nombre de données utilisées si reduce= :code:`True` 
 
@@ -242,34 +244,50 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
     t2 = time.time()
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
-    print("On sépare par la Seine...", end="    ")
 
-    masque = rapport_a_la_seine_spatial_index_point(df.copy()["geometry"].apply(lambda x: x['coordinates']))
+    if seine_divide:
+        print("On sépare par la Seine...", end="    ")
+        masque = rapport_a_la_seine_spatial_index_point(df.copy()["geometry"].apply(lambda x: x['coordinates']))
 
-    liste_df = []
-    for no_zone in DICT_GDF_ZONES.keys():
-        liste_df.append(df[no_zone == masque].reset_index(drop=True))
+        liste_df = []
+        for no_zone in DICT_GDF_ZONES.keys():
+            liste_df.append(df[no_zone == masque].reset_index(drop=True))
 
-    t2 = time.time()
-    print(f"{t2-t1:2.3f} s")
-    t1 = time.time()
-    print("Clusterisation...", end="    ")
+        t2 = time.time()
+        print(f"{t2-t1:2.3f} s")
+        t1 = time.time()
 
-    liste_df_clusters = []
+        print("Clusterisation...", end="    ")
 
-    nb_clusters_par_zone = calcule_nb_clusters_par_zone(liste_df, nb_clusters)
+        liste_df_clusters = []
 
-    for no_zone in range(NB_ZONES):
-        try:
-            liste_df_clusters.append(
-                clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], is_dict=True, weight=True)
-            )
-        except ValueError:
-            pass
+        nb_clusters_par_zone = calcule_nb_clusters_par_zone(liste_df, nb_clusters)
 
-    t2 = time.time()
-    print(f"{t2-t1:2.3f} s")
-    t1 = time.time()
+        for no_zone in range(NB_ZONES):
+            try:
+                liste_df_clusters.append(
+                    clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], is_dict=True, weight=True)
+                )
+            except ValueError:
+                pass
+
+        t2 = time.time()
+        print(f"{t2-t1:2.3f} s")
+        t1 = time.time()
+
+    else :
+        print("Clusterisation...", end="    ")
+
+        liste_df_clusters = []
+        
+        liste_df_clusters.append(
+            clusterize(df, nb_clusters, is_dict=True, weight=True)
+        )
+
+        t2 = time.time()
+        print(f"{t2-t1:2.3f} s")
+        t1 = time.time()
+        
     print("Génération de la carte et sauvegarde...", end="    ")
 
     map = save_to_map(liste_df_clusters[0][1])
