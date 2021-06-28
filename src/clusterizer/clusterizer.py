@@ -29,7 +29,7 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
                                                     COLUMN_CENTROIDS_NAME, \
                                                     COLUMN_DEFAULT_GEOMETRY_NAME, \
                                                     COLUMN_CLUSTER_MASS_NAME
-from src.clusterizer.utils.seine_data_utils import rapport_a_la_seine, rapport_a_la_seine_spatial_index, DICT_GDF_ZONES, NB_ZONES
+from src.clusterizer.utils.seine_data_utils import rapport_a_la_seine, rapport_a_la_seine_spatial_index, DICT_GDF_ZONES, NB_ZONES, rapport_a_la_seine_spatial_index_gpd, rapport_a_la_seine_spatial_index_point
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
@@ -150,10 +150,9 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
             tiles="Stamen Terrain"
         )
 
-    couleurs = [
-        'cadetblue', 'orange', 'darkred', 'black', 'purple', 'gray', 
-        'darkgreen', 'lightgreen','darkblue', 'blue', 'red'
-    ]
+    couleurs = ['darkslateblue', 'orange', 'darkred', 'black',
+                'purple', 'chocolate', 'darkgreen', 'seagreen',
+                'darkblue', 'blue', 'red']
 
     centroids = df_clusters.loc[:, COLUMN_CENTROIDS_NAME]
     hulls = df_clusters.loc[:, COLUMN_HULLS_NAME]
@@ -268,7 +267,8 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
     print("On sépare par la Seine...", end="    ")
 
     # masque = rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
-    masque = rapport_a_la_seine_spatial_index(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
+    # masque = rapport_a_la_seine_spatial_index(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
+    masque = rapport_a_la_seine_spatial_index_point(df.copy()["geometry"].apply(lambda x: x['coordinates']))
 
     liste_df = []
     for no_zone in DICT_GDF_ZONES.keys():
@@ -289,7 +289,7 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
                 clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], is_dict=True, weight=True)
             )
         except ValueError as e:
-            print(e, no_zone)
+            # print(e, no_zone)
             pass
 
     t2 = time.time()
@@ -330,8 +330,17 @@ if __name__ == "__main__":
         # main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
-        main_json(rayon=8, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
+        main_json(rayon=8, nb_clusters=50,adresse_map="output/clusterized_map_with_shapefile_speedup_non_exact_joli_30.html")#, reduce=True, threshold=100_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # cProfile.run('main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=100_000)')
 
+#### au maximum : 
+# $ python clusterizer.py 
+# Ouverture de la DataFrame...    6.922 s
+# On ne garde que les données du centre...    1.110 s
+# On sépare par la Seine...    424.805 s
+# Clusterisation...    7.739 s
+# Génération de la carte et sauvegarde...    0.108 s
+# Terminé !
+# -> 440 secondes = 7 minutes 20
