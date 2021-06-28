@@ -94,7 +94,19 @@ def rapport_a_la_seine_spatial_index(array_coords: np.ndarray) -> np.ndarray:
         # print(res[i])
         if res[i] == -1:
             res[i] = NB_ZONES
- 
+
+def rapport_a_la_seine_spatial_index_point(array_coords: np.ndarray) -> np.ndarray:
+
+    list_points_array_coords = list(map(lambda x: Point(*x), list(array_coords)))
+
+    index_poly_by_id = dict((id(po), i) for i, po in enumerate(DICT_GDF_ZONES.values()))
+
+    polygons_tree = STRtree(DICT_GDF_ZONES.values())
+
+    res = -1 * np.ones(array_coords.shape[0], dtype=int)
+    for i, point in enumerate(list_points_array_coords):
+        res[i] = index_poly_by_id[id(polygons_tree.nearest(point))]
+
     return res
     
 
