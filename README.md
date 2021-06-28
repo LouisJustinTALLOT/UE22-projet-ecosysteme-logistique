@@ -28,6 +28,11 @@ Ce projet dépend des technologies et ressources suivantes :
   * [Google Earth](https://www.google.fr/intl/fr/earth/) pour explorer le terrain de l'Île-de-France et faire des choix géographiques
   * [QGIS](https://www.qgis.org/fr/site/) pour construire les shapefiles à partir des bases de données géographiques
 
+* Générateurs de documentation :
+  * [Doxygen](https://www.doxygen.nl) pour les fichiers `C++`
+  * [Sphinx](https://www.sphinx-doc.org) pour générer les pages web de la documentation ainsi que pour les fichiers `python`
+  * [Breathe](https://breathe.readthedocs.io) pour incorporer la documentation générée par doxygen pour les fichiers `C++` dans les pages créées par Sphinx
+
 * Ressources, plugins, packages :
   * [`OpenStreetMap`](https://www.openstreetmap.org) pour les fonds de carte
   * [Base OpenData Île de France](https://data.iledefrance.fr/) et notamment les bases de données suivantes :
