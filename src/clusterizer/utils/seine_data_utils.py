@@ -37,7 +37,7 @@ def rapport_a_la_seine(xy) -> int:
     """
     Trouve la zone dans laquelle le point situé aux coordonnées considérées est situé
 
-    :rtype: int
+
     :param xy: Un tuple contenant les deux coordonnées (longitude, latitude) du point
     :return: Le numéro de la zone dans laquelle le point est situé
     """

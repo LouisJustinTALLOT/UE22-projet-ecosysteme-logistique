@@ -38,8 +38,8 @@
           <div class="body" role="main">
             
   <h1>Code source de src.clusterizer.clusterizer</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+<span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pformat</span><span class="p">,</span> <span class="n">pprint</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -50,25 +50,26 @@
 
 <span class="kn">import</span> <span class="nn">cProfile</span>
 
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pycallgraph</span> <span class="kn">import</span> <span class="n">PyCallGraph</span>
+<span class="kn">from</span> <span class="nn">pycallgraph.output</span> <span class="kn">import</span> <span class="n">GraphvizOutput</span>
 
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry.multipolygon</span> <span class="kn">import</span> <span class="n">MultiPolygon</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../../&quot;</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span><span class="p">,</span> <span class="n">MiniBatchKMeans</span>
 
-<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span>
 
 <span class="kn">from</span> <span class="nn">src.clusterizer.utils</span> <span class="kn">import</span> <span class="n">NAF_utils</span>
 <span class="kn">from</span> <span class="nn">src.clusterizer.utils</span> <span class="kn">import</span> <span class="n">clusterizer_utils</span>
 <span class="kn">from</span> <span class="nn">src.clusterizer.utils.clusterizer_utils</span> <span class="kn">import</span> <span class="n">COLUMN_HULLS_NAME</span><span class="p">,</span> \
-    <span class="n">COLUMN_CLUSTER_INDEX_NAME</span><span class="p">,</span> \
-    <span class="n">COLUMN_CLUSTER_SIZE_NAME</span><span class="p">,</span> \
-    <span class="n">COLUMN_CENTROIDS_NAME</span><span class="p">,</span> \
-    <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> \
-    <span class="n">COLUMN_CLUSTER_MASS_NAME</span>
-
-<span class="kn">from</span> <span class="nn">src.clusterizer.seine_data_utils</span> <span class="kn">import</span> <span class="n">Frontiere</span><span class="p">,</span> <span class="n">get_frontieres_utiles</span><span class="p">,</span> <span class="n">Point</span>
-
+                                                    <span class="n">COLUMN_CLUSTER_INDEX_NAME</span><span class="p">,</span> \
+                                                    <span class="n">COLUMN_CLUSTER_SIZE_NAME</span><span class="p">,</span> \
+                                                    <span class="n">COLUMN_CENTROIDS_NAME</span><span class="p">,</span> \
+                                                    <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> \
+                                                    <span class="n">COLUMN_CLUSTER_MASS_NAME</span>
+<span class="kn">from</span> <span class="nn">src.clusterizer.utils.seine_data_utils</span> <span class="kn">import</span> <span class="n">rapport_a_la_seine</span><span class="p">,</span> <span class="n">rapport_a_la_seine_spatial_index</span><span class="p">,</span> <span class="n">DICT_GDF_ZONES</span><span class="p">,</span> <span class="n">NB_ZONES</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Clusterise en utilisant l&#39;algorithme des k-moyennes.</span>
@@ -76,110 +77,6 @@
 
 <span class="n">DEBUG_PLOT</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># pour afficher les points et frontières (debugging)</span>
 
-<span class="n">f_seine_nord</span><span class="p">,</span> \
-<span class="n">f_seine_ouest</span><span class="p">,</span> \
-<span class="n">f_seine_petit_droite</span><span class="p">,</span> \
-<span class="n">f_seine_petit_gauche</span><span class="p">,</span> \
-<span class="n">f_seine_central</span><span class="p">,</span> \
-<span class="n">f_seine_alfort_1_gauche</span><span class="p">,</span>\
-<span class="n">f_seine_alfort_2_droite</span><span class="p">,</span>\
-<span class="n">f_seine_alfort_3_gauche</span><span class="p">,</span>\
-<span class="n">f_marne</span><span class="p">,</span>\
-<span class="o">=</span> <span class="n">get_frontieres_utiles</span><span class="p">()</span>
-
-
-<span class="nd">@np</span><span class="o">.</span><span class="n">vectorize</span>
-<span class="k">def</span> <span class="nf">rapport_a_la_seine</span><span class="p">(</span><span class="n">xy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    TODO</span>
-<span class="sd">    </span>
-<span class="sd">    :param xy:</span>
-<span class="sd">    :return:</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">point_etudie</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="c1"># try:</span>
-    <span class="c1">#     f_seine_ouest.en_dessous(point_etudie)</span>
-    <span class="c1"># except Frontiere.DansLaFrontiereNotError as e:</span>
-    <span class="c1">#     if e.res:</span>
-    <span class="c1">#         return 0</span>
-
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">f_seine_ouest</span><span class="o">.</span><span class="n">en_dessous</span><span class="p">(</span><span class="n">point_etudie</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">DEBUG_PLOT</span><span class="p">:</span>
-                <span class="n">point_etudie</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">except</span> <span class="n">Frontiere</span><span class="o">.</span><span class="n">HorsDeLaFrontiereError</span><span class="p">:</span>
-        <span class="k">pass</span>
-
-    <span class="c1"># try:</span>
-    <span class="c1">#     f_seine_central.en_dessous(point_etudie)</span>
-    <span class="c1"># except Frontiere.DansLaFrontiereNotError as e:</span>
-    <span class="c1">#     if e.res:</span>
-    <span class="c1">#         return 1</span>
-
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">f_seine_central</span><span class="o">.</span><span class="n">en_dessous</span><span class="p">(</span><span class="n">point_etudie</span><span class="p">)</span> <span class="p">:</span>
-            <span class="k">if</span> <span class="n">DEBUG_PLOT</span><span class="p">:</span>
-                <span class="n">point_etudie</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">except</span> <span class="n">Frontiere</span><span class="o">.</span><span class="n">HorsDeLaFrontiereError</span><span class="p">:</span>
-        <span class="k">pass</span>
-
-    <span class="c1"># try:</span>
-    <span class="c1">#     f_marne.en_dessous(point_etudie)</span>
-    <span class="c1"># except Frontiere.DansLaFrontiereNotError as e:</span>
-    <span class="c1">#     if e.res:</span>
-    <span class="c1">#         return 1</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">f_marne</span><span class="o">.</span><span class="n">en_dessous</span><span class="p">(</span><span class="n">point_etudie</span><span class="p">)</span> <span class="p">:</span>
-            <span class="k">if</span> <span class="n">DEBUG_PLOT</span><span class="p">:</span>
-                <span class="n">point_etudie</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">except</span> <span class="n">Frontiere</span><span class="o">.</span><span class="n">HorsDeLaFrontiereError</span><span class="p">:</span>
-        <span class="k">pass</span>
-
-    <span class="c1"># try:</span>
-    <span class="c1">#     f_seine_central.en_dessous(point_etudie)</span>
-    <span class="c1"># except Frontiere.DansLaFrontiereNotError as e:</span>
-    <span class="c1">#     if not e.res:</span>
-    <span class="c1">#         return 2</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">f_seine_central</span><span class="o">.</span><span class="n">en_dessous</span><span class="p">(</span><span class="n">point_etudie</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">DEBUG_PLOT</span><span class="p">:</span>
-                <span class="n">point_etudie</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="mi">2</span>
-    <span class="k">except</span> <span class="n">Frontiere</span><span class="o">.</span><span class="n">HorsDeLaFrontiereError</span><span class="p">:</span>
-        <span class="k">pass</span>
-
-    <span class="c1"># try:</span>
-    <span class="c1">#     f_seine_alfort_1_gauche.en_dessous(point_etudie)</span>
-    <span class="c1"># except Frontiere.DansLaFrontiereNotError as e:</span>
-    <span class="c1">#     if e.res:</span>
-    <span class="c1">#         return 2</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">f_seine_alfort_1_gauche</span><span class="o">.</span><span class="n">en_dessous</span><span class="p">(</span><span class="n">point_etudie</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">DEBUG_PLOT</span><span class="p">:</span>
-                <span class="n">point_etudie</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="mi">2</span>
-    <span class="k">except</span> <span class="n">Frontiere</span><span class="o">.</span><span class="n">HorsDeLaFrontiereError</span><span class="p">:</span>
-        <span class="k">pass</span>
-
-    <span class="c1"># try:</span>
-    <span class="c1">#     f_seine_alfort_2_droite.en_dessous(point_etudie)</span>
-    <span class="c1"># except Frontiere.DansLaFrontiereNotError as e:</span>
-    <span class="c1">#     if e.res:</span>
-    <span class="c1">#         return 2</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">f_seine_alfort_2_droite</span><span class="o">.</span><span class="n">en_dessous</span><span class="p">(</span><span class="n">point_etudie</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">DEBUG_PLOT</span><span class="p">:</span>
-                <span class="n">point_etudie</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="mi">2</span>
-    <span class="k">except</span> <span class="n">Frontiere</span><span class="o">.</span><span class="n">HorsDeLaFrontiereError</span><span class="p">:</span>
-        <span class="k">pass</span>
-    <span class="k">if</span> <span class="n">DEBUG_PLOT</span><span class="p">:</span>
-        <span class="n">point_etudie</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="mi">3</span>
 
 <div class="viewcode-block" id="process_rapport_a_la_seine"><a class="viewcode-back" href="../../../index.html#src.clusterizer.clusterizer.process_rapport_a_la_seine">[docs]</a><span class="k">def</span> <span class="nf">process_rapport_a_la_seine</span><span class="p">(</span><span class="n">no_zone</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">shared_array</span><span class="p">:</span> <span class="n">Array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -215,8 +112,6 @@
 <span class="sd">    :return: Une DataFrame nettoyée.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-
-
     <span class="k">if</span> <span class="n">reduce</span> <span class="ow">and</span> <span class="n">df</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">:</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[:</span><span class="n">threshold</span><span class="p">]</span>
 
@@ -243,7 +138,7 @@
     <span class="c1"># Commençons par faire le clustering et récupérer les centres</span>
     <span class="c1"># ==========================================================</span>
 
-    <span class="c1"># kmeans = KMeans(n_clusters=k, random_state=0)</span>
+
     <span class="n">mbk</span> <span class="o">=</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">2048</span><span class="p">)</span>  <span class="c1"># ça va plus vite</span>
 
     <span class="c1"># Ceci contient des coordonnées (x, y) des points</span>
@@ -257,8 +152,10 @@
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_point_cluster</span><span class="p">)</span>
 
-    <span class="c1"># La DataFrame &quot;df_infos_clusters&quot; associe à chaque numéro de cluster les informations correspondantes.</span>
-    <span class="c1"># En détails : une colonne &quot;centroids&quot; (centres de masse), une colonne &quot;hulls&quot; (enveloppes convexes),</span>
+    <span class="c1"># La DataFrame &quot;df_infos_clusters&quot; associe à chaque numéro de cluster les </span>
+    <span class="c1"># informations correspondantes.</span>
+    <span class="c1"># En détails : une colonne &quot;centroids&quot; (centres de masse), </span>
+    <span class="c1"># une colonne &quot;hulls&quot; (enveloppes convexes),</span>
     <span class="c1"># une colonne &quot;taille&quot; (nombre d&#39;établissements)</span>
     <span class="n">df_infos_clusters</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">mbk</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
                                                         <span class="n">mbk</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]),</span>
@@ -266,7 +163,8 @@
                                      <span class="p">)</span>
     <span class="n">df_infos_clusters</span> <span class="o">=</span> <span class="n">df_infos_clusters</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">clusterizer_utils</span><span class="o">.</span><span class="n">get_infos_clusters_taille</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
     <span class="n">df_infos_clusters</span> <span class="o">=</span> <span class="n">df_infos_clusters</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-        <span class="n">clusterizer_utils</span><span class="o">.</span><span class="n">get_infos_clusters_enveloppes_convexes</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">))</span>
+        <span class="n">clusterizer_utils</span><span class="o">.</span><span class="n">get_infos_clusters_enveloppes_convexes</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">)</span>
+    <span class="p">)</span>
     <span class="n">df_infos_clusters</span> <span class="o">=</span> <span class="n">df_infos_clusters</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">clusterizer_utils</span><span class="o">.</span><span class="n">get_infos_clusters_poids</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;apet700&quot;</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">df_infos_clusters</span></div>
@@ -286,15 +184,16 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="nb">map</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">map</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">48.844952</span><span class="p">,</span> <span class="mf">2.339193</span><span class="p">],</span>
-                        <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                        <span class="n">tiles</span><span class="o">=</span><span class="s2">&quot;Stamen Terrain&quot;</span>
-                        <span class="p">)</span>
+        <span class="nb">map</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span>
+            <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">48.844952</span><span class="p">,</span> <span class="mf">2.339193</span><span class="p">],</span>
+            <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">tiles</span><span class="o">=</span><span class="s2">&quot;Stamen Terrain&quot;</span>
+        <span class="p">)</span>
 
-
-    <span class="n">couleurs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;darkslateblue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;darkred&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;deeppink&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;maroon&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">]</span>
+    <span class="n">couleurs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;cadetblue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;darkred&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span>
+    <span class="p">]</span>
 
     <span class="n">centroids</span> <span class="o">=</span> <span class="n">df_clusters</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">COLUMN_CENTROIDS_NAME</span><span class="p">]</span>
     <span class="n">hulls</span> <span class="o">=</span> <span class="n">df_clusters</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">COLUMN_HULLS_NAME</span><span class="p">]</span>
@@ -304,11 +203,12 @@
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">centroids</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">point</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Centre de masse du cluster </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">sizes</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2"> établissements. Poids : </span><span class="si">{</span><span class="n">poids</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="n">folium</span><span class="o">.</span><span class="n">CircleMarker</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
-                          <span class="n">popup</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
-                          <span class="n">radius</span><span class="o">=</span><span class="mi">1</span>
-                         <span class="c1"># icon=folium.Icon(color=couleurs[k % len(couleurs)], icon=&#39;info-sign&#39;)</span>
-                          <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
+            <span class="n">folium</span><span class="o">.</span><span class="n">CircleMarker</span><span class="p">(</span>
+                <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
+                <span class="n">popup</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+                <span class="n">radius</span><span class="o">=</span><span class="mi">1</span>
+                <span class="c1"># icon=folium.Icon(color=couleurs[k % len(couleurs)], icon=&#39;info-sign&#39;)</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">polygon</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hulls</span><span class="p">):</span>
         <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Cluster </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -318,6 +218,12 @@
             <span class="n">polygon</span> <span class="o">=</span> <span class="n">clusterizer_utils</span><span class="o">.</span><span class="n">swap_xy</span><span class="p">(</span><span class="n">polygon</span><span class="p">)</span>
             <span class="n">coords</span> <span class="o">=</span> <span class="n">polygon</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span>
             <span class="n">folium</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">locations</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span> <span class="n">popup</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">couleurs</span><span class="p">[</span><span class="n">k</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">couleurs</span><span class="p">)])</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">polygon</span><span class="p">)</span> <span class="o">==</span> <span class="n">MultiPolygon</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">polygon</span><span class="p">:</span>
+                <span class="n">poly</span> <span class="o">=</span> <span class="n">clusterizer_utils</span><span class="o">.</span><span class="n">swap_xy</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+                <span class="n">coords</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span>
+                <span class="n">folium</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">locations</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span> <span class="n">popup</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">couleurs</span><span class="p">[</span><span class="n">k</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">couleurs</span><span class="p">)])</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
 
     <span class="nb">map</span><span class="o">.</span><span class="n">get_root</span><span class="p">()</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span>
         <span class="n">folium</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span>
@@ -342,6 +248,14 @@
 <span class="sd">    :param nb_clusters:</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># poids_par_zone: np.ndarray = np.zeros(len(liste_df))</span>
+    <span class="c1"># for i in range(len(liste_df)):</span>
+        <span class="c1"># poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], &quot;apet700&quot;) </span>
+        <span class="c1"># poids_total = np.sum(poids_par_zone)</span>
+    <span class="c1"># return np.ceil((poids_par_zone / poids_total * nb_clusters)).astype(int)</span>
+    <span class="c1"># # nb_par_zone = np.rint((poids_par_zone / poids_total * nb_clusters)).astype(int)</span>
+    <span class="c1"># # nb_par_zone = list(np.maximum(nb_par_zone, np.ones(len(liste_df), dtype=int)))  # il faut au moins un cluster par zone considérée</span>
+    <span class="c1"># # return nb_par_zone</span>
     <span class="n">poids_par_zone</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">liste_df</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">liste_df</span><span class="p">)):</span>
         <span class="n">poids_par_zone</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">clusterizer_utils</span><span class="o">.</span><span class="n">calculer_poids_cluster</span><span class="p">(</span><span class="n">liste_df</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;apet700&quot;</span><span class="p">)</span>
@@ -350,7 +264,7 @@
     <span class="n">nb_par_zone</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">nb_par_zone</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">liste_df</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>  <span class="c1"># il faut au moins un cluster par zone considérée</span>
     <span class="k">return</span> <span class="n">nb_par_zone</span></div>
 
-<div class="viewcode-block" id="main_json"><a class="viewcode-back" href="../../../index.html#src.clusterizer.clusterizer.main_json">[docs]</a><span class="k">def</span> <span class="nf">main_json</span><span class="p">(</span><span class="n">rayon</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">secteur_NAF</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">nb_clusters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">adresse_map</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;output/clusterized_map_seine.html&quot;</span><span class="p">,</span>
+<div class="viewcode-block" id="main_json"><a class="viewcode-back" href="../../../index.html#src.clusterizer.clusterizer.main_json">[docs]</a><span class="k">def</span> <span class="nf">main_json</span><span class="p">(</span><span class="n">rayon</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">secteur_NAF</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="n">nb_clusters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">adresse_map</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;output/clusterized_map_seine.html&quot;</span><span class="p">,</span>
               <span class="n">reduce</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
               <span class="n">threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -393,40 +307,13 @@
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;On sépare par la Seine...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;    &quot;</span><span class="p">)</span>
 
-    <span class="c1"># on va avoir au moins 4 zones:</span>
-    <span class="c1"># rive Gauche,</span>
-    <span class="c1"># rive Droite,</span>
-    <span class="c1"># Maisons-Alfort,</span>
-    <span class="c1"># Courbevoie-Asnières</span>
+    <span class="c1"># masque = rapport_a_la_seine(np.array(df.copy()[&quot;geometry&quot;].apply(lambda x: x[&#39;coordinates&#39;])))</span>
+    <span class="n">masque</span> <span class="o">=</span> <span class="n">rapport_a_la_seine_spatial_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">])))</span>
 
-    <span class="n">nb_zones</span> <span class="o">=</span> <span class="mi">4</span>
     <span class="n">liste_df</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">no_zone</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_zones</span><span class="p">):</span>
-        <span class="n">liste_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="c1"># df[numba_rapport_a_la_seine(np.array(df.copy()[&quot;geometry&quot;].apply(lambda x: x[&#39;coordinates&#39;])), no_zone)]</span>
-            <span class="n">df</span><span class="p">[</span><span class="n">no_zone</span> <span class="o">==</span> <span class="n">rapport_a_la_seine</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">])))]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="p">)</span>
+    <span class="k">for</span> <span class="n">no_zone</span> <span class="ow">in</span> <span class="n">DICT_GDF_ZONES</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">liste_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">no_zone</span> <span class="o">==</span> <span class="n">masque</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
-
-    <span class="c1"># print(liste_df[0].head(5))</span>
-    <span class="c1"># input()</span>
-    <span class="c1"># print(&quot;\n\n\n&quot;)</span>
-    <span class="c1"># print(liste_df[0].to_numpy())</span>
-    <span class="c1"># input()</span>
-    <span class="c1"># liste_df = RawArray(pd.DataFrame, nb_zones)</span>
-    <span class="c1"># liste_processes : List[Process] = []</span>
-
-    <span class="c1"># for i in range(nb_zones):</span>
-    <span class="c1">#     liste_processes.append(Process(target=process_rapport_a_la_seine, args= (i, df, liste_df)))</span>
-
-    <span class="c1"># for i in range(nb_zones):</span>
-    <span class="c1">#     liste_processes[i].start()</span>
-    <span class="c1"># for i in range(nb_zones):</span>
-    <span class="c1">#     liste_processes[i].join()</span>
-
-
-    <span class="c1"># with Pool(nb_zones) as p:</span>
-    <span class="c1">#     liste_df = p.map(map_rapport_a_la_seine, [(i, df) for i in range(nb_zones)])</span>
     <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="si">:</span><span class="s2">2.3f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -435,16 +322,16 @@
     <span class="n">liste_df_clusters</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="n">nb_clusters_par_zone</span> <span class="o">=</span> <span class="n">calcule_nb_clusters_par_zone</span><span class="p">(</span><span class="n">liste_df</span><span class="p">,</span> <span class="n">nb_clusters</span><span class="p">)</span>
-    <span class="c1"># pprint(nb_clusters_par_zone)</span>
 
-
-    <span class="k">for</span> <span class="n">no_zone</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_zones</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">no_zone</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NB_ZONES</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">liste_df_clusters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="n">clusterize</span><span class="p">(</span><span class="n">liste_df</span><span class="p">[</span><span class="n">no_zone</span><span class="p">],</span> <span class="n">nb_clusters_par_zone</span><span class="p">[</span><span class="n">no_zone</span><span class="p">],</span> <span class="n">is_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">no_zone</span><span class="p">)</span>
             <span class="k">pass</span>
+
     <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="si">:</span><span class="s2">2.3f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -470,28 +357,24 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">NAF_utils</span><span class="o">.</span><span class="n">get_NAFs_by_section</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">))</span></div>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-
     <span class="c1"># On exécute le programme avec la base SIRENE :</span>
 
     <span class="k">if</span> <span class="n">DEBUG_PLOT</span><span class="p">:</span>
         <span class="n">main_json</span><span class="p">(</span><span class="n">reduce</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="n">f_seine_nord</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">couleur</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="n">f_seine_ouest</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">couleur</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">)</span>
-        <span class="n">f_seine_petit_droite</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">couleur</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="n">f_seine_petit_gauche</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">couleur</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="n">f_seine_central</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">couleur</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="n">f_seine_alfort_1_gauche</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">couleur</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="n">f_seine_alfort_2_droite</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">couleur</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="n">f_seine_alfort_3_gauche</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">couleur</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="n">f_marne</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">couleur</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">main_json</span><span class="p">(</span><span class="n">adresse_map</span><span class="o">=</span><span class="s2">&quot;output/clusterized_map_improve_nb_clusters.html&quot;</span><span class="p">)</span>
         <span class="c1"># main_json(reduce = True, adresse_map=&quot;output/clusterized_map_optim_de_cython.html&quot;)</span>
-        <span class="c1"># main_json(adresse_map=&quot;output/clusterized_map_IHM.html&quot;)</span>
-        <span class="c1"># cProfile.run(&#39;main_json(adresse_map=&quot;output/clusterized_map_optim_de_cython.html&quot;)&#39;)</span>
+        <span class="c1"># main_json(adresse_map=&quot;output/clusterized_map_optim_de_cython.html&quot;)</span>
+        <span class="c1"># cProfile.run(&#39;main_json(adresse_map=&quot;output/clusterized_map_with_shapefile.html&quot;, reduce=True, threshold=10000)&#39;)</span>
+        <span class="c1"># cProfile.run(&#39;main_json(rayon=1000, adresse_map=&quot;output/clusterized_map_with_shapefile.html&quot;)&#39;)</span>
+        <span class="c1"># main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=10_000)</span>
+        <span class="c1"># with PyCallGraph(output=GraphvizOutput()):</span>
+        <span class="c1">#     main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=10_000)</span>
+        <span class="n">main_json</span><span class="p">(</span><span class="n">rayon</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">adresse_map</span><span class="o">=</span><span class="s2">&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;</span><span class="p">,</span> <span class="n">reduce</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+        <span class="c1"># with PyCallGraph(output=GraphvizOutput()):</span>
+        <span class="c1">#     main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=10_000)</span>
+        <span class="c1"># cProfile.run(&#39;main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=100_000)&#39;)</span>
+
 </pre></div>
 
             <div class="clearer"></div>

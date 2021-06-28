@@ -45,10 +45,10 @@ Utilitaires pour la gestion des codes NAF
 .. .. doxygenfile:: NAF_utils.py
 
 
-.. Utilitaires pour la séparation par la Seine
-.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. .. automodule:: src.clusterizer.utils.seine_data_utils
-..    :members:
+Utilitaires pour la séparation par la Seine
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: src.clusterizer.utils.seine_data_utils
+   :members:
 
 
 Traitement de la base SIRENE
