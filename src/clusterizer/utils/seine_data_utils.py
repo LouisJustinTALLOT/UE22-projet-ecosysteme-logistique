@@ -33,7 +33,14 @@ for i in DICT_ZONES_IDF.keys():
 NB_ZONES = len(DICT_ZONES_IDF)
 
 @np.vectorize
-def rapport_a_la_seine(xy):
+def rapport_a_la_seine(xy) -> int:
+    """
+    Trouve la zone dans laquelle le point situé aux coordonnées considérées est situé
+
+    :rtype: int
+    :param xy: Un tuple contenant les deux coordonnées (longitude, latitude) du point
+    :return: Le numéro de la zone dans laquelle le point est situé
+    """
     coord = (xy[0], xy[1])
 
     for no_zone, gdf in DICT_GDF_ZONES.items():
@@ -44,9 +51,14 @@ def rapport_a_la_seine(xy):
     # print(coord, "out of all zones")
     return NB_ZONES
 
-def rapport_a_la_seine_spatial_index(array_coords: np.ndarray):
+
+def rapport_a_la_seine_spatial_index(array_coords: np.ndarray) -> np.ndarray:
     """
-    
+    Trouve les zones où se situent les points de l':code:`array` fournie.
+    Utilise un *R-Tree* pour ce faire pour accélérer le calcul.
+
+    :param array_coords: Array (nb_points, 2) contenant les coordonnées des points
+    :return: une array "masque" qui a chaque point associe son numéro de zone
     """
     # on crée d'abord des shapely.geometry.Point 
     # pour tous les points de la base de données
