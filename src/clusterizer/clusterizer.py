@@ -29,35 +29,13 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
                                                     COLUMN_CENTROIDS_NAME, \
                                                     COLUMN_DEFAULT_GEOMETRY_NAME, \
                                                     COLUMN_CLUSTER_MASS_NAME
-from src.clusterizer.utils.seine_data_utils import rapport_a_la_seine, rapport_a_la_seine_spatial_index, DICT_GDF_ZONES, NB_ZONES, rapport_a_la_seine_spatial_index_gpd, rapport_a_la_seine_spatial_index_point
+from src.clusterizer.utils.seine_data_utils import DICT_GDF_ZONES, NB_ZONES, rapport_a_la_seine_spatial_index_point
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
 """
 
 DEBUG_PLOT = False # pour afficher les points et frontières (debugging)
-
-
-def process_rapport_a_la_seine(no_zone:int, df: pd.DataFrame, shared_array: Array) -> None:
-    """
-    TODO
-
-    :param no_zone:
-    :param df:
-    :param shared_array:
-    """
-    shared_array[no_zone] = df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
-
-def map_rapport_a_la_seine(args_tuple: Tuple[int, pd.DataFrame]) -> pd.DataFrame:
-    """
-    TODO
-
-    :param args_tuple:
-    :return:
-    """
-    no_zone, df = args_tuple
-    return df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
-
 
 
 def nettoyer(df: pd.DataFrame, reduce: bool = False, threshold: int = 1000, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME) -> pd.DataFrame:
@@ -266,8 +244,6 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
     t1 = time.time()
     print("On sépare par la Seine...", end="    ")
 
-    # masque = rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
-    # masque = rapport_a_la_seine_spatial_index(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
     masque = rapport_a_la_seine_spatial_index_point(df.copy()["geometry"].apply(lambda x: x['coordinates']))
 
     liste_df = []
@@ -288,8 +264,7 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
             liste_df_clusters.append(
                 clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], is_dict=True, weight=True)
             )
-        except ValueError as e:
-            # print(e, no_zone)
+        except ValueError:
             pass
 
     t2 = time.time()
