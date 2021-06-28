@@ -131,28 +131,49 @@ if __name__ == "__main__":
     with open("points", 'r', encoding='utf8') as file:
         array = np.array(eval(file.read()))
     t1 = time.time()
-    rapport_a_la_seine_spatial_index(array)
+    # pprint(rapport_a_la_seine_spatial_index(array))
     t2 = time.time()
     print(f"{t2-t1:3.3f} secondes avec index")
-    print(array)
-    print(tuple(array[0]))
-    print("\n\n\n\n")
-    print(np.array([tuple(x) for x in array])[:,0])
+    # print(array)
+    # print(tuple(array[0]))
+    # print("\n\n\n\n")
+    # print(np.array([tuple(x) for x in array])[:,0])
+
     array2 = np.array([tuple(x) for x in array])
     # rapport_a_la_seine(np.array([tuple(x) for x in array]))
-
-    for coord in zip(array2[:,0], array2[:,1]):
+    res = -1 * np.ones(len(array2), dtype=int)
+    for i, coord in enumerate(zip(array2[:,0], array2[:,1])):
         # coord = (xy[0], xy[1])
 
         for no_zone, gdf in DICT_GDF_ZONES.items():
             if Point(*coord).within(gdf):
                 # print(coord, no_zone)
                 # return no_zone
+                res[i] = no_zone
                 pass
 
         # print(coord, "out of all zones")
         # return NB_ZONES
-
+        if res[i] == -1:
+            res[i] = NB_ZONES
+    pprint(res)
     t3 = time.time()
     print(f"{t3-t2:3.3f} secondes sans index")
+    pprint(rapport_a_la_seine_spatial_index_point(array))
+    t4 = time.time()
+    print(f"{t4-t3:3.3f} secondes avec index sur les polygones")
 
+
+
+# $ python seine_data_utils.py 
+# 30
+# 0
+# 1195
+# 2359
+# 1172
+# array([3, 2, 3, ..., 4, 4, 3])
+# 22.207 secondes avec index
+# array([3, 2, 3, ..., 4, 4, 3])
+# 20.819 secondes sans index
+# array([3, 2, 3, ..., 4, 4, 3])
+# 6.969 secondes avec index sur les polygones
