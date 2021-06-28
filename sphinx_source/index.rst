@@ -4,37 +4,12 @@
    contain the root `toctree` directive.
 
 Ecosystème logistique - Documentation
-======================================
-
+######################################
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
 
 
-
-Interface Homme-Machine
-========================
-Interface complète
--------------------
-
-.. automodule:: src.ihm.ihm_complet
-   :members:
-
-
-Interaction avec l'utilisateur *via* fichier CSV
--------------------------------------------------
-.. automodule:: src.ihm.ihm_csv
-   :members:
-
-Utilitaire : fenêtre d'accueil pour :code:`ihm_complet`
---------------------------------------------------------
-.. automodule:: src.ihm.ihm_pyqt
-   :members:
-
-(Obsolète) Ouverture d'un fichier :code:`HTML` dans un navigateur Web : 
--------------------------------------------------------------------------
-.. automodule:: src.ihm.web
-   :members:
 
 Clusterizer
 ===================
@@ -83,6 +58,31 @@ Traitement de la base SIRENE
 
 .. .. automodule:: src.traitement_base_SIRENE.traitement_base_sirene
 ..    :members:
+
+
+Interface Homme-Machine
+========================
+Interface complète
+-------------------
+
+.. automodule:: src.ihm.ihm_complet
+   :members:
+
+
+Interaction avec l'utilisateur *via* fichier CSV
+-------------------------------------------------
+.. automodule:: src.ihm.ihm_csv
+   :members:
+
+Utilitaire : fenêtre d'accueil pour :code:`ihm_complet`
+--------------------------------------------------------
+.. automodule:: src.ihm.ihm_pyqt
+   :members:
+
+(Obsolète) Ouverture d'un fichier :code:`HTML` dans un navigateur Web : 
+-------------------------------------------------------------------------
+.. automodule:: src.ihm.web
+   :members:
 
 
 Indices and tables
