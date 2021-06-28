@@ -108,10 +108,10 @@ def calculer_poids_code_NAF(code_naf: str) -> int:
     :param code_naf: Le code NAF à calculer (dans une des deux conventions : avec ou sans points).
     :return: Le poids du code NAF.
     """
-    debut = int(str(code_naf)[0:2])
+    #debut = int(str(code_naf)[0:2])
 
-    if 49 <= debut <= 56:
-        return 4
+    #if 49 <= debut <= 56:
+        #return 4
 
     return 1
 
