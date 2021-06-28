@@ -81,19 +81,27 @@ def get_infos_clusters_enveloppes_convexes(k: int, df: pd.DataFrame, column_geom
         else:
             multi_point = MultiPoint(points.array)
 
-        hull = list(Polygon(multi_point).boundary.coords)
+        # hull = list(Polygon(multi_point).boundary.coords)
 
-        alpha = Polygon(hull).area
+        # alpha = Polygon(hull).area
 
-        result_hull = concave_hull_utils.alpha_shape(hull, alpha=alpha)[0]
-        n_iter = 0
-        while n_iter<5 and ((type(result_hull) == MultiPolygon and len(result_hull) > 3) or result_hull.area < 10*Polygon(hull).area):
+        # result_hull = concave_hull_utils.alpha_shape(hull, alpha=alpha)[0]
+        # n_iter = 0
+        # while n_iter<5 and ((type(result_hull) == MultiPolygon and len(result_hull) > 3) or result_hull.area < 10*Polygon(hull).area):
 
-            alpha *= 2
-            result_hull = concave_hull_utils.alpha_shape(hull, alpha=alpha)[0]
-            n_iter += 1
+        #     alpha *= 2
+        #     result_hull = concave_hull_utils.alpha_shape(hull, alpha=alpha)[0]
+        #     n_iter += 1
 
-        temp_hulls[n] = result_hull
+        # temp_hulls[n] = result_hull
+
+        hull = multi_point.convex_hull
+
+        if type(hull) == Point or type(hull) == LineString or type(hull) == GeometryCollection:
+            # S'il n'y a qu'un point dans le cluster, on ne peut pas créer de Polygon
+            temp_hulls[n] = hull
+        else:
+            temp_hulls[n] = Polygon(hull)
 
     return gpd.GeoDataFrame(gpd.GeoSeries(temp_hulls), columns=[COLUMN_HULLS_NAME])
 
