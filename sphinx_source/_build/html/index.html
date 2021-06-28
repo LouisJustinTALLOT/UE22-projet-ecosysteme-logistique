@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Ecosystème logistique - Documentation &mdash; Documentation Ecosystème logistique </title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Ecosystème logistique
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Ecosystème logistique - Documentation</a><ul>
+<li><a class="reference internal" href="#readme">README</a></li>
+<li><a class="reference internal" href="#mines-paristech-psl">Mines ParisTech - PSL</a><ul>
+<li><a class="reference internal" href="#ue22-projet-d-informatique-ecosysteme-logistique">UE22 - Projet d’informatique - Ecosystème Logistique</a><ul>
+<li><a class="reference internal" href="#judith-bellon-gabrielle-vernet-cesar-almecija-louis-justin-tallot">Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot</a><ul>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#dependances">Dépendances</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#clusterizer">Clusterizer</a><ul>
+<li><a class="reference internal" href="#module-src.clusterizer.clusterizer">Fichier principal</a></li>
+<li><a class="reference internal" href="#fichiers-utilitaires">Fichiers utilitaires</a><ul>
+<li><a class="reference internal" href="#module-src.clusterizer.utils.clusterizer_utils">Utilitaires pour la clusterisation</a></li>
+<li><a class="reference internal" href="#module-src.clusterizer.utils.NAF_utils">Utilitaires pour la gestion des codes NAF</a></li>
+<li><a class="reference internal" href="#module-src.clusterizer.utils.seine_data_utils">Utilitaires pour la séparation par la Seine</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#traitement-de-la-base-sirene">Traitement de la base SIRENE</a></li>
+<li><a class="reference internal" href="#interface-homme-machine">Interface Homme-Machine</a><ul>
+<li><a class="reference internal" href="#module-src.ihm.ihm_complet">Interface complète</a></li>
+<li><a class="reference internal" href="#module-src.ihm.ihm_csv">Interaction avec l’utilisateur <em>via</em> fichier CSV</a></li>
+<li><a class="reference internal" href="#module-src.ihm.ihm_pyqt">Utilitaire : fenêtre d’accueil pour <code class="code docutils literal notranslate"><span class="pre">ihm_complet</span></code></a></li>
+<li><a class="reference internal" href="#module-src.ihm.web">(Obsolète) Ouverture d’un fichier <code class="code docutils literal notranslate"><span class="pre">HTML</span></code> dans un navigateur Web :</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Ecosystème logistique</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Ecosystème logistique - Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ecosysteme-logistique-documentation">
+<h1>Ecosystème logistique - Documentation<a class="headerlink" href="#ecosysteme-logistique-documentation" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="readme">
+<h2>README<a class="headerlink" href="#readme" title="Lien permanent vers ce titre">¶</a></h2>
+</div>
+<div class="section" id="mines-paristech-psl">
+<h2>Mines ParisTech - PSL<a class="headerlink" href="#mines-paristech-psl" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="ue22-projet-d-informatique-ecosysteme-logistique">
+<h3>UE22 - Projet d’informatique - Ecosystème Logistique<a class="headerlink" href="#ue22-projet-d-informatique-ecosysteme-logistique" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="section" id="judith-bellon-gabrielle-vernet-cesar-almecija-louis-justin-tallot">
+<h4>Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot<a class="headerlink" href="#judith-bellon-gabrielle-vernet-cesar-almecija-louis-justin-tallot" title="Lien permanent vers ce titre">¶</a></h4>
+<div class="section" id="documentation">
+<h5>Documentation<a class="headerlink" href="#documentation" title="Lien permanent vers ce titre">¶</a></h5>
+<p>La documentation du projet est disponible à cette adresse :</p>
+<p><a class="reference external" href="https://louisjustintallot.github.io/UE22-projet-ecosysteme-logistique">https://louisjustintallot.github.io/UE22-projet-ecosysteme-logistique</a></p>
+</div>
+<div class="section" id="dependances">
+<h5>Dépendances<a class="headerlink" href="#dependances" title="Lien permanent vers ce titre">¶</a></h5>
+<p>Ce projet dépend des technologies et ressources suivantes :</p>
+<ul class="simple">
+<li><p>Langages :</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">HTML</span> <span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">CSS</span> <span class="pre">3</span></code>, et <code class="docutils literal notranslate"><span class="pre">Javascript</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Python</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C++</span></code> compilé avec <code class="docutils literal notranslate"><span class="pre">g++</span></code></p></li>
+</ul>
+</li>
+<li><p>Formats de fichiers :</p>
+<ul>
+<li><p><cite>``JSON`</cite> &lt;<a class="reference external" href="https://fr.wikipedia.org/wiki/JavaScript_Object_Notation">https://fr.wikipedia.org/wiki/JavaScript_Object_Notation</a>&gt;`_ majoritairement</p></li>
+<li><p><cite>``GEOJSON`</cite> &lt;<a class="reference external" href="https://fr.wikipedia.org/wiki/GeoJSON">https://fr.wikipedia.org/wiki/GeoJSON</a>&gt;`_ également, parfois plus adapté</p></li>
+<li><p><cite>``CSV`</cite> &lt;<a class="reference external" href="https://fr.wikipedia.org/wiki/Comma-separated_values">https://fr.wikipedia.org/wiki/Comma-separated_values</a>&gt;`_ pour explorer les données de manière plus convéniente avec Excel</p></li>
+</ul>
+</li>
+<li><p>Logiciels :</p>
+<ul>
+<li><p><a class="reference external" href="https://www.google.fr/intl/fr/earth/">Google Earth</a> pour explorer le terrain de l’Île-de-France et faire des choix géographiques</p></li>
+<li><p><a class="reference external" href="https://www.qgis.org/fr/site/">QGIS</a> pour construire les shapefiles à partir des bases de données géographiques</p></li>
+</ul>
+</li>
+<li><p>Ressources, plugins, packages :</p>
+<ul>
+<li><p><cite>``OpenStreetMap`</cite> &lt;<a class="reference external" href="https://www.openstreetmap.org">https://www.openstreetmap.org</a>&gt;`_ pour les fonds de carte</p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/">Base OpenData Île de France</a> et notamment les bases de données suivantes :</p>
+<ul>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-sirene">Base Sirene des entreprises et de leurs établissements</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-adresse-75">BAN - Base Adresse Nationale - Paris</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-adresse-92">BAN - Base Adresse Nationale - Hauts-de-Seine</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-adresse-94">BAN - Base Adresse Nationale - Val-de-Marne</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-adresse-94">BAN - Base Adresse Nationale - Val-de-Marne</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-adresse-93">BAN - Base Adresse Nationale - Seine-Saint-Denis</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/iris/information/">Base IRIS</a> pour les contours de l’Île-de-France</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.data.gouv.fr/fr/datasets/apur-hydrographie-surfacique-ile-de-france/">Base APUR</a>, hydrographie surfacique de l’Île-de-France</p></li>
+<li><p>Les plugins Javascript :</p>
+<ul>
+<li><p><cite>``Leaflet`</cite> &lt;<a class="reference external" href="https://leafletjs.com/">https://leafletjs.com/</a>&gt;`_ pour insérer des cartes OSM dans les pages web</p></li>
+<li><p>le projet <cite>``Leaflet/Leaflet.markercluster`</cite> &lt;<a class="reference external" href="https://github.com/Leaflet/Leaflet.markercluster">https://github.com/Leaflet/Leaflet.markercluster</a>&gt;`_ pour regrouper les points et accélèrer l’affichage</p></li>
+<li><p>le projet <cite>``pointhi/leaflet-color-markers`</cite> &lt;<a class="reference external" href="https://github.com/pointhi/leaflet-color-markers">https://github.com/pointhi/leaflet-color-markers</a>&gt;`_ pour des marqueurs de couleurs variées</p></li>
+</ul>
+</li>
+<li><p>Les packages Python :</p>
+<ul>
+<li><p><cite>``GeoPandas`</cite> &lt;<a class="reference external" href="https://geopandas.org/">https://geopandas.org/</a>&gt;`_ pour analyser et traiter les données géographiques</p></li>
+<li><p><cite>``Folium`</cite> &lt;<a class="reference external" href="https://python-visualization.github.io/folium/">https://python-visualization.github.io/folium/</a>&gt;`_ pour générer des cartes et fichiers <code class="docutils literal notranslate"><span class="pre">HTML</span></code></p></li>
+<li><p><cite>``json`</cite> &lt;<a class="reference external" href="https://docs.python.org/fr/3/library/json.html">https://docs.python.org/fr/3/library/json.html</a>&gt;`_ pour traiter des fichiers <code class="docutils literal notranslate"><span class="pre">JSON</span></code></p></li>
+<li><p><cite>``ijson`</cite> &lt;<a class="reference external" href="https://pypi.org/project/ijson/">https://pypi.org/project/ijson/</a>&gt;`_ pour traiter de manière itérative de lourds fichiers <code class="docutils literal notranslate"><span class="pre">JSON</span></code></p></li>
+<li><p><cite>``time`</cite> &lt;<a class="reference external" href="https://docs.python.org/fr/3/library/time.html">https://docs.python.org/fr/3/library/time.html</a>&gt;`_ pour mesurer le temps de traitement</p></li>
+<li><p><cite>``matplotlib`</cite> &lt;<a class="reference external" href="https://matplotlib.org">https://matplotlib.org</a>&gt;`_ pour analyser les données issues des bases ainsi que visualiser le résultat du clustering</p></li>
+<li><p><cite>``Jupyter`</cite> &lt;<a class="reference external" href="https://jupyter.org/">https://jupyter.org/</a>&gt;`_ pour développer de manière plus rapide (supporte même <code class="docutils literal notranslate"><span class="pre">Folium</span></code>)</p></li>
+<li><p><cite>``PyQt5`</cite> &lt;<a class="reference external" href="https://www.riverbankcomputing.com/software/pyqt/">https://www.riverbankcomputing.com/software/pyqt/</a>&gt;`_ pour réaliser l’interface homme-machine</p></li>
+<li><p><cite>``QtWebEngine`</cite> &lt;<a class="reference external" href="https://wiki.qt.io/QtWebEngine">https://wiki.qt.io/QtWebEngine</a>&gt;`_ pour afficher les fichiers <code class="docutils literal notranslate"><span class="pre">HTML</span></code> générés par <code class="docutils literal notranslate"><span class="pre">Folium</span></code> dans l’interface <code class="docutils literal notranslate"><span class="pre">PyQt</span></code></p></li>
+<li><p><cite>``Cython`</cite> &lt;<a class="reference external" href="https://cython.org/">https://cython.org/</a>&gt;`_ pour compiler certains de nos modules et accélérer notre code</p></li>
+</ul>
+</li>
+<li><p>Les librairies <code class="docutils literal notranslate"><span class="pre">C++</span></code> :</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">iostream</span></code> pour les entrées/sorties</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fstream</span></code> pour lire/écrire les fichiers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span></code> pour manipuler les chaînes de caractères</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chrono</span></code> pour mesurer le temps d’exécution des différentes parties du programme</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="clusterizer">
+<h2>Clusterizer<a class="headerlink" href="#clusterizer" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="module-src.clusterizer.clusterizer">
+<span id="fichier-principal"></span><h3>Fichier principal<a class="headerlink" href="#module-src.clusterizer.clusterizer" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.clusterizer.calcule_nb_clusters_par_zone">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">calcule_nb_clusters_par_zone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">liste_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_clusters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#calcule_nb_clusters_par_zone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.calcule_nb_clusters_par_zone" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>TODO</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>liste_df</strong> – </p></li>
+<li><p><strong>nb_clusters</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.clusterizer.clusterize">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">clusterize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'geometry'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">,</span> </span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#clusterize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.clusterize" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Clusterise à l’aide de l’algorithme des k-moyennes. Attention, fait du en-place.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – La (Geo)DataFrame contenant les points à clusteriser.</p></li>
+<li><p><strong>k</strong> – Le nombre de clusters à calculer.</p></li>
+<li><p><strong>column_geometry</strong> – A spécifier si la colonne contenant les points n’est pas la colonne par défaut (« geometry »)</p></li>
+<li><p><strong>is_dict</strong> – Indiquer True si jamais la colonne contenant les points ne contient pas d’objets
+shapely.geometry.Points, mais un dictionnaire (en général, lorsque le fichier provient d’un GeoJSON)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Deux GeoDataFrame.
+Une première GeoDataFrame entrée contenant une colonne en plus (« cluster ») : celle-ci permet de savoir pour chaque
+point le numéro du cluster qui lui a été affecté.
+Une deuxième GeoDataFrame contenant les informations détaillées de chaque cluster : centre de masse (« centroids »),
+enveloppe convexe (« hulls ») et nombre d’établissements dans le cluster (« taille »)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.clusterizer.main_json">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">main_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rayon</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secteur_NAF</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">['']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_clusters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adresse_map</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'output/clusterized_map_seine.html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#main_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.main_json" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction principale à exécuter pour successivement ouvrir la DataFrame contenant les données,
+nettoyer la DataFrame, filtrer par secteurs NAF, ne garder que les magasins proche du centre de Paris,
+séparer par la Seine, clusteriser et sauvegarder dans une carte.
+La répartition entre les secteurs de la Seine est calculée automatiquement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rayon</strong> – le rayon (à partir du centre de Paris).</p></li>
+<li><p><strong>secteur_NAF</strong> – les secteurs NAF à sélectionner.</p></li>
+<li><p><strong>nb_clusters</strong> – le nombre de clusters à calculer.</p></li>
+<li><p><strong>adresse_map</strong> – l’adresse de la carte en sortie.</p></li>
+<li><p><strong>reduce</strong> – mettre <code class="code docutils literal notranslate"><span class="pre">True</span></code> pour n’utiliser qu’une version allégée des données (plus rapide).</p></li>
+<li><p><strong>threshold</strong> – nombre de données utilisées si reduce= <code class="code docutils literal notranslate"><span class="pre">True</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p><code class="code docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.clusterizer.map_rapport_a_la_seine">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">map_rapport_a_la_seine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args_tuple</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#map_rapport_a_la_seine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.map_rapport_a_la_seine" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>TODO</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>args_tuple</strong> – </p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.clusterizer.nettoyer">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">nettoyer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'geometry'</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#nettoyer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.nettoyer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Nettoie la DataFrame. Enlève les na.
+Si spécifié, ne retient que les premières données de la DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – La DataFrame.</p></li>
+<li><p><strong>reduce</strong> – Si True, ne prend que les premières données.</p></li>
+<li><p><strong>threshold</strong> – Dans le cas où reduce=True, nombre de données à sélectionner.</p></li>
+<li><p><strong>column_geometry</strong> – A spécifier si la colonne contenant les points n’est pas la colonne par défaut (« geometry »)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Une DataFrame nettoyée.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.clusterizer.process_rapport_a_la_seine">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">process_rapport_a_la_seine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">no_zone</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_array</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">multiprocessing.context.BaseContext.Array</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#process_rapport_a_la_seine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.process_rapport_a_la_seine" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>TODO</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>no_zone</strong> – </p></li>
+<li><p><strong>df</strong> – </p></li>
+<li><p><strong>shared_array</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.clusterizer.save_to_map">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">save_to_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_clusters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">folium.folium.Map</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">folium.folium.Map</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#save_to_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.save_to_map" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Sauvegarde les informations des clusters dans une carte Leaflet.
+Retourne la carte</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_clusters</strong> – La DataFrame contenant les informations de chaque cluster
+(cf. deuxième sortie de la fonction clusterize)</p></li>
+<li><p><strong>map</strong> – la carte à utiliser
+si un paramètre est spécifié : réecrit par dessus.
+si rien n’est spécifié, génère une nouvelle carte</p></li>
+</ul>
+</dd>
+</dl>
+<p>:return une carte complétée.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.clusterizer.test_geojson">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">test_geojson</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#test_geojson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.test_geojson" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction interne (utilisée pour vérifier le bon fonctionnement de la clusterisation).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.clusterizer.test_naf">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">test_naf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#test_naf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.test_naf" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction interne (utilisée pour vérifier le bon fonctionnement du filtrage par NAF).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="fichiers-utilitaires">
+<h3>Fichiers utilitaires<a class="headerlink" href="#fichiers-utilitaires" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="section" id="module-src.clusterizer.utils.clusterizer_utils">
+<span id="utilitaires-pour-la-clusterisation"></span><h4>Utilitaires pour la clusterisation<a class="headerlink" href="#module-src.clusterizer.utils.clusterizer_utils" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Ce module permet d’extraire simplement nos données des GeoDataFrames, de trouver
+leurs coordonnées, de restreindre le calcul aux points situés dans un certain rayon
+autour de Paris ; il permet également de manipuler les clusters, de calculer leur 
+poids et leur taille.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.clusterizer_utils.</span></span><span class="sig-name descname"><span class="pre">calculer_poids_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">naf_column_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">int</span><a class="reference internal" href="_modules/src/clusterizer/utils/clusterizer_utils.html#calculer_poids_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule le poids d’un ensemble d’établissements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – La DataFrame contenant tous les établissements.
+Rien n’est requis, à part avoir une colonne où sont situés les codes NAF.</p></li>
+<li><p><strong>naf_column_name</strong> – Le nom de la colonne contenant les codes NAF.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Le poids du cluster.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster_wrapper">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.clusterizer_utils.</span></span><span class="sig-name descname"><span class="pre">calculer_poids_cluster_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">naf_column_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="_modules/src/clusterizer/utils/clusterizer_utils.html#calculer_poids_cluster_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster_wrapper" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Wrappe calculer_poids_cluster pour pouvoir l’utiliser dans un groupby.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>naf_column_name</strong> – La colonne où se situent les codes NAF.</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>cf. la fonction calculer_poids_cluster.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.clusterizer_utils.calculer_poids_code_NAF">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.clusterizer_utils.</span></span><span class="sig-name descname"><span class="pre">calculer_poids_code_NAF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code_naf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">int</span><a class="reference internal" href="_modules/src/clusterizer/utils/clusterizer_utils.html#calculer_poids_code_NAF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.clusterizer_utils.calculer_poids_code_NAF" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule le poids d’un code NAF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>code_naf</strong> – Le code NAF à calculer (dans une des deux conventions : avec ou sans points).</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Le poids du code NAF.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.clusterizer_utils.filter_nearby_paris">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.clusterizer_utils.</span></span><span class="sig-name descname"><span class="pre">filter_nearby_paris</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'geometry'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/utils/clusterizer_utils.html#filter_nearby_paris"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.clusterizer_utils.filter_nearby_paris" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Filtre les données proches du centre de Paris.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – la DataFrame à filtrer</p></li>
+<li><p><strong>radius</strong> – le rayon (en kilomètres)</p></li>
+<li><p><strong>column_geometry</strong> – la colonne où se trouvent les données géométriques (par défaut : “geometry”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>la DataFrame filtrée</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.clusterizer_utils.get_coords_from_object">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.clusterizer_utils.</span></span><span class="sig-name descname"><span class="pre">get_coords_from_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'geometry'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="reference internal" href="_modules/src/clusterizer/utils/clusterizer_utils.html#get_coords_from_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.clusterizer_utils.get_coords_from_object" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère les coordonnées des points de la DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – la DataFrame.</p></li>
+<li><p><strong>column_geometry</strong> – la colonne contenant les données géométriques.</p></li>
+<li><p><strong>is_dict</strong> – les données sont-elles en dictionnaire ?</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>les coordonnées sous la forme d’une matrice de deux colonnes (et d’autant de lignes qu’il y a de points)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.clusterizer_utils.get_infos_clusters_enveloppes_convexes">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.clusterizer_utils.</span></span><span class="sig-name descname"><span class="pre">get_infos_clusters_enveloppes_convexes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'geometry'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/utils/clusterizer_utils.html#get_infos_clusters_enveloppes_convexes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_enveloppes_convexes" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction permettant de récupérer des infos sur les clusters (enveloppes convexes).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Nombre de clusters</p></li>
+<li><p><strong>df</strong> – La DataFrame où l’on a déjà ajouté le numéro des clusters (laissée intacte).</p></li>
+<li><p><strong>column_geometry</strong> – Le nom de la colonne où se situent les données géometriques (par défaut, « geometry »).</p></li>
+<li><p><strong>is_dict</strong> – True si les paramètres sont sous forme de dictionnaire</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Une GeoDataFrame associant à chaque numéro de cluster son enveloppe convexe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.clusterizer_utils.get_infos_clusters_poids">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.clusterizer_utils.</span></span><span class="sig-name descname"><span class="pre">get_infos_clusters_poids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_naf_code</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/utils/clusterizer_utils.html#get_infos_clusters_poids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_poids" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction permettant de récupérer des infos sur les clusters (poids).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – La DataFrame où l’on a déjà ajouté le numéro des clusters (laissée intacte).</p></li>
+<li><p><strong>column_naf_code</strong> – Le nom de la colonne où se situent les codes NAF.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Une nouvelle GeoDataFrame associant à chaque numéro de cluster le poids de celui-ci</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.clusterizer_utils.get_infos_clusters_taille">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.clusterizer_utils.</span></span><span class="sig-name descname"><span class="pre">get_infos_clusters_taille</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/utils/clusterizer_utils.html#get_infos_clusters_taille"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_taille" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction permettant de récupérer des infos sur les clusters (tailles).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>df</strong> – La DataFrame où l’on a déjà ajouté le numéro des clusters (laissée intacte).</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Une nouvelle GeoDataFrame associant à chaque numéro de cluster la taille de celui-ci
+(nombre d’établissements)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.clusterizer_utils.swap_xy">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.clusterizer_utils.</span></span><span class="sig-name descname"><span class="pre">swap_xy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geom</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/clusterizer/utils/clusterizer_utils.html#swap_xy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.clusterizer_utils.swap_xy" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Inverse les coordonnées de l’objet shapely.geometry.
+Utile pour passer objets shapely dans folium (la convention est inversée).
+Auteur : <a class="reference external" href="https://gis.stackexchange.com/a/291293">https://gis.stackexchange.com/a/291293</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>geom</strong> – L’objet dont on veut inverser les coordonnées (Point, Polygon, MultiPolygon, etc.)</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>l’objet inversé</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.clusterizer.utils.NAF_utils">
+<span id="utilitaires-pour-la-gestion-des-codes-naf"></span><h4>Utilitaires pour la gestion des codes NAF<a class="headerlink" href="#module-src.clusterizer.utils.NAF_utils" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Fonctions pour switcher les conventions de NAF (avec ou sans point intermédiaire)</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.ajouter_point">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.NAF_utils.</span></span><span class="sig-name descname"><span class="pre">ajouter_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code_naf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="_modules/src/clusterizer/utils/NAF_utils.html#ajouter_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.NAF_utils.ajouter_point" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fait passer le code NAF à la convention avec point (s’il n’y est pas)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>code_naf</strong> – Le code à changer</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Le code avec un point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.filter_by_naf">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.NAF_utils.</span></span><span class="sig-name descname"><span class="pre">filter_by_naf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codes_naf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_codes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/utils/NAF_utils.html#filter_by_naf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.NAF_utils.filter_by_naf" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne les établissements dont le code NAF est contenu dans la liste.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – La liste des établissements (convention NAF : sans le point)</p></li>
+<li><p><strong>codes_naf</strong> – Les codes NAF (avec ou sans le point) (sous forme de liste)</p></li>
+<li><p><strong>column_codes</strong> – La colonne où est située le code NAF dans la DataFrame des établissements</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>La DataFrame filtrée.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.get_NAFs_by_section">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.NAF_utils.</span></span><span class="sig-name descname"><span class="pre">get_NAFs_by_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.series.Series</span><a class="reference internal" href="_modules/src/clusterizer/utils/NAF_utils.html#get_NAFs_by_section"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.NAF_utils.get_NAFs_by_section" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fournit la liste des codes NAF de la section correspondante.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>section</strong> – La lettre de la section</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>La liste des codes NAF contenus dans la section (convention : avec points)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.get_description">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.NAF_utils.</span></span><span class="sig-name descname"><span class="pre">get_description</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code_naf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="reference internal" href="_modules/src/clusterizer/utils/NAF_utils.html#get_description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.NAF_utils.get_description" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fournit la description correspondant au code NAF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>code_naf</strong> – le code, avec ou sans point.</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>la description complète.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.retirer_point">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.NAF_utils.</span></span><span class="sig-name descname"><span class="pre">retirer_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code_naf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="_modules/src/clusterizer/utils/NAF_utils.html#retirer_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.NAF_utils.retirer_point" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fait passer le code NAF à la convention sans point (s’il y est)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>code_naf</strong> – Le code à changer</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Le code sans point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.clusterizer.utils.seine_data_utils">
+<span id="utilitaires-pour-la-separation-par-la-seine"></span><h4>Utilitaires pour la séparation par la Seine<a class="headerlink" href="#module-src.clusterizer.utils.seine_data_utils" title="Lien permanent vers ce titre">¶</a></h4>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.seine_data_utils.</span></span><span class="sig-name descname"><span class="pre">rapport_a_la_seine_spatial_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array_coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="reference internal" href="_modules/src/clusterizer/utils/seine_data_utils.html#rapport_a_la_seine_spatial_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Trouve les zones où se situent les points de l”<code class="code docutils literal notranslate"><span class="pre">array</span></code> fournie.
+Utilise un <em>R-Tree</em> pour ce faire pour accélérer le calcul.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>array_coords</strong> – Array (nb_points, 2) contenant les coordonnées des points</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>une array « masque » qui a chaque point associe son numéro de zone</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="traitement-de-la-base-sirene">
+<h2>Traitement de la base SIRENE<a class="headerlink" href="#traitement-de-la-base-sirene" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44mainv">
+<span id="_CPPv34mainv"></span><span id="_CPPv24mainv"></span><span id="main"></span><span class="target" id="traitement__base__sirene_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44mainv" title="Lien permanent vers cette définition">¶</a><br /></dt>
+<dd><p>Traite la base SIRENE (fichier JSON de 1,7 Go) et en extrait les informations utiles. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>int </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="interface-homme-machine">
+<h2>Interface Homme-Machine<a class="headerlink" href="#interface-homme-machine" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="module-src.ihm.ihm_complet">
+<span id="interface-complete"></span><h3>Interface complète<a class="headerlink" href="#module-src.ihm.ihm_complet" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.ihm.ihm_complet.</span></span><span class="sig-name descname"><span class="pre">Wind</span></span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Classe contenant l’interface Homme-Machine pour le projet.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind.appui_bouton_OK">
+<span class="sig-name descname"><span class="pre">appui_bouton_OK</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind.appui_bouton_OK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind.appui_bouton_OK" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Listener pour le bouton ok.
+Prépare les données pour lancer la clusterisation et l’affichage de la carte.
+cf. lancement_clustering</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind.lancement_clustering">
+<span class="sig-name descname"><span class="pre">lancement_clustering</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind.lancement_clustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind.lancement_clustering" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Lance la clusterisation à l’aide des paramètres entrés par l’utilisateur.
+Ensuite, affiche la carte.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.ihm.ihm_csv">
+<span id="interaction-avec-l-utilisateur-via-fichier-csv"></span><h3>Interaction avec l’utilisateur <em>via</em> fichier CSV<a class="headerlink" href="#module-src.ihm.ihm_csv" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Première interface Homme-machine : utilisation d’un tableau <cite>CSV</cite> pour récupérer les informations données par l’utilisateur</p>
+<p>Paramètres modifiables dans la fonction <code class="code docutils literal notranslate"><span class="pre">clusterize</span></code> : le nombre de clusters</p>
+<p>TODO : Paramètres modifiables souhaités en plus : encadrement du nombre de clusters, taille des clusters</p>
+</div>
+<div class="section" id="module-src.ihm.ihm_pyqt">
+<span id="utilitaire-fenetre-d-accueil-pour-ihm-complet"></span><h3>Utilitaire : fenêtre d’accueil pour <code class="code docutils literal notranslate"><span class="pre">ihm_complet</span></code><a class="headerlink" href="#module-src.ihm.ihm_pyqt" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.ihm.ihm_pyqt.InputFenetre">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.ihm.ihm_pyqt.</span></span><span class="sig-name descname"><span class="pre">InputFenetre</span></span><a class="reference internal" href="_modules/src/ihm/ihm_pyqt.html#InputFenetre"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_pyqt.InputFenetre" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Le widget qui permet à l’utilisateur de rentrer les paramètres de clustering</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.ihm.web">
+<span id="obsolete-ouverture-d-un-fichier-html-dans-un-navigateur-web"></span><h3>(Obsolète) Ouverture d’un fichier <code class="code docutils literal notranslate"><span class="pre">HTML</span></code> dans un navigateur Web :<a class="headerlink" href="#module-src.ihm.web" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.ihm.web.open_html">
+<span class="sig-prename descclassname"><span class="pre">src.ihm.web.</span></span><span class="sig-name descname"><span class="pre">open_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adresse</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ihm/web.html#open_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.web.open_html" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Affichage du html depuis python. Il faut être dans le répertoire ihm pour le lancer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>adresse</strong> – l’adresse du fichier à ouvrir</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Index du module</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Page de recherche</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021 Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot.
+
+    </p>
+  </div>
+    
+    
+    
+    Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
