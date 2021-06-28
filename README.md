@@ -28,6 +28,11 @@ Ce projet dépend des technologies et ressources suivantes :
   * [Google Earth](https://www.google.fr/intl/fr/earth/) pour explorer le terrain de l'Île-de-France et faire des choix géographiques
   * [QGIS](https://www.qgis.org/fr/site/) pour construire les shapefiles à partir des bases de données géographiques
 
+* Générateurs de documentation :
+  * [Doxygen](https://www.doxygen.nl) pour les fichiers `C++`
+  * [Sphinx](https://www.sphinx-doc.org) pour générer les pages web de la documentation ainsi que pour les fichiers `python`
+  * [Breathe](https://breathe.readthedocs.io) pour incorporer la documentation générée par doxygen pour les fichiers `C++` dans les pages créées par Sphinx
+
 * Ressources, plugins, packages :
   * [`OpenStreetMap`](https://www.openstreetmap.org) pour les fonds de carte
   * [Base OpenData Île de France](https://data.iledefrance.fr/) et notamment les bases de données suivantes :
@@ -48,6 +53,7 @@ Ce projet dépend des technologies et ressources suivantes :
   * Les packages Python :
     * [`GeoPandas`](https://geopandas.org/) pour analyser et traiter les données géographiques
     * [`Folium`](https://python-visualization.github.io/folium/) pour générer des cartes et fichiers `HTML`
+    * [`shapely`](https://shapely.readthedocs.io/en/stable/manual.html) pour manipuler les données géographiques sous forme de points et de polygones
     * [`json`](https://docs.python.org/fr/3/library/json.html) pour traiter des fichiers `JSON`
     * [`ijson`](https://pypi.org/project/ijson/) pour traiter de manière itérative de lourds fichiers `JSON`
     * [`time`](https://docs.python.org/fr/3/library/time.html) pour mesurer le temps de traitement
