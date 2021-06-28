@@ -70,11 +70,11 @@ def rapport_a_la_seine_spatial_index(array_coords: np.ndarray) -> np.ndarray:
 
     list_points_array_coords = list(map(lambda x: Point(*x), list(array_coords)))
 
+    index_by_id = dict((id(pt), i) for i, pt in enumerate(list_points_array_coords))
+
     # un R-Tree
     points_tree = STRtree(list_points_array_coords)
 
-    # pprint(points_tree)
-    
     dict_res_appartenance = {}
     # puis on va faire l'intersection de tous ces points avec nos polygones
     # en utilisant des R-Trees  
@@ -83,17 +83,29 @@ def rapport_a_la_seine_spatial_index(array_coords: np.ndarray) -> np.ndarray:
         dict_res_appartenance[no_zone] = [o for o in points_tree.query(polygon) if o.intersects(polygon)]
         print(len(dict_res_appartenance[no_zone]))
     
+    # res = -1 * np.ones(array_coords.shape[0], dtype=int)
+    # # print(res)
+    # # return
+    # for i in range(len(res)):
+    #     for no_zone, list_appartenance in dict_res_appartenance.items():
+    #         if list_points_array_coords[i] in list_appartenance:
+    #             res[i] = int(no_zone)
+    #             break
+    #     # print(res[i])
+    #     if res[i] == -1:
+    #         res[i] = NB_ZONES
+
     res = -1 * np.ones(array_coords.shape[0], dtype=int)
-    # print(res)
-    # return
-    for i in range(len(res)):
-        for no_zone, list_appartenance in dict_res_appartenance.items():
-            if list_points_array_coords[i] in list_appartenance:
-                res[i] = int(no_zone)
-                break
-        # print(res[i])
+    for no_zone in DICT_GDF_ZONES.keys():
+        for pt in dict_res_appartenance[no_zone]:
+            res[index_by_id[id(pt)]] = no_zone
+
+    for i, no_zone in enumerate(res):
         if res[i] == -1:
             res[i] = NB_ZONES
+    # pprint(res)
+    return res
+
 
 def rapport_a_la_seine_spatial_index_point(array_coords: np.ndarray) -> np.ndarray:
 
