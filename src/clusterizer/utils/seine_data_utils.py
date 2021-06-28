@@ -118,10 +118,11 @@ def rapport_a_la_seine_spatial_index_point(array_coords: np.ndarray) -> np.ndarr
     res = -1 * np.ones(array_coords.shape[0], dtype=int)
     for i, point in enumerate(list_points_array_coords):
         le_bon_poly = polygons_tree.nearest(point)
-        if le_bon_poly.intersects(point):
-            res[i] = index_poly_by_id[id(le_bon_poly)]
-        else:
-            res[i] = NB_ZONES
+        res[i] = index_poly_by_id[id(le_bon_poly)]
+        # if le_bon_poly.intersects(point):
+        #     res[i] = index_poly_by_id[id(le_bon_poly)]
+        # else:
+        #     res[i] = NB_ZONES
     return res
     
 
