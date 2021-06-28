@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/my_theme.css" type="text/css" />
 
   
   
@@ -184,35 +185,13 @@
                                                     <span class="n">COLUMN_CENTROIDS_NAME</span><span class="p">,</span> \
                                                     <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> \
                                                     <span class="n">COLUMN_CLUSTER_MASS_NAME</span>
-<span class="kn">from</span> <span class="nn">src.clusterizer.utils.seine_data_utils</span> <span class="kn">import</span> <span class="n">rapport_a_la_seine</span><span class="p">,</span> <span class="n">rapport_a_la_seine_spatial_index</span><span class="p">,</span> <span class="n">DICT_GDF_ZONES</span><span class="p">,</span> <span class="n">NB_ZONES</span><span class="p">,</span> <span class="n">rapport_a_la_seine_spatial_index_gpd</span>
+<span class="kn">from</span> <span class="nn">src.clusterizer.utils.seine_data_utils</span> <span class="kn">import</span> <span class="n">DICT_GDF_ZONES</span><span class="p">,</span> <span class="n">NB_ZONES</span><span class="p">,</span> <span class="n">rapport_a_la_seine_spatial_index_point</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Clusterise en utilisant l&#39;algorithme des k-moyennes.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">DEBUG_PLOT</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># pour afficher les points et frontières (debugging)</span>
-
-
-<div class="viewcode-block" id="process_rapport_a_la_seine"><a class="viewcode-back" href="../../../index.html#src.clusterizer.clusterizer.process_rapport_a_la_seine">[docs]</a><span class="k">def</span> <span class="nf">process_rapport_a_la_seine</span><span class="p">(</span><span class="n">no_zone</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">shared_array</span><span class="p">:</span> <span class="n">Array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    TODO</span>
-
-<span class="sd">    :param no_zone:</span>
-<span class="sd">    :param df:</span>
-<span class="sd">    :param shared_array:</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">shared_array</span><span class="p">[</span><span class="n">no_zone</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">no_zone</span> <span class="o">==</span> <span class="n">rapport_a_la_seine</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">])))]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="map_rapport_a_la_seine"><a class="viewcode-back" href="../../../index.html#src.clusterizer.clusterizer.map_rapport_a_la_seine">[docs]</a><span class="k">def</span> <span class="nf">map_rapport_a_la_seine</span><span class="p">(</span><span class="n">args_tuple</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    TODO</span>
-
-<span class="sd">    :param args_tuple:</span>
-<span class="sd">    :return:</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">no_zone</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">args_tuple</span>
-    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">no_zone</span> <span class="o">==</span> <span class="n">rapport_a_la_seine</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">])))]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
-
 
 
 <div class="viewcode-block" id="nettoyer"><a class="viewcode-back" href="../../../index.html#src.clusterizer.clusterizer.nettoyer">[docs]</a><span class="k">def</span> <span class="nf">nettoyer</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">reduce</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
@@ -305,10 +284,9 @@
             <span class="n">tiles</span><span class="o">=</span><span class="s2">&quot;Stamen Terrain&quot;</span>
         <span class="p">)</span>
 
-    <span class="n">couleurs</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;cadetblue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;darkred&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span>
-    <span class="p">]</span>
+    <span class="n">couleurs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;darkslateblue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;darkred&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;seagreen&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">]</span>
 
     <span class="n">centroids</span> <span class="o">=</span> <span class="n">df_clusters</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">COLUMN_CENTROIDS_NAME</span><span class="p">]</span>
     <span class="n">hulls</span> <span class="o">=</span> <span class="n">df_clusters</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">COLUMN_HULLS_NAME</span><span class="p">]</span>
@@ -422,9 +400,7 @@
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;On sépare par la Seine...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;    &quot;</span><span class="p">)</span>
 
-    <span class="c1"># masque = rapport_a_la_seine(np.array(df.copy()[&quot;geometry&quot;].apply(lambda x: x[&#39;coordinates&#39;])))</span>
-    <span class="c1"># masque = rapport_a_la_seine_spatial_index(np.array(df.copy()[&quot;geometry&quot;].apply(lambda x: x[&#39;coordinates&#39;])))</span>
-    <span class="n">masque</span> <span class="o">=</span> <span class="n">rapport_a_la_seine_spatial_index_gpd</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]))</span>
+    <span class="n">masque</span> <span class="o">=</span> <span class="n">rapport_a_la_seine_spatial_index_point</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]))</span>
 
     <span class="n">liste_df</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">no_zone</span> <span class="ow">in</span> <span class="n">DICT_GDF_ZONES</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -444,8 +420,7 @@
             <span class="n">liste_df_clusters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="n">clusterize</span><span class="p">(</span><span class="n">liste_df</span><span class="p">[</span><span class="n">no_zone</span><span class="p">],</span> <span class="n">nb_clusters_par_zone</span><span class="p">[</span><span class="n">no_zone</span><span class="p">],</span> <span class="n">is_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">no_zone</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">pass</span>
 
     <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -486,11 +461,20 @@
         <span class="c1"># main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=10_000)</span>
         <span class="c1"># with PyCallGraph(output=GraphvizOutput()):</span>
         <span class="c1">#     main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=10_000)</span>
-        <span class="n">main_json</span><span class="p">(</span><span class="n">rayon</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">adresse_map</span><span class="o">=</span><span class="s2">&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;</span><span class="p">,</span> <span class="n">reduce</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+        <span class="n">main_json</span><span class="p">(</span><span class="n">rayon</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">nb_clusters</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">adresse_map</span><span class="o">=</span><span class="s2">&quot;output/clusterized_map_with_shapefile_speedup_non_exact_joli_30.html&quot;</span><span class="p">)</span><span class="c1">#, reduce=True, threshold=100_000)</span>
         <span class="c1"># with PyCallGraph(output=GraphvizOutput()):</span>
         <span class="c1">#     main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=10_000)</span>
         <span class="c1"># cProfile.run(&#39;main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=100_000)&#39;)</span>
 
+<span class="c1">#### au maximum : </span>
+<span class="c1"># $ python clusterizer.py </span>
+<span class="c1"># Ouverture de la DataFrame...    6.922 s</span>
+<span class="c1"># On ne garde que les données du centre...    1.110 s</span>
+<span class="c1"># On sépare par la Seine...    424.805 s</span>
+<span class="c1"># Clusterisation...    7.739 s</span>
+<span class="c1"># Génération de la carte et sauvegarde...    0.108 s</span>
+<span class="c1"># Terminé !</span>
+<span class="c1"># -&gt; 440 secondes = 7 minutes 20</span>
 </pre></div>
 
            </div>

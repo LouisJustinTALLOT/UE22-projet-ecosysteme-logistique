@@ -362,20 +362,6 @@ La répartition entre les secteurs de la Seine est calculée automatiquement.</p
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="src.clusterizer.clusterizer.map_rapport_a_la_seine">
-<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">map_rapport_a_la_seine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args_tuple</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#map_rapport_a_la_seine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.map_rapport_a_la_seine" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>TODO</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>args_tuple</strong> – </p>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="src.clusterizer.clusterizer.nettoyer">
 <span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">nettoyer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'geometry'</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#nettoyer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.nettoyer" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Nettoie la DataFrame. Enlève les na.
@@ -391,21 +377,6 @@ Si spécifié, ne retient que les premières données de la DataFrame.</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Une DataFrame nettoyée.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="src.clusterizer.clusterizer.process_rapport_a_la_seine">
-<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">process_rapport_a_la_seine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">no_zone</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_array</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">multiprocessing.context.BaseContext.Array</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#process_rapport_a_la_seine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.process_rapport_a_la_seine" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>TODO</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>no_zone</strong> – </p></li>
-<li><p><strong>df</strong> – </p></li>
-<li><p><strong>shared_array</strong> – </p></li>
-</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -681,16 +652,19 @@ Auteur : <a class="reference external" href="https://gis.stackexchange.com/a/291
 <div class="section" id="module-src.clusterizer.utils.seine_data_utils">
 <span id="utilitaires-pour-la-separation-par-la-seine"></span><h4>Utilitaires pour la séparation par la Seine<a class="headerlink" href="#module-src.clusterizer.utils.seine_data_utils" title="Lien permanent vers ce titre">¶</a></h4>
 <dl class="py function">
-<dt class="sig sig-object py" id="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index">
-<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.seine_data_utils.</span></span><span class="sig-name descname"><span class="pre">rapport_a_la_seine_spatial_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array_coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="reference internal" href="_modules/src/clusterizer/utils/seine_data_utils.html#rapport_a_la_seine_spatial_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index" title="Lien permanent vers cette définition">¶</a></dt>
+<dt class="sig sig-object py" id="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.seine_data_utils.</span></span><span class="sig-name descname"><span class="pre">rapport_a_la_seine_spatial_index_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array_coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="reference internal" href="_modules/src/clusterizer/utils/seine_data_utils.html#rapport_a_la_seine_spatial_index_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Trouve les zones où se situent les points de l”<code class="code docutils literal notranslate"><span class="pre">array</span></code> fournie.
 Utilise un <em>R-Tree</em> pour ce faire pour accélérer le calcul.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>array_coords</strong> – Array (nb_points, 2) contenant les coordonnées des points</p>
+<dd class="field-odd"><p><strong>array_coords</strong> (<em>np.ndarray</em>) – Array (nb_points, 2) contenant les coordonnées des points</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p>une array « masque » qui a chaque point associe son numéro de zone</p>
+<dd class="field-even"><p>Une array « masque » qui a chaque point associe son numéro de zone</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
