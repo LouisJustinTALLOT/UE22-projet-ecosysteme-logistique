@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="classseine__data__utils__py_1_1_point" kind="class" language="Python" prot="public">
+    <compoundname>seine_data_utils_py::Point</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classseine__data__utils__py_1_1_point_1af6c1f0da50a7cf15010dd8618abff3f7" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>seine_data_utils_py.Point::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/seine_data_utils_py.py" line="94" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classseine__data__utils__py_1_1_point_1a1a71dcd70db2970b873583ca8e1fdd12" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>seine_data_utils_py.Point::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/seine_data_utils_py.py" line="95" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classseine__data__utils__py_1_1_point_1a1ea8ae7da0cdeaa565bbd53de905c1b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None seine_data_utils_py.Point.__init__</definition>
+        <argsstring>(self, float long, float lat)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float long</type>
+          <defname>long</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>lat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/seine_data_utils_py.py" line="93" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="93" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classseine__data__utils__py_1_1_point_1ab0df154d6ed6a5e61f87525b97bac69c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str seine_data_utils_py.Point.__repr__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__repr__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/seine_data_utils_py.py" line="97" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="97" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classseine__data__utils__py_1_1_point_1aaae3204cd61db8ded6622bd89742d17b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def seine_data_utils_py.Point.plot</definition>
+        <argsstring>(self, couleur=&quot;red&quot;)</argsstring>
+        <name>plot</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>couleur</type>
+          <defname>couleur</defname>
+          <defval>&quot;red&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/clusterizer/utils/seine_data_utils_py.py" line="100" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="100" bodyend="102"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/clusterizer/utils/seine_data_utils_py.py" line="92" column="1" bodyfile="src/clusterizer/utils/seine_data_utils_py.py" bodystart="92" bodyend="103"/>
+    <listofallmembers>
+      <member refid="classseine__data__utils__py_1_1_point_1a1ea8ae7da0cdeaa565bbd53de905c1b6" prot="public" virt="non-virtual"><scope>seine_data_utils_py::Point</scope><name>__init__</name></member>
+      <member refid="classseine__data__utils__py_1_1_point_1ab0df154d6ed6a5e61f87525b97bac69c" prot="public" virt="non-virtual"><scope>seine_data_utils_py::Point</scope><name>__repr__</name></member>
+      <member refid="classseine__data__utils__py_1_1_point_1aaae3204cd61db8ded6622bd89742d17b" prot="public" virt="non-virtual"><scope>seine_data_utils_py::Point</scope><name>plot</name></member>
+      <member refid="classseine__data__utils__py_1_1_point_1af6c1f0da50a7cf15010dd8618abff3f7" prot="public" virt="non-virtual"><scope>seine_data_utils_py::Point</scope><name>x</name></member>
+      <member refid="classseine__data__utils__py_1_1_point_1a1a71dcd70db2970b873583ca8e1fdd12" prot="public" virt="non-virtual"><scope>seine_data_utils_py::Point</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="_b_a_n_analizer_8py" kind="file" language="Python">
+    <compoundname>BANAnalizer.py</compoundname>
+    <innernamespace refid="namespace_b_a_n_analizer">BANAnalizer</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespace_b_a_n_analizer" refkind="compound"><highlight class="keyword">import</highlight><highlight class="normal"><sp/>geopandas<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>gpd</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>pandas<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>pd</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>numpy<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>np</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>folium</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>sklearn.cluster<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>KMeans</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>shapely.geometry<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Point,<sp/>MultiPoint,<sp/>Polygon</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="9"><highlight class="stringliteral">Ce<sp/>fichier<sp/>permet<sp/>de<sp/>faire<sp/>du<sp/>clustering<sp/>:</highlight></codeline>
+<codeline lineno="10"><highlight class="stringliteral">-<sp/>formation<sp/>des<sp/>clusters</highlight></codeline>
+<codeline lineno="11"><highlight class="stringliteral">-<sp/>calcul<sp/>des<sp/>centres<sp/>de<sp/>gravité<sp/>pour<sp/>chaque<sp/>cluster</highlight></codeline>
+<codeline lineno="12"><highlight class="stringliteral">-<sp/>calcul<sp/>des<sp/>enveloppes<sp/>convexes<sp/>de<sp/>chaque<sp/>cluster</highlight></codeline>
+<codeline lineno="13"><highlight class="stringliteral">-<sp/>sauvegarde<sp/>dans<sp/>une<sp/>carte<sp/>Leaflet</highlight></codeline>
+<codeline lineno="14"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="15"><highlight class="stringliteral">Le<sp/>fichier<sp/>ne<sp/>prend<sp/>pas<sp/>encore<sp/>ne<sp/>compte<sp/>le<sp/>poids.</highlight></codeline>
+<codeline lineno="16"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="17"><highlight class="stringliteral">Requis<sp/>:</highlight></codeline>
+<codeline lineno="18"><highlight class="stringliteral">-<sp/>la<sp/>GeoDataFrame<sp/>doit<sp/>contenir<sp/>une<sp/>colonne<sp/>avec<sp/>les<sp/>points<sp/>(par<sp/>défaut,<sp/>&apos;geometry&apos;)</highlight></codeline>
+<codeline lineno="19"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="20"><highlight class="stringliteral">Exemple<sp/>d&apos;utilisation<sp/>:</highlight></codeline>
+<codeline lineno="21"><highlight class="stringliteral">#<sp/>Ouverture<sp/>de<sp/>la<sp/>GeoDataFrame</highlight></codeline>
+<codeline lineno="22"><highlight class="stringliteral">data<sp/>=<sp/>ouvrir(reducted_name)</highlight></codeline>
+<codeline lineno="23"><highlight class="stringliteral">#<sp/>Je<sp/>calcule<sp/>les<sp/>clusters,<sp/>et<sp/>les<sp/>centres<sp/>de<sp/>gravité</highlight></codeline>
+<codeline lineno="24"><highlight class="stringliteral">data,<sp/>centroids<sp/>=<sp/>clusterize(data,<sp/>5)</highlight></codeline>
+<codeline lineno="25"><highlight class="stringliteral">#<sp/>Je<sp/>calcule<sp/>les<sp/>enveloppes<sp/>convexes</highlight></codeline>
+<codeline lineno="26"><highlight class="stringliteral">data,<sp/>hulls<sp/>=<sp/>do_convex_hull(data)</highlight></codeline>
+<codeline lineno="27"><highlight class="stringliteral">#<sp/>Je<sp/>sauvegarde<sp/>sur<sp/>une<sp/>carte</highlight></codeline>
+<codeline lineno="28"><highlight class="stringliteral">save_to_map(centroids,<sp/>hulls)</highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="namespace_b_a_n_analizer_1a8c143fba552270be22256d2a3b5b007e" refkind="member"><highlight class="normal">reducted_name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;input\\reducted.geojson&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="namespace_b_a_n_analizer_1a66d10444809d0ad83b0ce781fe7e32e8" refkind="member"><highlight class="normal">clusterized_path<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;output\\clusterized.html&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Fonction<sp/>utilitaire</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="namespace_b_a_n_analizer_1a0a74446aa5911d31aeb90bcdafa26437" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_b_a_n_analizer_1a0a74446aa5911d31aeb90bcdafa26437" kindref="member">swap_xy</ref>(geom):</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="39"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Inverse<sp/>les<sp/>coordonnées<sp/>de<sp/>l&apos;objet<sp/>shapely.geometry.</highlight></codeline>
+<codeline lineno="40"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Utile<sp/>pour<sp/>passer<sp/>objets<sp/>shapely<sp/>dans<sp/>folium<sp/>(la<sp/>convention<sp/>est<sp/>inversée)</highlight></codeline>
+<codeline lineno="41"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>geom:<sp/>l&apos;objet<sp/>dont<sp/>on<sp/>veut<sp/>inverser<sp/>les<sp/>coordonnées<sp/>(Point,<sp/>Polygon,<sp/>MultiPolygon,<sp/>etc.)</highlight></codeline>
+<codeline lineno="42"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:return:<sp/>l&apos;objet<sp/>inversé</highlight></codeline>
+<codeline lineno="43"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>geom.is_empty:</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>geom</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>geom.has_z:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal">swap_xy_coords(coords):</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>x,<sp/>y,<sp/>z<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>coords:</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">yield</highlight><highlight class="normal"><sp/>(y,<sp/>x,<sp/>z)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal">swap_xy_coords(coords):</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>x,<sp/>y<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>coords:</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">yield</highlight><highlight class="normal"><sp/>(y,<sp/>x)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Process<sp/>coordinates<sp/>from<sp/>each<sp/>supported<sp/>geometry<sp/>type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>geom.type<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>(</highlight><highlight class="stringliteral">&apos;Point&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;LineString&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;LinearRing&apos;</highlight><highlight class="normal">):</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>type(geom)(list(swap_xy_coords(geom.coords)))</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">elif</highlight><highlight class="normal"><sp/>geom.type<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;Polygon&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ring<sp/>=<sp/>geom.exterior</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shell<sp/>=<sp/>type(ring)(list(swap_xy_coords(ring.coords)))</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>holes<sp/>=<sp/>list(geom.interiors)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>pos,<sp/>ring<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>enumerate(holes):</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>holes[pos]<sp/>=<sp/>type(ring)(list(swap_xy_coords(ring.coords)))</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>type(geom)(shell,<sp/>holes)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">elif</highlight><highlight class="normal"><sp/>geom.type.startswith(</highlight><highlight class="stringliteral">&apos;Multi&apos;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keywordflow">or</highlight><highlight class="normal"><sp/>geom.type<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;GeometryCollection&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Recursive<sp/>call</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>type(geom)([<ref refid="namespace_b_a_n_analizer_1a0a74446aa5911d31aeb90bcdafa26437" kindref="member">swap_xy</ref>(part)<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>part<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>geom.geoms])</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">raise</highlight><highlight class="normal"><sp/>ValueError(</highlight><highlight class="stringliteral">&apos;Type<sp/>%r<sp/>not<sp/>recognized&apos;</highlight><highlight class="normal"><sp/>%<sp/>geom.type)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="namespace_b_a_n_analizer_1a0265096a3ebf2909f3034c4c0033d14f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_b_a_n_analizer_1a0265096a3ebf2909f3034c4c0033d14f" kindref="member">ouvrir</ref>(path,<sp/>column_points=&apos;geometry&apos;,<sp/>reduce=False,<sp/>do_filter=True):</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="76"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Ouvre<sp/>la<sp/>GeoDataFrame<sp/>du<sp/>chemin<sp/>spécifié.</highlight></codeline>
+<codeline lineno="77"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="78"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>path:<sp/>chemin<sp/>du<sp/>fichier</highlight></codeline>
+<codeline lineno="79"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>column_points:<sp/>la<sp/>colonne<sp/>où<sp/>se<sp/>trouvent<sp/>les<sp/>points</highlight></codeline>
+<codeline lineno="80"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>reduce:<sp/>si<sp/>True,<sp/>extrait<sp/>uniquement<sp/>1000<sp/>lignes<sp/>de<sp/>la<sp/>GeoDataFrame<sp/>(pour<sp/>accélérer<sp/>le<sp/>temps<sp/>de<sp/>calcul)</highlight></codeline>
+<codeline lineno="81"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>do_filter:<sp/>si<sp/>True,<sp/>ne<sp/>garde<sp/>que<sp/>la<sp/>colonne<sp/>contenant<sp/>les<sp/>points<sp/>(allège)</highlight></codeline>
+<codeline lineno="82"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:return:<sp/>Retourne<sp/>une<sp/>GeoDataFrame.<sp/>Elle<sp/>ne<sp/>contient<sp/>pas<sp/>de<sp/>na.<sp/>Si<sp/>do_filter<sp/>est<sp/>True,<sp/>l&apos;unique<sp/>colonne<sp/>porte<sp/>le<sp/>nom<sp/>&apos;geometry&apos;.</highlight></codeline>
+<codeline lineno="83"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespace_b_a_n_analizer_1a7a57b7faabe5cf3b04a84620974615ea" kindref="member">filter</ref>(gpd.read_file(path),<sp/>column_points,<sp/>reduce,<sp/>do_filter)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="namespace_b_a_n_analizer_1a7a57b7faabe5cf3b04a84620974615ea" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_b_a_n_analizer_1a7a57b7faabe5cf3b04a84620974615ea" kindref="member">filter</ref>(df,<sp/>column_points=&apos;geometry&apos;,<sp/>reduce=False,<sp/>do_filter=True):</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="88"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Filtre<sp/>la<sp/>GeoDataFrame<sp/>:<sp/>enlève<sp/>les<sp/>na.</highlight></codeline>
+<codeline lineno="89"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Si<sp/>do_filter=True,<sp/>ne<sp/>garde<sp/>que<sp/>la<sp/>colonne<sp/>contenant<sp/>les<sp/>points<sp/>(allège)</highlight></codeline>
+<codeline lineno="90"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="91"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>df:<sp/>la<sp/>GeoDataFrame</highlight></codeline>
+<codeline lineno="92"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>column_points:<sp/>la<sp/>colonne<sp/>où<sp/>se<sp/>trouvent<sp/>les<sp/>points</highlight></codeline>
+<codeline lineno="93"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>reduce:<sp/>si<sp/>True,<sp/>extrait<sp/>uniquement<sp/>1000<sp/>lignes<sp/>de<sp/>la<sp/>GeoDataFrame<sp/>(pour<sp/>accélérer<sp/>le<sp/>temps<sp/>de<sp/>calcul)</highlight></codeline>
+<codeline lineno="94"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>do_filter:<sp/>si<sp/>True,<sp/>ne<sp/>garde<sp/>que<sp/>la<sp/>colonne<sp/>contenant<sp/>les<sp/>points<sp/>(allège)</highlight></codeline>
+<codeline lineno="95"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:return:<sp/>Retourne<sp/>une<sp/>GeoDataFrame.<sp/>Elle<sp/>ne<sp/>contient<sp/>pas<sp/>de<sp/>na.<sp/>Si<sp/>do_filter<sp/>est<sp/>True,<sp/>l&apos;unique<sp/>colonne<sp/>porte<sp/>le<sp/>nom<sp/>&apos;geometry&apos;.</highlight></codeline>
+<codeline lineno="96"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>do_filter:</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>df.dropna().reset_index()</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>df<sp/>=<sp/>df.loc[:,<sp/>column_points]</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>reduce:</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>gpd.GeoDataFrame(df.dropna()[0:1000]).reset_index()</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>gpd.GeoDataFrame(df.dropna()).reset_index()</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="namespace_b_a_n_analizer_1a119fd9cf08e6d37c71d2c637721e6937" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_b_a_n_analizer_1a119fd9cf08e6d37c71d2c637721e6937" kindref="member">clusterize</ref>(df,<sp/>k):</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="109"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Clusterise<sp/>la<sp/>GeoDataFrame<sp/>à<sp/>l&apos;aide<sp/>de<sp/>la<sp/>méthode<sp/>des<sp/>k-moyennes.</highlight></codeline>
+<codeline lineno="110"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>La<sp/>colonne<sp/>contenant<sp/>les<sp/>points<sp/>doit<sp/>s&apos;appeler<sp/>&apos;geometry&apos;.</highlight></codeline>
+<codeline lineno="111"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>La<sp/>GeoDataFrame<sp/>peut<sp/>contenir<sp/>d&apos;autres<sp/>colonnes.</highlight></codeline>
+<codeline lineno="112"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="113"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>df:<sp/>la<sp/>GeoDataFrame<sp/>à<sp/>clusteriser<sp/>(les<sp/>données<sp/>doivent<sp/>se<sp/>trouver<sp/>dans<sp/>la<sp/>colonne<sp/>&apos;geometry&apos;)</highlight></codeline>
+<codeline lineno="114"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>k:<sp/>le<sp/>nombre<sp/>de<sp/>clusters</highlight></codeline>
+<codeline lineno="115"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:return:</highlight></codeline>
+<codeline lineno="116"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Retourne<sp/>un<sp/>tuple.</highlight></codeline>
+<codeline lineno="117"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>En<sp/>premier<sp/>:<sp/>une<sp/>GeoDataFrame<sp/>identique,<sp/>à<sp/>ceci<sp/>près<sp/>que<sp/>l&apos;on<sp/>a<sp/>ajouté<sp/>les<sp/>colonnes<sp/>&apos;cluster&apos;<sp/>et<sp/>&apos;centroids&apos;.</highlight></codeline>
+<codeline lineno="118"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>(correspondant<sp/>au<sp/>numéro<sp/>du<sp/>cluster,<sp/>et<sp/>à<sp/>son<sp/>centre<sp/>de<sp/>gravité)</highlight></codeline>
+<codeline lineno="119"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>En<sp/>deuxième,<sp/>une<sp/>GeoDataFrame<sp/>plus<sp/>simple<sp/>avec<sp/>une<sp/>unique<sp/>colonne<sp/>&apos;centroids&apos;</highlight></codeline>
+<codeline lineno="120"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>(la<sp/>ligne<sp/>est<sp/>le<sp/>numéro<sp/>de<sp/>cluster,<sp/>et<sp/>contient<sp/>le<sp/>centre<sp/>de<sp/>gravité)</highlight></codeline>
+<codeline lineno="121"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>On<sp/>commence<sp/>par<sp/>transformer<sp/>la<sp/>GeoDataFrame<sp/>en<sp/>tableau<sp/>numpy</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>C&apos;est<sp/>les<sp/>lat<sp/>/<sp/>lon</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>a<sp/>=<sp/>pd.Series(df[</highlight><highlight class="stringliteral">&apos;geometry&apos;</highlight><highlight class="normal">].apply(</highlight><highlight class="keyword">lambda</highlight><highlight class="normal"><sp/>p:<sp/>p.x))</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>b<sp/>=<sp/>pd.Series(df[</highlight><highlight class="stringliteral">&apos;geometry&apos;</highlight><highlight class="normal">].apply(</highlight><highlight class="keyword">lambda</highlight><highlight class="normal"><sp/>p:<sp/>p.y))</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>X<sp/>=<sp/>np.column_stack((a,<sp/>b))</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>kmeans<sp/>=<sp/>KMeans(n_clusters=k,<sp/>init=</highlight><highlight class="stringliteral">&apos;k-means++&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>y_kmeans<sp/>=<sp/>kmeans.fit_predict(X)</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>pd.DataFrame(y_kmeans,<sp/>columns=[</highlight><highlight class="stringliteral">&apos;cluster&apos;</highlight><highlight class="normal">],<sp/>dtype=int)</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>cluster_centers<sp/>=<sp/>kmeans.cluster_centers_</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>centers<sp/>=gpd.points_from_xy(cluster_centers[:,0],<sp/>cluster_centers[:,1])</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>centroids<sp/>=<sp/>pd.DataFrame(centers,<sp/>columns=[</highlight><highlight class="stringliteral">&apos;centroids&apos;</highlight><highlight class="normal">])</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>k.join(centroids,<sp/>how=</highlight><highlight class="stringliteral">&quot;left&quot;</highlight><highlight class="normal">,<sp/>on=</highlight><highlight class="stringliteral">&quot;cluster&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>df<sp/>=<sp/>df.join(k)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>df,<sp/>centroids</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="namespace_b_a_n_analizer_1a2d070bd00bad80e0bf6bb9353611f9b3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_b_a_n_analizer_1a2d070bd00bad80e0bf6bb9353611f9b3" kindref="member">do_convex_hull</ref>(df):</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="144"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>A<sp/>partir<sp/>de<sp/>données<sp/>clusterisées<sp/>(le<sp/>premier<sp/>élément<sp/>retourné<sp/>par<sp/>la<sp/>fonction<sp/>clusterize)</highlight></codeline>
+<codeline lineno="145"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>(cf.<sp/>doc<sp/>de<sp/>la<sp/>fonction<sp/>clusterize),<sp/>fabrique<sp/>les<sp/>enveloppes<sp/>convexes.</highlight></codeline>
+<codeline lineno="146"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="147"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>df:<sp/>la<sp/>GeoDataFrame<sp/>où<sp/>les<sp/>clusters<sp/>ont<sp/>déjà<sp/>été<sp/>calculés<sp/>par<sp/>la<sp/>fonction<sp/>clusterize</highlight></codeline>
+<codeline lineno="148"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:return:</highlight></codeline>
+<codeline lineno="149"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Retourne<sp/>un<sp/>tuple.</highlight></codeline>
+<codeline lineno="150"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>En<sp/>premier<sp/>:<sp/>une<sp/>GeoDataFrame<sp/>identique,<sp/>à<sp/>ceci<sp/>près<sp/>que<sp/>l&apos;on<sp/>a<sp/>ajouté<sp/>la<sp/>colonne<sp/>&apos;hulls&apos;.</highlight></codeline>
+<codeline lineno="151"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>(correspondant<sp/>à<sp/>un<sp/>Polygon,<sp/>enveloppe<sp/>convexe<sp/>du<sp/>cluster)</highlight></codeline>
+<codeline lineno="152"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>(il<sp/>se<sp/>peut<sp/>que<sp/>ce<sp/>soit<sp/>un<sp/>Point,<sp/>si<sp/>le<sp/>cluster<sp/>ne<sp/>contient<sp/>qu&apos;un<sp/>point,<sp/>car<sp/>les<sp/>Polygons<sp/>à<sp/>un<sp/>point<sp/>sont<sp/>interdits)</highlight></codeline>
+<codeline lineno="153"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>En<sp/>deuxième,<sp/>une<sp/>GeoDataFrame<sp/>plus<sp/>simple<sp/>avec<sp/>une<sp/>unique<sp/>colonne<sp/>&apos;hulls&apos;</highlight></codeline>
+<codeline lineno="154"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>(la<sp/>ligne<sp/>est<sp/>le<sp/>numéro<sp/>de<sp/>cluster,<sp/>et<sp/>contient<sp/>les<sp/>enveloppes<sp/>convexes)</highlight></codeline>
+<codeline lineno="155"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Nombre<sp/>de<sp/>clusters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>int(np.max(df[</highlight><highlight class="stringliteral">&apos;cluster&apos;</highlight><highlight class="normal">])<sp/>+<sp/>1)</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>hulls<sp/>=<sp/>np.empty(k,<sp/>dtype=Polygon)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>n<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(k):</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>df<sp/>du<sp/>cluster<sp/>correspondant</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>minidf<sp/>=<sp/>df.loc[df[</highlight><highlight class="stringliteral">&apos;cluster&apos;</highlight><highlight class="normal">]<sp/>==<sp/>n]</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>points<sp/>=<sp/>minidf.loc[:,<sp/></highlight><highlight class="stringliteral">&apos;geometry&apos;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>multi_point<sp/>=<sp/>MultiPoint(points.array)</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hull<sp/>=<sp/>multi_point.convex_hull</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>type(hull)<sp/>==<sp/>Point:</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hulls[n]<sp/>=<sp/>hull</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hulls[n]<sp/>=<sp/>Polygon(hull)</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>pre_df<sp/>=<sp/>gpd.GeoDataFrame(gpd.GeoSeries(hulls),<sp/>columns=[</highlight><highlight class="stringliteral">&apos;hulls&apos;</highlight><highlight class="normal">])</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>df<sp/>=<sp/>df.join(pre_df,<sp/>how=</highlight><highlight class="stringliteral">&apos;left&apos;</highlight><highlight class="normal">,<sp/>on=</highlight><highlight class="stringliteral">&apos;cluster&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>df,<sp/>pre_df</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184" refid="namespace_b_a_n_analizer_1a5469c861f61bf4d3dad145ab84ca4af4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespace_b_a_n_analizer_1a5469c861f61bf4d3dad145ab84ca4af4" kindref="member">save_to_map</ref>(centroids,<sp/>hulls,<sp/>path=clusterized_path):</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="186"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Sauvegarde<sp/>les<sp/>centres<sp/>de<sp/>gravité<sp/>des<sp/>clusters,<sp/>ainsi<sp/>que<sp/>les<sp/>enveloppes<sp/>convexes,<sp/>dans<sp/>une<sp/>carte<sp/>Leaflet</highlight></codeline>
+<codeline lineno="187"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>centroids:<sp/>les<sp/>centres<sp/>de<sp/>gravité<sp/>(cf.<sp/>deuxième<sp/>sortie<sp/>de<sp/>la<sp/>fonction<sp/>clusterize)</highlight></codeline>
+<codeline lineno="188"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>hulls:<sp/>les<sp/>enveloppes<sp/>convesxes<sp/>(cf.<sp/>deuxième<sp/>sortie<sp/>de<sp/>la<sp/>fonction<sp/>do_convex_hull)</highlight></codeline>
+<codeline lineno="189"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:param<sp/>path:<sp/>le<sp/>chemin</highlight></codeline>
+<codeline lineno="190"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>init_location<sp/>=<sp/>centroids.loc[0,<sp/></highlight><highlight class="stringliteral">&apos;centroids&apos;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>map<sp/>=<sp/>folium.Map(location=[init_location.y,<sp/>init_location.x],<sp/>zoom_start=10,<sp/>tiles=</highlight><highlight class="stringliteral">&quot;OpenStreetMap&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>centroids<sp/>=<sp/>centroids.loc[:,<sp/></highlight><highlight class="stringliteral">&apos;centroids&apos;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>hulls<sp/>=<sp/>hulls.loc[:,<sp/></highlight><highlight class="stringliteral">&apos;hulls&apos;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>0</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>point<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>centroids:</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>point<sp/></highlight><highlight class="keywordflow">is</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>title<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Centre<sp/>de<sp/>masse<sp/>cluster&quot;</highlight><highlight class="normal">,<sp/>k</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>folium.Marker(location=[point.y,<sp/>point.x],<sp/>popup=title,</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>icon=folium.Icon(color=</highlight><highlight class="stringliteral">&apos;red&apos;</highlight><highlight class="normal">,<sp/>icon=</highlight><highlight class="stringliteral">&apos;info-sign&apos;</highlight><highlight class="normal">)).add_to(map)</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k+=1</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>polygon<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>hulls:</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(type(polygon)<sp/>==<sp/>Point):</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>on<sp/>est<sp/>face<sp/>à<sp/>un<sp/>cluster<sp/>d&apos;un<sp/>seul<sp/>point...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>title<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Cluster&quot;</highlight><highlight class="normal">,<sp/>k</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>folium.Marker(location=[polygon.y,<sp/>polygon.x],<sp/>popup=title,</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>icon=folium.Icon(color=</highlight><highlight class="stringliteral">&apos;red&apos;</highlight><highlight class="normal">,<sp/>icon=</highlight><highlight class="stringliteral">&apos;info-sign&apos;</highlight><highlight class="normal">)).add_to(map)</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>polygon<sp/>=<sp/><ref refid="namespace_b_a_n_analizer_1a0a74446aa5911d31aeb90bcdafa26437" kindref="member">swap_xy</ref>(polygon)</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coords<sp/>=<sp/>polygon.exterior.coords</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>folium.Polygon(locations=coords,<sp/>popup=</highlight><highlight class="stringliteral">&quot;Cluster&quot;</highlight><highlight class="normal">).add_to(map)</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>map.save(path)</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Ouverture<sp/>de<sp/>la<sp/>GeoDataFrame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220" refid="namespace_b_a_n_analizer_1a92a8fc5f65291d5a9494ddb7a1f54dfa" refkind="member"><highlight class="normal">data<sp/>=<sp/><ref refid="namespace_b_a_n_analizer_1a0265096a3ebf2909f3034c4c0033d14f" kindref="member">ouvrir</ref>(reducted_name)</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Je<sp/>calcule<sp/>les<sp/>clusters,<sp/>et<sp/>les<sp/>centres<sp/>de<sp/>gravité</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222" refid="namespace_b_a_n_analizer_1a48faa009d8432ebf72cb436490d96dac" refkind="member"><highlight class="normal">data,<sp/>centroids<sp/>=<sp/><ref refid="namespace_b_a_n_analizer_1a119fd9cf08e6d37c71d2c637721e6937" kindref="member">clusterize</ref>(data,<sp/>5)</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Je<sp/>calcule<sp/>les<sp/>enveloppes<sp/>convexes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224" refid="namespace_b_a_n_analizer_1aad4c2d1152284f52c216077c54174897" refkind="member"><highlight class="normal">data,<sp/>hulls<sp/>=<sp/><ref refid="namespace_b_a_n_analizer_1a2d070bd00bad80e0bf6bb9353611f9b3" kindref="member">do_convex_hull</ref>(data)</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Je<sp/>sauvegarde<sp/>sur<sp/>une<sp/>carte</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><ref refid="namespace_b_a_n_analizer_1a5469c861f61bf4d3dad145ab84ca4af4" kindref="member">save_to_map</ref>(centroids,<sp/>hulls)</highlight></codeline>
+<codeline lineno="227"><highlight class="normal">print(data)</highlight></codeline>
+    </programlisting>
+    <location file="essais/gis/BANAnalizer.py"/>
+  </compounddef>
+</doxygen>

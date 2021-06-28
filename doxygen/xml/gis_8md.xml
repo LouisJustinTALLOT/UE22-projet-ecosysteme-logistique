@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="gis_8md" kind="file" language="Markdown">
+    <compoundname>gis.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Fiche<sp/>:<sp/>GIS<sp/>en<sp/>python</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Module<sp/>`shapely`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Fonction**<sp/>:<sp/>librairie<sp/>pour<sp/>des<sp/>formes<sp/>géométriques</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Installation**<sp/>:<sp/>`conda<sp/>install<sp/>shapely`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Comment<sp/>importer<sp/>(en<sp/>général)**<sp/>:<sp/>faire<sp/>`from<sp/>shapely.geometry<sp/>import<sp/>Point,<sp/>LineString,<sp/>Polygon`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Classes<sp/>principales**<sp/>:</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`Point`<sp/>:<sp/>représente<sp/>un<sp/>point<sp/>géographique</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`LineString`<sp/>:<sp/>représente<sp/>une<sp/>ligne<sp/>brisée<sp/>(*ie*<sp/>contient<sp/>plusieurs<sp/>points)</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`Polygon`<sp/>:<sp/>représente<sp/>un<sp/>polygone<sp/>(avec<sp/>un<sp/>extérieur<sp/>et<sp/>intérieur<sp/>pour<sp/>autoriser<sp/>des<sp/>aires<sp/>négatives)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Et<sp/>leurs<sp/>version<sp/>&quot;multi&quot;,<sp/>où<sp/>un<sp/>objet<sp/>`MultiPoint`,<sp/>`MultiLineString`<sp/>et<sp/>`MultiPolygon`<sp/>représentent<sp/>une<sp/>collection<sp/>de<sp/>tels<sp/>objets.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Il<sp/>existe<sp/>des<sp/>opérations<sp/>sur<sp/>ces<sp/>objets<sp/>(aire,<sp/>centre<sp/>de<sp/>masse,<sp/>etc.)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Opérations<sp/>géométriques**<sp/>:</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Point<sp/>(ou<sp/>ligne<sp/>ou<sp/>polygone)<sp/>dans<sp/>un<sp/>polygone<sp/>:<sp/>au<sp/>choix,<sp/>`polygon.contains(point)`<sp/>ou<sp/>`point.within(polygon)`.<sp/></highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Intersection<sp/>/<sp/>contact<sp/>:<sp/>le<sp/>contact<sp/>est<sp/>un<sp/>cas<sp/>particulier<sp/>d&apos;intersection<sp/>(où<sp/>les<sp/>points<sp/>commus<sp/>doivent<sp/>nécessairement<sp/>être<sp/>sur<sp/>la<sp/>frontière).<sp/>Utiliser<sp/>les<sp/>méthodes<sp/>`intersects`<sp/>et<sp/>`touches`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Pour<sp/>plus<sp/>de<sp/>détails,<sp/>voir<sp/>[ce<sp/>document](https://automating-gis-processes.github.io/2016/Lesson1-Geometric-Objects.html)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Module<sp/>`geopandas`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Fonction**<sp/>:<sp/>surcouche<sp/>de<sp/>`pandas`<sp/>pour<sp/>les<sp/>fichiers<sp/>géographiques<sp/>(GIS,<sp/>Geographic<sp/>Information<sp/>System).</highlight></codeline>
+<codeline><highlight class="normal">Permet<sp/>par<sp/>exemple<sp/>d&apos;ouvrir<sp/>les<sp/>`shapefile`,<sp/>standard<sp/>pour<sp/>ce<sp/>les<sp/>fichiers<sp/>GIS.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Installation**<sp/>:<sp/>`conda<sp/>install<sp/>geopandas`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Comment<sp/>importer**<sp/>:<sp/>faire<sp/>`import<sp/>geopandas<sp/>as<sp/>gpd`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Fonctions<sp/>principales**<sp/>:</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Ouvertures<sp/>de<sp/>fichiers<sp/>comme<sp/>avec<sp/>`pandas`<sp/>(ex<sp/>:<sp/>`gpd.read_file(chemin)`)</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Ecriture<sp/>de<sp/>fichiers<sp/>comme<sp/>avec<sp/>`pandas`<sp/>(ex<sp/>:<sp/>`gpd.to_file(chemin)`)</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Sélection<sp/>comme<sp/>avec<sp/>`pandas`<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>`dataframe.loc(...)`<sp/>pour<sp/>les<sp/>accès<sp/>(slices<sp/>autorisés)<sp/>et<sp/>les<sp/>écritures</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>`dataframe.iterrows()`<sp/>pour<sp/>itérer<sp/>sur<sp/>les<sp/>numéros<sp/>de<sp/>ligne<sp/>et<sp/>leur<sp/>contenu<sp/>à<sp/>la<sp/>fois</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>`dataframe[&apos;nom_de_colonne&apos;]<sp/>=<sp/>None`<sp/>pour<sp/>créer<sp/>une<sp/>nouvelle<sp/>colonne</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>`dataframe[&apos;nom_de_colonne&apos;].mean()`<sp/>pour<sp/>faire<sp/>une<sp/>opération<sp/>numpy<sp/>sur<sp/>une<sp/>colonne<sp/>de<sp/>données<sp/>(ici,<sp/>moyenne)</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Plot<sp/>:<sp/>`data.plot`<sp/>plote<sp/>les<sp/>formes<sp/>géométriques<sp/>stockées<sp/>dedans,<sp/>lorsqu&apos;elles<sp/>sont<sp/>compatibles<sp/>avec<sp/>`shapely`<sp/>(nécessite<sp/>le<sp/>module<sp/>`descartes`)<sp/>(cf.<sp/>section<sp/>correspondante)</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Regroupement<sp/>:<sp/>`dataframe.groupby(&apos;nom_de_colonne&apos;)`<sp/>créé<sp/>un<sp/>objet<sp/>semblable<sp/>à<sp/>un<sp/>dictionnaire<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>les<sp/>clés<sp/>sont<sp/>les<sp/>objets<sp/>de<sp/>la<sp/>colonne<sp/>sélectionnée<sp/>par<sp/>lesquels<sp/>on<sp/>regroupe<sp/>les<sp/>objets<sp/>(par<sp/>exemple,<sp/>le<sp/>nom<sp/>de<sp/>l&apos;espèce<sp/>marine)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>les<sp/>valeurs<sp/>sont<sp/>une<sp/>`DataFrame`<sp/>contenant<sp/>les<sp/>mêmes<sp/>colonnes<sp/>que<sp/>la<sp/>`DataFrame`<sp/>originale,<sp/>mais<sp/>uniquement<sp/>les<sp/>lignes<sp/>correspondant<sp/>à<sp/>la<sp/>valeur<sp/>par<sp/>laquelle<sp/>on<sp/>regroupe</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">**Fonctions<sp/>de<sp/>join**<sp/>:</highlight></codeline>
+<codeline><highlight class="normal">Il<sp/>existe<sp/>plusieurs<sp/>fonctionnalités<sp/>selon<sp/>ce<sp/>qu&apos;on<sp/>entend<sp/>par<sp/>join,<sp/>ou<sp/>plus<sp/>généralement<sp/>les<sp/>opérations<sp/>ensemblistes<sp/>:</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Table<sp/>join<sp/>(comme<sp/>en<sp/>SQL):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>Pour<sp/>l&apos;utiliser<sp/>:<sp/>`dataframe1.merge(dataframe2,<sp/>on=&apos;nom_de_colonne&apos;)`.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>Si<sp/>les<sp/>noms<sp/>de<sp/>colonnes<sp/>sont<sp/>différents,<sp/>fournir<sp/>les<sp/>paramètres<sp/>`left_on`<sp/>et<sp/>`right_on`.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Overlay<sp/>:<sp/>fait<sp/>des<sp/>intersections<sp/>spatiales<sp/>entre<sp/>plusieurs<sp/>tables,<sp/>ou<sp/>plus<sp/>généralement<sp/>des<sp/>opérations<sp/>ensemblistes<sp/>spatiales<sp/>(union,<sp/>différence,<sp/>etc.)<sp/>(ex<sp/>:<sp/>intersecte<sp/>une<sp/>`DataFrame`<sp/>de<sp/>polygones<sp/>avec<sp/>une<sp/>autre)</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Join<sp/>spatial<sp/>:<sp/>un<sp/>peu<sp/>plus<sp/>subtil,<sp/>fusionne<sp/>des<sp/>`GeoDataFrame`<sp/>avec<sp/>un<sp/>critère<sp/>particulier<sp/>:<sp/>`intersects`,<sp/>`contains`<sp/>et<sp/>`within`<sp/>(ex<sp/>:<sp/>fusionne<sp/>les<sp/>lignes<sp/>où<sp/>un<sp/>point<sp/>d&apos;une<sp/>table<sp/>est<sp/>dans<sp/>un<sp/>polygone<sp/>d&apos;une<sp/>autre<sp/>table)<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Agrégation**<sp/>:</highlight></codeline>
+<codeline><highlight class="normal">Fonctionnalité<sp/>permettant<sp/>d&apos;agréger<sp/>(rassembler)<sp/>des<sp/>lignes<sp/>d&apos;une<sp/>`DataFrame`<sp/>avec<sp/>un<sp/>critère<sp/>particulier<sp/>(ex<sp/>:<sp/>la<sp/>valeur<sp/>d&apos;une<sp/>colonne)</highlight></codeline>
+<codeline><highlight class="normal">Exemple<sp/>d&apos;utilisation<sp/>:<sp/>fusionner<sp/>des<sp/>zones<sp/>géographiques<sp/>par<sp/>temps<sp/>d&apos;itinéraire<sp/>vers<sp/>une<sp/>gare.</highlight></codeline>
+<codeline><highlight class="normal">Utilisation<sp/>:<sp/>`dataframe.dissolve(by=&quot;colonne_par_laquelle_trier&quot;)`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Applications<sp/>d&apos;opérateurs<sp/>binaires**</highlight></codeline>
+<codeline><highlight class="normal">Voir<sp/>[ce<sp/>document](https://automating-gis-processes.github.io/2016/Lesson4-reclassify.html#)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">Pour<sp/>plus<sp/>de<sp/>détails,<sp/>voir<sp/>[ce<sp/>document](https://automating-gis-processes.github.io/2016/Lesson2-geopandas-basics.html)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Affichage<sp/>sur<sp/>une<sp/>carte</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Il<sp/>existe<sp/>plein<sp/>de<sp/>modules<sp/>permettant<sp/>d&apos;afficher<sp/>sur<sp/>une<sp/>carte.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Avec<sp/>`geopandas`<sp/>(ie<sp/>`matplotlib`)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Ce<sp/>sont<sp/>des<sp/>**cartes<sp/>statiques**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">On<sp/>utilise<sp/>`dataframe.plot()`.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Retourne<sp/>le<sp/>plot<sp/>correspondant<sp/>(si<sp/>on<sp/>veut<sp/>l&apos;utiliser<sp/>plus<sp/>tard),<sp/>utile<sp/>pour<sp/>:</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`ax=`<sp/>pour<sp/>indiquer<sp/>si<sp/>on<sp/>veut<sp/>superposer<sp/>l&apos;affichage<sp/>sur<sp/>un<sp/>plot<sp/>déjà<sp/>existant<sp/>(ex<sp/>:<sp/>routes<sp/>sur<sp/>une<sp/>carte)</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Si<sp/>une<sp/>colonne<sp/>est<sp/>spécifiée<sp/>(`column=&apos;ma_colonne&apos;`),<sp/>sépare<sp/>la<sp/>carte<sp/>en<sp/>classes<sp/>d&apos;équivalences<sp/>en<sp/>fonction<sp/>de<sp/>la<sp/>valeur<sp/>de<sp/>la<sp/>colonne,<sp/>en<sp/>fonction<sp/>du<sp/>schema<sp/>spécifié</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Le<sp/>schema<sp/>c&apos;est<sp/>la<sp/>façon<sp/>avec<sp/>laquelle<sp/>le<sp/>module<sp/>créé<sp/>les<sp/>classes<sp/>d&apos;équivalences.<sp/>Le<sp/>paramètre<sp/>`k`<sp/>définit<sp/>le<sp/>nombre<sp/>de<sp/>classes<sp/>d&apos;équivalences<sp/>à<sp/>utiliser.<sp/>Exemple<sp/>de<sp/>schéma<sp/>=<sp/>`scheme=&quot;quantiles&quot;`.<sp/>Le<sp/>schema<sp/>est<sp/>coloré<sp/>par<sp/>une<sp/>`cmap`.<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Couleur<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>soit<sp/>`color=&apos;r&apos;`<sp/>:<sp/>colore<sp/>uniformément<sp/>en<sp/>rouge</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>soit<sp/>`cmap=&quot;Reds&quot;`<sp/>:<sp/>colore<sp/>avec<sp/>une<sp/>&quot;carte<sp/>de<sp/>couleurs&quot;<sp/>(ici<sp/>rouge)<sp/>reconnue<sp/>par<sp/>le<sp/>module<sp/>(utile<sp/>si<sp/>on<sp/>a<sp/>spécifié<sp/>une<sp/>colonne<sp/>par<sp/>exemple)</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>La<sp/>transparence<sp/>:<sp/>`alpha=0.9`<sp/>par<sp/>exemple<sp/>(1<sp/>totalement<sp/>opaque,<sp/>0<sp/>totalement<sp/>transparent)</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`linewidth=`<sp/>permet<sp/>de<sp/>définir<sp/>l&apos;épaisseur<sp/>des<sp/>lignes</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">`plt.tight_layout()`<sp/>permet<sp/>d&apos;afficher<sp/>plus<sp/>sur<sp/>la<sp/>même<sp/>fenêtre.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Avec<sp/>`bokeh`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Ce<sp/>sont<sp/>des<sp/>**cartes<sp/>dynamiques**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Installation**<sp/>:<sp/>`conda<sp/>install<sp/>bokeh`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">A<sp/>faire<sp/>(césar)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Avec<sp/>`leaflet`<sp/>(ie<sp/>`folium`)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">C&apos;est<sp/>le<sp/>module<sp/>`folium`<sp/>dans<sp/>pyton<sp/>qui<sp/>fait<sp/>le<sp/>boulot.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Installation**<sp/>:<sp/>`conda<sp/>install<sp/>folium`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Créer<sp/>une<sp/>carte<sp/>:<sp/>folium.Map()<sp/>avec<sp/>les<sp/>paramètres</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>`location=[lat,lon]`<sp/>:<sp/>position<sp/>initiale<sp/>de<sp/>la<sp/>carte</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/><sp/>`zoom_start=10`<sp/>:<sp/>zoom<sp/>initial<sp/>(plus<sp/>c&apos;est<sp/>grand,<sp/>plus<sp/>c&apos;est<sp/>proche)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>`control_scale=true`<sp/>:<sp/>affichage<sp/>de<sp/>l&apos;échelle</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>*<sp/>`tiles`<sp/>:<sp/>indique<sp/>quelle<sp/>carte<sp/>utiliser<sp/>(ex<sp/>:<sp/>`tiles=&quot;OpenStreeMap&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">Pour<sp/>plus<sp/>d&apos;infos,<sp/>voir<sp/>[ce<sp/>document](https://python-visualization.github.io/folium/quickstart.html)</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>CRS<sp/>(Coordinate<sp/>Reference<sp/>System)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">C&apos;est<sp/>un<sp/>attribut<sp/>des<sp/>`shapefile`,<sp/>permettant<sp/>de<sp/>savoir<sp/>quels<sp/>systèmes<sp/>de<sp/>coordonnées<sp/>ils<sp/>utilisent.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Pour<sp/>connaître<sp/>le<sp/>CRS<sp/>d&apos;une<sp/>table,<sp/>faire<sp/>`dataframe.crs`</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Pour<sp/>changer<sp/>le<sp/>CRS<sp/>d&apos;une<sp/>table,<sp/>faire<sp/>`dataframe.to_crs(crs=un_crs_donne,<sp/>inplace=true)`<sp/>(ou<sp/>`inplace=false`<sp/>si<sp/>on<sp/>veut<sp/>pas<sp/>de<sp/>surplace)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Geocoding</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Le<sp/>geocoding<sp/>est<sp/>une<sp/>technologie<sp/>permettant<sp/>de<sp/>passer<sp/>d&apos;adresse<sp/>à<sp/>coordonnées<sp/>(et<sp/>vice-versa),<sp/>grâce<sp/>à<sp/>une<sp/>API<sp/>tierce.</highlight></codeline>
+<codeline><highlight class="normal">Pour<sp/>faire<sp/>un<sp/>appel<sp/>à<sp/>une<sp/>API,<sp/>importer<sp/>`from<sp/>geopandas.tools<sp/>import<sp/>geocode`<sp/>et<sp/>utiliser<sp/>la<sp/>fonction<sp/>:<sp/>`geocode`<sp/>en<sp/>spécifiant<sp/>une<sp/>clé<sp/>api.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">A<sp/>faire...<sp/>(césar)</highlight></codeline>
+    </programlisting>
+    <location file="essais/gis/fiche/gis.md"/>
+  </compounddef>
+</doxygen>

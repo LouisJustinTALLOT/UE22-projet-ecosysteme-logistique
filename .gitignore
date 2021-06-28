@@ -51,3 +51,6 @@ __pycache__
 /tests/gis/fiche/Data3/Vaestotietoruudukko_2015.shp
 /tests/gis/fiche/Data3/Vaestotietoruudukko_2015.shx
 /src/clusterizer/output/wclusterized.html
+
+data/hydrographie-surfacique-idf.zip
+data/iris.zip

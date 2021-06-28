@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="fr">
+  <compounddef id="namespacetest" kind="namespace" language="Python">
+    <compoundname>test</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacetest_1af1bc2423c9adf840e19f312208b984c0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>test.df_test</definition>
+        <argsstring></argsstring>
+        <name>df_test</name>
+        <initializer>=  <ref refid="namespaceclusterizer_1aeec4083b19ab1b2b6b1dece87329556d" kindref="member">clusterizer.nettoyer</ref>(pd.read_json(&quot;../../data/base_sirene_shortened.json&quot;), reduce=True, threshold=2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/tests_src/test.py" line="10" column="1" bodyfile="tests/tests_src/test.py" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacetest_1a36f4a59eba5f56c9dd8479d873878da7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def test.test_calculer_poids_cluster</definition>
+        <argsstring>()</argsstring>
+        <name>test_calculer_poids_cluster</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/tests_src/test.py" line="12" column="1" bodyfile="tests/tests_src/test.py" bodystart="12" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetest_1a0455051bccb2026500f1a9bbfa660cd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def test.test_ajouter_point</definition>
+        <argsstring>()</argsstring>
+        <name>test_ajouter_point</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/tests_src/test.py" line="16" column="1" bodyfile="tests/tests_src/test.py" bodystart="16" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetest_1af707891f54e600394c9bd96c5fa9a737" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def test.test_retirer_point</definition>
+        <argsstring>()</argsstring>
+        <name>test_retirer_point</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/tests_src/test.py" line="20" column="1" bodyfile="tests/tests_src/test.py" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetest_1ac0e688047e06664349794dcc3bec04cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def test.test_get_description</definition>
+        <argsstring>()</argsstring>
+        <name>test_get_description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/tests_src/test.py" line="24" column="1" bodyfile="tests/tests_src/test.py" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetest_1a584444535b3787f5c37587c5a538f682" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def test.test_get_NAFs_by_section</definition>
+        <argsstring>()</argsstring>
+        <name>test_get_NAFs_by_section</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/tests_src/test.py" line="28" column="1" bodyfile="tests/tests_src/test.py" bodystart="28" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetest_1a653d10886c42790c25b47fd820c6b555" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def test.test_numero_cluster</definition>
+        <argsstring>()</argsstring>
+        <name>test_numero_cluster</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/tests_src/test.py" line="36" column="1" bodyfile="tests/tests_src/test.py" bodystart="36" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetest_1a3416fbab1723c12ab80ef3c9fca31630" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def test.test_get_infos_clusters_taille</definition>
+        <argsstring>()</argsstring>
+        <name>test_get_infos_clusters_taille</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/tests_src/test.py" line="39" column="1" bodyfile="tests/tests_src/test.py" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetest_1a20ecf216174a9c691a02d3698457335c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def test.test_centre_de_masse</definition>
+        <argsstring>()</argsstring>
+        <name>test_centre_de_masse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/tests_src/test.py" line="43" column="1" bodyfile="tests/tests_src/test.py" bodystart="43" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="tests/tests_src/test.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

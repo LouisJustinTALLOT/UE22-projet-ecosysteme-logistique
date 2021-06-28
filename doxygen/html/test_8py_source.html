@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ecosystème logistique:  Fichier source de tests/tests_src/test.py</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Ecosystème logistique
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_59425e443f801f1f2fd8bbe4959a3ccf.html">tests</a></li><li class="navelem"><a class="el" href="dir_d7ef203052daf5b01160a3ad2c5cfdef.html">tests_src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">test.py</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="test_8py.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespacetest.html">    1</a></span>&#160;<span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> sys</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;sys.path.append(<span class="stringliteral">&quot;../..&quot;</span>)</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">from</span> src.clusterizer <span class="keyword">import</span> clusterizer</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">from</span> src.clusterizer.utils <span class="keyword">import</span> clusterizer_utils</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">from</span> src.clusterizer.utils <span class="keyword">import</span> NAF_utils</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespacetest.html#af1bc2423c9adf840e19f312208b984c0">   10</a></span>&#160;df_test = <a class="code" href="namespaceclusterizer.html#aeec4083b19ab1b2b6b1dece87329556d">clusterizer.nettoyer</a>(pd.read_json(<span class="stringliteral">&quot;../../data/base_sirene_shortened.json&quot;</span>), reduce=<span class="keyword">True</span>, threshold=2)</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="namespacetest.html#a36f4a59eba5f56c9dd8479d873878da7">   12</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest.html#a36f4a59eba5f56c9dd8479d873878da7">test_calculer_poids_cluster</a>():</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    result = <a class="code" href="namespaceclusterizer__utils.html#aba2719bff914168ef7fd424000278568">clusterizer_utils.calculer_poids_cluster</a>(df_test, <span class="stringliteral">&quot;apet700&quot;</span>)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">assert</span> result == 5  <span class="comment"># le premier commence par 68 -&gt; 1 et le deuxième par 49 -&gt; 4</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="namespacetest.html#a0455051bccb2026500f1a9bbfa660cd6">   16</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest.html#a0455051bccb2026500f1a9bbfa660cd6">test_ajouter_point</a>():</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    result = <a class="code" href="namespace_n_a_f__utils.html#ac6050e8ebf6e60910b584c04cd0d2f61">NAF_utils.ajouter_point</a>(<span class="stringliteral">&quot;6820A&quot;</span>)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">assert</span> result == <span class="stringliteral">&quot;68.20A&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="namespacetest.html#af707891f54e600394c9bd96c5fa9a737">   20</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest.html#af707891f54e600394c9bd96c5fa9a737">test_retirer_point</a>():</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    result = <a class="code" href="namespace_n_a_f__utils.html#abcce9e92c40f0b72db9cd948d5807ddd">NAF_utils.retirer_point</a>(<span class="stringliteral">&quot;68.20A&quot;</span>)</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">assert</span> result == <span class="stringliteral">&quot;6820A&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="namespacetest.html#ac0e688047e06664349794dcc3bec04cb">   24</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest.html#ac0e688047e06664349794dcc3bec04cb">test_get_description</a>():</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    result = <a class="code" href="namespace_n_a_f__utils.html#aca0a3e5dc0966df2dcc77dcd33d2c47c">NAF_utils.get_description</a>(<span class="stringliteral">&quot;011&quot;</span>)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">assert</span> result == <span class="stringliteral">&quot;Cultures non permanentes&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="namespacetest.html#a584444535b3787f5c37587c5a538f682">   28</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest.html#a584444535b3787f5c37587c5a538f682">test_get_NAFs_by_section</a>():</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    result = <a class="code" href="namespace_n_a_f__utils.html#a1fe02847c67bcc048c209dbc79ac0880">NAF_utils.get_NAFs_by_section</a>(<span class="stringliteral">&quot;D&quot;</span>)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    print(result)</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">assert</span> (result == [<span class="stringliteral">&quot;35&quot;</span>, <span class="stringliteral">&quot;35.1&quot;</span>, <span class="stringliteral">&quot;35.11&quot;</span>, <span class="stringliteral">&quot;35.11Z&quot;</span>, <span class="stringliteral">&quot;35.12&quot;</span>, <span class="stringliteral">&quot;35.12Z&quot;</span>, <span class="stringliteral">&quot;35.13&quot;</span>, <span class="stringliteral">&quot;35.13Z&quot;</span>, <span class="stringliteral">&quot;35.14&quot;</span>, <span class="stringliteral">&quot;35.14Z&quot;</span>, <span class="stringliteral">&quot;35.2&quot;</span>, <span class="stringliteral">&quot;35.21&quot;</span>, <span class="stringliteral">&quot;35.21Z&quot;</span>, <span class="stringliteral">&quot;35.22&quot;</span>, <span class="stringliteral">&quot;35.22Z&quot;</span>, <span class="stringliteral">&quot;35.23&quot;</span>, <span class="stringliteral">&quot;35.23Z&quot;</span>, <span class="stringliteral">&quot;35.3&quot;</span>, <span class="stringliteral">&quot;35.30&quot;</span>, <span class="stringliteral">&quot;35.30Z&quot;</span> ]).all</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;df_test_cl, df_test_infos = <a class="code" href="namespaceclusterizer.html#a3af79889960331fc4392936526bc8ad6">clusterizer.clusterize</a>(df_test, 1, <span class="stringliteral">&quot;geometry&quot;</span>, dict=<span class="keyword">True</span>)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespacetest.html#a653d10886c42790c25b47fd820c6b555">   36</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest.html#a653d10886c42790c25b47fd820c6b555">test_numero_cluster</a>():</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">assert</span> (df_test_cl[<span class="stringliteral">&quot;cluster&quot;</span>] == [0, 0]).all  <span class="comment"># les deux établissements sont dans le premier (et seul) cluster</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="namespacetest.html#a3416fbab1723c12ab80ef3c9fca31630">   39</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest.html#a3416fbab1723c12ab80ef3c9fca31630">test_get_infos_clusters_taille</a>():</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    result = <a class="code" href="namespaceclusterizer__utils.html#a1a09a2a4d0cb4435e9341da24dde35df">clusterizer_utils.get_infos_clusters_taille</a>(df_test_cl)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">assert</span> (result == [2]).all   <span class="comment"># un seul cluster, contenant deux établisseùents</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="namespacetest.html#a20ecf216174a9c691a02d3698457335c">   43</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacetest.html#a20ecf216174a9c691a02d3698457335c">test_centre_de_masse</a>():</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">assert</span> (df_test_infos[<span class="stringliteral">&quot;centroids&quot;</span>] == [{(2.348872+2.297082)/2, (48.863495+48.881103)/2}]).all</div>
+<div class="ttc" id="anamespace_n_a_f__utils_html_a1fe02847c67bcc048c209dbc79ac0880"><div class="ttname"><a href="namespace_n_a_f__utils.html#a1fe02847c67bcc048c209dbc79ac0880">NAF_utils.get_NAFs_by_section</a></div><div class="ttdeci">Series get_NAFs_by_section(str section)</div><div class="ttdef"><b>Definition:</b> <a href="_n_a_f__utils_8py_source.html#l00085">NAF_utils.py:85</a></div></div>
+<div class="ttc" id="anamespace_n_a_f__utils_html_abcce9e92c40f0b72db9cd948d5807ddd"><div class="ttname"><a href="namespace_n_a_f__utils.html#abcce9e92c40f0b72db9cd948d5807ddd">NAF_utils.retirer_point</a></div><div class="ttdeci">Optional[str] retirer_point(str code_naf)</div><div class="ttdef"><b>Definition:</b> <a href="_n_a_f__utils_8py_source.html#l00030">NAF_utils.py:30</a></div></div>
+<div class="ttc" id="anamespace_n_a_f__utils_html_ac6050e8ebf6e60910b584c04cd0d2f61"><div class="ttname"><a href="namespace_n_a_f__utils.html#ac6050e8ebf6e60910b584c04cd0d2f61">NAF_utils.ajouter_point</a></div><div class="ttdeci">Optional[str] ajouter_point(str code_naf)</div><div class="ttdef"><b>Definition:</b> <a href="_n_a_f__utils_8py_source.html#l00015">NAF_utils.py:15</a></div></div>
+<div class="ttc" id="anamespace_n_a_f__utils_html_aca0a3e5dc0966df2dcc77dcd33d2c47c"><div class="ttname"><a href="namespace_n_a_f__utils.html#aca0a3e5dc0966df2dcc77dcd33d2c47c">NAF_utils.get_description</a></div><div class="ttdeci">str get_description(str code_naf)</div><div class="ttdef"><b>Definition:</b> <a href="_n_a_f__utils_8py_source.html#l00063">NAF_utils.py:63</a></div></div>
+<div class="ttc" id="anamespaceclusterizer__utils_html_a1a09a2a4d0cb4435e9341da24dde35df"><div class="ttname"><a href="namespaceclusterizer__utils.html#a1a09a2a4d0cb4435e9341da24dde35df">clusterizer_utils.get_infos_clusters_taille</a></div><div class="ttdeci">pd.DataFrame get_infos_clusters_taille(pd.DataFrame df)</div><div class="ttdef"><b>Definition:</b> <a href="clusterizer__utils_8py_source.html#l00044">clusterizer_utils.py:44</a></div></div>
+<div class="ttc" id="anamespaceclusterizer__utils_html_aba2719bff914168ef7fd424000278568"><div class="ttname"><a href="namespaceclusterizer__utils.html#aba2719bff914168ef7fd424000278568">clusterizer_utils.calculer_poids_cluster</a></div><div class="ttdeci">int calculer_poids_cluster(pd.DataFrame df, str naf_column_name)</div><div class="ttdef"><b>Definition:</b> <a href="clusterizer__utils_8py_source.html#l00114">clusterizer_utils.py:114</a></div></div>
+<div class="ttc" id="anamespaceclusterizer_html_a3af79889960331fc4392936526bc8ad6"><div class="ttname"><a href="namespaceclusterizer.html#a3af79889960331fc4392936526bc8ad6">clusterizer.clusterize</a></div><div class="ttdeci">Tuple[pd.DataFrame, pd.DataFrame] clusterize(pd.DataFrame df, int k, str column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME, bool is_dict=False, bool weight=True)</div><div class="ttdef"><b>Definition:</b> <a href="clusterizer_8py_source.html#l00186">clusterizer.py:186</a></div></div>
+<div class="ttc" id="anamespaceclusterizer_html_aeec4083b19ab1b2b6b1dece87329556d"><div class="ttname"><a href="namespaceclusterizer.html#aeec4083b19ab1b2b6b1dece87329556d">clusterizer.nettoyer</a></div><div class="ttdeci">pd.DataFrame nettoyer(pd.DataFrame df, bool reduce=False, int threshold=1000, str column_geometry=COLUMN_DEFAULT_GEOMETRY_NAME)</div><div class="ttdef"><b>Definition:</b> <a href="clusterizer_8py_source.html#l00166">clusterizer.py:166</a></div></div>
+<div class="ttc" id="anamespacetest_html_a0455051bccb2026500f1a9bbfa660cd6"><div class="ttname"><a href="namespacetest.html#a0455051bccb2026500f1a9bbfa660cd6">test.test_ajouter_point</a></div><div class="ttdeci">def test_ajouter_point()</div><div class="ttdef"><b>Definition:</b> <a href="test_8py_source.html#l00016">test.py:16</a></div></div>
+<div class="ttc" id="anamespacetest_html_a20ecf216174a9c691a02d3698457335c"><div class="ttname"><a href="namespacetest.html#a20ecf216174a9c691a02d3698457335c">test.test_centre_de_masse</a></div><div class="ttdeci">def test_centre_de_masse()</div><div class="ttdef"><b>Definition:</b> <a href="test_8py_source.html#l00043">test.py:43</a></div></div>
+<div class="ttc" id="anamespacetest_html_a3416fbab1723c12ab80ef3c9fca31630"><div class="ttname"><a href="namespacetest.html#a3416fbab1723c12ab80ef3c9fca31630">test.test_get_infos_clusters_taille</a></div><div class="ttdeci">def test_get_infos_clusters_taille()</div><div class="ttdef"><b>Definition:</b> <a href="test_8py_source.html#l00039">test.py:39</a></div></div>
+<div class="ttc" id="anamespacetest_html_a36f4a59eba5f56c9dd8479d873878da7"><div class="ttname"><a href="namespacetest.html#a36f4a59eba5f56c9dd8479d873878da7">test.test_calculer_poids_cluster</a></div><div class="ttdeci">def test_calculer_poids_cluster()</div><div class="ttdef"><b>Definition:</b> <a href="test_8py_source.html#l00012">test.py:12</a></div></div>
+<div class="ttc" id="anamespacetest_html_a584444535b3787f5c37587c5a538f682"><div class="ttname"><a href="namespacetest.html#a584444535b3787f5c37587c5a538f682">test.test_get_NAFs_by_section</a></div><div class="ttdeci">def test_get_NAFs_by_section()</div><div class="ttdef"><b>Definition:</b> <a href="test_8py_source.html#l00028">test.py:28</a></div></div>
+<div class="ttc" id="anamespacetest_html_a653d10886c42790c25b47fd820c6b555"><div class="ttname"><a href="namespacetest.html#a653d10886c42790c25b47fd820c6b555">test.test_numero_cluster</a></div><div class="ttdeci">def test_numero_cluster()</div><div class="ttdef"><b>Definition:</b> <a href="test_8py_source.html#l00036">test.py:36</a></div></div>
+<div class="ttc" id="anamespacetest_html_ac0e688047e06664349794dcc3bec04cb"><div class="ttname"><a href="namespacetest.html#ac0e688047e06664349794dcc3bec04cb">test.test_get_description</a></div><div class="ttdeci">def test_get_description()</div><div class="ttdef"><b>Definition:</b> <a href="test_8py_source.html#l00024">test.py:24</a></div></div>
+<div class="ttc" id="anamespacetest_html_af707891f54e600394c9bd96c5fa9a737"><div class="ttname"><a href="namespacetest.html#af707891f54e600394c9bd96c5fa9a737">test.test_retirer_point</a></div><div class="ttdeci">def test_retirer_point()</div><div class="ttdef"><b>Definition:</b> <a href="test_8py_source.html#l00020">test.py:20</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -5,6 +5,11 @@
 
 // g++ traitement_base_sirene.cpp -o traitement_base_sirene && ./traitement_base_sirene
 
+/**
+ * @brief Traite la base SIRENE (fichier JSON de 1,7 Go) et en extrait les informations utiles
+ * 
+ * @return int 
+ */
 int main() {
     std::cout << "début du programme" << std::endl;
     ////////////////// lecture du fichier source //////////////////
