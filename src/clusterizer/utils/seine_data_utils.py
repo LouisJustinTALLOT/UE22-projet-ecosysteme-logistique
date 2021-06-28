@@ -124,6 +124,18 @@ def rapport_a_la_seine_spatial_index_point(array_coords: np.ndarray) -> np.ndarr
         # else:
         #     res[i] = NB_ZONES
     return res
+
+def rapport_a_la_seine_spatial_index_gpd(gdf_nodes: gpd.GeoDataFrame):
+    # pprint(gdf_nodes)
+    # pprint(gdf_nodes.apply(lambda row: Point(row[0], row[1])))
+
+    gdf_nodes = gdf_nodes.apply(lambda row: Point(row[0], row[1]))
+    
+    sindex = gdf_nodes.sindex
+    possible_matches_index = list(sindex.intersection())
+
+    print("\n\n")
+    raise BaseException("piche")
     
 
 if __name__ == "__main__":
