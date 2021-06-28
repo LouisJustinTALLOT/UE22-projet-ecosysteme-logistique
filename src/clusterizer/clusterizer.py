@@ -24,40 +24,18 @@ from shapely.geometry import Polygon, Point
 from src.clusterizer.utils import NAF_utils
 from src.clusterizer.utils import clusterizer_utils
 from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
-    COLUMN_CLUSTER_INDEX_NAME, \
-    COLUMN_CLUSTER_SIZE_NAME, \
-    COLUMN_CENTROIDS_NAME, \
-    COLUMN_DEFAULT_GEOMETRY_NAME, \
-    COLUMN_CLUSTER_MASS_NAME
-from src.clusterizer.utils.seine_data_utils import rapport_a_la_seine, DICT_GDF_ZONES, NB_ZONES
+                                                    COLUMN_CLUSTER_INDEX_NAME, \
+                                                    COLUMN_CLUSTER_SIZE_NAME, \
+                                                    COLUMN_CENTROIDS_NAME, \
+                                                    COLUMN_DEFAULT_GEOMETRY_NAME, \
+                                                    COLUMN_CLUSTER_MASS_NAME
+from src.clusterizer.utils.seine_data_utils import DICT_GDF_ZONES, NB_ZONES, rapport_a_la_seine_spatial_index_point
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
 """
 
 DEBUG_PLOT = False # pour afficher les points et frontières (debugging)
-
-
-def process_rapport_a_la_seine(no_zone:int, df: pd.DataFrame, shared_array: Array) -> None:
-    """
-    TODO
-
-    :param no_zone:
-    :param df:
-    :param shared_array:
-    """
-    shared_array[no_zone] = df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
-
-def map_rapport_a_la_seine(args_tuple: Tuple[int, pd.DataFrame]) -> pd.DataFrame:
-    """
-    TODO
-
-    :param args_tuple:
-    :return:
-    """
-    no_zone, df = args_tuple
-    return df[no_zone == rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))].reset_index(drop=True)
-
 
 
 def nettoyer(df: pd.DataFrame, reduce: bool = False, threshold: int = 1000, column_geometry: str = COLUMN_DEFAULT_GEOMETRY_NAME) -> pd.DataFrame:
@@ -71,8 +49,6 @@ def nettoyer(df: pd.DataFrame, reduce: bool = False, threshold: int = 1000, colu
     :param column_geometry: A spécifier si la colonne contenant les points n'est pas la colonne par défaut ("geometry")
     :return: Une DataFrame nettoyée.
     """
-
-
 
     if reduce and df.size >= threshold:
         df = df[:threshold]
@@ -100,7 +76,7 @@ def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_G
     # Commençons par faire le clustering et récupérer les centres
     # ==========================================================
 
-    # kmeans = KMeans(n_clusters=k, random_state=0)
+
     mbk = MiniBatchKMeans(n_clusters=k, random_state=0, batch_size=2048)  # ça va plus vite
 
     # Ceci contient des coordonnées (x, y) des points
@@ -114,8 +90,10 @@ def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_G
 
     df = df.join(df_point_cluster)
 
-    # La DataFrame "df_infos_clusters" associe à chaque numéro de cluster les informations correspondantes.
-    # En détails : une colonne "centroids" (centres de masse), une colonne "hulls" (enveloppes convexes),
+    # La DataFrame "df_infos_clusters" associe à chaque numéro de cluster les 
+    # informations correspondantes.
+    # En détails : une colonne "centroids" (centres de masse), 
+    # une colonne "hulls" (enveloppes convexes),
     # une colonne "taille" (nombre d'établissements)
     df_infos_clusters = pd.DataFrame(gpd.points_from_xy(mbk.cluster_centers_[:, 0],
                                                         mbk.cluster_centers_[:, 1]),
@@ -123,7 +101,8 @@ def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_G
                                      )
     df_infos_clusters = df_infos_clusters.join(clusterizer_utils.get_infos_clusters_taille(df))
     df_infos_clusters = df_infos_clusters.join(
-        clusterizer_utils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry, is_dict))
+        clusterizer_utils.get_infos_clusters_enveloppes_convexes(k, df, column_geometry, is_dict)
+    )
     df_infos_clusters = df_infos_clusters.join(clusterizer_utils.get_infos_clusters_poids(df, "apet700"))
 
     return df, df_infos_clusters
@@ -143,10 +122,11 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
     """
 
     if map is None:
-        map = folium.Map(location=[48.844952, 2.339193],
-                        zoom_start=10,
-                        tiles="Stamen Terrain"
-                        )
+        map = folium.Map(
+            location=[48.844952, 2.339193],
+            zoom_start=10,
+            tiles="Stamen Terrain"
+        )
 
     couleurs = ['darkslateblue', 'orange', 'darkred', 'black',
                 'purple', 'chocolate', 'darkgreen', 'seagreen',
@@ -159,13 +139,13 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
 
     for k, point in enumerate(centroids):
         if point is not None:
-            title = f"Centre de masse du cluster {k} : {sizes[k]} etablissements. Poids : {poids[k]}"
-            folium.CircleMarker(location=[point.y, point.x],
-                          popup=title,
-                          radius=3,
-                          color = 'purple'
-                         # icon=folium.Icon(color=couleurs[k % len(couleurs)], icon='info-sign')
-                          ).add_to(map)
+            title = f"Centre de masse du cluster {k} : {sizes[k]} établissements. Poids : {poids[k]}"
+            folium.CircleMarker(
+                location=[point.y, point.x],
+                popup=title,
+                radius=1
+                # icon=folium.Icon(color=couleurs[k % len(couleurs)], icon='info-sign')
+            ).add_to(map)
 
     for k, polygon in enumerate(hulls):
         title = f"Cluster {k}"
@@ -175,6 +155,7 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
             polygon = clusterizer_utils.swap_xy(polygon)
             coords = polygon.exterior.coords
             folium.Polygon(locations=coords, popup=title, color=couleurs[k % len(couleurs)]).add_to(map)
+
         elif type(polygon) == MultiPolygon:
             for poly in polygon:
                 poly = clusterizer_utils.swap_xy(poly)
@@ -220,7 +201,7 @@ def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
     nb_par_zone = np.maximum(nb_par_zone, np.ones(len(liste_df), dtype=int))  # il faut au moins un cluster par zone considérée
     return nb_par_zone
 
-def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50, adresse_map: str = "output/clusterized_map_seine.html",
+def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 50, adresse_map: str = "output/clusterized_map_seine.html",
               seine_divide: bool = True,
               reduce: bool = False,
               threshold: int = 1000) -> None:
@@ -264,26 +245,13 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
     print(f"{t2-t1:2.3f} s")
     t1 = time.time()
 
-    if seine_divide :
+    if seine_divide:
         print("On sépare par la Seine...", end="    ")
-
-        # on va avoir au moins 4 zones:
-        # rive Gauche,
-        # rive Droite,
-        # Maisons-Alfort,
-        # Courbevoie-Asnières
-
-        masque = rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])))
+        masque = rapport_a_la_seine_spatial_index_point(df.copy()["geometry"].apply(lambda x: x['coordinates']))
 
         liste_df = []
         for no_zone in DICT_GDF_ZONES.keys():
-            # print("key ", no_zone)
-            liste_df.append(
-                # df[numba_rapport_a_la_seine(np.array(df.copy()["geometry"].apply(lambda x: x['coordinates'])), no_zone)]
-                df[no_zone == masque].reset_index(drop=True)
-            )
-
-        # pprint(liste_df)
+            liste_df.append(df[no_zone == masque].reset_index(drop=True))
 
         t2 = time.time()
         print(f"{t2-t1:2.3f} s")
@@ -294,16 +262,13 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
         liste_df_clusters = []
 
         nb_clusters_par_zone = calcule_nb_clusters_par_zone(liste_df, nb_clusters)
-        # pprint(nb_clusters_par_zone)
-
 
         for no_zone in range(NB_ZONES):
             try:
                 liste_df_clusters.append(
                     clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], is_dict=True, weight=True)
                 )
-            except ValueError as e:
-                print(e, no_zone)
+            except ValueError:
                 pass
 
         t2 = time.time()
@@ -323,7 +288,6 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = '', nb_clusters: int = 50
         print(f"{t2-t1:2.3f} s")
         t1 = time.time()
         
-
     print("Génération de la carte et sauvegarde...", end="    ")
 
     map = save_to_map(liste_df_clusters[0][1])
@@ -346,7 +310,6 @@ def test_naf():
     print(NAF_utils.get_NAFs_by_section("L"))
 
 if __name__ == "__main__":
-
     # On exécute le programme avec la base SIRENE :
 
     if DEBUG_PLOT:
@@ -360,8 +323,17 @@ if __name__ == "__main__":
         # main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
-        main_json(rayon=8, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
+        main_json(rayon=8, nb_clusters=50,adresse_map="output/clusterized_map_with_shapefile_speedup_non_exact_joli_30.html")#, reduce=True, threshold=100_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # cProfile.run('main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=100_000)')
 
+#### au maximum : 
+# $ python clusterizer.py 
+# Ouverture de la DataFrame...    6.922 s
+# On ne garde que les données du centre...    1.110 s
+# On sépare par la Seine...    424.805 s
+# Clusterisation...    7.739 s
+# Génération de la carte et sauvegarde...    0.108 s
+# Terminé !
+# -> 440 secondes = 7 minutes 20

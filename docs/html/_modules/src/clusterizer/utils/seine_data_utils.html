@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>src.clusterizer.utils.seine_data_utils &mdash; Documentation Ecosystème logistique </title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/my_theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Ecosystème logistique
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Ecosystème logistique</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Code du module</a> &raquo;</li>
+        
+      <li>src.clusterizer.utils.seine_data_utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Code source de src.clusterizer.utils.seine_data_utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="kn">from</span> <span class="nn">shapely.strtree</span> <span class="kn">import</span> <span class="n">STRtree</span>
+
+<span class="n">FILE_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">FILE_PATH</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
+
+<span class="n">DICT_ZONES_IDF</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_est&quot;</span><span class="p">,</span>
+    <span class="mi">1</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_nord_ouest&quot;</span><span class="p">,</span>
+    <span class="mi">2</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_nord&quot;</span><span class="p">,</span>
+    <span class="mi">3</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_Paris_ouest&quot;</span><span class="p">,</span>
+    <span class="mi">4</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_sud&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">DIR_SHP_FILES</span> <span class="o">=</span> <span class="n">BASE_DIR</span><span class="o">/</span><span class="s2">&quot;data/IDF_5_zones/&quot;</span>
+
+<span class="n">DICT_GDF_ZONES</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">DICT_ZONES_IDF</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">DICT_GDF_ZONES</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">DIR_SHP_FILES</span><span class="o">/</span><span class="p">(</span> <span class="n">DICT_ZONES_IDF</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.shp&quot;</span><span class="p">))[</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">NB_ZONES</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">DICT_ZONES_IDF</span><span class="p">)</span>
+
+
+
+<div class="viewcode-block" id="rapport_a_la_seine_spatial_index_point"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point">[docs]</a><span class="k">def</span> <span class="nf">rapport_a_la_seine_spatial_index_point</span><span class="p">(</span><span class="n">array_coords</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Trouve les zones où se situent les points de l&#39;:code:`array` fournie.</span>
+<span class="sd">    Utilise un *R-Tree* pour ce faire pour accélérer le calcul.</span>
+
+<span class="sd">    :param array_coords: Array (nb_points, 2) contenant les coordonnées des points</span>
+<span class="sd">    :type array_coords: np.ndarray</span>
+<span class="sd">    :return: Une array &quot;masque&quot; qui a chaque point associe son numéro de zone</span>
+<span class="sd">    :rtype: np.ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">list_points_array_coords</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">array_coords</span><span class="p">)))</span>
+
+    <span class="n">index_poly_by_id</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="nb">id</span><span class="p">(</span><span class="n">po</span><span class="p">),</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">po</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">DICT_GDF_ZONES</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+    <span class="n">polygons_tree</span> <span class="o">=</span> <span class="n">STRtree</span><span class="p">(</span><span class="n">DICT_GDF_ZONES</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">array_coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">list_points_array_coords</span><span class="p">):</span>
+        <span class="n">le_bon_poly</span> <span class="o">=</span> <span class="n">polygons_tree</span><span class="o">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+        <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_poly_by_id</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">le_bon_poly</span><span class="p">)]</span>
+        <span class="c1"># if le_bon_poly.intersects(point):</span>
+        <span class="c1">#     res[i] = index_poly_by_id[id(le_bon_poly)]</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     res[i] = NB_ZONES</span>
+    <span class="k">return</span> <span class="n">res</span></div>
+    
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">time</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
+
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">array2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">array</span><span class="p">])</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">coord</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">array2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">array2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])):</span>
+        <span class="k">for</span> <span class="n">no_zone</span><span class="p">,</span> <span class="n">gdf</span> <span class="ow">in</span> <span class="n">DICT_GDF_ZONES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">Point</span><span class="p">(</span><span class="o">*</span><span class="n">coord</span><span class="p">)</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">gdf</span><span class="p">):</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">no_zone</span>
+        <span class="k">if</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">NB_ZONES</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+    <span class="n">t3</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t3</span><span class="o">-</span><span class="n">t2</span><span class="si">:</span><span class="s2">3.3f</span><span class="si">}</span><span class="s2"> secondes sans index&quot;</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">rapport_a_la_seine_spatial_index_point</span><span class="p">(</span><span class="n">array</span><span class="p">))</span>
+    <span class="n">t4</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t4</span><span class="o">-</span><span class="n">t3</span><span class="si">:</span><span class="s2">3.3f</span><span class="si">}</span><span class="s2"> secondes avec index sur les polygones&quot;</span><span class="p">)</span>
+
+
+
+<span class="c1"># $ python seine_data_utils.py </span>
+<span class="c1"># 30</span>
+<span class="c1"># 0</span>
+<span class="c1"># 1195</span>
+<span class="c1"># 2359</span>
+<span class="c1"># 1172</span>
+<span class="c1"># array([3, 2, 3, ..., 4, 4, 3])</span>
+<span class="c1"># 22.207 secondes avec index</span>
+<span class="c1"># array([3, 2, 3, ..., 4, 4, 3])</span>
+<span class="c1"># 20.819 secondes sans index</span>
+<span class="c1"># array([3, 2, 3, ..., 4, 4, 3])</span>
+<span class="c1"># 6.969 secondes avec index sur les polygones</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021 Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot.
+
+    </p>
+  </div>
+    
+    
+    
+    Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

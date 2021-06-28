@@ -1,107 +1,301 @@
 
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Ecosystème logistique - Documentation &mdash; Documentation Ecosystème logistique </title>
+  
 
-<html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
 
-    <title>Ecosystème logistique - Documentation &#8212; Documentation Ecosystème logistique </title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
-    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/translations.js"></script>
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="Index général"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Index des modules Python"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">Documentation Ecosystème logistique </a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Ecosystème logistique - Documentation</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Ecosystème logistique
+          
+
+          
+          </a>
+
+          
             
-  <section id="ecosysteme-logistique-documentation">
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Ecosystème logistique - Documentation</a><ul>
+<li><a class="reference internal" href="#judith-bellon-gabrielle-vernet-cesar-almecija-louis-justin-tallot">Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot</a><ul>
+<li><a class="reference internal" href="#dependances">Dépendances</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#clusterizer">Clusterizer</a><ul>
+<li><a class="reference internal" href="#module-src.clusterizer.clusterizer">Fichier principal</a></li>
+<li><a class="reference internal" href="#fichiers-utilitaires">Fichiers utilitaires</a><ul>
+<li><a class="reference internal" href="#module-src.clusterizer.utils.clusterizer_utils">Utilitaires pour la clusterisation</a></li>
+<li><a class="reference internal" href="#module-src.clusterizer.utils.NAF_utils">Utilitaires pour la gestion des codes NAF</a></li>
+<li><a class="reference internal" href="#module-src.clusterizer.utils.seine_data_utils">Utilitaires pour la séparation par la Seine</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#traitement-de-la-base-sirene">Traitement de la base SIRENE</a></li>
+<li><a class="reference internal" href="#interface-homme-machine">Interface Homme-Machine</a><ul>
+<li><a class="reference internal" href="#module-src.ihm.ihm_complet">Interface complète</a></li>
+<li><a class="reference internal" href="#module-src.ihm.ihm_csv">Interaction avec l’utilisateur <em>via</em> fichier CSV</a></li>
+<li><a class="reference internal" href="#module-src.ihm.ihm_pyqt">Utilitaire : fenêtre d’accueil pour <code class="code docutils literal notranslate"><span class="pre">ihm_complet</span></code></a></li>
+<li><a class="reference internal" href="#module-src.ihm.web">(Obsolète) Ouverture d’un fichier <code class="code docutils literal notranslate"><span class="pre">HTML</span></code> dans un navigateur Web :</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Ecosystème logistique</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Ecosystème logistique - Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ecosysteme-logistique-documentation">
 <h1>Ecosystème logistique - Documentation<a class="headerlink" href="#ecosysteme-logistique-documentation" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-</section>
-<section id="interface-homme-machine">
-<h1>Interface Homme-Machine<a class="headerlink" href="#interface-homme-machine" title="Lien permanent vers ce titre">¶</a></h1>
-<section id="module-src.ihm.ihm_complet">
-<span id="interface-complete"></span><h2>Interface complète<a class="headerlink" href="#module-src.ihm.ihm_complet" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.ihm.ihm_complet.</span></span><span class="sig-name descname"><span class="pre">Wind</span></span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Classe contenant l’interface Homme-Machine pour le projet.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind.appui_bouton_OK">
-<span class="sig-name descname"><span class="pre">appui_bouton_OK</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind.appui_bouton_OK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind.appui_bouton_OK" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Listener pour le bouton ok.
-Prépare les données pour lancer la clusterisation et l’affichage de la carte.
-cf. lancement_clustering</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind.lancement_clustering">
-<span class="sig-name descname"><span class="pre">lancement_clustering</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind.lancement_clustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind.lancement_clustering" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Lance la clusterisation à l’aide des paramètres entrés par l’utilisateur.
-Ensuite, affiche la carte.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-src.ihm.ihm_csv">
-<span id="interaction-avec-l-utilisateur-via-fichier-csv"></span><h2>Interaction avec l’utilisateur <em>via</em> fichier CSV<a class="headerlink" href="#module-src.ihm.ihm_csv" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Première interface Homme-machine : utilisation d’un tableau <cite>CSV</cite> pour récupérer les informations données par l’utilisateur</p>
-<p>Paramètres modifiables dans la fonction <code class="code docutils literal notranslate"><span class="pre">clusterize</span></code> : le nombre de clusters</p>
-<p>TODO : Paramètres modifiables souhaités en plus : encadrement du nombre de clusters, taille des clusters</p>
-</section>
-<section id="module-src.ihm.ihm_pyqt">
-<span id="utilitaire-fenetre-d-accueil-pour-ihm-complet"></span><h2>Utilitaire : fenêtre d’accueil pour <code class="code docutils literal notranslate"><span class="pre">ihm_complet</span></code><a class="headerlink" href="#module-src.ihm.ihm_pyqt" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="src.ihm.ihm_pyqt.InputFenetre">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.ihm.ihm_pyqt.</span></span><span class="sig-name descname"><span class="pre">InputFenetre</span></span><a class="reference internal" href="_modules/src/ihm/ihm_pyqt.html#InputFenetre"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_pyqt.InputFenetre" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Le widget qui permet à l’utilisateur de rentrer les paramètres de clustering</p>
-</dd></dl>
-
-</section>
-<section id="module-src.ihm.web">
-<span id="obsolete-ouverture-d-un-fichier-html-dans-un-navigateur-web"></span><h2>(Obsolète) Ouverture d’un fichier <code class="code docutils literal notranslate"><span class="pre">HTML</span></code> dans un navigateur Web :<a class="headerlink" href="#module-src.ihm.web" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="src.ihm.web.open_html">
-<span class="sig-prename descclassname"><span class="pre">src.ihm.web.</span></span><span class="sig-name descname"><span class="pre">open_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adresse</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ihm/web.html#open_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.web.open_html" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Affichage du html depuis python. Il faut être dans le répertoire ihm pour le lancer.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>adresse</strong> – l’adresse du fichier à ouvrir</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-</section>
-<section id="clusterizer">
-<h1>Clusterizer<a class="headerlink" href="#clusterizer" title="Lien permanent vers ce titre">¶</a></h1>
-<section id="module-src.clusterizer.clusterizer">
-<span id="fichier-principal"></span><h2>Fichier principal<a class="headerlink" href="#module-src.clusterizer.clusterizer" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="judith-bellon-gabrielle-vernet-cesar-almecija-louis-justin-tallot">
+<h2>Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot<a class="headerlink" href="#judith-bellon-gabrielle-vernet-cesar-almecija-louis-justin-tallot" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="dependances">
+<h3>Dépendances<a class="headerlink" href="#dependances" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Ce projet dépend des technologies et ressources suivantes :</p>
+<ul class="simple">
+<li><p>Langages :</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">HTML</span> <span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">CSS</span> <span class="pre">3</span></code>, et <code class="docutils literal notranslate"><span class="pre">Javascript</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Python</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C++</span></code> compilé avec <code class="docutils literal notranslate"><span class="pre">g++</span></code></p></li>
+</ul>
+</li>
+<li><p>Formats de fichiers :</p>
+<ul>
+<li><p><a class="reference external" href="https://fr.wikipedia.org/wiki/JavaScript_Object_Notation">JSON</a>
+majoritairement</p></li>
+<li><p><a class="reference external" href="https://fr.wikipedia.org/wiki/GeoJSON">GEOJSON</a> également,
+parfois plus adapté</p></li>
+<li><p><a class="reference external" href="https://fr.wikipedia.org/wiki/Comma-separated_values">CSV</a>
+pour explorer les données de manière plus convéniente avec Excel</p></li>
+</ul>
+</li>
+<li><p>Logiciels :</p>
+<ul>
+<li><p><a class="reference external" href="https://www.google.fr/intl/fr/earth/">Google Earth</a> pour explorer
+le terrain de l’Île-de-France et faire des choix géographiques</p></li>
+<li><p><a class="reference external" href="https://www.qgis.org/fr/site/">QGIS</a> pour construire les
+shapefiles à partir des bases de données géographiques</p></li>
+</ul>
+</li>
+<li><p>Ressources, plugins, packages :</p>
+<ul>
+<li><p><a class="reference external" href="https://www.openstreetmap.org">OpenStreetMap</a> pour les fonds
+de carte</p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/">Base OpenData Île de France</a> et
+notamment les bases de données suivantes :</p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-sirene">Base Sirene des entreprises et de leurs
+établissements</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-adresse-75">BAN - Base Adresse Nationale -
+Paris</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-adresse-92">BAN - Base Adresse Nationale -
+Hauts-de-Seine</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-adresse-94">BAN - Base Adresse Nationale -
+Val-de-Marne</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-adresse-94">BAN - Base Adresse Nationale -
+Val-de-Marne</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/base-adresse-93">BAN - Base Adresse Nationale -
+Seine-Saint-Denis</a></p></li>
+<li><p><a class="reference external" href="https://data.iledefrance.fr/explore/dataset/iris/information/">Base IRIS</a>
+pour les contours de l’Île-de-France</p></li>
+<li><p><a class="reference external" href="https://www.data.gouv.fr/fr/datasets/apur-hydrographie-surfacique-ile-de-france/">Base APUR</a>,
+hydrographie surfacique de l’Île-de-France</p></li>
+</ul>
+</li>
+<li><p>Les plugins Javascript :</p>
+<ul>
+<li><p><a class="reference external" href="https://leafletjs.com/">Leaflet</a> pour insérer des cartes
+OSM dans les pages web</p></li>
+<li><p>le projet
+<a class="reference external" href="https://github.com/Leaflet/Leaflet.markercluster">Leaflet/Leaflet.markercluster</a>
+pour regrouper les points et accélèrer l’affichage</p></li>
+<li><p>le projet
+<a class="reference external" href="https://github.com/pointhi/leaflet-color-markers">pointhi/leaflet-color-markers</a>
+pour des marqueurs de couleurs variées</p></li>
+</ul>
+</li>
+<li><p>Les packages Python :</p>
+<ul>
+<li><p><a class="reference external" href="https://geopandas.org/">GeoPandas</a> pour analyser et
+traiter les données géographiques</p></li>
+<li><p><a class="reference external" href="https://python-visualization.github.io/folium/">Folium</a>
+pour générer des cartes et fichiers <code class="docutils literal notranslate"><span class="pre">HTML</span></code></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/fr/3/library/json.html">json</a> pour
+traiter des fichiers <code class="docutils literal notranslate"><span class="pre">JSON</span></code></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/ijson/">ijson</a> pour traiter de
+manière itérative de lourds fichiers <code class="docutils literal notranslate"><span class="pre">JSON</span></code></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/fr/3/library/time.html">time</a> pour
+mesurer le temps de traitement</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org">matplotlib</a> pour analyser les
+données issues des bases ainsi que visualiser le résultat du
+clustering</p></li>
+<li><p><a class="reference external" href="https://jupyter.org/">Jupyter</a> pour développer de manière
+plus rapide (supporte même <code class="docutils literal notranslate"><span class="pre">Folium</span></code>)</p></li>
+<li><p><a class="reference external" href="https://www.riverbankcomputing.com/software/pyqt/">PyQt5</a>
+pour réaliser l’interface homme-machine</p></li>
+<li><p><a class="reference external" href="https://wiki.qt.io/QtWebEngine">QtWebEngine</a> pour afficher
+les fichiers <code class="docutils literal notranslate"><span class="pre">HTML</span></code> générés par <code class="docutils literal notranslate"><span class="pre">Folium</span></code> dans l’interface
+<code class="docutils literal notranslate"><span class="pre">PyQt</span></code></p></li>
+<li><p><a class="reference external" href="https://cython.org/">Cython</a> pour compiler certains de nos
+modules et accélérer notre code</p></li>
+</ul>
+</li>
+<li><p>Les librairies <code class="docutils literal notranslate"><span class="pre">C++</span></code> :</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">iostream</span></code> pour les entrées/sorties</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fstream</span></code> pour lire/écrire les fichiers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span></code> pour manipuler les chaînes de caractères</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chrono</span></code> pour mesurer le temps d’exécution des différentes
+parties du programme</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="clusterizer">
+<h2>Clusterizer<a class="headerlink" href="#clusterizer" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="module-src.clusterizer.clusterizer">
+<span id="fichier-principal"></span><h3>Fichier principal<a class="headerlink" href="#module-src.clusterizer.clusterizer" title="Lien permanent vers ce titre">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.clusterizer.clusterizer.calcule_nb_clusters_par_zone">
 <span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">calcule_nb_clusters_par_zone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">liste_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_clusters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#calcule_nb_clusters_par_zone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.calcule_nb_clusters_par_zone" title="Lien permanent vers cette définition">¶</a></dt>
@@ -145,7 +339,7 @@ enveloppe convexe (« hulls ») et nombre d’établissements dans le cluster 
 
 <dl class="py function">
 <dt class="sig sig-object py" id="src.clusterizer.clusterizer.main_json">
-<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">main_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rayon</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secteur_NAF</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_clusters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adresse_map</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'output/clusterized_map_seine.html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#main_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.main_json" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">main_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rayon</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secteur_NAF</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">['']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_clusters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adresse_map</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'output/clusterized_map_seine.html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#main_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.main_json" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction principale à exécuter pour successivement ouvrir la DataFrame contenant les données,
 nettoyer la DataFrame, filtrer par secteurs NAF, ne garder que les magasins proche du centre de Paris,
 séparer par la Seine, clusteriser et sauvegarder dans une carte.
@@ -168,20 +362,6 @@ La répartition entre les secteurs de la Seine est calculée automatiquement.</p
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="src.clusterizer.clusterizer.map_rapport_a_la_seine">
-<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">map_rapport_a_la_seine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args_tuple</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#map_rapport_a_la_seine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.map_rapport_a_la_seine" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>TODO</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><p><strong>args_tuple</strong> – </p>
-</dd>
-<dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="src.clusterizer.clusterizer.nettoyer">
 <span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">nettoyer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'geometry'</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">pandas.core.frame.DataFrame</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#nettoyer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.nettoyer" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Nettoie la DataFrame. Enlève les na.
@@ -197,21 +377,6 @@ Si spécifié, ne retient que les premières données de la DataFrame.</p>
 </dd>
 <dt class="field-even">Renvoie</dt>
 <dd class="field-even"><p>Une DataFrame nettoyée.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="src.clusterizer.clusterizer.process_rapport_a_la_seine">
-<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">process_rapport_a_la_seine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">no_zone</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_array</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">multiprocessing.context.BaseContext.Array</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#process_rapport_a_la_seine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.process_rapport_a_la_seine" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>TODO</p>
-<dl class="field-list simple">
-<dt class="field-odd">Paramètres</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>no_zone</strong> – </p></li>
-<li><p><strong>df</strong> – </p></li>
-<li><p><strong>shared_array</strong> – </p></li>
-</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -247,11 +412,11 @@ si rien n’est spécifié, génère une nouvelle carte</p></li>
 <dd><p>Fonction interne (utilisée pour vérifier le bon fonctionnement du filtrage par NAF).</p>
 </dd></dl>
 
-</section>
-<section id="fichiers-utilitaires">
-<h2>Fichiers utilitaires<a class="headerlink" href="#fichiers-utilitaires" title="Lien permanent vers ce titre">¶</a></h2>
-<section id="module-src.clusterizer.utils.clusterizer_utils">
-<span id="utilitaires-pour-la-clusterisation"></span><h3>Utilitaires pour la clusterisation<a class="headerlink" href="#module-src.clusterizer.utils.clusterizer_utils" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="fichiers-utilitaires">
+<h3>Fichiers utilitaires<a class="headerlink" href="#fichiers-utilitaires" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="section" id="module-src.clusterizer.utils.clusterizer_utils">
+<span id="utilitaires-pour-la-clusterisation"></span><h4>Utilitaires pour la clusterisation<a class="headerlink" href="#module-src.clusterizer.utils.clusterizer_utils" title="Lien permanent vers ce titre">¶</a></h4>
 <p>Ce module permet d’extraire simplement nos données des GeoDataFrames, de trouver
 leurs coordonnées, de restreindre le calcul aux points situés dans un certain rayon
 autour de Paris ; il permet également de manipuler les clusters, de calculer leur 
@@ -405,9 +570,9 @@ Auteur : <a class="reference external" href="https://gis.stackexchange.com/a/291
 </dl>
 </dd></dl>
 
-</section>
-<section id="module-src.clusterizer.utils.NAF_utils">
-<span id="utilitaires-pour-la-gestion-des-codes-naf"></span><h3>Utilitaires pour la gestion des codes NAF<a class="headerlink" href="#module-src.clusterizer.utils.NAF_utils" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="module-src.clusterizer.utils.NAF_utils">
+<span id="utilitaires-pour-la-gestion-des-codes-naf"></span><h4>Utilitaires pour la gestion des codes NAF<a class="headerlink" href="#module-src.clusterizer.utils.NAF_utils" title="Lien permanent vers ce titre">¶</a></h4>
 <p>Fonctions pour switcher les conventions de NAF (avec ou sans point intermédiaire)</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.clusterizer.utils.NAF_utils.ajouter_point">
@@ -483,11 +648,32 @@ Auteur : <a class="reference external" href="https://gis.stackexchange.com/a/291
 </dl>
 </dd></dl>
 
-</section>
-</section>
-</section>
-<section id="traitement-de-la-base-sirene">
-<h1>Traitement de la base SIRENE<a class="headerlink" href="#traitement-de-la-base-sirene" title="Lien permanent vers ce titre">¶</a></h1>
+</div>
+<div class="section" id="module-src.clusterizer.utils.seine_data_utils">
+<span id="utilitaires-pour-la-separation-par-la-seine"></span><h4>Utilitaires pour la séparation par la Seine<a class="headerlink" href="#module-src.clusterizer.utils.seine_data_utils" title="Lien permanent vers ce titre">¶</a></h4>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.seine_data_utils.</span></span><span class="sig-name descname"><span class="pre">rapport_a_la_seine_spatial_index_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array_coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="reference internal" href="_modules/src/clusterizer/utils/seine_data_utils.html#rapport_a_la_seine_spatial_index_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Trouve les zones où se situent les points de l”<code class="code docutils literal notranslate"><span class="pre">array</span></code> fournie.
+Utilise un <em>R-Tree</em> pour ce faire pour accélérer le calcul.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>array_coords</strong> (<em>np.ndarray</em>) – Array (nb_points, 2) contenant les coordonnées des points</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Une array « masque » qui a chaque point associe son numéro de zone</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="traitement-de-la-base-sirene">
+<h2>Traitement de la base SIRENE<a class="headerlink" href="#traitement-de-la-base-sirene" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
@@ -502,83 +688,115 @@ Auteur : <a class="reference external" href="https://gis.stackexchange.com/a/291
 </dd></dl>
 
 </div>
-</section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Lien permanent vers ce titre">¶</a></h1>
+</div>
+<div class="section" id="interface-homme-machine">
+<h2>Interface Homme-Machine<a class="headerlink" href="#interface-homme-machine" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="module-src.ihm.ihm_complet">
+<span id="interface-complete"></span><h3>Interface complète<a class="headerlink" href="#module-src.ihm.ihm_complet" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.ihm.ihm_complet.</span></span><span class="sig-name descname"><span class="pre">Wind</span></span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Classe contenant l’interface Homme-Machine pour le projet.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind.appui_bouton_OK">
+<span class="sig-name descname"><span class="pre">appui_bouton_OK</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind.appui_bouton_OK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind.appui_bouton_OK" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Listener pour le bouton ok.
+Prépare les données pour lancer la clusterisation et l’affichage de la carte.
+cf. lancement_clustering</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind.lancement_clustering">
+<span class="sig-name descname"><span class="pre">lancement_clustering</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind.lancement_clustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind.lancement_clustering" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Lance la clusterisation à l’aide des paramètres entrés par l’utilisateur.
+Ensuite, affiche la carte.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.ihm.ihm_csv">
+<span id="interaction-avec-l-utilisateur-via-fichier-csv"></span><h3>Interaction avec l’utilisateur <em>via</em> fichier CSV<a class="headerlink" href="#module-src.ihm.ihm_csv" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Première interface Homme-machine : utilisation d’un tableau <cite>CSV</cite> pour récupérer les informations données par l’utilisateur</p>
+<p>Paramètres modifiables dans la fonction <code class="code docutils literal notranslate"><span class="pre">clusterize</span></code> : le nombre de clusters</p>
+<p>TODO : Paramètres modifiables souhaités en plus : encadrement du nombre de clusters, taille des clusters</p>
+</div>
+<div class="section" id="module-src.ihm.ihm_pyqt">
+<span id="utilitaire-fenetre-d-accueil-pour-ihm-complet"></span><h3>Utilitaire : fenêtre d’accueil pour <code class="code docutils literal notranslate"><span class="pre">ihm_complet</span></code><a class="headerlink" href="#module-src.ihm.ihm_pyqt" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.ihm.ihm_pyqt.InputFenetre">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.ihm.ihm_pyqt.</span></span><span class="sig-name descname"><span class="pre">InputFenetre</span></span><a class="reference internal" href="_modules/src/ihm/ihm_pyqt.html#InputFenetre"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_pyqt.InputFenetre" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Le widget qui permet à l’utilisateur de rentrer les paramètres de clustering</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.ihm.web">
+<span id="obsolete-ouverture-d-un-fichier-html-dans-un-navigateur-web"></span><h3>(Obsolète) Ouverture d’un fichier <code class="code docutils literal notranslate"><span class="pre">HTML</span></code> dans un navigateur Web :<a class="headerlink" href="#module-src.ihm.web" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.ihm.web.open_html">
+<span class="sig-prename descclassname"><span class="pre">src.ihm.web.</span></span><span class="sig-name descname"><span class="pre">open_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adresse</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ihm/web.html#open_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.web.open_html" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Affichage du html depuis python. Il faut être dans le répertoire ihm pour le lancer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>adresse</strong> – l’adresse du fichier à ouvrir</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Lien permanent vers ce titre">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Index du module</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Page de recherche</span></a></p></li>
 </ul>
-</section>
-
-
-            <div class="clearer"></div>
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table des matières</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Ecosystème logistique - Documentation</a></li>
-<li><a class="reference internal" href="#interface-homme-machine">Interface Homme-Machine</a><ul>
-<li><a class="reference internal" href="#module-src.ihm.ihm_complet">Interface complète</a></li>
-<li><a class="reference internal" href="#module-src.ihm.ihm_csv">Interaction avec l’utilisateur <em>via</em> fichier CSV</a></li>
-<li><a class="reference internal" href="#module-src.ihm.ihm_pyqt">Utilitaire : fenêtre d’accueil pour <code class="code docutils literal notranslate"><span class="pre">ihm_complet</span></code></a></li>
-<li><a class="reference internal" href="#module-src.ihm.web">(Obsolète) Ouverture d’un fichier <code class="code docutils literal notranslate"><span class="pre">HTML</span></code> dans un navigateur Web :</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#clusterizer">Clusterizer</a><ul>
-<li><a class="reference internal" href="#module-src.clusterizer.clusterizer">Fichier principal</a></li>
-<li><a class="reference internal" href="#fichiers-utilitaires">Fichiers utilitaires</a><ul>
-<li><a class="reference internal" href="#module-src.clusterizer.utils.clusterizer_utils">Utilitaires pour la clusterisation</a></li>
-<li><a class="reference internal" href="#module-src.clusterizer.utils.NAF_utils">Utilitaires pour la gestion des codes NAF</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#traitement-de-la-base-sirene">Traitement de la base SIRENE</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
-
-  <div role="note" aria-label="source link">
-    <h3>Cette page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
-            rel="nofollow">Montrer le code source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Recherche rapide</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021 Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot.
+
+    </p>
+  </div>
+    
+    
+    
+    Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="Index général"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Index des modules Python"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">Documentation Ecosystème logistique </a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Ecosystème logistique - Documentation</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2021 Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

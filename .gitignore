@@ -54,3 +54,10 @@ __pycache__
 
 data/hydrographie-surfacique-idf.zip
 data/iris.zip
+.idea/.gitignore
+.idea/misc.xml
+.idea/modules.xml
+.idea/UE22-projet-ecosysteme-logistique.iml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/**
