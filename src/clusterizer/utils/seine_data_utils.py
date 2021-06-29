@@ -11,10 +11,9 @@ BASE_DIR = FILE_PATH.parent.parent.parent.parent
 
 DICT_ZONES_IDF = {
     0 : "IDF_zone_est",
-    1 : "IDF_zone_nord_ouest",
-    2 : "IDF_zone_nord",
-    3 : "IDF_zone_Paris_ouest",
-    4 : "IDF_zone_sud",
+    1 : "IDF_zone_nord_Paris",
+    2 : "IDF_zone_Paris_ouest",
+    3 : "IDF_zone_sud",
 }
 
 DIR_SHP_FILES = BASE_DIR/"data/IDF_5_zones/"

@@ -317,7 +317,7 @@ if __name__ == "__main__":
         # main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
-        main_json(rayon=8, nb_clusters=50,adresse_map="output/clusterized_map_with_shapefile_speedup_non_exact_joli_30.html")#, reduce=True, threshold=100_000)
+        main_json(rayon=8, nb_clusters=50,adresse_map="output/clusterized_map_new_zone.html", reduce=True, threshold=100_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # cProfile.run('main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=100_000)')
