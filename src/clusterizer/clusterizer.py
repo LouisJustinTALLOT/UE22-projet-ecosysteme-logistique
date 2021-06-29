@@ -323,6 +323,7 @@ if __name__ == "__main__":
         # cProfile.run('main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=100_000)')
 
 #### au maximum : 
+# avant multiprocessing
 # $ python clusterizer.py 
 # Ouverture de la DataFrame...    6.922 s
 # On ne garde que les données du centre...    1.110 s
@@ -331,3 +332,12 @@ if __name__ == "__main__":
 # Génération de la carte et sauvegarde...    0.108 s
 # Terminé !
 # -> 440 secondes = 7 minutes 20
+
+# après multiprocessing
+# $ python clusterizer.py 
+# Ouverture de la DataFrame...    5.678 s
+# On ne garde que les données du centre...    0.806 s
+# On sépare par la Seine...    322.618 s
+# Clusterisation...    14.862 s
+# Génération de la carte et sauvegarde...    0.152 s
+# Terminé !
