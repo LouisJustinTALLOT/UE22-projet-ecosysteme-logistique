@@ -14,7 +14,7 @@ def test_calculer_poids_cluster():
     Teste la fonction calculer_poids_cluster du module clusterizer_utils sur la Dataframe df_test, composée de deux établissements
     """
     result = clusterizer_utils.calculer_poids_cluster(df_test, "apet700")
-    assert result == 5  # le premier commence par 68 -> 1 et le deuxième par 49 -> 4
+    assert result == 2  # pour l'instant chaque établissement a un poids de 1
 
 def test_ajouter_point():
     """ 
@@ -46,7 +46,7 @@ def test_get_NAFs_by_section():
     assert (result == ["35", "35.1", "35.11", "35.11Z", "35.12", "35.12Z", "35.13", "35.13Z", "35.14", "35.14Z", "35.2", "35.21", "35.21Z", "35.22", "35.22Z", "35.23", "35.23Z", "35.3", "35.30", "35.30Z" ]).all
 
 
-df_test_cl, df_test_infos = clusterizer.clusterize(df_test, 1, "geometry", dict=True)
+df_test_cl, df_test_infos = clusterizer.clusterize(df_test, 1, "geometry", is_dict=True)
 
 def test_numero_cluster():
     """ 
