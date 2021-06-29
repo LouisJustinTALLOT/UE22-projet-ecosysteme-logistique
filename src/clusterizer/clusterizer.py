@@ -118,7 +118,7 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
     :param map: la carte à utiliser
      si un paramètre est spécifié : réecrit par dessus.
      si rien n'est spécifié, génère une nouvelle carte
-    :return une carte complétée.
+    :return: une carte complétée.
     """
 
     if map is None:
