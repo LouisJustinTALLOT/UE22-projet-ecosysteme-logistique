@@ -5,6 +5,7 @@ import geopandas as gpd
 import numpy as np
 from shapely.geometry import Point, Polygon
 from shapely.strtree import STRtree
+from multiprocessing import Pool
 
 FILE_PATH = Path(__file__).resolve()
 BASE_DIR = FILE_PATH.parent.parent.parent.parent
@@ -53,6 +54,16 @@ def rapport_a_la_seine_spatial_index_point(array_coords: np.ndarray) -> np.ndarr
         #     res[i] = NB_ZONES
     return res
     
+
+def rapport_a_la_seine_multiprocessing(array_coords: np.ndarray, nb_split: int = 5) -> np.ndarray:
+    
+    list_chunks = np.array_split(array_coords, nb_split)
+
+    with Pool(nb_split) as p:
+        res = p.map(rapport_a_la_seine_spatial_index_point, list_chunks)
+
+    return np.concatenate(res)
+
 
 if __name__ == "__main__":
     import time
