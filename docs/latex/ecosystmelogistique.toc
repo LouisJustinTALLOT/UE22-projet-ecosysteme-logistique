@@ -1,0 +1,18 @@
+\babel@toc {french}{}
+\contentsline {chapter}{\numberline {1}Judith Bellon, Gabrielle Vernet, César Almecija, Louis\sphinxhyphen {}Justin Tallot}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Dépendances}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Clusterizer}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Fichier principal}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Fichiers utilitaires}{5}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Utilitaires pour la clusterisation}{5}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Utilitaires pour la gestion des codes NAF}{7}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Utilitaires pour la séparation par la Seine}{7}{subsection.2.2.3}%
+\contentsline {chapter}{\numberline {3}Traitement de la base SIRENE}{9}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Interface Homme\sphinxhyphen {}Machine}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Interface complète}{11}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Interaction avec l’utilisateur \sphinxstyleemphasis {via} fichier CSV}{11}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Utilitaire : fenêtre d’accueil pour \sphinxstyleliteralintitle {\sphinxupquote {ihm\_complet}}}{11}{section.4.3}%
+\contentsline {section}{\numberline {4.4}(Obsolète) Ouverture d’un fichier \sphinxstyleliteralintitle {\sphinxupquote {HTML}} dans un navigateur Web :}{12}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Indices and tables}{13}{chapter.5}%
+\contentsline {chapter}{Index des modules Python}{15}{section*.33}%
+\contentsline {chapter}{Index}{17}{section*.34}%
