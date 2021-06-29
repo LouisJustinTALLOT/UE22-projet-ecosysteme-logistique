@@ -5,6 +5,7 @@ import geopandas as gpd
 import numpy as np
 from shapely.geometry import Point, Polygon
 from shapely.strtree import STRtree
+from multiprocessing import Pool
 
 FILE_PATH = Path(__file__).resolve()
 BASE_DIR = FILE_PATH.parent.parent.parent.parent
@@ -54,27 +55,41 @@ def rapport_a_la_seine_spatial_index_point(array_coords: np.ndarray) -> np.ndarr
     return res
     
 
+def rapport_a_la_seine_multiprocessing(array_coords: np.ndarray, nb_split: int = 5) -> np.ndarray:
+    
+    list_chunks = np.array_split(array_coords, nb_split)
+
+    with Pool(nb_split) as p:
+        res = p.map(rapport_a_la_seine_spatial_index_point, list_chunks)
+
+    return np.concatenate(res)
+
+
 if __name__ == "__main__":
     import time
     with open("points", 'r', encoding='utf8') as file:
         array = np.array(eval(file.read()))
 
     t2 = time.time()
-    array2 = np.array([tuple(x) for x in array])
-    res = -1 * np.ones(len(array2), dtype=int)
-    for i, coord in enumerate(zip(array2[:,0], array2[:,1])):
-        for no_zone, gdf in DICT_GDF_ZONES.items():
-            if Point(*coord).within(gdf):
-                res[i] = no_zone
-        if res[i] == -1:
-            res[i] = NB_ZONES
-    pprint(res)
+    # array2 = np.array([tuple(x) for x in array])
+    # res = -1 * np.ones(len(array2), dtype=int)
+    # for i, coord in enumerate(zip(array2[:,0], array2[:,1])):
+    #     for no_zone, gdf in DICT_GDF_ZONES.items():
+    #         if Point(*coord).within(gdf):
+    #             res[i] = no_zone
+    #     if res[i] == -1:
+    #         res[i] = NB_ZONES
+    # pprint(res)
 
     t3 = time.time()
     print(f"{t3-t2:3.3f} secondes sans index")
     pprint(rapport_a_la_seine_spatial_index_point(array))
     t4 = time.time()
     print(f"{t4-t3:3.3f} secondes avec index sur les polygones")
+    pprint(rapport_a_la_seine_multiprocessing(array, 6))
+    t5 = time.time()
+    print(f"{t5-t4:3.3f} secondes avec index sur les polygones + multiprocessing")
+    print((t5-t4)/(t4-t3))
 
 
 
