@@ -299,16 +299,16 @@ parties du programme</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.clusterizer.clusterizer.calcule_nb_clusters_par_zone">
 <span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">calcule_nb_clusters_par_zone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">liste_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_clusters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#calcule_nb_clusters_par_zone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.calcule_nb_clusters_par_zone" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>TODO</p>
+<dd><p>Calcule le nombre de clusters à mettre dans chaque zone pour équilibrer les poids des clusters entre les zones</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>liste_df</strong> – </p></li>
-<li><p><strong>nb_clusters</strong> – </p></li>
+<li><p><strong>liste_df</strong> – la liste des Dataframe correspondant aux différentes zones</p></li>
+<li><p><strong>nb_clusters</strong> – le nombre de clusters total voulu</p></li>
 </ul>
 </dd>
 <dt class="field-even">Renvoie</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>la liste des nombres de clusters par zones</p>
 </dd>
 </dl>
 </dd></dl>
@@ -339,7 +339,7 @@ enveloppe convexe (« hulls ») et nombre d’établissements dans le cluster 
 
 <dl class="py function">
 <dt class="sig sig-object py" id="src.clusterizer.clusterizer.main_json">
-<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">main_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rayon</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secteur_NAF</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">['']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_clusters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adresse_map</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'output/clusterized_map_seine.html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#main_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.main_json" title="Lien permanent vers cette définition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.clusterizer.</span></span><span class="sig-name descname"><span class="pre">main_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rayon</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secteur_NAF</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">['']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_clusters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adresse_map</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'output/clusterized_map_seine.html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seine_divide</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/clusterizer/clusterizer.html#main_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.clusterizer.main_json" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction principale à exécuter pour successivement ouvrir la DataFrame contenant les données,
 nettoyer la DataFrame, filtrer par secteurs NAF, ne garder que les magasins proche du centre de Paris,
 séparer par la Seine, clusteriser et sauvegarder dans une carte.
@@ -351,6 +351,7 @@ La répartition entre les secteurs de la Seine est calculée automatiquement.</p
 <li><p><strong>secteur_NAF</strong> – les secteurs NAF à sélectionner.</p></li>
 <li><p><strong>nb_clusters</strong> – le nombre de clusters à calculer.</p></li>
 <li><p><strong>adresse_map</strong> – l’adresse de la carte en sortie.</p></li>
+<li><p><strong>seine_divide</strong> – mettre <cite>True</cite> pour séparer les clusters par la Seine</p></li>
 <li><p><strong>reduce</strong> – mettre <code class="code docutils literal notranslate"><span class="pre">True</span></code> pour n’utiliser qu’une version allégée des données (plus rapide).</p></li>
 <li><p><strong>threshold</strong> – nombre de données utilisées si reduce= <code class="code docutils literal notranslate"><span class="pre">True</span></code></p></li>
 </ul>
@@ -396,8 +397,10 @@ si un paramètre est spécifié : réecrit par dessus.
 si rien n’est spécifié, génère une nouvelle carte</p></li>
 </ul>
 </dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>une carte complétée.</p>
+</dd>
 </dl>
-<p>:return une carte complétée.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -652,6 +655,11 @@ Auteur : <a class="reference external" href="https://gis.stackexchange.com/a/291
 <div class="section" id="module-src.clusterizer.utils.seine_data_utils">
 <span id="utilitaires-pour-la-separation-par-la-seine"></span><h4>Utilitaires pour la séparation par la Seine<a class="headerlink" href="#module-src.clusterizer.utils.seine_data_utils" title="Lien permanent vers ce titre">¶</a></h4>
 <dl class="py function">
+<dt class="sig sig-object py" id="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing">
+<span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.seine_data_utils.</span></span><span class="sig-name descname"><span class="pre">rapport_a_la_seine_multiprocessing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array_coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_split</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="reference internal" href="_modules/src/clusterizer/utils/seine_data_utils.html#rapport_a_la_seine_multiprocessing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point">
 <span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.seine_data_utils.</span></span><span class="sig-name descname"><span class="pre">rapport_a_la_seine_spatial_index_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array_coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="reference internal" href="_modules/src/clusterizer/utils/seine_data_utils.html#rapport_a_la_seine_spatial_index_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Trouve les zones où se situent les points de l”<code class="code docutils literal notranslate"><span class="pre">array</span></code> fournie.
@@ -696,7 +704,8 @@ Utilise un <em>R-Tree</em> pour ce faire pour accélérer le calcul.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.ihm.ihm_complet.</span></span><span class="sig-name descname"><span class="pre">Wind</span></span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Classe contenant l’interface Homme-Machine pour le projet.</p>
+<dd><p>Bases : <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QMainWindow</span></code></p>
+<p>Classe contenant l’interface Homme-Machine pour le projet.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.ihm.ihm_complet.Wind.appui_bouton_OK">
 <span class="sig-name descname"><span class="pre">appui_bouton_OK</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="_modules/src/ihm/ihm_complet.html#Wind.appui_bouton_OK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_complet.Wind.appui_bouton_OK" title="Lien permanent vers cette définition">¶</a></dt>
@@ -726,7 +735,8 @@ Ensuite, affiche la carte.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.ihm.ihm_pyqt.InputFenetre">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.ihm.ihm_pyqt.</span></span><span class="sig-name descname"><span class="pre">InputFenetre</span></span><a class="reference internal" href="_modules/src/ihm/ihm_pyqt.html#InputFenetre"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ihm.ihm_pyqt.InputFenetre" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Le widget qui permet à l’utilisateur de rentrer les paramètres de clustering</p>
+<dd><p>Bases : <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QWidget</span></code></p>
+<p>Le widget qui permet à l’utilisateur de rentrer les paramètres de clustering</p>
 </dd></dl>
 
 </div>

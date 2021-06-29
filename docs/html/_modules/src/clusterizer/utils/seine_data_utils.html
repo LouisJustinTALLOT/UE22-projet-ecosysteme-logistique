@@ -161,16 +161,16 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
 <span class="kn">from</span> <span class="nn">shapely.strtree</span> <span class="kn">import</span> <span class="n">STRtree</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
 
 <span class="n">FILE_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 <span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">FILE_PATH</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
 
 <span class="n">DICT_ZONES_IDF</span> <span class="o">=</span> <span class="p">{</span>
     <span class="mi">0</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_est&quot;</span><span class="p">,</span>
-    <span class="mi">1</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_nord_ouest&quot;</span><span class="p">,</span>
-    <span class="mi">2</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_nord&quot;</span><span class="p">,</span>
-    <span class="mi">3</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_Paris_ouest&quot;</span><span class="p">,</span>
-    <span class="mi">4</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_sud&quot;</span><span class="p">,</span>
+    <span class="mi">1</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_nord_Paris&quot;</span><span class="p">,</span>
+    <span class="mi">2</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_Paris_ouest&quot;</span><span class="p">,</span>
+    <span class="mi">3</span> <span class="p">:</span> <span class="s2">&quot;IDF_zone_sud&quot;</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">DIR_SHP_FILES</span> <span class="o">=</span> <span class="n">BASE_DIR</span><span class="o">/</span><span class="s2">&quot;data/IDF_5_zones/&quot;</span>
@@ -211,27 +211,41 @@
     <span class="k">return</span> <span class="n">res</span></div>
     
 
+<span class="k">def</span> <span class="nf">rapport_a_la_seine_multiprocessing</span><span class="p">(</span><span class="n">array_coords</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">nb_split</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    
+    <span class="n">list_chunks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">array_coords</span><span class="p">,</span> <span class="n">nb_split</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">nb_split</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">rapport_a_la_seine_spatial_index_point</span><span class="p">,</span> <span class="n">list_chunks</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">time</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
 
     <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">array2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">array</span><span class="p">])</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">coord</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">array2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">array2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])):</span>
-        <span class="k">for</span> <span class="n">no_zone</span><span class="p">,</span> <span class="n">gdf</span> <span class="ow">in</span> <span class="n">DICT_GDF_ZONES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">Point</span><span class="p">(</span><span class="o">*</span><span class="n">coord</span><span class="p">)</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">gdf</span><span class="p">):</span>
-                <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">no_zone</span>
-        <span class="k">if</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">NB_ZONES</span>
-    <span class="n">pprint</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="c1"># array2 = np.array([tuple(x) for x in array])</span>
+    <span class="c1"># res = -1 * np.ones(len(array2), dtype=int)</span>
+    <span class="c1"># for i, coord in enumerate(zip(array2[:,0], array2[:,1])):</span>
+    <span class="c1">#     for no_zone, gdf in DICT_GDF_ZONES.items():</span>
+    <span class="c1">#         if Point(*coord).within(gdf):</span>
+    <span class="c1">#             res[i] = no_zone</span>
+    <span class="c1">#     if res[i] == -1:</span>
+    <span class="c1">#         res[i] = NB_ZONES</span>
+    <span class="c1"># pprint(res)</span>
 
     <span class="n">t3</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t3</span><span class="o">-</span><span class="n">t2</span><span class="si">:</span><span class="s2">3.3f</span><span class="si">}</span><span class="s2"> secondes sans index&quot;</span><span class="p">)</span>
     <span class="n">pprint</span><span class="p">(</span><span class="n">rapport_a_la_seine_spatial_index_point</span><span class="p">(</span><span class="n">array</span><span class="p">))</span>
     <span class="n">t4</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t4</span><span class="o">-</span><span class="n">t3</span><span class="si">:</span><span class="s2">3.3f</span><span class="si">}</span><span class="s2"> secondes avec index sur les polygones&quot;</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">rapport_a_la_seine_multiprocessing</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">t5</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t5</span><span class="o">-</span><span class="n">t4</span><span class="si">:</span><span class="s2">3.3f</span><span class="si">}</span><span class="s2"> secondes avec index sur les polygones + multiprocessing&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">((</span><span class="n">t5</span><span class="o">-</span><span class="n">t4</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">t4</span><span class="o">-</span><span class="n">t3</span><span class="p">))</span>
 
 
 

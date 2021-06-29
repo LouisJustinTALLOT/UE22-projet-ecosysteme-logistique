@@ -29,7 +29,7 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
                                                     COLUMN_CENTROIDS_NAME, \
                                                     COLUMN_DEFAULT_GEOMETRY_NAME, \
                                                     COLUMN_CLUSTER_MASS_NAME
-from src.clusterizer.utils.seine_data_utils import DICT_GDF_ZONES, NB_ZONES, rapport_a_la_seine_spatial_index_point
+from src.clusterizer.utils.seine_data_utils import DICT_GDF_ZONES, NB_ZONES, rapport_a_la_seine_multiprocessing
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
@@ -119,7 +119,7 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None, nb_ava
      si un paramètre est spécifié : réecrit par dessus.
      si rien n'est spécifié, génère une nouvelle carte
     :param nb_avant: nombre de clusters déjà réalisés dans le cas où plusieurs zones sont clusterisées à la suite
-    :return une carte complétée.
+    :return: une carte complétée.
     """
 
     if map is None:
@@ -242,7 +242,7 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
 
     if seine_divide:
         print("On sépare par la Seine...", end="    ")
-        masque = rapport_a_la_seine_spatial_index_point(df.copy()["geometry"].apply(lambda x: x['coordinates']))
+        masque = rapport_a_la_seine_multiprocessing(df.copy()["geometry"].apply(lambda x: x['coordinates']))
 
         liste_df = []
         for no_zone in DICT_GDF_ZONES.keys():
@@ -318,12 +318,13 @@ if __name__ == "__main__":
         # main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
-        main_json(rayon=9, nb_clusters=20, adresse_map="output/clusterized_map_with_shapefile_speedup_non_exact_joli_30.html", reduce=True, threshold=1000)
+        main_json(rayon=100, nb_clusters=50,adresse_map="output/clusterized_map_mutiprocessing_shp_full.html")#, reduce=True, threshold=100_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # cProfile.run('main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=100_000)')
 
 #### au maximum : 
+# avant multiprocessing
 # $ python clusterizer.py 
 # Ouverture de la DataFrame...    6.922 s
 # On ne garde que les données du centre...    1.110 s
@@ -332,3 +333,12 @@ if __name__ == "__main__":
 # Génération de la carte et sauvegarde...    0.108 s
 # Terminé !
 # -> 440 secondes = 7 minutes 20
+
+# après multiprocessing
+# $ python clusterizer.py 
+# Ouverture de la DataFrame...    5.678 s
+# On ne garde que les données du centre...    0.806 s
+# On sépare par la Seine...    322.618 s
+# Clusterisation...    14.862 s
+# Génération de la carte et sauvegarde...    0.152 s
+# Terminé !
