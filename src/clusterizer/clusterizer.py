@@ -297,11 +297,7 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
     print("Terminé !")
 
 
-def test_naf():
-    """
-    Fonction interne (utilisée pour vérifier le bon fonctionnement du filtrage par NAF).
-    """
-    print(NAF_utils.get_NAFs_by_section("L"))
+
 
 if __name__ == "__main__":
     # On exécute le programme avec la base SIRENE :
