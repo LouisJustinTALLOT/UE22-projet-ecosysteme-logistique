@@ -185,7 +185,7 @@
                                                     <span class="n">COLUMN_CENTROIDS_NAME</span><span class="p">,</span> \
                                                     <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> \
                                                     <span class="n">COLUMN_CLUSTER_MASS_NAME</span>
-<span class="kn">from</span> <span class="nn">src.clusterizer.utils.seine_data_utils</span> <span class="kn">import</span> <span class="n">DICT_GDF_ZONES</span><span class="p">,</span> <span class="n">NB_ZONES</span><span class="p">,</span> <span class="n">rapport_a_la_seine_spatial_index_point</span>
+<span class="kn">from</span> <span class="nn">src.clusterizer.utils.seine_data_utils</span> <span class="kn">import</span> <span class="n">DICT_GDF_ZONES</span><span class="p">,</span> <span class="n">NB_ZONES</span><span class="p">,</span> <span class="n">rapport_a_la_seine_multiprocessing</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Clusterise en utilisant l&#39;algorithme des k-moyennes.</span>
@@ -295,11 +295,12 @@
 
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">centroids</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">point</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Centre de masse du cluster </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">sizes</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2"> établissements. Poids : </span><span class="si">{</span><span class="n">poids</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Centre de masse du cluster </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">sizes</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2"> etablissements. Poids : </span><span class="si">{</span><span class="n">poids</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="n">folium</span><span class="o">.</span><span class="n">CircleMarker</span><span class="p">(</span>
                 <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
                 <span class="n">popup</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
-                <span class="n">radius</span><span class="o">=</span><span class="mi">1</span>
+                <span class="n">radius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                <span class="n">color</span> <span class="o">=</span><span class="s1">&#39;purple&#39;</span>
                 <span class="c1"># icon=folium.Icon(color=couleurs[k % len(couleurs)], icon=&#39;info-sign&#39;)</span>
             <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
 
@@ -335,20 +336,13 @@
 
 <div class="viewcode-block" id="calcule_nb_clusters_par_zone"><a class="viewcode-back" href="../../../index.html#src.clusterizer.clusterizer.calcule_nb_clusters_par_zone">[docs]</a><span class="k">def</span> <span class="nf">calcule_nb_clusters_par_zone</span><span class="p">(</span><span class="n">liste_df</span><span class="p">,</span> <span class="n">nb_clusters</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    TODO</span>
-
-<span class="sd">    :param liste_df:</span>
-<span class="sd">    :param nb_clusters:</span>
-<span class="sd">    :return:</span>
+<span class="sd">    Calcule le nombre de clusters à mettre dans chaque zone pour équilibrer les poids des clusters entre les zones</span>
+<span class="sd">    </span>
+<span class="sd">    :param liste_df: la liste des Dataframe correspondant aux différentes zones</span>
+<span class="sd">    :param nb_clusters: le nombre de clusters total voulu</span>
+<span class="sd">    :return: la liste des nombres de clusters par zones</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># poids_par_zone: np.ndarray = np.zeros(len(liste_df))</span>
-    <span class="c1"># for i in range(len(liste_df)):</span>
-        <span class="c1"># poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], &quot;apet700&quot;) </span>
-        <span class="c1"># poids_total = np.sum(poids_par_zone)</span>
-    <span class="c1"># return np.ceil((poids_par_zone / poids_total * nb_clusters)).astype(int)</span>
-    <span class="c1"># # nb_par_zone = np.rint((poids_par_zone / poids_total * nb_clusters)).astype(int)</span>
-    <span class="c1"># # nb_par_zone = list(np.maximum(nb_par_zone, np.ones(len(liste_df), dtype=int)))  # il faut au moins un cluster par zone considérée</span>
-    <span class="c1"># # return nb_par_zone</span>
+
     <span class="n">poids_par_zone</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">liste_df</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">liste_df</span><span class="p">)):</span>
         <span class="n">poids_par_zone</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">clusterizer_utils</span><span class="o">.</span><span class="n">calculer_poids_cluster</span><span class="p">(</span><span class="n">liste_df</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;apet700&quot;</span><span class="p">)</span>
@@ -358,6 +352,7 @@
     <span class="k">return</span> <span class="n">nb_par_zone</span></div>
 
 <div class="viewcode-block" id="main_json"><a class="viewcode-back" href="../../../index.html#src.clusterizer.clusterizer.main_json">[docs]</a><span class="k">def</span> <span class="nf">main_json</span><span class="p">(</span><span class="n">rayon</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">secteur_NAF</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="n">nb_clusters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">adresse_map</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;output/clusterized_map_seine.html&quot;</span><span class="p">,</span>
+              <span class="n">seine_divide</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
               <span class="n">reduce</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
               <span class="n">threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -370,6 +365,7 @@
 <span class="sd">    :param secteur_NAF: les secteurs NAF à sélectionner.</span>
 <span class="sd">    :param nb_clusters: le nombre de clusters à calculer.</span>
 <span class="sd">    :param adresse_map: l&#39;adresse de la carte en sortie.</span>
+<span class="sd">    :param seine_divide: mettre `True` pour séparer les clusters par la Seine</span>
 <span class="sd">    :param reduce: mettre :code:`True` pour n&#39;utiliser qu&#39;une version allégée des données (plus rapide).</span>
 <span class="sd">    :param threshold: nombre de données utilisées si reduce= :code:`True` </span>
 
@@ -398,34 +394,50 @@
     <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="si">:</span><span class="s2">2.3f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;On sépare par la Seine...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;    &quot;</span><span class="p">)</span>
 
-    <span class="n">masque</span> <span class="o">=</span> <span class="n">rapport_a_la_seine_spatial_index_point</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]))</span>
+    <span class="k">if</span> <span class="n">seine_divide</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;On sépare par la Seine...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;    &quot;</span><span class="p">)</span>
+        <span class="n">masque</span> <span class="o">=</span> <span class="n">rapport_a_la_seine_multiprocessing</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]))</span>
 
-    <span class="n">liste_df</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">no_zone</span> <span class="ow">in</span> <span class="n">DICT_GDF_ZONES</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="n">liste_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">no_zone</span> <span class="o">==</span> <span class="n">masque</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">liste_df</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">no_zone</span> <span class="ow">in</span> <span class="n">DICT_GDF_ZONES</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">liste_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">no_zone</span> <span class="o">==</span> <span class="n">masque</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
-    <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="si">:</span><span class="s2">2.3f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
-    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Clusterisation...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;    &quot;</span><span class="p">)</span>
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="si">:</span><span class="s2">2.3f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
-    <span class="n">liste_df_clusters</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Clusterisation...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;    &quot;</span><span class="p">)</span>
 
-    <span class="n">nb_clusters_par_zone</span> <span class="o">=</span> <span class="n">calcule_nb_clusters_par_zone</span><span class="p">(</span><span class="n">liste_df</span><span class="p">,</span> <span class="n">nb_clusters</span><span class="p">)</span>
+        <span class="n">liste_df_clusters</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">for</span> <span class="n">no_zone</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NB_ZONES</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">liste_df_clusters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">clusterize</span><span class="p">(</span><span class="n">liste_df</span><span class="p">[</span><span class="n">no_zone</span><span class="p">],</span> <span class="n">nb_clusters_par_zone</span><span class="p">[</span><span class="n">no_zone</span><span class="p">],</span> <span class="n">is_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-            <span class="k">pass</span>
+        <span class="n">nb_clusters_par_zone</span> <span class="o">=</span> <span class="n">calcule_nb_clusters_par_zone</span><span class="p">(</span><span class="n">liste_df</span><span class="p">,</span> <span class="n">nb_clusters</span><span class="p">)</span>
 
-    <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="si">:</span><span class="s2">2.3f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
-    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">no_zone</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NB_ZONES</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">liste_df_clusters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">clusterize</span><span class="p">(</span><span class="n">liste_df</span><span class="p">[</span><span class="n">no_zone</span><span class="p">],</span> <span class="n">nb_clusters_par_zone</span><span class="p">[</span><span class="n">no_zone</span><span class="p">],</span> <span class="n">is_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="si">:</span><span class="s2">2.3f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Clusterisation...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;    &quot;</span><span class="p">)</span>
+
+        <span class="n">liste_df_clusters</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="n">liste_df_clusters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">clusterize</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nb_clusters</span><span class="p">,</span> <span class="n">is_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="si">:</span><span class="s2">2.3f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Génération de la carte et sauvegarde...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;    &quot;</span><span class="p">)</span>
 
     <span class="nb">map</span> <span class="o">=</span> <span class="n">save_to_map</span><span class="p">(</span><span class="n">liste_df_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
@@ -461,12 +473,13 @@
         <span class="c1"># main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=10_000)</span>
         <span class="c1"># with PyCallGraph(output=GraphvizOutput()):</span>
         <span class="c1">#     main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=10_000)</span>
-        <span class="n">main_json</span><span class="p">(</span><span class="n">rayon</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">nb_clusters</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">adresse_map</span><span class="o">=</span><span class="s2">&quot;output/clusterized_map_with_shapefile_speedup_non_exact_joli_30.html&quot;</span><span class="p">)</span><span class="c1">#, reduce=True, threshold=100_000)</span>
+        <span class="n">main_json</span><span class="p">(</span><span class="n">rayon</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">nb_clusters</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">adresse_map</span><span class="o">=</span><span class="s2">&quot;output/clusterized_map_mutiprocessing_shp_full.html&quot;</span><span class="p">)</span><span class="c1">#, reduce=True, threshold=100_000)</span>
         <span class="c1"># with PyCallGraph(output=GraphvizOutput()):</span>
         <span class="c1">#     main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=10_000)</span>
         <span class="c1"># cProfile.run(&#39;main_json(rayon=100, adresse_map=&quot;output/clusterized_map_with_shapefile_no_convex.html&quot;, reduce=True, threshold=100_000)&#39;)</span>
 
 <span class="c1">#### au maximum : </span>
+<span class="c1"># avant multiprocessing</span>
 <span class="c1"># $ python clusterizer.py </span>
 <span class="c1"># Ouverture de la DataFrame...    6.922 s</span>
 <span class="c1"># On ne garde que les données du centre...    1.110 s</span>
@@ -475,6 +488,15 @@
 <span class="c1"># Génération de la carte et sauvegarde...    0.108 s</span>
 <span class="c1"># Terminé !</span>
 <span class="c1"># -&gt; 440 secondes = 7 minutes 20</span>
+
+<span class="c1"># après multiprocessing</span>
+<span class="c1"># $ python clusterizer.py </span>
+<span class="c1"># Ouverture de la DataFrame...    5.678 s</span>
+<span class="c1"># On ne garde que les données du centre...    0.806 s</span>
+<span class="c1"># On sépare par la Seine...    322.618 s</span>
+<span class="c1"># Clusterisation...    14.862 s</span>
+<span class="c1"># Génération de la carte et sauvegarde...    0.152 s</span>
+<span class="c1"># Terminé !</span>
 </pre></div>
 
            </div>
