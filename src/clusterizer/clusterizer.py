@@ -108,7 +108,7 @@ def clusterize(df: pd.DataFrame, k: int, column_geometry: str = COLUMN_DEFAULT_G
     return df, df_infos_clusters
 
 
-def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> folium.folium.Map:
+def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None, nb_avant=0) -> folium.folium.Map:
     """
     Sauvegarde les informations des clusters dans une carte Leaflet.
     Retourne la carte
@@ -118,6 +118,7 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
     :param map: la carte à utiliser
      si un paramètre est spécifié : réecrit par dessus.
      si rien n'est spécifié, génère une nouvelle carte
+    :param nb_avant: nombre de clusters déjà réalisés dans le cas où plusieurs zones sont clusterisées à la suite
     :return une carte complétée.
     """
 
@@ -139,7 +140,7 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
 
     for k, point in enumerate(centroids):
         if point is not None:
-            title = f"Centre de masse du cluster {k} : {sizes[k]} etablissements. Poids : {poids[k]}"
+            title = f"Centre de masse du cluster {k + nb_avant} : {sizes[k]} etablissements. Poids : {poids[k]}"
             folium.CircleMarker(
                 location=[point.y, point.x],
                 popup=title,
@@ -149,7 +150,7 @@ def save_to_map(df_clusters: pd.DataFrame, map: folium.folium.Map = None) -> fol
             ).add_to(map)
 
     for k, polygon in enumerate(hulls):
-        title = f"Cluster {k}"
+        title = f"Cluster {k + nb_avant}"
         if type(polygon) == Polygon:
             # Notre cluster a plus de trois points (autrement, le type serait Point ou LineString)
             # Donc c'est utile d'afficher l'enveloppe convexe
@@ -181,7 +182,7 @@ def test_geojson():
 def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
     """
     Calcule le nombre de clusters à mettre dans chaque zone pour équilibrer les poids des clusters entre les zones
-    
+
     :param liste_df: la liste des Dataframe correspondant aux différentes zones
     :param nb_clusters: le nombre de clusters total voulu
     :return: la liste des nombres de clusters par zones
@@ -263,7 +264,8 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
                     clusterize(liste_df[no_zone], nb_clusters_par_zone[no_zone], is_dict=True, weight=True)
                 )
             except ValueError:
-                pass
+                liste_df_clusters.append(None)
+                nb_clusters_par_zone[no_zone] = 0  # il n'y a pas d'établissements dans cette zone
 
         t2 = time.time()
         print(f"{t2-t1:2.3f} s")
@@ -284,10 +286,13 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
         
     print("Génération de la carte et sauvegarde...", end="    ")
 
+    nb_deja_faits = 0
     map = save_to_map(liste_df_clusters[0][1])
 
     for no_zone in range(1, len(liste_df_clusters)):
-        map = save_to_map(liste_df_clusters[no_zone][1], map=map)
+        nb_deja_faits += nb_clusters_par_zone[no_zone-1]
+        if liste_df_clusters[no_zone] != None:
+            map = save_to_map(liste_df_clusters[no_zone][1], map=map, nb_avant=nb_deja_faits)
 
     map.save(adresse_map)
 
@@ -313,7 +318,7 @@ if __name__ == "__main__":
         # main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
-        main_json(rayon=8, nb_clusters=50,adresse_map="output/clusterized_map_with_shapefile_speedup_non_exact_joli_30.html")#, reduce=True, threshold=100_000)
+        main_json(rayon=9, nb_clusters=20, adresse_map="output/clusterized_map_with_shapefile_speedup_non_exact_joli_30.html", reduce=True, threshold=1000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # cProfile.run('main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=100_000)')
