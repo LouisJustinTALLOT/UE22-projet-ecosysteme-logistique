@@ -180,20 +180,13 @@ def test_geojson():
 
 def calcule_nb_clusters_par_zone(liste_df, nb_clusters):
     """
-    TODO
-
-    :param liste_df:
-    :param nb_clusters:
-    :return:
+    Calcule le nombre de clusters à mettre dans chaque zone pour équilibrer les poids des clusters entre les zones
+    
+    :param liste_df: la liste des Dataframe correspondant aux différentes zones
+    :param nb_clusters: le nombre de clusters total voulu
+    :return: la liste des nombres de clusters par zones
     """
-    # poids_par_zone: np.ndarray = np.zeros(len(liste_df))
-    # for i in range(len(liste_df)):
-        # poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700") 
-        # poids_total = np.sum(poids_par_zone)
-    # return np.ceil((poids_par_zone / poids_total * nb_clusters)).astype(int)
-    # # nb_par_zone = np.rint((poids_par_zone / poids_total * nb_clusters)).astype(int)
-    # # nb_par_zone = list(np.maximum(nb_par_zone, np.ones(len(liste_df), dtype=int)))  # il faut au moins un cluster par zone considérée
-    # # return nb_par_zone
+
     poids_par_zone: np.ndarray = np.zeros(len(liste_df))
     for i in range(len(liste_df)):
         poids_par_zone[i] = clusterizer_utils.calculer_poids_cluster(liste_df[i], "apet700")
