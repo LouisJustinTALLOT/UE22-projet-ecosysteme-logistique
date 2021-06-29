@@ -29,7 +29,7 @@ from src.clusterizer.utils.clusterizer_utils import COLUMN_HULLS_NAME, \
                                                     COLUMN_CENTROIDS_NAME, \
                                                     COLUMN_DEFAULT_GEOMETRY_NAME, \
                                                     COLUMN_CLUSTER_MASS_NAME
-from src.clusterizer.utils.seine_data_utils import DICT_GDF_ZONES, NB_ZONES, rapport_a_la_seine_spatial_index_point
+from src.clusterizer.utils.seine_data_utils import DICT_GDF_ZONES, NB_ZONES, rapport_a_la_seine_multiprocessing
 
 """
 Clusterise en utilisant l'algorithme des k-moyennes.
@@ -241,7 +241,7 @@ def main_json(rayon: int = 8, secteur_NAF: List[str] = [''], nb_clusters: int = 
 
     if seine_divide:
         print("On sépare par la Seine...", end="    ")
-        masque = rapport_a_la_seine_spatial_index_point(df.copy()["geometry"].apply(lambda x: x['coordinates']))
+        masque = rapport_a_la_seine_multiprocessing(df.copy()["geometry"].apply(lambda x: x['coordinates']))
 
         liste_df = []
         for no_zone in DICT_GDF_ZONES.keys():
@@ -317,7 +317,7 @@ if __name__ == "__main__":
         # main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
-        main_json(rayon=8, nb_clusters=50,adresse_map="output/clusterized_map_new_zone.html", reduce=True, threshold=100_000)
+        main_json(rayon=100, nb_clusters=50,adresse_map="output/clusterized_map_mutiprocessing_shp_full.html")#, reduce=True, threshold=100_000)
         # with PyCallGraph(output=GraphvizOutput()):
         #     main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=10_000)
         # cProfile.run('main_json(rayon=100, adresse_map="output/clusterized_map_with_shapefile_no_convex.html", reduce=True, threshold=100_000)')
