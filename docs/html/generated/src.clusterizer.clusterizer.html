@@ -175,6 +175,19 @@
             
   <div class="section" id="module-src.clusterizer.clusterizer">
 <span id="src-clusterizer-clusterizer"></span><h1>src.clusterizer.clusterizer<a class="headerlink" href="#module-src.clusterizer.clusterizer" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Fichier principal s’occupant de la clusterisation
+à partir de la base de données et des paramètres choisis par l’utilisateur.</p>
+<dl class="simple">
+<dt>Le module<span class="classifier"></span></dt><dd><ul class="simple">
+<li><p>ouvre le fichier <code class="code docutils literal notranslate"><span class="pre">json</span></code> contenant la base SIRENE réduite aux données utiles</p></li>
+<li><p>sélectionne les établissements correspondants aux codes NAF rentrés par l’utilisateur</p></li>
+<li><p>garde tous les établissements dans une certain rayon autour du centre de Paris (rayon choisi par l’utilisateur)</p></li>
+<li><p>si demandé, sépare les ponits en zones en fonction des cours d’eau d’Île-de-France avec le module <code class="code docutils literal notranslate"><span class="pre">utils/seine_data_utils</span></code></p></li>
+<li><p>regroupe les points en clusters avec l’algorithme <code class="code docutils literal notranslate"><span class="pre">MiniBatchKMeans</span></code> de <code class="code docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
+<li><p>exporte le résultat sous forme de carte (dans un fichier <cite>HTML</cite>) à l’aide du module <code class="code docutils literal notranslate"><span class="pre">folium</span></code></p></li>
+</ul>
+</dd>
+</dl>
 <p class="rubric">Functions</p>
 <table class="longtable docutils align-default">
 <colgroup>

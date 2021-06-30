@@ -160,7 +160,19 @@
            <div itemprop="articleBody">
             
   <h1>Code source de src.clusterizer.clusterizer</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pformat</span><span class="p">,</span> <span class="n">pprint</span>
+<span></span><span class="sd">&quot;&quot;&quot;Fichier principal s&#39;occupant de la clusterisation</span>
+<span class="sd">à partir de la base de données et des paramètres choisis par l&#39;utilisateur.</span>
+
+<span class="sd">Le module : </span>
+<span class="sd">    - ouvre le fichier :code:`json` contenant la base SIRENE réduite aux données utiles</span>
+<span class="sd">    - sélectionne les établissements correspondants aux codes NAF rentrés par l&#39;utilisateur</span>
+<span class="sd">    - garde tous les établissements dans une certain rayon autour du centre de Paris (rayon choisi par l&#39;utilisateur)</span>
+<span class="sd">    - si demandé, sépare les ponits en zones en fonction des cours d&#39;eau d&#39;Île-de-France avec le module :code:`utils/seine_data_utils`</span>
+<span class="sd">    - regroupe les points en clusters avec l&#39;algorithme :code:`MiniBatchKMeans` de :code:`scikit-learn`</span>
+<span class="sd">    - exporte le résultat sous forme de carte (dans un fichier `HTML`) à l&#39;aide du module :code:`folium` </span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pformat</span><span class="p">,</span> <span class="n">pprint</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>

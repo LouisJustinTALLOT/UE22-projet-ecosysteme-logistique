@@ -1,3 +1,15 @@
+"""Fichier principal s'occupant de la clusterisation
+à partir de la base de données et des paramètres choisis par l'utilisateur.
+
+Le module : 
+    - ouvre le fichier :code:`json` contenant la base SIRENE réduite aux données utiles
+    - sélectionne les établissements correspondants aux codes NAF rentrés par l'utilisateur
+    - garde tous les établissements dans une certain rayon autour du centre de Paris (rayon choisi par l'utilisateur)
+    - si demandé, sépare les ponits en zones en fonction des cours d'eau d'Île-de-France avec le module :code:`utils/seine_data_utils`
+    - regroupe les points en clusters avec l'algorithme :code:`MiniBatchKMeans` de :code:`scikit-learn`
+    - exporte le résultat sous forme de carte (dans un fichier `HTML`) à l'aide du module :code:`folium` 
+
+"""
 from pprint import pformat, pprint
 from typing import Dict, List, Tuple
 import geopandas as gpd
