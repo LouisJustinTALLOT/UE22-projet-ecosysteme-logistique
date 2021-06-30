@@ -67,3 +67,16 @@ Ce projet dépend des technologies et ressources suivantes :
     * `fstream` pour lire/écrire les fichiers
     * `string` pour manipuler les chaînes de caractères
     * `chrono` pour mesurer le temps d'exécution des différentes parties du programme
+
+#### Contribuer au projet
+
+Les contributions sont bienvenues !
+
+Pour cela, il vous faudra possèder sur votre ordinateur :
+
+* Le système de gestion de version [Git](https://git-scm.com/) (par exemple en installant [Git-Bash](https://gitforwindows.org/) sur Windows)
+* Un éditeur de texte comme [Sublime Text](https://gitforwindows.org/) ou [Visual Studio Code](https://code.visualstudio.com/)
+* Python, distribué sous [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ou [Anaconda](https://www.anaconda.com/) (plus lourd)
+
+
+
