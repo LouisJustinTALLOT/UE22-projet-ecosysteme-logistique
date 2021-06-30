@@ -1,3 +1,8 @@
+"""Module permettant de répartir les points des établissements
+de parts et d'autres des grands cours d'eau d'Île-de-France
+(Marne, Seine, Oise), pour éviter d'obtenir des clusters qui 
+traversent ces cours d'eau.
+"""
 from pathlib import Path
 from pprint import pprint
 from typing import Dict
@@ -56,6 +61,20 @@ def rapport_a_la_seine_spatial_index_point(array_coords: np.ndarray) -> np.ndarr
     
 
 def rapport_a_la_seine_multiprocessing(array_coords: np.ndarray, nb_split: int = 5) -> np.ndarray:
+    """Accèlère la séparation par la Seine en utilisant le module 
+    :code:`multiprocessing` de la librairie standard de Python.
+    
+    Pour cela, on découpe :code:`array_coords` en :code:`nb_split` morceaux
+    et on lance :code:`rapport_a_la_seine_spatial_index_point` sur chaque morceau
+    dans un processus distinct.
+
+    :param array_coords: Array (nb_points, 2) contenant les coordonnées des points
+    :type array_coords: np.ndarray
+    :param nb_split: Nombre de processus distincts à lancer, vaut 5 par défaut
+    :type nb_split: int, optional
+    :return: Une array "masque" qui a chaque point associe son numéro de zone
+    :rtype: np.ndarray
+    """
     
     list_chunks = np.array_split(array_coords, nb_split)
 

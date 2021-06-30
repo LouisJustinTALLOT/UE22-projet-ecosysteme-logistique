@@ -171,6 +171,10 @@
             
   <div class="section" id="module-src.clusterizer.utils.seine_data_utils">
 <span id="src-clusterizer-utils-seine-data-utils"></span><h1>src.clusterizer.utils.seine_data_utils<a class="headerlink" href="#module-src.clusterizer.utils.seine_data_utils" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Module permettant de répartir les points des établissements
+de parts et d’autres des grands cours d’eau d’Île-de-France
+(Marne, Seine, Oise), pour éviter d’obtenir des clusters qui 
+traversent ces cours d’eau.</p>
 <p class="rubric">Functions</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -179,7 +183,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing.html#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing" title="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rapport_a_la_seine_multiprocessing</span></code></a>(array_coords)</p></td>
-<td><p></p></td>
+<td><p>Accèlère la séparation par la Seine en utilisant le module  <code class="code docutils literal notranslate"><span class="pre">multiprocessing</span></code> de la librairie standard de Python.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point.html#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point" title="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rapport_a_la_seine_spatial_index_point</span></code></a>(…)</p></td>
 <td><p>Trouve les zones où se situent les points de l”<code class="code docutils literal notranslate"><span class="pre">array</span></code> fournie.</p></td>

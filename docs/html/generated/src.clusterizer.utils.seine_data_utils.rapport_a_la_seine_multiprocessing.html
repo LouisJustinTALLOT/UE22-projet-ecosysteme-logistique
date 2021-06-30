@@ -176,7 +176,26 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing">
 <span class="sig-prename descclassname"><span class="pre">src.clusterizer.utils.seine_data_utils.</span></span><span class="sig-name descname"><span class="pre">rapport_a_la_seine_multiprocessing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array_coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_split</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="reference internal" href="../_modules/src/clusterizer/utils/seine_data_utils.html#rapport_a_la_seine_multiprocessing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing" title="Lien permanent vers cette définition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Accèlère la séparation par la Seine en utilisant le module 
+<code class="code docutils literal notranslate"><span class="pre">multiprocessing</span></code> de la librairie standard de Python.</p>
+<p>Pour cela, on découpe <code class="code docutils literal notranslate"><span class="pre">array_coords</span></code> en <code class="code docutils literal notranslate"><span class="pre">nb_split</span></code> morceaux
+et on lance <code class="code docutils literal notranslate"><span class="pre">rapport_a_la_seine_spatial_index_point</span></code> sur chaque morceau
+dans un processus distinct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array_coords</strong> (<em>np.ndarray</em>) – Array (nb_points, 2) contenant les coordonnées des points</p></li>
+<li><p><strong>nb_split</strong> (<em>int</em><em>, </em><em>optional</em>) – Nombre de processus distincts à lancer, vaut 5 par défaut</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Une array « masque » qui a chaque point associe son numéro de zone</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 

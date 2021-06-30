@@ -160,7 +160,12 @@
            <div itemprop="articleBody">
             
   <h1>Code source de src.clusterizer.utils.seine_data_utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span></span><span class="sd">&quot;&quot;&quot;Module permettant de répartir les points des établissements</span>
+<span class="sd">de parts et d&#39;autres des grands cours d&#39;eau d&#39;Île-de-France</span>
+<span class="sd">(Marne, Seine, Oise), pour éviter d&#39;obtenir des clusters qui </span>
+<span class="sd">traversent ces cours d&#39;eau.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
@@ -218,6 +223,20 @@
     
 
 <div class="viewcode-block" id="rapport_a_la_seine_multiprocessing"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing.html#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing">[docs]</a><span class="k">def</span> <span class="nf">rapport_a_la_seine_multiprocessing</span><span class="p">(</span><span class="n">array_coords</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">nb_split</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Accèlère la séparation par la Seine en utilisant le module </span>
+<span class="sd">    :code:`multiprocessing` de la librairie standard de Python.</span>
+<span class="sd">    </span>
+<span class="sd">    Pour cela, on découpe :code:`array_coords` en :code:`nb_split` morceaux</span>
+<span class="sd">    et on lance :code:`rapport_a_la_seine_spatial_index_point` sur chaque morceau</span>
+<span class="sd">    dans un processus distinct.</span>
+
+<span class="sd">    :param array_coords: Array (nb_points, 2) contenant les coordonnées des points</span>
+<span class="sd">    :type array_coords: np.ndarray</span>
+<span class="sd">    :param nb_split: Nombre de processus distincts à lancer, vaut 5 par défaut</span>
+<span class="sd">    :type nb_split: int, optional</span>
+<span class="sd">    :return: Une array &quot;masque&quot; qui a chaque point associe son numéro de zone</span>
+<span class="sd">    :rtype: np.ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">list_chunks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">array_coords</span><span class="p">,</span> <span class="n">nb_split</span><span class="p">)</span>
 
