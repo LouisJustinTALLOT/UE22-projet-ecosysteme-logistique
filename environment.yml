@@ -67,8 +67,7 @@ dependencies:
   - rsa=4.7.2
   - rtree=0.9.7
   - ruamel_yaml=0.15.100
-  - scipy>=1.6.2
-  - seaborn>=0.11.1
+  - scipy=1.6.2
   - setuptools>=52.0.0
   - shapely>=1.7.1
   - sip=4.19.13
@@ -87,7 +86,6 @@ dependencies:
     - bleach==3.2.1
     - breathe==4.30.0
     - commonmark==0.9.1
-
     - cython==0.29.21
     - decorator==4.4.2
     - defusedxml==0.6.0
