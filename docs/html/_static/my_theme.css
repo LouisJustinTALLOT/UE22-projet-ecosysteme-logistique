@@ -6,3 +6,11 @@
 .wy-table-responsive table th {
     white-space: normal !important;
 }
+
+div.wy-nav-content h1 {
+    overflow-wrap: break-word !important;
+}
+
+div.wy-menu.wy-menu-vertical li {
+    overflow-wrap: break-word !important;
+}
