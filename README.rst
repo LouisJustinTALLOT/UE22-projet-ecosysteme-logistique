@@ -15,7 +15,7 @@
 .. `https://louisjustintallot.github.io/UE22-projet-ecosysteme-logistique <https://louisjustintallot.github.io/UE22-projet-ecosysteme-logistique>`__
 
 Dépendances
-^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 Ce projet dépend des technologies et ressources suivantes :
 
@@ -108,4 +108,43 @@ Ce projet dépend des technologies et ressources suivantes :
    -  ``chrono`` pour mesurer le temps d'exécution des différentes
       parties du programme
 
+Contribuer au projet
+^^^^^^^^^^^^^^^^^^^^^^
+
+Les contributions sont bienvenues !
+
+Pour cela, il vous faudra possèder sur votre ordinateur :
+
+* Le système de gestion de version `Git <https://git-scm.com/>`_ (par exemple en installant `Git-Bash <https://gitforwindows.org/>`_ sur Windows)
+* Un éditeur de texte comme `Sublime Text <https://gitforwindows.org/>`_ ou `Visual Studio Code <https://code.visualstudio.com/>`_
+* Python, distribué sous `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_ ou `Anaconda <https://www.anaconda.com/>`_ (plus lourd)
+
+Puis vous devrez :code:`clone` ce répo Github : pour cela, ouvrez un shell
+(invite de commande) dans le dossier où vous voudrez ensuite retrouver le projet.
+Puis, tapez :code:`git clone https://github.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique.git`
+et faite Entrer. Git va télécharger le répo et son historique dans le dossier. Vous pouvez
+changer le nom du dossier en entrant **à la place** :code:`git clone https://github.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique.git <nom de dossier choisi par vous>`.
+Une fois cela effectué, vous êtes presque prêt à commencer à contribuer !
+
+
+Il reste une dernière étape, qui est d'installer les dépendances du projet.
+Pour cela, dans le shell, placez-vous à la racine du dossier avec la commande :code:`cd`
+et exécutez la commande : :code:`conda env create -f environment.yml`.
+Conda va installer toute les dépendances du projet.
+
+Il ne vous reste plus qu'à faire :code:`conda activate ecosysteme_logistique` quand vous
+travaillez sur le projet !
+
+Pour proposer vos changements, il faut que vous commitiez vos changements
+puis que vous les publiez en faisant :code:`git push` et en suivant les instructions.
+(Normalement, VS Code guide l'utilisateur). Il faudra *forker* le répo puis
+*push* vos changements sur votre branche, et enfin ouvrir une *pull request*
+pour que nous puissions revoir vos changements et les intégrer au projet.
+
+Signaler un bug
+^^^^^^^^^^^^^^^^^
+
+Si vous pensez avoir trouvé un bug ou avez une question sur le projet,
+ouvrez une *issue* Github (par exemple en cliquant ici : 
+`nouvelle issue <https://github.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/issues/new>`_).
 
