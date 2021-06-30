@@ -91,6 +91,12 @@ Pour cela, dans le shell, placez-vous à la racine du dossier avec la commande `
 et exécutez la commande : `conda env create -f environment.yml`.
 Conda va installer toute les dépendances du projet.
 
-Il ne vous reste plus qu'à faire `conda activate ecosysteme_logistique` quand vous 
+Il ne vous reste plus qu'à faire `conda activate ecosysteme_logistique` quand vous
 travaillez sur le projet !
+
+#### Signaler un bug
+
+Si vous pensez avoir trouvé un bug ou avez une question sur le projet,
+ouvrez une *issue* Github (par exemple en cliquant ici : 
+[nouvelle issue](https://github.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique/issues/new)).
 
