@@ -94,6 +94,12 @@ Conda va installer toute les dépendances du projet.
 Il ne vous reste plus qu'à faire `conda activate ecosysteme_logistique` quand vous
 travaillez sur le projet !
 
+Pour proposer vos changements, il faut que vous `commit`iez vos changements
+puis que vous les publiez en faisant `git push` et en suivant les instructions.
+(Normalement, VS Code guide l'utilisateur). Il faudra *forker* le répo puis
+*push* vos changements sur votre branche, et enfin ouvrir une *pull request*
+pour que nous puissions revoir vos changements et les intégrer au projet.
+
 #### Signaler un bug
 
 Si vous pensez avoir trouvé un bug ou avez une question sur le projet,
