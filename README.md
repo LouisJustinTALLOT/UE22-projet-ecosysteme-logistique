@@ -78,5 +78,19 @@ Pour cela, il vous faudra possèder sur votre ordinateur :
 * Un éditeur de texte comme [Sublime Text](https://gitforwindows.org/) ou [Visual Studio Code](https://code.visualstudio.com/)
 * Python, distribué sous [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ou [Anaconda](https://www.anaconda.com/) (plus lourd)
 
+Puis vous devrez `clone` ce répo Github : pour cela, ouvrez un shell
+(invite de commande) dans le dossier où vous voudrez ensuite retrouver le projet.
+Puis, tapez `git clone https://github.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique.git`
+et faite Entrer. Git va télécharger le répo et son historique dans le dossier. Vous pouvez
+changer le nom du dossier en entrant **à la place** `git clone https://github.com/LouisJustinTALLOT/UE22-projet-ecosysteme-logistique.git <nom de dossier choisi par vous>`.
+Une fois cela effectué, vous êtes presque prêt à commencer à contribuer !
 
+
+Il reste une dernière étape, qui est d'installer les dépendances du projet.
+Pour cela, dans le shell, placez-vous à la racine du dossier avec la commande `cd`
+et exécutez la commande : `conda env create -f environment.yml`.
+Conda va installer toute les dépendances du projet.
+
+Il ne vous reste plus qu'à faire `conda activate ecosysteme_logistique` quand vous 
+travaillez sur le projet !
 
