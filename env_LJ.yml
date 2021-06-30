@@ -335,4 +335,4 @@ dependencies:
     - widgetsnbextension==3.5.1
     - zope-event==4.5.0
     - zope-interface==5.3.0
-prefix: C:\Users\ljtal\miniconda3
+
