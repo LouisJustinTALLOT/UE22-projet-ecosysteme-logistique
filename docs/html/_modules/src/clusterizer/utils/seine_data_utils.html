@@ -88,8 +88,14 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/src.clusterizer.clusterizer.html">src.clusterizer.clusterizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.html">src.clusterizer.utils.clusterizer_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/src.clusterizer.utils.NAF_utils.html">src.clusterizer.utils.NAF_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/src.clusterizer.utils.seine_data_utils.html">src.clusterizer.utils.seine_data_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/tests.tests_src.test.html">tests.tests_src.test</a></li>
+</ul>
+
             
           
         </div>
@@ -184,7 +190,7 @@
 
 
 
-<div class="viewcode-block" id="rapport_a_la_seine_spatial_index_point"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point">[docs]</a><span class="k">def</span> <span class="nf">rapport_a_la_seine_spatial_index_point</span><span class="p">(</span><span class="n">array_coords</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="rapport_a_la_seine_spatial_index_point"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point.html#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_spatial_index_point">[docs]</a><span class="k">def</span> <span class="nf">rapport_a_la_seine_spatial_index_point</span><span class="p">(</span><span class="n">array_coords</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Trouve les zones où se situent les points de l&#39;:code:`array` fournie.</span>
 <span class="sd">    Utilise un *R-Tree* pour ce faire pour accélérer le calcul.</span>
 
@@ -211,14 +217,14 @@
     <span class="k">return</span> <span class="n">res</span></div>
     
 
-<span class="k">def</span> <span class="nf">rapport_a_la_seine_multiprocessing</span><span class="p">(</span><span class="n">array_coords</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">nb_split</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="rapport_a_la_seine_multiprocessing"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing.html#src.clusterizer.utils.seine_data_utils.rapport_a_la_seine_multiprocessing">[docs]</a><span class="k">def</span> <span class="nf">rapport_a_la_seine_multiprocessing</span><span class="p">(</span><span class="n">array_coords</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">nb_split</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     
     <span class="n">list_chunks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">array_coords</span><span class="p">,</span> <span class="n">nb_split</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">nb_split</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">rapport_a_la_seine_spatial_index_point</span><span class="p">,</span> <span class="n">list_chunks</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

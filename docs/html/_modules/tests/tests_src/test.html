@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>tests.tests_src.test &mdash; Documentation Ecosystème logistique </title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/my_theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Ecosystème logistique
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/src.clusterizer.clusterizer.html">src.clusterizer.clusterizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/src.clusterizer.utils.clusterizer_utils.html">src.clusterizer.utils.clusterizer_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/src.clusterizer.utils.NAF_utils.html">src.clusterizer.utils.NAF_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/src.clusterizer.utils.seine_data_utils.html">src.clusterizer.utils.seine_data_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/tests.tests_src.test.html">tests.tests_src.test</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Ecosystème logistique</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Code du module</a> &raquo;</li>
+        
+      <li>tests.tests_src.test</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Code source de tests.tests_src.test</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module de test de notre projet&quot;&quot;&quot;</span>
+
+<span class="c1"># import pandas as pd</span>
+
+<span class="c1"># import sys</span>
+<span class="c1"># sys.path.append(&quot;../..&quot;)</span>
+
+<span class="c1"># from src.clusterizer import clusterizer</span>
+<span class="c1"># from src.clusterizer.utils import clusterizer_utils</span>
+<span class="c1"># from src.clusterizer.utils import NAF_utils</span>
+
+<span class="c1"># df_test = clusterizer.nettoyer(pd.read_json(&quot;../../data/base_sirene_shortened.json&quot;), reduce=True, threshold=2)</span>
+
+<div class="viewcode-block" id="test_calculer_poids_cluster"><a class="viewcode-back" href="../../../generated/tests.tests_src.test.test_calculer_poids_cluster.html#tests.tests_src.test.test_calculer_poids_cluster">[docs]</a><span class="k">def</span> <span class="nf">test_calculer_poids_cluster</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Teste la fonction calculer_poids_cluster du module clusterizer_utils sur la Dataframe df_test, composée de deux établissements</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">clusterizer_utils</span><span class="o">.</span><span class="n">calculer_poids_cluster</span><span class="p">(</span><span class="n">df_test</span><span class="p">,</span> <span class="s2">&quot;apet700&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">2</span>  <span class="c1"># pour l&#39;instant chaque établissement a un poids de 1</span></div>
+
+<div class="viewcode-block" id="test_ajouter_point"><a class="viewcode-back" href="../../../generated/tests.tests_src.test.test_ajouter_point.html#tests.tests_src.test.test_ajouter_point">[docs]</a><span class="k">def</span> <span class="nf">test_ajouter_point</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Teste la fonction ajouter_point du module NAF_utils sur le code NAF sans point &quot;6820A&quot; </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">NAF_utils</span><span class="o">.</span><span class="n">ajouter_point</span><span class="p">(</span><span class="s2">&quot;6820A&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="s2">&quot;68.20A&quot;</span></div>
+
+<div class="viewcode-block" id="test_retirer_point"><a class="viewcode-back" href="../../../generated/tests.tests_src.test.test_retirer_point.html#tests.tests_src.test.test_retirer_point">[docs]</a><span class="k">def</span> <span class="nf">test_retirer_point</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Teste la fonction retirer_point du module NAF_utils sur le code NAF avec point &quot;68.20A&quot; </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">NAF_utils</span><span class="o">.</span><span class="n">retirer_point</span><span class="p">(</span><span class="s2">&quot;68.20A&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="s2">&quot;6820A&quot;</span></div>
+
+<div class="viewcode-block" id="test_get_description"><a class="viewcode-back" href="../../../generated/tests.tests_src.test.test_get_description.html#tests.tests_src.test.test_get_description">[docs]</a><span class="k">def</span> <span class="nf">test_get_description</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Teste la fonction get_description du module NAF_utils sur le code NAF &quot;011&quot;, qui correspond à l&#39;activitée &quot;Cultures non permanentes&quot; </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">NAF_utils</span><span class="o">.</span><span class="n">get_description</span><span class="p">(</span><span class="s2">&quot;011&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="s2">&quot;Cultures non permanentes&quot;</span></div>
+
+<div class="viewcode-block" id="test_get_NAFs_by_section"><a class="viewcode-back" href="../../../generated/tests.tests_src.test.test_get_NAFs_by_section.html#tests.tests_src.test.test_get_NAFs_by_section">[docs]</a><span class="k">def</span> <span class="nf">test_get_NAFs_by_section</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Teste la fonction get_NAFs_by_section du module NAF_utils sur la section &quot;D&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">NAF_utils</span><span class="o">.</span><span class="n">get_NAFs_by_section</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;35&quot;</span><span class="p">,</span> <span class="s2">&quot;35.1&quot;</span><span class="p">,</span> <span class="s2">&quot;35.11&quot;</span><span class="p">,</span> <span class="s2">&quot;35.11Z&quot;</span><span class="p">,</span> <span class="s2">&quot;35.12&quot;</span><span class="p">,</span> <span class="s2">&quot;35.12Z&quot;</span><span class="p">,</span> <span class="s2">&quot;35.13&quot;</span><span class="p">,</span> <span class="s2">&quot;35.13Z&quot;</span><span class="p">,</span> <span class="s2">&quot;35.14&quot;</span><span class="p">,</span> <span class="s2">&quot;35.14Z&quot;</span><span class="p">,</span> <span class="s2">&quot;35.2&quot;</span><span class="p">,</span> <span class="s2">&quot;35.21&quot;</span><span class="p">,</span> <span class="s2">&quot;35.21Z&quot;</span><span class="p">,</span> <span class="s2">&quot;35.22&quot;</span><span class="p">,</span> <span class="s2">&quot;35.22Z&quot;</span><span class="p">,</span> <span class="s2">&quot;35.23&quot;</span><span class="p">,</span> <span class="s2">&quot;35.23Z&quot;</span><span class="p">,</span> <span class="s2">&quot;35.3&quot;</span><span class="p">,</span> <span class="s2">&quot;35.30&quot;</span><span class="p">,</span> <span class="s2">&quot;35.30Z&quot;</span> <span class="p">])</span><span class="o">.</span><span class="n">all</span></div>
+
+
+<span class="c1"># df_test_cl, df_test_infos = clusterizer.clusterize(df_test, 1, &quot;geometry&quot;, is_dict=True)</span>
+
+<div class="viewcode-block" id="test_numero_cluster"><a class="viewcode-back" href="../../../generated/tests.tests_src.test.test_numero_cluster.html#tests.tests_src.test.test_numero_cluster">[docs]</a><span class="k">def</span> <span class="nf">test_numero_cluster</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Teste l&#39;ajout des numéros de clusters pour chaque point à la fin du clustering, dans un cas très simple à deux établissements et un seul cluster.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">df_test_cl</span><span class="p">[</span><span class="s2">&quot;cluster&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">all</span>  <span class="c1"># les deux établissements sont dans le premier (et seul) cluster</span></div>
+
+<div class="viewcode-block" id="test_get_infos_clusters_taille"><a class="viewcode-back" href="../../../generated/tests.tests_src.test.test_get_infos_clusters_taille.html#tests.tests_src.test.test_get_infos_clusters_taille">[docs]</a><span class="k">def</span> <span class="nf">test_get_infos_clusters_taille</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Teste la fonction get_infos_clusters_taille du module clusterizer_utils, dans un cas très simple à deux établissements et un seul cluster.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">clusterizer_utils</span><span class="o">.</span><span class="n">get_infos_clusters_taille</span><span class="p">(</span><span class="n">df_test_cl</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">all</span>   <span class="c1"># un seul cluster, contenant deux établisseùents</span></div>
+
+<div class="viewcode-block" id="test_centre_de_masse"><a class="viewcode-back" href="../../../generated/tests.tests_src.test.test_centre_de_masse.html#tests.tests_src.test.test_centre_de_masse">[docs]</a><span class="k">def</span> <span class="nf">test_centre_de_masse</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Teste le calcul du centre de masse des clusters à la fin du clustering, dans un cas très simple à deux établissements et un seul cluster.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">df_test_infos</span><span class="p">[</span><span class="s2">&quot;centroids&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[{(</span><span class="mf">2.348872</span><span class="o">+</span><span class="mf">2.297082</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mf">48.863495</span><span class="o">+</span><span class="mf">48.881103</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">}])</span><span class="o">.</span><span class="n">all</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021 Judith Bellon, Gabrielle Vernet, César Almecija, Louis-Justin Tallot.
+
+    </p>
+  </div>
+    
+    
+    
+    Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

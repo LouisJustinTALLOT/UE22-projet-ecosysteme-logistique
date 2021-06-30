@@ -88,8 +88,14 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/src.clusterizer.clusterizer.html">src.clusterizer.clusterizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.html">src.clusterizer.utils.clusterizer_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/src.clusterizer.utils.NAF_utils.html">src.clusterizer.utils.NAF_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/src.clusterizer.utils.seine_data_utils.html">src.clusterizer.utils.seine_data_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/tests.tests_src.test.html">tests.tests_src.test</a></li>
+</ul>
+
             
           
         </div>
@@ -186,7 +192,7 @@
 <span class="c1"># =====================</span>
 
 
-<div class="viewcode-block" id="get_infos_clusters_poids"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_poids">[docs]</a><span class="k">def</span> <span class="nf">get_infos_clusters_poids</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">column_naf_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="get_infos_clusters_poids"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.get_infos_clusters_poids.html#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_poids">[docs]</a><span class="k">def</span> <span class="nf">get_infos_clusters_poids</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">column_naf_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fonction permettant de récupérer des infos sur les clusters (poids).</span>
 
@@ -199,7 +205,7 @@
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Series</span><span class="p">(</span><span class="n">series_poids</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">COLUMN_CLUSTER_MASS_NAME</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="get_infos_clusters_taille"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_taille">[docs]</a><span class="k">def</span> <span class="nf">get_infos_clusters_taille</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="get_infos_clusters_taille"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.get_infos_clusters_taille.html#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_taille">[docs]</a><span class="k">def</span> <span class="nf">get_infos_clusters_taille</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fonction permettant de récupérer des infos sur les clusters (tailles).</span>
 
@@ -210,7 +216,7 @@
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">COLUMN_CLUSTER_INDEX_NAME</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">COLUMN_CLUSTER_SIZE_NAME</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="get_infos_clusters_enveloppes_convexes"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_enveloppes_convexes">[docs]</a><span class="k">def</span> <span class="nf">get_infos_clusters_enveloppes_convexes</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="get_infos_clusters_enveloppes_convexes"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.get_infos_clusters_enveloppes_convexes.html#src.clusterizer.utils.clusterizer_utils.get_infos_clusters_enveloppes_convexes">[docs]</a><span class="k">def</span> <span class="nf">get_infos_clusters_enveloppes_convexes</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fonction permettant de récupérer des infos sur les clusters (enveloppes convexes).</span>
 
@@ -265,7 +271,7 @@
 <span class="c1"># Fonctions utilitaires</span>
 <span class="c1"># =====================</span>
 
-<div class="viewcode-block" id="calculer_poids_code_NAF"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.calculer_poids_code_NAF">[docs]</a><span class="k">def</span> <span class="nf">calculer_poids_code_NAF</span><span class="p">(</span><span class="n">code_naf</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="calculer_poids_code_NAF"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.calculer_poids_code_NAF.html#src.clusterizer.utils.clusterizer_utils.calculer_poids_code_NAF">[docs]</a><span class="k">def</span> <span class="nf">calculer_poids_code_NAF</span><span class="p">(</span><span class="n">code_naf</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calcule le poids d&#39;un code NAF.</span>
 
@@ -283,7 +289,7 @@
 <span class="n">vectorized_calculer_poids_code_NAF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">calculer_poids_code_NAF</span><span class="p">,</span> <span class="n">otypes</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span>
 
 
-<div class="viewcode-block" id="calculer_poids_cluster"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster">[docs]</a><span class="k">def</span> <span class="nf">calculer_poids_cluster</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">naf_column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="calculer_poids_cluster"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster.html#src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster">[docs]</a><span class="k">def</span> <span class="nf">calculer_poids_cluster</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">naf_column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calcule le poids d&#39;un ensemble d&#39;établissements.</span>
 
@@ -295,7 +301,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vectorized_calculer_poids_code_NAF</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">naf_column_name</span><span class="p">]))</span></div>
 
 
-<div class="viewcode-block" id="calculer_poids_cluster_wrapper"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster_wrapper">[docs]</a><span class="k">def</span> <span class="nf">calculer_poids_cluster_wrapper</span><span class="p">(</span><span class="n">naf_column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+<div class="viewcode-block" id="calculer_poids_cluster_wrapper"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster_wrapper.html#src.clusterizer.utils.clusterizer_utils.calculer_poids_cluster_wrapper">[docs]</a><span class="k">def</span> <span class="nf">calculer_poids_cluster_wrapper</span><span class="p">(</span><span class="n">naf_column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Wrappe calculer_poids_cluster pour pouvoir l&#39;utiliser dans un groupby.</span>
 
@@ -308,7 +314,7 @@
 
     <span class="k">return</span> <span class="n">fct</span></div>
 
-<div class="viewcode-block" id="swap_xy"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.swap_xy">[docs]</a><span class="k">def</span> <span class="nf">swap_xy</span><span class="p">(</span><span class="n">geom</span><span class="p">):</span>
+<div class="viewcode-block" id="swap_xy"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.swap_xy.html#src.clusterizer.utils.clusterizer_utils.swap_xy">[docs]</a><span class="k">def</span> <span class="nf">swap_xy</span><span class="p">(</span><span class="n">geom</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Inverse les coordonnées de l&#39;objet shapely.geometry.</span>
 <span class="sd">    Utile pour passer objets shapely dans folium (la convention est inversée).</span>
@@ -351,7 +357,7 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Type </span><span class="si">%r</span><span class="s1"> not recognized&#39;</span> <span class="o">%</span> <span class="n">geom</span><span class="o">.</span><span class="n">type</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="filter_nearby_paris"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.filter_nearby_paris">[docs]</a><span class="k">def</span> <span class="nf">filter_nearby_paris</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="filter_nearby_paris"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.filter_nearby_paris.html#src.clusterizer.utils.clusterizer_utils.filter_nearby_paris">[docs]</a><span class="k">def</span> <span class="nf">filter_nearby_paris</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Filtre les données proches du centre de Paris.</span>
 <span class="sd">   </span>
@@ -372,7 +378,7 @@
     <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">masque</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_coords_from_object"><a class="viewcode-back" href="../../../../index.html#src.clusterizer.utils.clusterizer_utils.get_coords_from_object">[docs]</a><span class="k">def</span> <span class="nf">get_coords_from_object</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="get_coords_from_object"><a class="viewcode-back" href="../../../../generated/src.clusterizer.utils.clusterizer_utils.get_coords_from_object.html#src.clusterizer.utils.clusterizer_utils.get_coords_from_object">[docs]</a><span class="k">def</span> <span class="nf">get_coords_from_object</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">column_geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">COLUMN_DEFAULT_GEOMETRY_NAME</span><span class="p">,</span> <span class="n">is_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Récupère les coordonnées des points de la DataFrame.</span>
 
