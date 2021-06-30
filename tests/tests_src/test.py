@@ -1,4 +1,4 @@
-import pandas as pd
+"""Module de test de notre projet"""
 
 import sys
 sys.path.append("../..")
